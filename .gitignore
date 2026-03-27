@@ -1,0 +1,5 @@
+client/dist/
+client/node_modules/
+demo/.svelte-kit/
+demo/build/
+demo/node_modules/

@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+// ── Commands: host → device ──────────────────────────────────────────────────
+
+message Command {
+    uint32 id = 1;
+    oneof payload {
+        SetPixel   set_pixel  = 2;
+        SetAll     set_all    = 3;
+        GetStatus  get_status = 4;
+    }
+}
+
+// Set a single NeoPixel (index 0-3 on the NeoTrinkey)
+message SetPixel {
+    uint32 index = 1;
+    uint32 r     = 2;
+    uint32 g     = 3;
+    uint32 b     = 4;
+}
+
+// Set all NeoPixels to the same colour
+message SetAll {
+    uint32 r = 1;
+    uint32 g = 2;
+    uint32 b = 3;
+}
+
+message GetStatus {}
+
+// ── Responses: device → host ─────────────────────────────────────────────────
+
+message Response {
+    uint32 id      = 1;   // echoes the Command.id
+    bool   success = 2;
+    oneof payload {
+        Status status = 3;
+    }
+}
+
+message Status {
+    uint32 pixel_count  = 1;
+    bool   touch_active = 2;
+}
