@@ -35,11 +35,13 @@ public:
         switch (cmd.which_payload) {
             case DeviceCommand_get_state_tag: {
                 resp.which_payload = Response_device_state_tag;
+
                 auto& ds = resp.payload.device_state;
                 ds.type    = DEVICE_TYPE_ROTARY_ENCODER;
                 ds.address = _address;
                 ds.connected = true;
                 ds.which_state = DeviceState_rotary_encoder_tag;
+
                 auto& re = ds.state.rotary_encoder;
                 re.brightness = _brightness;
                 re.pixel.r    = _pixelR;

@@ -1,196 +1,138 @@
-import { DeviceType, type GyroscopeChipset } from "./devices/types.js";
-import type { DeviceCommandPayload } from "./devices/base-device.js";
-import { BaseDevice } from "./devices/base-device.js";
-import { TrinkeyDevice } from "./devices/trinkey.js";
-import {
-  NeoDriverDevice,
-  type NeoDriverAddress,
-} from "./devices/neo-driver.js";
-import {
-  RotaryEncoderDevice,
-  type RotaryEncoderAddress,
-} from "./devices/rotary-encoder.js";
-import {
-  LinearEncoderDevice,
-  type LinearEncoderAddress,
-} from "./devices/linear-encoder.js";
-import {
-  TouchSensorDevice,
-  type TouchSensorAddress,
-} from "./devices/touch-sensor.js";
-import { GyroscopeDevice, type GyroscopeAddress } from "./devices/gyroscope.js";
-import { Connection } from "./usb/Connection.js";
-import type { Response } from "./proto/messages.js";
+import { BaseDevice } from "./devices/BaseDevice";
+import { Connection, type ConnectionEvents } from "./usb/Connection";
+import { Gyroscope } from "./devices/Gyroscope";
+import { DeviceType, GyroscopeChipset } from "./proto/messages";
+import { LinearEncoder } from "./devices/LinearEncoder";
+import { NeoDriver } from "./devices/NeoDriver";
+import { RotaryEncoder } from "./devices/RotaryEncoder";
+import { TouchSensor } from "./devices/TouchSensor";
+import { Trinkey } from "./devices/Trinkey";
+import { TypedEventTarget } from "./utils/events";
+import type { GyroscopeAddress } from "./devices/Gyroscope";
+import type { LinearEncoderAddress } from "./devices/LinearEncoder";
+import type { NeoDriverAddress } from "./devices/NeoDriver";
+import type { Response } from "./proto/messages";
+import type { RotaryEncoderAddress } from "./devices/RotaryEncoder";
+import type { TouchSensorAddress } from "./devices/TouchSensor";
 
-export type {
-  Vector,
-  Color,
-  ColorObject,
-  DeviceType,
-  DeviceIdentifier,
-  NeoPixelDevice,
-  DataRate,
-  AccelerationRange,
-  RotationRange,
-  GyroscopeChipset,
-} from "./devices/types.js";
-export type { NeoDriverAddress } from "./devices/neo-driver.js";
-export type {
-  RotaryEncoderAddress,
-  RotaryEncoderEvent,
-} from "./devices/rotary-encoder.js";
-export type {
-  LinearEncoderAddress,
-  LinearEncoderEvent,
-} from "./devices/linear-encoder.js";
-export type {
-  TouchSensorAddress,
-  TouchSensorEvent,
-} from "./devices/touch-sensor.js";
-export type { GyroscopeAddress, GyroscopeEvent } from "./devices/gyroscope.js";
-export {
-  TrinkeyDevice,
-  NeoDriverDevice,
-  RotaryEncoderDevice,
-  LinearEncoderDevice,
-  TouchSensorDevice,
-  GyroscopeDevice,
-};
+export type DeviceManagerEvents = ConnectionEvents;
 
-export class DeviceManager extends EventTarget {
+export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
   private readonly _connection: Connection;
   private readonly _devices = new Map<string, BaseDevice<number>>();
 
   constructor() {
     super();
+
     this._connection = new Connection(this);
+
+    this.addEventListener("disconnect", this._onDisconnected.bind(this));
+    this.addEventListener("response", this._onResponse.bind(this));
   }
 
-  async startTrinkey(): Promise<TrinkeyDevice> {
-    return this._startDevice(
-      DeviceType.DEVICE_TYPE_TRINKEY,
-      0,
-      (_addr, send) => new TrinkeyDevice(send),
-      {},
-    ) as Promise<TrinkeyDevice>;
-  }
-
-  async startNeoDriver(
-    address: NeoDriverAddress = 0x60,
-  ): Promise<NeoDriverDevice> {
-    return this._startDevice(
-      DeviceType.DEVICE_TYPE_NEO_DRIVER,
-      address,
-      (addr, send) => new NeoDriverDevice(addr as NeoDriverAddress, send),
-      {},
-    ) as Promise<NeoDriverDevice>;
-  }
-
-  async startRotaryEncoder(
-    address: RotaryEncoderAddress = 0x36,
-  ): Promise<RotaryEncoderDevice> {
-    return this._startDevice(
-      DeviceType.DEVICE_TYPE_ROTARY_ENCODER,
-      address,
-      (addr, send) =>
-        new RotaryEncoderDevice(addr as RotaryEncoderAddress, send),
-      {},
-    ) as Promise<RotaryEncoderDevice>;
-  }
-
-  async startLinearEncoder(
-    address: LinearEncoderAddress = 0x30,
-  ): Promise<LinearEncoderDevice> {
-    return this._startDevice(
-      DeviceType.DEVICE_TYPE_LINEAR_ENCODER,
-      address,
-      (addr, send) =>
-        new LinearEncoderDevice(addr as LinearEncoderAddress, send),
-      {},
-    ) as Promise<LinearEncoderDevice>;
-  }
-
-  async startTouchSensor(
-    address: TouchSensorAddress = 0x5a,
-  ): Promise<TouchSensorDevice> {
-    return this._startDevice(
-      DeviceType.DEVICE_TYPE_TOUCH_SENSOR,
-      address,
-      (addr, send) => new TouchSensorDevice(addr as TouchSensorAddress, send),
-      {},
-    ) as Promise<TouchSensorDevice>;
-  }
-
-  async startGyroscope(
-    chipset: GyroscopeChipset,
-    address: GyroscopeAddress = 0x6a,
-  ): Promise<GyroscopeDevice> {
-    return this._startDevice(
+  getGyroscope(
+    address: GyroscopeAddress = Gyroscope.ADDRESSES[0],
+    chipset: GyroscopeChipset = GyroscopeChipset.GYROSCOPE_CHIPSET_LSM6DSOX,
+  ) {
+    return this._createDevice(
       DeviceType.DEVICE_TYPE_GYROSCOPE,
       address,
-      (addr, send) => new GyroscopeDevice(addr as GyroscopeAddress, send),
-      { start: { gyroscopeChipset: chipset } },
-    ) as Promise<GyroscopeDevice>;
+      () => new Gyroscope(address, chipset, this._connection),
+    );
+  }
+
+  getLinearEncoder(address: LinearEncoderAddress = LinearEncoder.ADDRESSES[0]) {
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_LINEAR_ENCODER,
+      address,
+      () => new LinearEncoder(address, this._connection),
+    );
+  }
+
+  getNeoDriver(address: NeoDriverAddress = NeoDriver.ADDRESSES[0]) {
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_NEO_DRIVER,
+      address,
+      () => new NeoDriver(address as NeoDriverAddress, this._connection),
+    );
+  }
+
+  getRotaryEncoder(address: RotaryEncoderAddress = RotaryEncoder.ADDRESSES[0]) {
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_ROTARY_ENCODER,
+      address,
+      () => new RotaryEncoder(address, this._connection),
+    );
+  }
+
+  getTouchSensor(address: TouchSensorAddress = TouchSensor.ADDRESSES[0]) {
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_TOUCH_SENSOR,
+      address,
+      () => new TouchSensor(address, this._connection),
+    );
+  }
+
+  getTrinkey() {
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_TRINKEY,
+      0,
+      () => new Trinkey(this._connection),
+    );
+  }
+
+  get isConnected(): boolean {
+    return this._connection.isConnected;
+  }
+
+  async connect(): Promise<void> {
+    return this._connection.connect();
+  }
+
+  async disconnect(): Promise<void> {
+    return this._connection.disconnect();
+  }
+
+  private _createDevice<T extends BaseDevice<number>>(
+    type: DeviceType,
+    address: number,
+    factory: () => T,
+  ): T {
+    const key = this._deviceKey(type, address);
+    if (this._devices.has(key)) {
+      return this._devices.get(key) as T;
+    }
+
+    const device = factory();
+    this._devices.set(key, device);
+    return device;
   }
 
   private _deviceKey(type: DeviceType, address: number): string {
     return `${type}:${address}`;
   }
 
-  private async _startDevice<T extends BaseDevice<number>>(
-    type: DeviceType,
-    address: number,
-    factory: (
-      address: number,
-      send: (
-        t: DeviceType,
-        a: number,
-        p: DeviceCommandPayload,
-      ) => Promise<number>,
-    ) => T,
-    startPayload: DeviceCommandPayload,
-  ): Promise<T> {
-    const key = this._deviceKey(type, address);
-    if (this._devices.has(key)) return this._devices.get(key) as T;
-
-    const device = factory(address, this._sendDeviceCommand.bind(this));
-    this._devices.set(key, device);
-    await this._sendDeviceCommand(type, address, { start: startPayload });
-    return device;
-  }
-
-  private _sendDeviceCommand(
-    deviceType: DeviceType,
-    address: number,
-    payload: DeviceCommandPayload,
-  ): Promise<number> {
-    return this._connection.send({
-      type: "device_command",
-      deviceType,
-      address,
-      payload,
-    });
+  private _onDisconnected() {
+    this._devices.clear();
   }
 
   private _onResponse({ detail: response }: CustomEvent<Response>) {
     if (response.deviceState) {
-      const ds = response.deviceState;
+      const state = response.deviceState;
       const device = this._devices.get(
-        this._deviceKey(ds.type ?? 0, ds.address ?? 0),
+        this._deviceKey(state.type ?? 0, state.address ?? 0),
       );
-      device?._applyState(ds);
+
+      device?._applyState(state);
     }
 
     if (response.deviceEvent) {
-      const de = response.deviceEvent;
+      const event = response.deviceEvent;
       const device = this._devices.get(
-        this._deviceKey(de.type ?? 0, de.address ?? 0),
+        this._deviceKey(event.type ?? 0, event.address ?? 0),
       );
-      device?._applyEvent(de);
-    }
-  }
 
-  private _onDisconnected() {
-    this._devices.clear();
+      device?._applyEvent(event);
+    }
   }
 }

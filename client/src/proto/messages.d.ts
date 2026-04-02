@@ -2792,11 +2792,8 @@ export class TouchSensorState implements ITouchSensorState {
 /** Properties of a TouchSensorButton. */
 export interface ITouchSensorButton {
 
-    /** TouchSensorButton sensorId */
-    sensorId?: (number|null);
-
-    /** TouchSensorButton isPressed */
-    isPressed?: (boolean|null);
+    /** TouchSensorButton touchedMask */
+    touchedMask?: (number|null);
 }
 
 /** Represents a TouchSensorButton. */
@@ -2808,11 +2805,8 @@ export class TouchSensorButton implements ITouchSensorButton {
      */
     constructor(properties?: ITouchSensorButton);
 
-    /** TouchSensorButton sensorId. */
-    public sensorId: number;
-
-    /** TouchSensorButton isPressed. */
-    public isPressed: boolean;
+    /** TouchSensorButton touchedMask. */
+    public touchedMask: number;
 
     /**
      * Creates a new TouchSensorButton instance using the specified properties.
@@ -2895,11 +2889,23 @@ export class TouchSensorButton implements ITouchSensorButton {
 /** Properties of a GyroscopeState. */
 export interface IGyroscopeState {
 
-    /** GyroscopeState acceleration */
-    acceleration?: (IVector3|null);
+    /** GyroscopeState accelerationX */
+    accelerationX?: (number|null);
 
-    /** GyroscopeState rotation */
-    rotation?: (IVector3|null);
+    /** GyroscopeState accelerationY */
+    accelerationY?: (number|null);
+
+    /** GyroscopeState accelerationZ */
+    accelerationZ?: (number|null);
+
+    /** GyroscopeState rotationX */
+    rotationX?: (number|null);
+
+    /** GyroscopeState rotationY */
+    rotationY?: (number|null);
+
+    /** GyroscopeState rotationZ */
+    rotationZ?: (number|null);
 
     /** GyroscopeState temperature */
     temperature?: (number|null);
@@ -2926,11 +2932,23 @@ export class GyroscopeState implements IGyroscopeState {
      */
     constructor(properties?: IGyroscopeState);
 
-    /** GyroscopeState acceleration. */
-    public acceleration?: (IVector3|null);
+    /** GyroscopeState accelerationX. */
+    public accelerationX: number;
 
-    /** GyroscopeState rotation. */
-    public rotation?: (IVector3|null);
+    /** GyroscopeState accelerationY. */
+    public accelerationY: number;
+
+    /** GyroscopeState accelerationZ. */
+    public accelerationZ: number;
+
+    /** GyroscopeState rotationX. */
+    public rotationX: number;
+
+    /** GyroscopeState rotationY. */
+    public rotationY: number;
+
+    /** GyroscopeState rotationZ. */
+    public rotationZ: number;
 
     /** GyroscopeState temperature. */
     public temperature: number;
@@ -3028,11 +3046,23 @@ export class GyroscopeState implements IGyroscopeState {
 /** Properties of a GyroscopeChanged. */
 export interface IGyroscopeChanged {
 
-    /** GyroscopeChanged acceleration */
-    acceleration?: (IVector3|null);
+    /** GyroscopeChanged accelerationX */
+    accelerationX?: (number|null);
 
-    /** GyroscopeChanged rotation */
-    rotation?: (IVector3|null);
+    /** GyroscopeChanged accelerationY */
+    accelerationY?: (number|null);
+
+    /** GyroscopeChanged accelerationZ */
+    accelerationZ?: (number|null);
+
+    /** GyroscopeChanged rotationX */
+    rotationX?: (number|null);
+
+    /** GyroscopeChanged rotationY */
+    rotationY?: (number|null);
+
+    /** GyroscopeChanged rotationZ */
+    rotationZ?: (number|null);
 
     /** GyroscopeChanged temperature */
     temperature?: (number|null);
@@ -3047,11 +3077,23 @@ export class GyroscopeChanged implements IGyroscopeChanged {
      */
     constructor(properties?: IGyroscopeChanged);
 
-    /** GyroscopeChanged acceleration. */
-    public acceleration?: (IVector3|null);
+    /** GyroscopeChanged accelerationX. */
+    public accelerationX: number;
 
-    /** GyroscopeChanged rotation. */
-    public rotation?: (IVector3|null);
+    /** GyroscopeChanged accelerationY. */
+    public accelerationY: number;
+
+    /** GyroscopeChanged accelerationZ. */
+    public accelerationZ: number;
+
+    /** GyroscopeChanged rotationX. */
+    public rotationX: number;
+
+    /** GyroscopeChanged rotationY. */
+    public rotationY: number;
+
+    /** GyroscopeChanged rotationZ. */
+    public rotationZ: number;
 
     /** GyroscopeChanged temperature. */
     public temperature: number;

@@ -57,10 +57,8 @@ static void handle_command(const uint8_t* data, uint16_t len) {
 
     switch (cmd.which_payload) {
         case Command_device_command_tag: {
-            Response devResp = Response_init_zero;
-            devResp.id = cmd.id;
-            if (deviceManager.handleCommand(cmd.payload.device_command, devResp)) {
-                send_response(devResp);
+            if (deviceManager.handleCommand(cmd.payload.device_command, resp)) {
+                send_response(resp);
             }
             break;
         }
@@ -116,5 +114,7 @@ void loop() {
 
         // Poll all active StemmaQT devices and push any events to the host
         deviceManager.pollAll(send_response);
+
+        sleep_ms(50);
     }
 }

@@ -34,7 +34,6 @@ public:
      * firmware should send a response back to the host.
      */
     bool handleCommand(const DeviceCommand& cmd, Response& resp) {
-        resp.id      = 0;
         resp.success = false;
 
         if (cmd.which_payload == DeviceCommand_start_tag) {
@@ -49,6 +48,7 @@ public:
             resp.success = false;
             return true;  // send failure response
         }
+
         return dev->handleCommand(cmd, resp);
     }
 
@@ -83,7 +83,7 @@ private:
         if (_findDevice(cmd.type, cmd.address)) {
             // Already started — return success
             resp.success = true;
-            return false;
+            return true;
         }
         if (_count >= MAX_DEVICES) {
             resp.success = false;
@@ -101,7 +101,7 @@ private:
 
         _devices[_count++] = dev;
         resp.success = true;
-        return false;
+        return true;
     }
 
     bool _stopDevice(const DeviceCommand& cmd, Response& resp) {

@@ -1,16 +1,16 @@
-import { Command, Response } from "../proto/messages.js";
-import { DeviceType } from "../devices/types.js";
-import type { ICommand, IDeviceCommand } from "../proto/messages.js";
-import type { DeviceCommandPayload } from "../devices/base-device.js";
+import { Command, Response } from "../proto/messages";
+import type { DeviceType, ICommand, IDeviceCommand } from "../proto/messages";
 
-export type CommandPayload = {
+export type DeviceCommand = {
   type: "device_command";
   deviceType: DeviceType;
   address: number;
   payload: DeviceCommandPayload;
 };
 
-export function encodeCommand(id: number, payload: CommandPayload): Uint8Array {
+export type DeviceCommandPayload = Omit<IDeviceCommand, "type" | "address">;
+
+export function encodeCommand(id: number, payload: DeviceCommand): Uint8Array {
   const cmd: ICommand = {
     id,
     deviceCommand: {

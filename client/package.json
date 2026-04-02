@@ -1,16 +1,16 @@
 {
-  "name": "stemma-trinkey",
+  "name": "stemma-web",
   "version": "0.1.0",
   "type": "module",
-  "main": "./dist/trinkey.umd.cjs",
-  "module": "./dist/trinkey.js",
+  "main": "./dist/stemma-web.umd.cjs",
+  "module": "./dist/stemma-web.js",
   "exports": {
     ".": {
-      "import": "./dist/trinkey.js",
-      "require": "./dist/trinkey.umd.cjs"
+      "import": "./dist/stemma-web.js",
+      "require": "./dist/stemma-web.umd.cjs"
     }
   },
-  "types": "./dist/trinkey.d.ts",
+  "types": "./dist/stemma-web.d.ts",
   "files": [
     "dist"
   ],

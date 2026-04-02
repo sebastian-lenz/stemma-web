@@ -6,20 +6,28 @@ import "shared.proto";
 
 // State returned by GetDeviceState for a Gyroscope.
 message GyroscopeState {
-    Vector3           acceleration          = 1;
-    Vector3           rotation              = 2;
-    float             temperature           = 3;
-    DataRate          acceleration_data_rate = 4;
-    DataRate          rotation_data_rate    = 5;
-    AccelerationRange acceleration_range    = 6;
-    RotationRange     rotation_range        = 7;
+    float             acceleration_x         = 1;
+    float             acceleration_y         = 2;
+    float             acceleration_z         = 3;
+    float             rotation_x             = 4;
+    float             rotation_y             = 5;
+    float             rotation_z             = 6;
+    float             temperature            = 7;
+    DataRate          acceleration_data_rate = 8;
+    DataRate          rotation_data_rate     = 9;
+    AccelerationRange acceleration_range     = 10;
+    RotationRange     rotation_range         = 11;
 }
 
 // Unsolicited event — sent at the configured data rate.
 message GyroscopeChanged {
-    Vector3 acceleration = 1;
-    Vector3 rotation     = 2;
-    float   temperature  = 3;
+    float acceleration_x = 1;
+    float acceleration_y = 2;
+    float acceleration_z = 3;
+    float rotation_x     = 4;
+    float rotation_y     = 5;
+    float rotation_z     = 6;
+    float temperature    = 7;
 }
 
 // ── Gyroscope-specific enumerations ──────────────────────────────────────────

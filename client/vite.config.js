@@ -24,12 +24,12 @@ export default defineConfig({
     outDir: resolve(__dirname, "dist"),
     emptyOutDir: true,
     lib: {
-      entry: resolve(__dirname, "src/trinkey.ts"),
-      name: "StemmaTrinkey",
-      fileName: "trinkey",
+      entry: resolve(__dirname, "src/index.ts"),
+      name: "StemmaWeb",
+      fileName: "stemma-web",
     },
     rollupOptions: {
-      // trinkey.js has no external deps — everything is bundled
+      // stemma-web.js has no external deps — everything is bundled
     },
   },
 });

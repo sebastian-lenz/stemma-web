@@ -32,6 +32,7 @@ public:
             _lsm = nullptr;
             return false;
         }
+
         _applyAccelRange(ACCELERATION_RANGE_4_G);
         _lsm->setGyroRange(LSM6DS_GYRO_RANGE_250_DPS);
         _lsm->setAccelDataRate(LSM6DS_RATE_104_HZ);
@@ -52,19 +53,21 @@ public:
                 _lsm->getEvent(&accel, &gyro, &temp);
 
                 resp.which_payload = Response_device_state_tag;
+
                 auto& ds = resp.payload.device_state;
                 ds.type    = DEVICE_TYPE_GYROSCOPE;
                 ds.address = _address;
                 ds.connected = true;
                 ds.which_state = DeviceState_gyroscope_tag;
+
                 auto& gs = ds.state.gyroscope;
-                gs.acceleration.x = accel.acceleration.x;
-                gs.acceleration.y = accel.acceleration.y;
-                gs.acceleration.z = accel.acceleration.z;
-                gs.rotation.x = gyro.gyro.x;
-                gs.rotation.y = gyro.gyro.y;
-                gs.rotation.z = gyro.gyro.z;
-                gs.temperature = temp.temperature;
+                gs.acceleration_x         = accel.acceleration.x;
+                gs.acceleration_y         = accel.acceleration.y;
+                gs.acceleration_z         = accel.acceleration.z;
+                gs.rotation_x             = gyro.gyro.x;
+                gs.rotation_y             = gyro.gyro.y;
+                gs.rotation_z             = gyro.gyro.z;
+                gs.temperature            = temp.temperature;
                 gs.acceleration_range     = _accelRange;
                 gs.rotation_range         = _rotRange;
                 gs.acceleration_data_rate = _accelRate;
@@ -104,18 +107,21 @@ public:
         event.id = 0;
         event.success = true;
         event.which_payload = Response_device_event_tag;
+
         auto& de = event.payload.device_event;
         de.type    = DEVICE_TYPE_GYROSCOPE;
         de.address = _address;
         de.which_event = DeviceEvent_gyroscope_data_tag;
+
         auto& gc = de.event.gyroscope_data;
-        gc.acceleration.x = accel.acceleration.x;
-        gc.acceleration.y = accel.acceleration.y;
-        gc.acceleration.z = accel.acceleration.z;
-        gc.rotation.x = gyro.gyro.x;
-        gc.rotation.y = gyro.gyro.y;
-        gc.rotation.z = gyro.gyro.z;
+        gc.acceleration_x = accel.acceleration.x;
+        gc.acceleration_y = accel.acceleration.y;
+        gc.acceleration_z = accel.acceleration.z;
+        gc.rotation_x = gyro.gyro.x;
+        gc.rotation_y = gyro.gyro.y;
+        gc.rotation_z = gyro.gyro.z;
         gc.temperature = temp.temperature;
+
         return true;
     }
 

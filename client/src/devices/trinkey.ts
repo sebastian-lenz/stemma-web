@@ -1,16 +1,12 @@
-import { DeviceType } from "./types.js";
-import {
-  BaseNeoPixelDevice,
-  toColorObject,
-  type SendDeviceCommand,
-} from "./base-device.js";
-import type { IDeviceState } from "../proto/messages.js";
+import { BaseNeoPixelDevice } from "./BaseNeoPixelDevice";
+import { DeviceType } from "../proto/messages";
+import { toColorObject } from "../utils/color";
+import type { Connection } from "../usb/Connection";
+import type { IDeviceState } from "../proto/messages";
 
-// ── Implementation ────────────────────────────────────────────────────────────
-
-export class TrinkeyDevice extends BaseNeoPixelDevice<0> {
-  constructor(send: SendDeviceCommand) {
-    super(DeviceType.DEVICE_TYPE_TRINKEY, 0, send);
+export class Trinkey extends BaseNeoPixelDevice {
+  constructor(connection: Connection) {
+    super(DeviceType.DEVICE_TYPE_TRINKEY, 0, connection);
 
     this._pixels = Array.from({ length: 1 }, () => ({
       red: 0,
@@ -23,13 +19,16 @@ export class TrinkeyDevice extends BaseNeoPixelDevice<0> {
     return 1;
   }
 
-  override _applyState(ds: IDeviceState): void {
-    super._applyState(ds);
+  override _applyState(deviceState: IDeviceState): void {
+    super._applyState(deviceState);
 
-    const s = ds.trinkey;
-    if (!s) return;
-    
-    this._brightness = s.brightness ?? 0;
-    if (s.pixel) this._pixels[0] = toColorObject(s.pixel);
+    const { trinkey: state } = deviceState;
+    if (!state) return;
+
+    this._brightness = state.brightness ?? 0;
+
+    if (state.pixel) {
+      this._pixels[0] = toColorObject(state.pixel);
+    }
   }
 }

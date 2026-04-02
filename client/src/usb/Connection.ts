@@ -1,9 +1,17 @@
 import { encodeCommand, decodeResponse, frame } from "./utils";
-import type { CommandPayload } from "./utils";
+import type { DeviceCommand } from "./utils";
 import type { Response } from "../proto/messages";
+import type { TypedEventTarget } from "../utils/events";
 
 // Adafruit vendor ID — used to pre-filter the device picker
 const ADAFRUIT_VID = 0x239a;
+
+export type ConnectionEvents = {
+  connect: Event;
+  disconnect: Event;
+  error: CustomEvent<Error>;
+  response: CustomEvent<Response>;
+};
 
 export class Connection {
   private _device: USBDevice | null = null;
@@ -14,9 +22,9 @@ export class Connection {
   private _requests: Map<number, (response: Response) => void>;
   private _responseBuffer: Uint8Array;
   private _responseLength: number;
-  private readonly _eventTarget: EventTarget;
+  private readonly _eventTarget: TypedEventTarget<ConnectionEvents>;
 
-  constructor(eventTarget: EventTarget) {
+  constructor(eventTarget: TypedEventTarget<ConnectionEvents>) {
     this._eventTarget = eventTarget;
     this._requests = new Map();
     this._responseBuffer = new Uint8Array(256);
@@ -52,7 +60,7 @@ export class Connection {
 
     this._device = device;
     this._startReading();
-    this._dispatch(new Event("connect"));
+    this._eventTarget.dispatchEvent(new Event("connect"));
   }
 
   async disconnect(): Promise<void> {
@@ -65,10 +73,10 @@ export class Connection {
     this._endpointIn = null;
     this._endpointOut = null;
 
-    this._dispatch(new Event("disconnect"));
+    this._eventTarget.dispatchEvent(new Event("disconnect"));
   }
 
-  async request(payload: CommandPayload): Promise<Response> {
+  async request(payload: DeviceCommand): Promise<Response> {
     const id = this._nextId + 1;
 
     return new Promise<Response>((resolve, reject) => {
@@ -91,7 +99,7 @@ export class Connection {
     });
   }
 
-  async send(payload: CommandPayload): Promise<number> {
+  async send(payload: DeviceCommand): Promise<number> {
     if (!this.isConnected) {
       throw new Error("Not connected");
     }
@@ -132,20 +140,20 @@ export class Connection {
     }
   }
 
-  private _dispatch(event: Event) {
-    this._eventTarget.dispatchEvent(event);
-  }
-
   private _handleResponse(payload: Uint8Array): void {
     const { _requests } = this;
     const response = decodeResponse(payload);
+
+    console.log(JSON.stringify(response));
 
     const request = _requests.get(response.id);
     if (request) {
       request(response);
     }
 
-    this._dispatch(new CustomEvent<Response>("response", { detail: response }));
+    this._eventTarget.dispatchEvent(
+      new CustomEvent<Response>("response", { detail: response }),
+    );
   }
 
   private async _startReading(): Promise<void> {
@@ -159,7 +167,9 @@ export class Connection {
         }
       } catch (err) {
         if (this._isReading) {
-          this._dispatch(new CustomEvent("error", { detail: err }));
+          this._eventTarget.dispatchEvent(
+            new CustomEvent("error", { detail: err }),
+          );
         }
 
         break;

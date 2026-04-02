@@ -7092,8 +7092,7 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
      * Properties of a TouchSensorButton.
      * @exports ITouchSensorButton
      * @interface ITouchSensorButton
-     * @property {number|null} [sensorId] TouchSensorButton sensorId
-     * @property {boolean|null} [isPressed] TouchSensorButton isPressed
+     * @property {number|null} [touchedMask] TouchSensorButton touchedMask
      */
 
     /**
@@ -7112,20 +7111,12 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
     }
 
     /**
-     * TouchSensorButton sensorId.
-     * @member {number} sensorId
+     * TouchSensorButton touchedMask.
+     * @member {number} touchedMask
      * @memberof TouchSensorButton
      * @instance
      */
-    TouchSensorButton.prototype.sensorId = 0;
-
-    /**
-     * TouchSensorButton isPressed.
-     * @member {boolean} isPressed
-     * @memberof TouchSensorButton
-     * @instance
-     */
-    TouchSensorButton.prototype.isPressed = false;
+    TouchSensorButton.prototype.touchedMask = 0;
 
     /**
      * Creates a new TouchSensorButton instance using the specified properties.
@@ -7151,10 +7142,8 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
     TouchSensorButton.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.sensorId != null && Object.hasOwnProperty.call(message, "sensorId"))
-            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.sensorId);
-        if (message.isPressed != null && Object.hasOwnProperty.call(message, "isPressed"))
-            writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isPressed);
+        if (message.touchedMask != null && Object.hasOwnProperty.call(message, "touchedMask"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.touchedMask);
         return writer;
     };
 
@@ -7192,11 +7181,7 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
                 break;
             switch (tag >>> 3) {
             case 1: {
-                    message.sensorId = reader.uint32();
-                    break;
-                }
-            case 2: {
-                    message.isPressed = reader.bool();
+                    message.touchedMask = reader.uint32();
                     break;
                 }
             default:
@@ -7234,12 +7219,9 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
     TouchSensorButton.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (message.sensorId != null && message.hasOwnProperty("sensorId"))
-            if (!$util.isInteger(message.sensorId))
-                return "sensorId: integer expected";
-        if (message.isPressed != null && message.hasOwnProperty("isPressed"))
-            if (typeof message.isPressed !== "boolean")
-                return "isPressed: boolean expected";
+        if (message.touchedMask != null && message.hasOwnProperty("touchedMask"))
+            if (!$util.isInteger(message.touchedMask))
+                return "touchedMask: integer expected";
         return null;
     };
 
@@ -7255,10 +7237,8 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
         if (object instanceof $root.TouchSensorButton)
             return object;
         let message = new $root.TouchSensorButton();
-        if (object.sensorId != null)
-            message.sensorId = object.sensorId >>> 0;
-        if (object.isPressed != null)
-            message.isPressed = Boolean(object.isPressed);
+        if (object.touchedMask != null)
+            message.touchedMask = object.touchedMask >>> 0;
         return message;
     };
 
@@ -7275,14 +7255,10 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
         if (!options)
             options = {};
         let object = {};
-        if (options.defaults) {
-            object.sensorId = 0;
-            object.isPressed = false;
-        }
-        if (message.sensorId != null && message.hasOwnProperty("sensorId"))
-            object.sensorId = message.sensorId;
-        if (message.isPressed != null && message.hasOwnProperty("isPressed"))
-            object.isPressed = message.isPressed;
+        if (options.defaults)
+            object.touchedMask = 0;
+        if (message.touchedMask != null && message.hasOwnProperty("touchedMask"))
+            object.touchedMask = message.touchedMask;
         return object;
     };
 
@@ -7321,8 +7297,12 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
      * Properties of a GyroscopeState.
      * @exports IGyroscopeState
      * @interface IGyroscopeState
-     * @property {IVector3|null} [acceleration] GyroscopeState acceleration
-     * @property {IVector3|null} [rotation] GyroscopeState rotation
+     * @property {number|null} [accelerationX] GyroscopeState accelerationX
+     * @property {number|null} [accelerationY] GyroscopeState accelerationY
+     * @property {number|null} [accelerationZ] GyroscopeState accelerationZ
+     * @property {number|null} [rotationX] GyroscopeState rotationX
+     * @property {number|null} [rotationY] GyroscopeState rotationY
+     * @property {number|null} [rotationZ] GyroscopeState rotationZ
      * @property {number|null} [temperature] GyroscopeState temperature
      * @property {DataRate|null} [accelerationDataRate] GyroscopeState accelerationDataRate
      * @property {DataRate|null} [rotationDataRate] GyroscopeState rotationDataRate
@@ -7346,20 +7326,52 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
     }
 
     /**
-     * GyroscopeState acceleration.
-     * @member {IVector3|null|undefined} acceleration
+     * GyroscopeState accelerationX.
+     * @member {number} accelerationX
      * @memberof GyroscopeState
      * @instance
      */
-    GyroscopeState.prototype.acceleration = null;
+    GyroscopeState.prototype.accelerationX = 0;
 
     /**
-     * GyroscopeState rotation.
-     * @member {IVector3|null|undefined} rotation
+     * GyroscopeState accelerationY.
+     * @member {number} accelerationY
      * @memberof GyroscopeState
      * @instance
      */
-    GyroscopeState.prototype.rotation = null;
+    GyroscopeState.prototype.accelerationY = 0;
+
+    /**
+     * GyroscopeState accelerationZ.
+     * @member {number} accelerationZ
+     * @memberof GyroscopeState
+     * @instance
+     */
+    GyroscopeState.prototype.accelerationZ = 0;
+
+    /**
+     * GyroscopeState rotationX.
+     * @member {number} rotationX
+     * @memberof GyroscopeState
+     * @instance
+     */
+    GyroscopeState.prototype.rotationX = 0;
+
+    /**
+     * GyroscopeState rotationY.
+     * @member {number} rotationY
+     * @memberof GyroscopeState
+     * @instance
+     */
+    GyroscopeState.prototype.rotationY = 0;
+
+    /**
+     * GyroscopeState rotationZ.
+     * @member {number} rotationZ
+     * @memberof GyroscopeState
+     * @instance
+     */
+    GyroscopeState.prototype.rotationZ = 0;
 
     /**
      * GyroscopeState temperature.
@@ -7425,20 +7437,28 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
     GyroscopeState.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.acceleration != null && Object.hasOwnProperty.call(message, "acceleration"))
-            $root.Vector3.encode(message.acceleration, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-        if (message.rotation != null && Object.hasOwnProperty.call(message, "rotation"))
-            $root.Vector3.encode(message.rotation, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+        if (message.accelerationX != null && Object.hasOwnProperty.call(message, "accelerationX"))
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.accelerationX);
+        if (message.accelerationY != null && Object.hasOwnProperty.call(message, "accelerationY"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.accelerationY);
+        if (message.accelerationZ != null && Object.hasOwnProperty.call(message, "accelerationZ"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.accelerationZ);
+        if (message.rotationX != null && Object.hasOwnProperty.call(message, "rotationX"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.rotationX);
+        if (message.rotationY != null && Object.hasOwnProperty.call(message, "rotationY"))
+            writer.uint32(/* id 5, wireType 5 =*/45).float(message.rotationY);
+        if (message.rotationZ != null && Object.hasOwnProperty.call(message, "rotationZ"))
+            writer.uint32(/* id 6, wireType 5 =*/53).float(message.rotationZ);
         if (message.temperature != null && Object.hasOwnProperty.call(message, "temperature"))
-            writer.uint32(/* id 3, wireType 5 =*/29).float(message.temperature);
+            writer.uint32(/* id 7, wireType 5 =*/61).float(message.temperature);
         if (message.accelerationDataRate != null && Object.hasOwnProperty.call(message, "accelerationDataRate"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.accelerationDataRate);
+            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.accelerationDataRate);
         if (message.rotationDataRate != null && Object.hasOwnProperty.call(message, "rotationDataRate"))
-            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.rotationDataRate);
+            writer.uint32(/* id 9, wireType 0 =*/72).int32(message.rotationDataRate);
         if (message.accelerationRange != null && Object.hasOwnProperty.call(message, "accelerationRange"))
-            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.accelerationRange);
+            writer.uint32(/* id 10, wireType 0 =*/80).int32(message.accelerationRange);
         if (message.rotationRange != null && Object.hasOwnProperty.call(message, "rotationRange"))
-            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.rotationRange);
+            writer.uint32(/* id 11, wireType 0 =*/88).int32(message.rotationRange);
         return writer;
     };
 
@@ -7476,30 +7496,46 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
                 break;
             switch (tag >>> 3) {
             case 1: {
-                    message.acceleration = $root.Vector3.decode(reader, reader.uint32());
+                    message.accelerationX = reader.float();
                     break;
                 }
             case 2: {
-                    message.rotation = $root.Vector3.decode(reader, reader.uint32());
+                    message.accelerationY = reader.float();
                     break;
                 }
             case 3: {
-                    message.temperature = reader.float();
+                    message.accelerationZ = reader.float();
                     break;
                 }
             case 4: {
-                    message.accelerationDataRate = reader.int32();
+                    message.rotationX = reader.float();
                     break;
                 }
             case 5: {
-                    message.rotationDataRate = reader.int32();
+                    message.rotationY = reader.float();
                     break;
                 }
             case 6: {
-                    message.accelerationRange = reader.int32();
+                    message.rotationZ = reader.float();
                     break;
                 }
             case 7: {
+                    message.temperature = reader.float();
+                    break;
+                }
+            case 8: {
+                    message.accelerationDataRate = reader.int32();
+                    break;
+                }
+            case 9: {
+                    message.rotationDataRate = reader.int32();
+                    break;
+                }
+            case 10: {
+                    message.accelerationRange = reader.int32();
+                    break;
+                }
+            case 11: {
                     message.rotationRange = reader.int32();
                     break;
                 }
@@ -7538,16 +7574,24 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
     GyroscopeState.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (message.acceleration != null && message.hasOwnProperty("acceleration")) {
-            let error = $root.Vector3.verify(message.acceleration);
-            if (error)
-                return "acceleration." + error;
-        }
-        if (message.rotation != null && message.hasOwnProperty("rotation")) {
-            let error = $root.Vector3.verify(message.rotation);
-            if (error)
-                return "rotation." + error;
-        }
+        if (message.accelerationX != null && message.hasOwnProperty("accelerationX"))
+            if (typeof message.accelerationX !== "number")
+                return "accelerationX: number expected";
+        if (message.accelerationY != null && message.hasOwnProperty("accelerationY"))
+            if (typeof message.accelerationY !== "number")
+                return "accelerationY: number expected";
+        if (message.accelerationZ != null && message.hasOwnProperty("accelerationZ"))
+            if (typeof message.accelerationZ !== "number")
+                return "accelerationZ: number expected";
+        if (message.rotationX != null && message.hasOwnProperty("rotationX"))
+            if (typeof message.rotationX !== "number")
+                return "rotationX: number expected";
+        if (message.rotationY != null && message.hasOwnProperty("rotationY"))
+            if (typeof message.rotationY !== "number")
+                return "rotationY: number expected";
+        if (message.rotationZ != null && message.hasOwnProperty("rotationZ"))
+            if (typeof message.rotationZ !== "number")
+                return "rotationZ: number expected";
         if (message.temperature != null && message.hasOwnProperty("temperature"))
             if (typeof message.temperature !== "number")
                 return "temperature: number expected";
@@ -7622,16 +7666,18 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
         if (object instanceof $root.GyroscopeState)
             return object;
         let message = new $root.GyroscopeState();
-        if (object.acceleration != null) {
-            if (typeof object.acceleration !== "object")
-                throw TypeError(".GyroscopeState.acceleration: object expected");
-            message.acceleration = $root.Vector3.fromObject(object.acceleration);
-        }
-        if (object.rotation != null) {
-            if (typeof object.rotation !== "object")
-                throw TypeError(".GyroscopeState.rotation: object expected");
-            message.rotation = $root.Vector3.fromObject(object.rotation);
-        }
+        if (object.accelerationX != null)
+            message.accelerationX = Number(object.accelerationX);
+        if (object.accelerationY != null)
+            message.accelerationY = Number(object.accelerationY);
+        if (object.accelerationZ != null)
+            message.accelerationZ = Number(object.accelerationZ);
+        if (object.rotationX != null)
+            message.rotationX = Number(object.rotationX);
+        if (object.rotationY != null)
+            message.rotationY = Number(object.rotationY);
+        if (object.rotationZ != null)
+            message.rotationZ = Number(object.rotationZ);
         if (object.temperature != null)
             message.temperature = Number(object.temperature);
         switch (object.accelerationDataRate) {
@@ -7811,18 +7857,30 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
             options = {};
         let object = {};
         if (options.defaults) {
-            object.acceleration = null;
-            object.rotation = null;
+            object.accelerationX = 0;
+            object.accelerationY = 0;
+            object.accelerationZ = 0;
+            object.rotationX = 0;
+            object.rotationY = 0;
+            object.rotationZ = 0;
             object.temperature = 0;
             object.accelerationDataRate = options.enums === String ? "DATA_RATE_SHUTDOWN" : 0;
             object.rotationDataRate = options.enums === String ? "DATA_RATE_SHUTDOWN" : 0;
             object.accelerationRange = options.enums === String ? "ACCELERATION_RANGE_4_G" : 0;
             object.rotationRange = options.enums === String ? "ROTATION_RANGE_DPS_125" : 0;
         }
-        if (message.acceleration != null && message.hasOwnProperty("acceleration"))
-            object.acceleration = $root.Vector3.toObject(message.acceleration, options);
-        if (message.rotation != null && message.hasOwnProperty("rotation"))
-            object.rotation = $root.Vector3.toObject(message.rotation, options);
+        if (message.accelerationX != null && message.hasOwnProperty("accelerationX"))
+            object.accelerationX = options.json && !isFinite(message.accelerationX) ? String(message.accelerationX) : message.accelerationX;
+        if (message.accelerationY != null && message.hasOwnProperty("accelerationY"))
+            object.accelerationY = options.json && !isFinite(message.accelerationY) ? String(message.accelerationY) : message.accelerationY;
+        if (message.accelerationZ != null && message.hasOwnProperty("accelerationZ"))
+            object.accelerationZ = options.json && !isFinite(message.accelerationZ) ? String(message.accelerationZ) : message.accelerationZ;
+        if (message.rotationX != null && message.hasOwnProperty("rotationX"))
+            object.rotationX = options.json && !isFinite(message.rotationX) ? String(message.rotationX) : message.rotationX;
+        if (message.rotationY != null && message.hasOwnProperty("rotationY"))
+            object.rotationY = options.json && !isFinite(message.rotationY) ? String(message.rotationY) : message.rotationY;
+        if (message.rotationZ != null && message.hasOwnProperty("rotationZ"))
+            object.rotationZ = options.json && !isFinite(message.rotationZ) ? String(message.rotationZ) : message.rotationZ;
         if (message.temperature != null && message.hasOwnProperty("temperature"))
             object.temperature = options.json && !isFinite(message.temperature) ? String(message.temperature) : message.temperature;
         if (message.accelerationDataRate != null && message.hasOwnProperty("accelerationDataRate"))
@@ -7871,8 +7929,12 @@ export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
      * Properties of a GyroscopeChanged.
      * @exports IGyroscopeChanged
      * @interface IGyroscopeChanged
-     * @property {IVector3|null} [acceleration] GyroscopeChanged acceleration
-     * @property {IVector3|null} [rotation] GyroscopeChanged rotation
+     * @property {number|null} [accelerationX] GyroscopeChanged accelerationX
+     * @property {number|null} [accelerationY] GyroscopeChanged accelerationY
+     * @property {number|null} [accelerationZ] GyroscopeChanged accelerationZ
+     * @property {number|null} [rotationX] GyroscopeChanged rotationX
+     * @property {number|null} [rotationY] GyroscopeChanged rotationY
+     * @property {number|null} [rotationZ] GyroscopeChanged rotationZ
      * @property {number|null} [temperature] GyroscopeChanged temperature
      */
 
@@ -7892,20 +7954,52 @@ export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
     }
 
     /**
-     * GyroscopeChanged acceleration.
-     * @member {IVector3|null|undefined} acceleration
+     * GyroscopeChanged accelerationX.
+     * @member {number} accelerationX
      * @memberof GyroscopeChanged
      * @instance
      */
-    GyroscopeChanged.prototype.acceleration = null;
+    GyroscopeChanged.prototype.accelerationX = 0;
 
     /**
-     * GyroscopeChanged rotation.
-     * @member {IVector3|null|undefined} rotation
+     * GyroscopeChanged accelerationY.
+     * @member {number} accelerationY
      * @memberof GyroscopeChanged
      * @instance
      */
-    GyroscopeChanged.prototype.rotation = null;
+    GyroscopeChanged.prototype.accelerationY = 0;
+
+    /**
+     * GyroscopeChanged accelerationZ.
+     * @member {number} accelerationZ
+     * @memberof GyroscopeChanged
+     * @instance
+     */
+    GyroscopeChanged.prototype.accelerationZ = 0;
+
+    /**
+     * GyroscopeChanged rotationX.
+     * @member {number} rotationX
+     * @memberof GyroscopeChanged
+     * @instance
+     */
+    GyroscopeChanged.prototype.rotationX = 0;
+
+    /**
+     * GyroscopeChanged rotationY.
+     * @member {number} rotationY
+     * @memberof GyroscopeChanged
+     * @instance
+     */
+    GyroscopeChanged.prototype.rotationY = 0;
+
+    /**
+     * GyroscopeChanged rotationZ.
+     * @member {number} rotationZ
+     * @memberof GyroscopeChanged
+     * @instance
+     */
+    GyroscopeChanged.prototype.rotationZ = 0;
 
     /**
      * GyroscopeChanged temperature.
@@ -7939,12 +8033,20 @@ export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
     GyroscopeChanged.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.acceleration != null && Object.hasOwnProperty.call(message, "acceleration"))
-            $root.Vector3.encode(message.acceleration, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-        if (message.rotation != null && Object.hasOwnProperty.call(message, "rotation"))
-            $root.Vector3.encode(message.rotation, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+        if (message.accelerationX != null && Object.hasOwnProperty.call(message, "accelerationX"))
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.accelerationX);
+        if (message.accelerationY != null && Object.hasOwnProperty.call(message, "accelerationY"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.accelerationY);
+        if (message.accelerationZ != null && Object.hasOwnProperty.call(message, "accelerationZ"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.accelerationZ);
+        if (message.rotationX != null && Object.hasOwnProperty.call(message, "rotationX"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.rotationX);
+        if (message.rotationY != null && Object.hasOwnProperty.call(message, "rotationY"))
+            writer.uint32(/* id 5, wireType 5 =*/45).float(message.rotationY);
+        if (message.rotationZ != null && Object.hasOwnProperty.call(message, "rotationZ"))
+            writer.uint32(/* id 6, wireType 5 =*/53).float(message.rotationZ);
         if (message.temperature != null && Object.hasOwnProperty.call(message, "temperature"))
-            writer.uint32(/* id 3, wireType 5 =*/29).float(message.temperature);
+            writer.uint32(/* id 7, wireType 5 =*/61).float(message.temperature);
         return writer;
     };
 
@@ -7982,14 +8084,30 @@ export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
                 break;
             switch (tag >>> 3) {
             case 1: {
-                    message.acceleration = $root.Vector3.decode(reader, reader.uint32());
+                    message.accelerationX = reader.float();
                     break;
                 }
             case 2: {
-                    message.rotation = $root.Vector3.decode(reader, reader.uint32());
+                    message.accelerationY = reader.float();
                     break;
                 }
             case 3: {
+                    message.accelerationZ = reader.float();
+                    break;
+                }
+            case 4: {
+                    message.rotationX = reader.float();
+                    break;
+                }
+            case 5: {
+                    message.rotationY = reader.float();
+                    break;
+                }
+            case 6: {
+                    message.rotationZ = reader.float();
+                    break;
+                }
+            case 7: {
                     message.temperature = reader.float();
                     break;
                 }
@@ -8028,16 +8146,24 @@ export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
     GyroscopeChanged.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (message.acceleration != null && message.hasOwnProperty("acceleration")) {
-            let error = $root.Vector3.verify(message.acceleration);
-            if (error)
-                return "acceleration." + error;
-        }
-        if (message.rotation != null && message.hasOwnProperty("rotation")) {
-            let error = $root.Vector3.verify(message.rotation);
-            if (error)
-                return "rotation." + error;
-        }
+        if (message.accelerationX != null && message.hasOwnProperty("accelerationX"))
+            if (typeof message.accelerationX !== "number")
+                return "accelerationX: number expected";
+        if (message.accelerationY != null && message.hasOwnProperty("accelerationY"))
+            if (typeof message.accelerationY !== "number")
+                return "accelerationY: number expected";
+        if (message.accelerationZ != null && message.hasOwnProperty("accelerationZ"))
+            if (typeof message.accelerationZ !== "number")
+                return "accelerationZ: number expected";
+        if (message.rotationX != null && message.hasOwnProperty("rotationX"))
+            if (typeof message.rotationX !== "number")
+                return "rotationX: number expected";
+        if (message.rotationY != null && message.hasOwnProperty("rotationY"))
+            if (typeof message.rotationY !== "number")
+                return "rotationY: number expected";
+        if (message.rotationZ != null && message.hasOwnProperty("rotationZ"))
+            if (typeof message.rotationZ !== "number")
+                return "rotationZ: number expected";
         if (message.temperature != null && message.hasOwnProperty("temperature"))
             if (typeof message.temperature !== "number")
                 return "temperature: number expected";
@@ -8056,16 +8182,18 @@ export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
         if (object instanceof $root.GyroscopeChanged)
             return object;
         let message = new $root.GyroscopeChanged();
-        if (object.acceleration != null) {
-            if (typeof object.acceleration !== "object")
-                throw TypeError(".GyroscopeChanged.acceleration: object expected");
-            message.acceleration = $root.Vector3.fromObject(object.acceleration);
-        }
-        if (object.rotation != null) {
-            if (typeof object.rotation !== "object")
-                throw TypeError(".GyroscopeChanged.rotation: object expected");
-            message.rotation = $root.Vector3.fromObject(object.rotation);
-        }
+        if (object.accelerationX != null)
+            message.accelerationX = Number(object.accelerationX);
+        if (object.accelerationY != null)
+            message.accelerationY = Number(object.accelerationY);
+        if (object.accelerationZ != null)
+            message.accelerationZ = Number(object.accelerationZ);
+        if (object.rotationX != null)
+            message.rotationX = Number(object.rotationX);
+        if (object.rotationY != null)
+            message.rotationY = Number(object.rotationY);
+        if (object.rotationZ != null)
+            message.rotationZ = Number(object.rotationZ);
         if (object.temperature != null)
             message.temperature = Number(object.temperature);
         return message;
@@ -8085,14 +8213,26 @@ export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
             options = {};
         let object = {};
         if (options.defaults) {
-            object.acceleration = null;
-            object.rotation = null;
+            object.accelerationX = 0;
+            object.accelerationY = 0;
+            object.accelerationZ = 0;
+            object.rotationX = 0;
+            object.rotationY = 0;
+            object.rotationZ = 0;
             object.temperature = 0;
         }
-        if (message.acceleration != null && message.hasOwnProperty("acceleration"))
-            object.acceleration = $root.Vector3.toObject(message.acceleration, options);
-        if (message.rotation != null && message.hasOwnProperty("rotation"))
-            object.rotation = $root.Vector3.toObject(message.rotation, options);
+        if (message.accelerationX != null && message.hasOwnProperty("accelerationX"))
+            object.accelerationX = options.json && !isFinite(message.accelerationX) ? String(message.accelerationX) : message.accelerationX;
+        if (message.accelerationY != null && message.hasOwnProperty("accelerationY"))
+            object.accelerationY = options.json && !isFinite(message.accelerationY) ? String(message.accelerationY) : message.accelerationY;
+        if (message.accelerationZ != null && message.hasOwnProperty("accelerationZ"))
+            object.accelerationZ = options.json && !isFinite(message.accelerationZ) ? String(message.accelerationZ) : message.accelerationZ;
+        if (message.rotationX != null && message.hasOwnProperty("rotationX"))
+            object.rotationX = options.json && !isFinite(message.rotationX) ? String(message.rotationX) : message.rotationX;
+        if (message.rotationY != null && message.hasOwnProperty("rotationY"))
+            object.rotationY = options.json && !isFinite(message.rotationY) ? String(message.rotationY) : message.rotationY;
+        if (message.rotationZ != null && message.hasOwnProperty("rotationZ"))
+            object.rotationZ = options.json && !isFinite(message.rotationZ) ? String(message.rotationZ) : message.rotationZ;
         if (message.temperature != null && message.hasOwnProperty("temperature"))
             object.temperature = options.json && !isFinite(message.temperature) ? String(message.temperature) : message.temperature;
         return object;

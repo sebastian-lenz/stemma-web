@@ -8,6 +8,5 @@ message TouchSensorState {
 
 // Unsolicited event — sent on each individual pad press or release.
 message TouchSensorButton {
-    uint32 sensor_id  = 1;
-    bool   is_pressed = 2;
+    uint32 touched_mask = 1;
 }

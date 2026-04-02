@@ -1,16 +1,17 @@
-import type { Vector } from "./types.js";
-import {
-  DeviceType,
-  AccelerationRange,
-  DataRate,
-  RotationRange,
-} from "./types.js";
-import { BaseDevice, type SendDeviceCommand } from "./base-device.js";
-import type { IDeviceState, IDeviceEvent } from "../proto/messages.js";
+import { BaseDevice } from "./BaseDevice";
+import { DeviceType } from "../proto/messages";
+import type { Connection } from "../usb/Connection";
+import type { Vector } from "../utils/types";
+import type {
+  IDeviceState,
+  IDeviceEvent,
+  GyroscopeChipset,
+  Response,
+} from "../proto/messages";
 
-// ── Public types ──────────────────────────────────────────────────────────────
+import { AccelerationRange, DataRate, RotationRange } from "../proto/messages";
 
-export type GyroscopeAddress = 0x6a | 0x6b;
+export type GyroscopeAddress = (typeof Gyroscope.ADDRESSES)[number];
 
 export type GyroscopeEvent = CustomEvent<{
   acceleration: Vector;
@@ -18,27 +19,41 @@ export type GyroscopeEvent = CustomEvent<{
   rotation: Vector;
 }>;
 
-// ── Implementation ────────────────────────────────────────────────────────────
+export type GyrosocopeEvents = {
+  changed: GyroscopeEvent;
+};
 
-export class GyroscopeDevice extends BaseDevice<GyroscopeAddress> {
+export class Gyroscope extends BaseDevice<GyroscopeAddress, GyrosocopeEvents> {
   private _acceleration: Vector = { x: 0, y: 0, z: 0 };
   private _rotation: Vector = { x: 0, y: 0, z: 0 };
   private _temperature = 0;
-  private _accelerationRange = AccelerationRange.G_4;
-  private _accelerationDataRate = DataRate.HZ_104;
-  private _rotationRange = RotationRange.DPS_250;
-  private _rotationDataRate = DataRate.HZ_104;
 
-  constructor(address: GyroscopeAddress, send: SendDeviceCommand) {
-    super(DeviceType.DEVICE_TYPE_GYROSCOPE, address, send);
+  private _accelerationRange = AccelerationRange.ACCELERATION_RANGE_4_G;
+  private _accelerationDataRate = DataRate.DATA_RATE_HZ_104;
+  private _chipset: GyroscopeChipset;
+  private _rotationRange = RotationRange.ROTATION_RANGE_DPS_250;
+  private _rotationDataRate = DataRate.DATA_RATE_HZ_104;
+
+  static readonly ADDRESSES = <const>[0x6a, 0x6b];
+
+  constructor(
+    address: GyroscopeAddress,
+    chipset: GyroscopeChipset,
+    connection: Connection,
+  ) {
+    super(DeviceType.DEVICE_TYPE_GYROSCOPE, address, connection);
+
+    this._chipset = chipset;
   }
 
   getAcceleration(): Vector {
     return { ...this._acceleration };
   }
+
   getRotation(): Vector {
     return { ...this._rotation };
   }
+
   getTemperature(): number {
     return this._temperature;
   }
@@ -46,99 +61,112 @@ export class GyroscopeDevice extends BaseDevice<GyroscopeAddress> {
   getAccelerationRange(): AccelerationRange {
     return this._accelerationRange;
   }
+
   getAccelerationDataRate(): DataRate {
     return this._accelerationDataRate;
   }
+
   getRotationRange(): RotationRange {
     return this._rotationRange;
   }
+
   getRotationDataRate(): DataRate {
     return this._rotationDataRate;
   }
 
   async setAccelerationRange(value: AccelerationRange): Promise<boolean> {
     this._accelerationRange = value;
-    const id = await this._send(this.id.type, this.id.address, {
+    const id = await this._send({
       setAccelRange: { range: value },
     });
+
     return id > 0;
   }
 
   async setAccelerationDataRate(value: DataRate): Promise<boolean> {
     this._accelerationDataRate = value;
-    const id = await this._send(this.id.type, this.id.address, {
+    const id = await this._send({
       setAccelRate: { rate: value },
     });
+
     return id > 0;
   }
 
   async setRotationRange(value: RotationRange): Promise<boolean> {
     this._rotationRange = value;
-    const id = await this._send(this.id.type, this.id.address, {
+    const id = await this._send({
       setRotRange: { range: value },
     });
+
     return id > 0;
   }
 
   async setRotationDataRate(value: DataRate): Promise<boolean> {
     this._rotationDataRate = value;
-    const id = await this._send(this.id.type, this.id.address, {
+    const id = await this._send({
       setRotRate: { rate: value },
     });
+
     return id > 0;
   }
 
-  override _applyState(ds: IDeviceState): void {
-    super._applyState(ds);
-    const s = ds.gyroscope;
-    if (!s) return;
+  override _applyState(deviceState: IDeviceState): void {
+    super._applyState(deviceState);
+
+    const state = deviceState.gyroscope;
+    if (!state) return;
+
     this._acceleration = {
-      x: s.acceleration?.x ?? 0,
-      y: s.acceleration?.y ?? 0,
-      z: s.acceleration?.z ?? 0,
+      x: state.accelerationX ?? 0,
+      y: state.accelerationY ?? 0,
+      z: state.accelerationZ ?? 0,
     };
+
     this._rotation = {
-      x: s.rotation?.x ?? 0,
-      y: s.rotation?.y ?? 0,
-      z: s.rotation?.z ?? 0,
+      x: state.rotationX ?? 0,
+      y: state.rotationY ?? 0,
+      z: state.rotationZ ?? 0,
     };
-    this._temperature = s.temperature ?? 0;
-    this._accelerationRange = (s.accelerationRange ??
-      this._accelerationRange) as AccelerationRange;
-    this._accelerationDataRate = (s.accelerationDataRate ??
-      this._accelerationDataRate) as DataRate;
-    this._rotationRange = (s.rotationRange ??
-      this._rotationRange) as RotationRange;
-    this._rotationDataRate = (s.rotationDataRate ??
-      this._rotationDataRate) as DataRate;
+
+    this._temperature = state.temperature ?? 0;
+    this._rotationRange = state.rotationRange ?? this._rotationRange;
+    this._rotationDataRate = state.rotationDataRate ?? this._rotationDataRate;
+
+    this._accelerationRange =
+      state.accelerationRange ?? this._accelerationRange;
+
+    this._accelerationDataRate =
+      state.accelerationDataRate ?? this._accelerationDataRate;
   }
 
-  override _applyEvent(de: IDeviceEvent): void {
-    if (de.gyroscopeData) {
-      const d = de.gyroscopeData;
-      if (d.acceleration)
-        this._acceleration = {
-          x: d.acceleration.x ?? 0,
-          y: d.acceleration.y ?? 0,
-          z: d.acceleration.z ?? 0,
-        };
-      if (d.rotation)
-        this._rotation = {
-          x: d.rotation.x ?? 0,
-          y: d.rotation.y ?? 0,
-          z: d.rotation.z ?? 0,
-        };
-      if (d.temperature !== undefined) this._temperature = d.temperature ?? 0;
+  override _applyEvent(event: IDeviceEvent): void {
+    const { gyroscopeData: data } = event;
+    if (!data) return;
 
-      this.dispatchEvent(
-        new CustomEvent("changed", {
-          detail: {
-            acceleration: { ...this._acceleration },
-            rotation: { ...this._rotation },
-            temperature: this._temperature,
-          },
-        }) as GyroscopeEvent,
-      );
+    this._acceleration = {
+      x: data.accelerationX ?? 0,
+      y: data.accelerationY ?? 0,
+      z: data.accelerationZ ?? 0,
+    };
+
+    this._rotation = {
+      x: data.rotationX ?? 0,
+      y: data.rotationY ?? 0,
+      z: data.rotationZ ?? 0,
+    };
+
+    if (data.temperature !== undefined) {
+      this._temperature = data.temperature ?? 0;
     }
+
+    this.dispatch("changed", {
+      acceleration: { ...this._acceleration },
+      rotation: { ...this._rotation },
+      temperature: this._temperature,
+    });
+  }
+
+  override _start(): Promise<Response> {
+    return this._request({ start: { gyroscopeChipset: this._chipset } });
   }
 }
