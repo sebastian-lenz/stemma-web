@@ -1,17 +1,14 @@
 #include <Arduino.h>
+#include <Wire.h>
 #include <Adafruit_TinyUSB.h>
-#include <Adafruit_NeoPixel.h>
 #include <pb_encode.h>
 #include <pb_decode.h>
 #include "messages.pb.h"
+#include "DeviceManager.h"
 
-// ── Hardware ─────────────────────────────────────────────────────────────────
+// ── StemmaQT devices ──────────────────────────────────────────────────────────
 
-static constexpr uint8_t NEOPIXEL_PIN   = 27;
-static constexpr uint8_t NEOPIXEL_COUNT = 4;
-static constexpr uint8_t TOUCH_PIN      = 1;
-
-Adafruit_NeoPixel pixels(NEOPIXEL_COUNT, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+static DeviceManager deviceManager;
 
 // ── WebUSB ────────────────────────────────────────────────────────────────────
 
@@ -19,15 +16,14 @@ Adafruit_USBD_WebUSB usb_web;
 WEBUSB_URL_DEF(landingPage, 1 /*https*/, "example.com");
 
 // ── Framing: 2-byte big-endian length prefix + protobuf payload ───────────────
-// Max encoded size for our largest message (Command with all fields).
-// nanopb generates <name>_size constants; use the largest one.
-static constexpr size_t MAX_MSG_SIZE = 64;
+// Increased from 64 to accommodate device state/event messages.
+static constexpr size_t MAX_MSG_SIZE = 256;
 
 static uint8_t rx_buf[2 + MAX_MSG_SIZE];
 static size_t  rx_len = 0;
 
 // Send a Response message back to the host.
-static void send_response(const Response &resp) {
+static void send_response(const Response& resp) {
     uint8_t payload[MAX_MSG_SIZE];
     pb_ostream_t stream = pb_ostream_from_buffer(payload, sizeof(payload));
 
@@ -43,7 +39,7 @@ static void send_response(const Response &resp) {
 }
 
 // Process a fully-received Command.
-static void handle_command(const uint8_t *data, uint16_t len) {
+static void handle_command(const uint8_t* data, uint16_t len) {
     Command cmd = Command_init_zero;
     pb_istream_t stream = pb_istream_from_buffer(data, len);
 
@@ -60,32 +56,19 @@ static void handle_command(const uint8_t *data, uint16_t len) {
     resp.success = true;
 
     switch (cmd.which_payload) {
-        case Command_set_pixel_tag: {
-            const SetPixel &sp = cmd.payload.set_pixel;
-            if (sp.index < NEOPIXEL_COUNT) {
-                pixels.setPixelColor(sp.index, pixels.Color(sp.r, sp.g, sp.b));
-                pixels.show();
-            } else {
-                resp.success = false;
+        case Command_device_command_tag: {
+            Response devResp = Response_init_zero;
+            devResp.id = cmd.id;
+            if (deviceManager.handleCommand(cmd.payload.device_command, devResp)) {
+                send_response(devResp);
             }
             break;
         }
-        case Command_set_all_tag: {
-            const SetAll &sa = cmd.payload.set_all;
-            for (uint8_t i = 0; i < NEOPIXEL_COUNT; i++) {
-                pixels.setPixelColor(i, pixels.Color(sa.r, sa.g, sa.b));
-            }
-            pixels.show();
-            break;
-        }
-        case Command_get_status_tag:
-            resp.which_payload          = Response_status_tag;
-            resp.payload.status.pixel_count  = NEOPIXEL_COUNT;
-            resp.payload.status.touch_active = (digitalRead(TOUCH_PIN) == HIGH);
+        default:
+            resp.success = false;
+            send_response(resp);
             break;
     }
-
-    send_response(resp);
 }
 
 // Read bytes from WebUSB and reassemble framed messages.
@@ -120,12 +103,8 @@ void setup() {
     usb_web.setLandingPage(&landingPage);
     usb_web.begin();
 
-    pixels.begin();
-    pixels.setBrightness(50);
-    pixels.clear();
-    pixels.show();
-
-    // pinMode(TOUCH_PIN, INPUT);
+    // Initialise I2C for StemmaQT devices
+    Wire.begin();
 
     // Wait until USB device is enumerated by the host
     while (!TinyUSBDevice.mounted()) delay(1);
@@ -134,5 +113,8 @@ void setup() {
 void loop() {
     if (usb_web.connected()) {
         process_usb();
+
+        // Poll all active StemmaQT devices and push any events to the host
+        deviceManager.pollAll(send_response);
     }
 }

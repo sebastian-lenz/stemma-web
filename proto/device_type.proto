@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+enum DeviceType {
+    DEVICE_TYPE_UNSPECIFIED    = 0;
+    DEVICE_TYPE_NEO_DRIVER     = 1;
+    DEVICE_TYPE_ROTARY_ENCODER = 2;
+    DEVICE_TYPE_LINEAR_ENCODER = 3;
+    DEVICE_TYPE_TOUCH_SENSOR   = 4;
+    DEVICE_TYPE_GYROSCOPE      = 5;
+    DEVICE_TYPE_TRINKEY        = 6;
+}

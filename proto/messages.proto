@@ -1,44 +1,105 @@
 syntax = "proto3";
 
+import "shared.proto";
+import "trinkey.proto";
+import "neo_driver.proto";
+import "rotary_encoder.proto";
+import "linear_encoder.proto";
+import "touch_sensor.proto";
+import "gyroscope.proto";
+import "device_type.proto";
+
 // ── Commands: host → device ──────────────────────────────────────────────────
 
 message Command {
     uint32 id = 1;
     oneof payload {
-        SetPixel   set_pixel  = 2;
-        SetAll     set_all    = 3;
-        GetStatus  get_status = 4;
+        // StemmaQT device commands
+        DeviceCommand device_command = 5;
     }
 }
 
-// Set a single NeoPixel (index 0-3 on the NeoTrinkey)
-message SetPixel {
-    uint32 index = 1;
-    uint32 r     = 2;
-    uint32 g     = 3;
-    uint32 b     = 4;
+// ── StemmaQT device commands ──────────────────────────────────────────────────
+
+message DeviceCommand {
+    DeviceType type    = 1;
+    uint32     address = 2;
+    oneof payload {
+        // Lifecycle
+        StartDevice    start     = 3;
+        StopDevice     stop      = 4;
+        GetDeviceState get_state = 5;
+        // NeoPixel controls (Trinkey, NeoDriver, RotaryEncoder, LinearEncoder)
+        SetBrightness  set_brightness   = 6;
+        SetPixelColor  set_pixel_color  = 7;
+        SetPixelColors set_pixel_colors = 8;
+        // NeoDriver-specific
+        SetNeoDriverLength set_length = 9;
+        // Gyroscope configuration
+        SetAccelerationRange set_accel_range = 10;
+        SetRotationRange     set_rot_range   = 11;
+        SetAccelerationRate  set_accel_rate  = 12;
+        SetRotationRate      set_rot_rate    = 13;
+    }
 }
 
-// Set all NeoPixels to the same colour
-message SetAll {
-    uint32 r = 1;
-    uint32 g = 2;
-    uint32 b = 3;
+message StartDevice {
+    // Only populated when starting a Gyroscope
+    GyroscopeChipset gyroscope_chipset = 1;
 }
+message StopDevice     {}
+message GetDeviceState {}
 
-message GetStatus {}
+message SetBrightness      { uint32 brightness = 1; }
+message SetPixelColor      { uint32 index = 1; Color color = 2; }
+// colors is capped to 16 entries via messages.options
+message SetPixelColors     { uint32 offset = 1; repeated Color colors = 2; }
+message SetNeoDriverLength { uint32 length = 1; }
+
+message SetAccelerationRange { AccelerationRange range = 1; }
+message SetRotationRange     { RotationRange     range = 1; }
+message SetAccelerationRate  { DataRate          rate  = 1; }
+message SetRotationRate      { DataRate          rate  = 1; }
 
 // ── Responses: device → host ─────────────────────────────────────────────────
 
 message Response {
-    uint32 id      = 1;   // echoes the Command.id
+    uint32 id      = 1;  // echoes Command.id; 0 for unsolicited events
     bool   success = 2;
     oneof payload {
-        Status status = 3;
+        // StemmaQT
+        DeviceState device_state = 4;
+        DeviceEvent device_event = 5;
     }
 }
 
-message Status {
-    uint32 pixel_count  = 1;
-    bool   touch_active = 2;
+// ── Device state response ─────────────────────────────────────────────────────
+
+message DeviceState {
+    DeviceType type      = 1;
+    uint32     address   = 2;
+    bool       connected = 3;
+    oneof state {
+        TrinkeyState       trinkey        = 4;
+        NeoDriverState     neo_driver     = 5;
+        RotaryEncoderState rotary_encoder = 6;
+        LinearEncoderState linear_encoder = 7;
+        TouchSensorState   touch_sensor   = 8;
+        GyroscopeState     gyroscope      = 9;
+    }
 }
+
+// ── Device events (unsolicited, id = 0) ──────────────────────────────────────
+
+message DeviceEvent {
+    DeviceType type    = 1;
+    uint32     address = 2;
+    oneof event {
+        RotaryEncoderChanged rotary_changed = 3;
+        RotaryEncoderButton  rotary_button  = 4;
+        LinearEncoderChanged linear_changed = 5;
+        TouchSensorButton    touch_button   = 6;
+        GyroscopeChanged     gyroscope_data = 7;
+    }
+}
+

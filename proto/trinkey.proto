@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+import "shared.proto";
+
+message TrinkeyState {
+    uint32 brightness = 1;
+    Color  pixel      = 2;
+}

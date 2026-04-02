@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx pbts:*)",
+      "Bash(npx pbjs:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

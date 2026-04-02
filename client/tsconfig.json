@@ -8,7 +8,9 @@
     "declaration": true,
     "declarationDir": "./dist",
     "outDir": "./dist",
-    "skipLibCheck": true
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "types": ["w3c-web-usb"]
   },
   "include": ["src"]
 }

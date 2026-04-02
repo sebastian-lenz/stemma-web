@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "shared.proto";
+
+// State returned by GetDeviceState for a RotaryEncoder.
+message RotaryEncoderState {
+    uint32 brightness = 1;
+    Color  pixel      = 2;
+    bool   is_pressed = 3;
+    int32  value      = 4;  // current encoder position (can be negative)
+}
+
+// Unsolicited event — sent whenever the encoder rotates.
+message RotaryEncoderChanged {
+    int32 value      = 1;
+    bool  is_pressed = 2;
+}
+
+// Unsolicited event — sent on button press or release.
+message RotaryEncoderButton {
+    bool is_pressed = 1;
+}

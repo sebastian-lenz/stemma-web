@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+// State returned by GetDeviceState for a TouchSensor (MPR121).
+// touched_mask encodes all 12 sensor states as a bitmask (bit N = sensor N).
+message TouchSensorState {
+    uint32 touched_mask = 1;
+}
+
+// Unsolicited event — sent on each individual pad press or release.
+message TouchSensorButton {
+    uint32 sensor_id  = 1;
+    bool   is_pressed = 2;
+}

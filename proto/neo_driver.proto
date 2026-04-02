@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "shared.proto";
+
+// State returned by GetDeviceState for a NeoDriver.
+// Pixel colours are omitted — they can be large and are tracked client-side.
+message NeoDriverState {
+    uint32 brightness = 1;
+    uint32 length     = 2;
+}

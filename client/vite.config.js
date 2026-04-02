@@ -1,16 +1,16 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import dts from 'vite-plugin-dts';
+import { defineConfig } from "vite";
+import { resolve } from "path";
+import dts from "vite-plugin-dts";
 
 /** @returns {import('vite').Plugin} */
 function protobufPatch() {
   return {
-    name: 'protobuf-patch',
+    name: "protobuf-patch",
     transform(code, id) {
       // https://github.com/protobufjs/protobuf.js/issues/1754
-      if (id.endsWith('@protobufjs/inquire/index.js')) {
+      if (id.endsWith("@protobufjs/inquire/index.js")) {
         return {
-          code: code.replace(`eval("quire".replace(/^/,"re"))`, 'require'),
+          code: code.replace(`eval("quire".replace(/^/,"re"))`, "require"),
           map: null,
         };
       }
@@ -21,12 +21,12 @@ function protobufPatch() {
 export default defineConfig({
   plugins: [protobufPatch(), dts({ rollupTypes: true })],
   build: {
-    outDir: resolve(__dirname, 'dist'),
+    outDir: resolve(__dirname, "dist"),
     emptyOutDir: true,
     lib: {
-      entry: resolve(__dirname, 'src/trinkey.ts'),
-      name: 'StemmaTrinkey',
-      fileName: 'trinkey',
+      entry: resolve(__dirname, "src/trinkey.ts"),
+      name: "StemmaTrinkey",
+      fileName: "trinkey",
     },
     rollupOptions: {
       // trinkey.js has no external deps — everything is bundled

@@ -1,0 +1,3 @@
+# nanopb options for linear_encoder.proto
+# The NeoSlider has exactly 4 NeoPixels.
+LinearEncoderState.pixels   max_count:4
