@@ -1,6 +1,6 @@
 import { BaseNeoPixelDevice } from "./BaseNeoPixelDevice";
 import { DeviceType } from "../proto/messages";
-import { toColorObject } from "../utils/color";
+import { unpackColors } from "../utils/color";
 import type { Connection } from "../usb/Connection";
 import type { IDeviceState, IDeviceEvent } from "../proto/messages";
 
@@ -47,8 +47,8 @@ export class LinearEncoder extends BaseNeoPixelDevice<
     this._brightness = state.brightness ?? 0;
     this._value = state.value ?? 0;
 
-    if (state.pixels) {
-      this._pixels = state.pixels.map(toColorObject);
+    if (state.pixels?.length) {
+      this._pixels = unpackColors(state.pixels);
     }
   }
 

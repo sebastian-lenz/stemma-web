@@ -1,5 +1,5 @@
 import { BaseDevice } from "./BaseDevice";
-import { parseColor } from "../utils/color";
+import { packColors, parseColor, toColorObject } from "../utils/color";
 import type { Color, ColorObject } from "../utils/types";
 import type { EventMap } from "../utils/events";
 
@@ -36,22 +36,27 @@ export abstract class BaseNeoPixelDevice<
   }
 
   async setPixelColor(index: number = 0, color: Color): Promise<void> {
-    const c = parseColor(color);
-    this._pixels[index] = { red: c.r, green: c.g, blue: c.b };
+    const packed = parseColor(color);
+    this._pixels[index] = toColorObject(packed);
 
     await this._send({
-      setPixelColor: { index, color: c },
+      setPixelColor: { index, color: packed },
     });
   }
 
   async setPixelColors(offset: number = 0, colors: Color[]): Promise<void> {
-    const parsed = colors.map(parseColor);
-    parsed.forEach((c, i) => {
-      this._pixels[offset + i] = { red: c.r, green: c.g, blue: c.b };
+    const packed = colors.map(parseColor);
+    packed.forEach((c, i) => {
+      this._pixels[offset + i] = toColorObject(c);
     });
 
-    await this._send({
-      setPixelColors: { offset, colors: parsed },
-    });
+    const chunkSize = 64;
+    for (let i = 0; i < packed.length; i += chunkSize) {
+      const chunk = packed.slice(i, i + chunkSize);
+      const show = i + chunkSize >= packed.length;
+      await this._send({
+        setPixelColors: { offset: offset + i, colors: packColors(chunk), show },
+      });
+    }
   }
 }

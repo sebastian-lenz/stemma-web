@@ -44,9 +44,7 @@ public:
 
                 auto& re = ds.state.rotary_encoder;
                 re.brightness = _brightness;
-                re.pixel.r    = _pixelR;
-                re.pixel.g    = _pixelG;
-                re.pixel.b    = _pixelB;
+                re.pixel      = _pixelColor;
                 re.is_pressed = _lastPressed;
                 re.value      = _lastValue;
                 return true;
@@ -59,10 +57,8 @@ public:
 
             case DeviceCommand_set_pixel_color_tag:
                 if (cmd.payload.set_pixel_color.index == 0) {
-                    _pixelR = cmd.payload.set_pixel_color.color.r;
-                    _pixelG = cmd.payload.set_pixel_color.color.g;
-                    _pixelB = cmd.payload.set_pixel_color.color.b;
-                    _pixel.setPixelColor(0, _pixelR, _pixelG, _pixelB);
+                    _pixelColor = cmd.payload.set_pixel_color.color;
+                    _pixel.setPixelColor(0, _pixelColor);
                     _pixel.show();
                 }
                 return false;
@@ -119,8 +115,8 @@ private:
     uint8_t         _address;
     Adafruit_seesaw _seesaw;
     seesaw_NeoPixel _pixel;
-    uint8_t  _brightness = 50;
-    uint8_t  _pixelR = 0, _pixelG = 0, _pixelB = 0;
+    uint8_t  _brightness  = 50;
+    uint32_t _pixelColor  = 0;
     int32_t  _lastValue   = 0;
     bool     _lastPressed = false;
 };

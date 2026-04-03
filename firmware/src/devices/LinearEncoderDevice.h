@@ -41,12 +41,12 @@ public:
                 auto& le = ds.state.linear_encoder;
                 le.brightness = _brightness;
                 le.value      = _lastValue;
-                le.pixels_count = LINEAR_ENCODER_PIXEL_COUNT;
+                le.pixels.size = LINEAR_ENCODER_PIXEL_COUNT * 3;
                 for (uint8_t i = 0; i < LINEAR_ENCODER_PIXEL_COUNT; i++) {
                     uint32_t c = _pixel.getPixelColor(i);
-                    le.pixels[i].r = (c >> 16) & 0xff;
-                    le.pixels[i].g = (c >>  8) & 0xff;
-                    le.pixels[i].b =  c        & 0xff;
+                    le.pixels.bytes[i * 3]     = (c >> 16) & 0xff;
+                    le.pixels.bytes[i * 3 + 1] = (c >>  8) & 0xff;
+                    le.pixels.bytes[i * 3 + 2] =  c        & 0xff;
                 }
                 return true;
             }
@@ -59,20 +59,24 @@ public:
             case DeviceCommand_set_pixel_color_tag: {
                 const auto& sp = cmd.payload.set_pixel_color;
                 if (sp.index < LINEAR_ENCODER_PIXEL_COUNT) {
-                    _pixel.setPixelColor(sp.index, sp.color.r, sp.color.g, sp.color.b);
+                    _pixel.setPixelColor(sp.index, sp.color);
                     _pixel.show();
                 }
                 return false;
             }
             case DeviceCommand_set_pixel_colors_tag: {
                 const auto& spc = cmd.payload.set_pixel_colors;
-                for (pb_size_t i = 0; i < spc.colors_count; i++) {
+                pb_size_t count = spc.colors.size / 3;
+                for (pb_size_t i = 0; i < count; i++) {
                     uint32_t idx = spc.offset + i;
                     if (idx < LINEAR_ENCODER_PIXEL_COUNT) {
-                        _pixel.setPixelColor(idx, spc.colors[i].r, spc.colors[i].g, spc.colors[i].b);
+                        uint32_t c = ((uint32_t)spc.colors.bytes[i * 3]     << 16)
+                                   | ((uint32_t)spc.colors.bytes[i * 3 + 1] <<  8)
+                                   |  (uint32_t)spc.colors.bytes[i * 3 + 2];
+                        _pixel.setPixelColor(idx, c);
                     }
                 }
-                _pixel.show();
+                if (spc.show) _pixel.show();
                 return false;
             }
             default:

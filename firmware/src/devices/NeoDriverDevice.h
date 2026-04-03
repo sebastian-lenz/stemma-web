@@ -44,8 +44,7 @@ public:
             case DeviceCommand_set_pixel_color_tag: {
                 const auto& sp = cmd.payload.set_pixel_color;
                 if (sp.index < _length) {
-                    _pixels.setPixelColor(sp.index,
-                        sp.color.r, sp.color.g, sp.color.b);
+                    _pixels.setPixelColor(sp.index, sp.color);
                     _pixels.show();
                 } else {
                     resp.success = false;
@@ -54,14 +53,17 @@ public:
             }
             case DeviceCommand_set_pixel_colors_tag: {
                 const auto& spc = cmd.payload.set_pixel_colors;
-                for (pb_size_t i = 0; i < spc.colors_count; i++) {
+                pb_size_t count = spc.colors.size / 3;
+                for (pb_size_t i = 0; i < count; i++) {
                     uint32_t idx = spc.offset + i;
                     if (idx < _length) {
-                        _pixels.setPixelColor(idx,
-                            spc.colors[i].r, spc.colors[i].g, spc.colors[i].b);
+                        uint32_t c = ((uint32_t)spc.colors.bytes[i * 3]     << 16)
+                                   | ((uint32_t)spc.colors.bytes[i * 3 + 1] <<  8)
+                                   |  (uint32_t)spc.colors.bytes[i * 3 + 2];
+                        _pixels.setPixelColor(idx, c);
                     }
                 }
-                _pixels.show();
+                if (spc.show) _pixels.show();
                 return false;
             }
             case DeviceCommand_set_length_tag:

@@ -1,4 +1,4 @@
 # nanopb options for messages.proto
-# Caps the repeated Color array in SetPixelColors to 16 entries,
+# Caps the bytes blob in SetPixelColors to 64 colors (64 × 3 = 192 bytes),
 # keeping the maximum encoded message within the 256-byte firmware buffer.
-SetPixelColors.colors   max_count:16
+SetPixelColors.colors   max_size:192

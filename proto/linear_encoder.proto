@@ -1,12 +1,10 @@
 syntax = "proto3";
 
-import "shared.proto";
-
 // State returned by GetDeviceState for a LinearEncoder (NeoSlider).
 // pixels is capped to 4 via linear_encoder.options.
 message LinearEncoderState {
     uint32          brightness = 1;
-    repeated Color  pixels     = 2;  // max 4, see linear_encoder.options
+    bytes           pixels     = 2;  // 3 bytes/color, max 12 bytes, see linear_encoder.options
     uint32          value      = 3;  // slider position 0–1023
 }
 

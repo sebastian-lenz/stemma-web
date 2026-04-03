@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-import "shared.proto";
 import "trinkey.proto";
 import "neo_driver.proto";
 import "rotary_encoder.proto";
@@ -51,9 +50,9 @@ message StopDevice     {}
 message GetDeviceState {}
 
 message SetBrightness      { uint32 brightness = 1; }
-message SetPixelColor      { uint32 index = 1; Color color = 2; }
-// colors is capped to 16 entries via messages.options
-message SetPixelColors     { uint32 offset = 1; repeated Color colors = 2; }
+message SetPixelColor      { uint32 index = 1; uint32 color = 2; }
+// colors is capped to 64 entries via messages.options
+message SetPixelColors     { uint32 offset = 1; bytes colors = 2; bool show = 3; }
 message SetNeoDriverLength { uint32 length = 1; }
 
 message SetAccelerationRange { AccelerationRange range = 1; }

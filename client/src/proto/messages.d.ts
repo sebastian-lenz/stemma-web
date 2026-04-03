@@ -661,7 +661,7 @@ export interface ISetPixelColor {
     index?: (number|null);
 
     /** SetPixelColor color */
-    color?: (IColor|null);
+    color?: (number|null);
 }
 
 /** Represents a SetPixelColor. */
@@ -677,7 +677,7 @@ export class SetPixelColor implements ISetPixelColor {
     public index: number;
 
     /** SetPixelColor color. */
-    public color?: (IColor|null);
+    public color: number;
 
     /**
      * Creates a new SetPixelColor instance using the specified properties.
@@ -764,7 +764,10 @@ export interface ISetPixelColors {
     offset?: (number|null);
 
     /** SetPixelColors colors */
-    colors?: (IColor[]|null);
+    colors?: (Uint8Array|null);
+
+    /** SetPixelColors show */
+    show?: (boolean|null);
 }
 
 /** Represents a SetPixelColors. */
@@ -780,7 +783,10 @@ export class SetPixelColors implements ISetPixelColors {
     public offset: number;
 
     /** SetPixelColors colors. */
-    public colors: IColor[];
+    public colors: Uint8Array;
+
+    /** SetPixelColors show. */
+    public show: boolean;
 
     /**
      * Creates a new SetPixelColors instance using the specified properties.
@@ -1747,224 +1753,6 @@ export class DeviceEvent implements IDeviceEvent {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a Color. */
-export interface IColor {
-
-    /** Color r */
-    r?: (number|null);
-
-    /** Color g */
-    g?: (number|null);
-
-    /** Color b */
-    b?: (number|null);
-}
-
-/** Represents a Color. */
-export class Color implements IColor {
-
-    /**
-     * Constructs a new Color.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IColor);
-
-    /** Color r. */
-    public r: number;
-
-    /** Color g. */
-    public g: number;
-
-    /** Color b. */
-    public b: number;
-
-    /**
-     * Creates a new Color instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns Color instance
-     */
-    public static create(properties?: IColor): Color;
-
-    /**
-     * Encodes the specified Color message. Does not implicitly {@link Color.verify|verify} messages.
-     * @param message Color message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IColor, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified Color message, length delimited. Does not implicitly {@link Color.verify|verify} messages.
-     * @param message Color message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IColor, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a Color message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns Color
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Color;
-
-    /**
-     * Decodes a Color message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns Color
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Color;
-
-    /**
-     * Verifies a Color message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a Color message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns Color
-     */
-    public static fromObject(object: { [k: string]: any }): Color;
-
-    /**
-     * Creates a plain object from a Color message. Also converts values to other types if specified.
-     * @param message Color
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: Color, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this Color to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the default type url for Color
-     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns The default type url
-     */
-    public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a Vector3. */
-export interface IVector3 {
-
-    /** Vector3 x */
-    x?: (number|null);
-
-    /** Vector3 y */
-    y?: (number|null);
-
-    /** Vector3 z */
-    z?: (number|null);
-}
-
-/** Represents a Vector3. */
-export class Vector3 implements IVector3 {
-
-    /**
-     * Constructs a new Vector3.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IVector3);
-
-    /** Vector3 x. */
-    public x: number;
-
-    /** Vector3 y. */
-    public y: number;
-
-    /** Vector3 z. */
-    public z: number;
-
-    /**
-     * Creates a new Vector3 instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns Vector3 instance
-     */
-    public static create(properties?: IVector3): Vector3;
-
-    /**
-     * Encodes the specified Vector3 message. Does not implicitly {@link Vector3.verify|verify} messages.
-     * @param message Vector3 message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IVector3, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified Vector3 message, length delimited. Does not implicitly {@link Vector3.verify|verify} messages.
-     * @param message Vector3 message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IVector3, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a Vector3 message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns Vector3
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Vector3;
-
-    /**
-     * Decodes a Vector3 message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns Vector3
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Vector3;
-
-    /**
-     * Verifies a Vector3 message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a Vector3 message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns Vector3
-     */
-    public static fromObject(object: { [k: string]: any }): Vector3;
-
-    /**
-     * Creates a plain object from a Vector3 message. Also converts values to other types if specified.
-     * @param message Vector3
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: Vector3, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this Vector3 to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the default type url for Vector3
-     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns The default type url
-     */
-    public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
 /** Properties of a TrinkeyState. */
 export interface ITrinkeyState {
 
@@ -1972,7 +1760,7 @@ export interface ITrinkeyState {
     brightness?: (number|null);
 
     /** TrinkeyState pixel */
-    pixel?: (IColor|null);
+    pixel?: (number|null);
 }
 
 /** Represents a TrinkeyState. */
@@ -1988,7 +1776,7 @@ export class TrinkeyState implements ITrinkeyState {
     public brightness: number;
 
     /** TrinkeyState pixel. */
-    public pixel?: (IColor|null);
+    public pixel: number;
 
     /**
      * Creates a new TrinkeyState instance using the specified properties.
@@ -2178,7 +1966,7 @@ export interface IRotaryEncoderState {
     brightness?: (number|null);
 
     /** RotaryEncoderState pixel */
-    pixel?: (IColor|null);
+    pixel?: (number|null);
 
     /** RotaryEncoderState isPressed */
     isPressed?: (boolean|null);
@@ -2200,7 +1988,7 @@ export class RotaryEncoderState implements IRotaryEncoderState {
     public brightness: number;
 
     /** RotaryEncoderState pixel. */
-    public pixel?: (IColor|null);
+    public pixel: number;
 
     /** RotaryEncoderState isPressed. */
     public isPressed: boolean;
@@ -2493,7 +2281,7 @@ export interface ILinearEncoderState {
     brightness?: (number|null);
 
     /** LinearEncoderState pixels */
-    pixels?: (IColor[]|null);
+    pixels?: (Uint8Array|null);
 
     /** LinearEncoderState value */
     value?: (number|null);
@@ -2512,7 +2300,7 @@ export class LinearEncoderState implements ILinearEncoderState {
     public brightness: number;
 
     /** LinearEncoderState pixels. */
-    public pixels: IColor[];
+    public pixels: Uint8Array;
 
     /** LinearEncoderState value. */
     public value: number;

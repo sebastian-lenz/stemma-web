@@ -35,9 +35,7 @@ public:
                 ds.which_state = DeviceState_trinkey_tag;
                 auto& ts = ds.state.trinkey;
                 ts.brightness = _brightness;
-                ts.pixel.r    = _pixelR;
-                ts.pixel.g    = _pixelG;
-                ts.pixel.b    = _pixelB;
+                ts.pixel      = _pixelColor;
                 return true;
             }
             case DeviceCommand_set_brightness_tag:
@@ -49,27 +47,25 @@ public:
             case DeviceCommand_set_pixel_color_tag:
                 if (cmd.payload.set_pixel_color.index < TRINKEY_NEOPIXEL_COUNT) {
                     uint8_t idx = (uint8_t)cmd.payload.set_pixel_color.index;
-                    uint8_t r   = (uint8_t)cmd.payload.set_pixel_color.color.r;
-                    uint8_t g   = (uint8_t)cmd.payload.set_pixel_color.color.g;
-                    uint8_t b   = (uint8_t)cmd.payload.set_pixel_color.color.b;
-                    _pixel.setPixelColor(idx, _pixel.Color(r, g, b));
-                    if (idx == 0) { _pixelR = r; _pixelG = g; _pixelB = b; }
+                    _pixel.setPixelColor(idx, cmd.payload.set_pixel_color.color);
+                    if (idx == 0) _pixelColor = cmd.payload.set_pixel_color.color;
                     _pixel.show();
                 }
                 return false;
 
             case DeviceCommand_set_pixel_colors_tag: {
                 const auto& spc = cmd.payload.set_pixel_colors;
-                for (pb_size_t i = 0; i < spc.colors_count; i++) {
+                pb_size_t count = spc.colors.size / 3;
+                for (pb_size_t i = 0; i < count; i++) {
                     uint8_t idx = (uint8_t)(spc.offset + i);
                     if (idx >= TRINKEY_NEOPIXEL_COUNT) break;
-                    uint8_t r = (uint8_t)spc.colors[i].r;
-                    uint8_t g = (uint8_t)spc.colors[i].g;
-                    uint8_t b = (uint8_t)spc.colors[i].b;
-                    _pixel.setPixelColor(idx, _pixel.Color(r, g, b));
-                    if (idx == 0) { _pixelR = r; _pixelG = g; _pixelB = b; }
+                    uint32_t c = ((uint32_t)spc.colors.bytes[i * 3]     << 16)
+                               | ((uint32_t)spc.colors.bytes[i * 3 + 1] <<  8)
+                               |  (uint32_t)spc.colors.bytes[i * 3 + 2];
+                    _pixel.setPixelColor(idx, c);
+                    if (idx == 0) _pixelColor = c;
                 }
-                _pixel.show();
+                if (spc.show) _pixel.show();
                 return false;
             }
 
@@ -83,6 +79,6 @@ public:
 
 private:
     Adafruit_NeoPixel _pixel;
-    uint8_t _brightness = 50;
-    uint8_t _pixelR = 0, _pixelG = 0, _pixelB = 0;
+    uint8_t  _brightness  = 50;
+    uint32_t _pixelColor  = 0;
 };

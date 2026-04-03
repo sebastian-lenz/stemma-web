@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "shared.proto";
-
 // ── Gyroscope messages ────────────────────────────────────────────────────────
 
 // State returned by GetDeviceState for a Gyroscope.

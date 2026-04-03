@@ -1731,7 +1731,7 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
      * @exports ISetPixelColor
      * @interface ISetPixelColor
      * @property {number|null} [index] SetPixelColor index
-     * @property {IColor|null} [color] SetPixelColor color
+     * @property {number|null} [color] SetPixelColor color
      */
 
     /**
@@ -1759,11 +1759,11 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
 
     /**
      * SetPixelColor color.
-     * @member {IColor|null|undefined} color
+     * @member {number} color
      * @memberof SetPixelColor
      * @instance
      */
-    SetPixelColor.prototype.color = null;
+    SetPixelColor.prototype.color = 0;
 
     /**
      * Creates a new SetPixelColor instance using the specified properties.
@@ -1792,7 +1792,7 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
         if (message.index != null && Object.hasOwnProperty.call(message, "index"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.index);
         if (message.color != null && Object.hasOwnProperty.call(message, "color"))
-            $root.Color.encode(message.color, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.color);
         return writer;
     };
 
@@ -1834,7 +1834,7 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
                     break;
                 }
             case 2: {
-                    message.color = $root.Color.decode(reader, reader.uint32());
+                    message.color = reader.uint32();
                     break;
                 }
             default:
@@ -1875,11 +1875,9 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
         if (message.index != null && message.hasOwnProperty("index"))
             if (!$util.isInteger(message.index))
                 return "index: integer expected";
-        if (message.color != null && message.hasOwnProperty("color")) {
-            let error = $root.Color.verify(message.color);
-            if (error)
-                return "color." + error;
-        }
+        if (message.color != null && message.hasOwnProperty("color"))
+            if (!$util.isInteger(message.color))
+                return "color: integer expected";
         return null;
     };
 
@@ -1897,11 +1895,8 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
         let message = new $root.SetPixelColor();
         if (object.index != null)
             message.index = object.index >>> 0;
-        if (object.color != null) {
-            if (typeof object.color !== "object")
-                throw TypeError(".SetPixelColor.color: object expected");
-            message.color = $root.Color.fromObject(object.color);
-        }
+        if (object.color != null)
+            message.color = object.color >>> 0;
         return message;
     };
 
@@ -1920,12 +1915,12 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
         let object = {};
         if (options.defaults) {
             object.index = 0;
-            object.color = null;
+            object.color = 0;
         }
         if (message.index != null && message.hasOwnProperty("index"))
             object.index = message.index;
         if (message.color != null && message.hasOwnProperty("color"))
-            object.color = $root.Color.toObject(message.color, options);
+            object.color = message.color;
         return object;
     };
 
@@ -1965,7 +1960,8 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
      * @exports ISetPixelColors
      * @interface ISetPixelColors
      * @property {number|null} [offset] SetPixelColors offset
-     * @property {Array.<IColor>|null} [colors] SetPixelColors colors
+     * @property {Uint8Array|null} [colors] SetPixelColors colors
+     * @property {boolean|null} [show] SetPixelColors show
      */
 
     /**
@@ -1977,7 +1973,6 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
      * @param {ISetPixelColors=} [properties] Properties to set
      */
     function SetPixelColors(properties) {
-        this.colors = [];
         if (properties)
             for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -1994,11 +1989,19 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
 
     /**
      * SetPixelColors colors.
-     * @member {Array.<IColor>} colors
+     * @member {Uint8Array} colors
      * @memberof SetPixelColors
      * @instance
      */
-    SetPixelColors.prototype.colors = $util.emptyArray;
+    SetPixelColors.prototype.colors = $util.newBuffer([]);
+
+    /**
+     * SetPixelColors show.
+     * @member {boolean} show
+     * @memberof SetPixelColors
+     * @instance
+     */
+    SetPixelColors.prototype.show = false;
 
     /**
      * Creates a new SetPixelColors instance using the specified properties.
@@ -2026,9 +2029,10 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
             writer = $Writer.create();
         if (message.offset != null && Object.hasOwnProperty.call(message, "offset"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.offset);
-        if (message.colors != null && message.colors.length)
-            for (let i = 0; i < message.colors.length; ++i)
-                $root.Color.encode(message.colors[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+        if (message.colors != null && Object.hasOwnProperty.call(message, "colors"))
+            writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.colors);
+        if (message.show != null && Object.hasOwnProperty.call(message, "show"))
+            writer.uint32(/* id 3, wireType 0 =*/24).bool(message.show);
         return writer;
     };
 
@@ -2070,9 +2074,11 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
                     break;
                 }
             case 2: {
-                    if (!(message.colors && message.colors.length))
-                        message.colors = [];
-                    message.colors.push($root.Color.decode(reader, reader.uint32()));
+                    message.colors = reader.bytes();
+                    break;
+                }
+            case 3: {
+                    message.show = reader.bool();
                     break;
                 }
             default:
@@ -2113,15 +2119,12 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
         if (message.offset != null && message.hasOwnProperty("offset"))
             if (!$util.isInteger(message.offset))
                 return "offset: integer expected";
-        if (message.colors != null && message.hasOwnProperty("colors")) {
-            if (!Array.isArray(message.colors))
-                return "colors: array expected";
-            for (let i = 0; i < message.colors.length; ++i) {
-                let error = $root.Color.verify(message.colors[i]);
-                if (error)
-                    return "colors." + error;
-            }
-        }
+        if (message.colors != null && message.hasOwnProperty("colors"))
+            if (!(message.colors && typeof message.colors.length === "number" || $util.isString(message.colors)))
+                return "colors: buffer expected";
+        if (message.show != null && message.hasOwnProperty("show"))
+            if (typeof message.show !== "boolean")
+                return "show: boolean expected";
         return null;
     };
 
@@ -2139,16 +2142,13 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
         let message = new $root.SetPixelColors();
         if (object.offset != null)
             message.offset = object.offset >>> 0;
-        if (object.colors) {
-            if (!Array.isArray(object.colors))
-                throw TypeError(".SetPixelColors.colors: array expected");
-            message.colors = [];
-            for (let i = 0; i < object.colors.length; ++i) {
-                if (typeof object.colors[i] !== "object")
-                    throw TypeError(".SetPixelColors.colors: object expected");
-                message.colors[i] = $root.Color.fromObject(object.colors[i]);
-            }
-        }
+        if (object.colors != null)
+            if (typeof object.colors === "string")
+                $util.base64.decode(object.colors, message.colors = $util.newBuffer($util.base64.length(object.colors)), 0);
+            else if (object.colors.length >= 0)
+                message.colors = object.colors;
+        if (object.show != null)
+            message.show = Boolean(object.show);
         return message;
     };
 
@@ -2165,17 +2165,23 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
         if (!options)
             options = {};
         let object = {};
-        if (options.arrays || options.defaults)
-            object.colors = [];
-        if (options.defaults)
+        if (options.defaults) {
             object.offset = 0;
+            if (options.bytes === String)
+                object.colors = "";
+            else {
+                object.colors = [];
+                if (options.bytes !== Array)
+                    object.colors = $util.newBuffer(object.colors);
+            }
+            object.show = false;
+        }
         if (message.offset != null && message.hasOwnProperty("offset"))
             object.offset = message.offset;
-        if (message.colors && message.colors.length) {
-            object.colors = [];
-            for (let j = 0; j < message.colors.length; ++j)
-                object.colors[j] = $root.Color.toObject(message.colors[j], options);
-        }
+        if (message.colors != null && message.hasOwnProperty("colors"))
+            object.colors = options.bytes === String ? $util.base64.encode(message.colors, 0, message.colors.length) : options.bytes === Array ? Array.prototype.slice.call(message.colors) : message.colors;
+        if (message.show != null && message.hasOwnProperty("show"))
+            object.show = message.show;
         return object;
     };
 
@@ -4721,510 +4727,6 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
     return DeviceEvent;
 })();
 
-export const Color = $root.Color = (() => {
-
-    /**
-     * Properties of a Color.
-     * @exports IColor
-     * @interface IColor
-     * @property {number|null} [r] Color r
-     * @property {number|null} [g] Color g
-     * @property {number|null} [b] Color b
-     */
-
-    /**
-     * Constructs a new Color.
-     * @exports Color
-     * @classdesc Represents a Color.
-     * @implements IColor
-     * @constructor
-     * @param {IColor=} [properties] Properties to set
-     */
-    function Color(properties) {
-        if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * Color r.
-     * @member {number} r
-     * @memberof Color
-     * @instance
-     */
-    Color.prototype.r = 0;
-
-    /**
-     * Color g.
-     * @member {number} g
-     * @memberof Color
-     * @instance
-     */
-    Color.prototype.g = 0;
-
-    /**
-     * Color b.
-     * @member {number} b
-     * @memberof Color
-     * @instance
-     */
-    Color.prototype.b = 0;
-
-    /**
-     * Creates a new Color instance using the specified properties.
-     * @function create
-     * @memberof Color
-     * @static
-     * @param {IColor=} [properties] Properties to set
-     * @returns {Color} Color instance
-     */
-    Color.create = function create(properties) {
-        return new Color(properties);
-    };
-
-    /**
-     * Encodes the specified Color message. Does not implicitly {@link Color.verify|verify} messages.
-     * @function encode
-     * @memberof Color
-     * @static
-     * @param {IColor} message Color message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Color.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        if (message.r != null && Object.hasOwnProperty.call(message, "r"))
-            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.r);
-        if (message.g != null && Object.hasOwnProperty.call(message, "g"))
-            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.g);
-        if (message.b != null && Object.hasOwnProperty.call(message, "b"))
-            writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.b);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified Color message, length delimited. Does not implicitly {@link Color.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof Color
-     * @static
-     * @param {IColor} message Color message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Color.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes a Color message from the specified reader or buffer.
-     * @function decode
-     * @memberof Color
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {Color} Color
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Color.decode = function decode(reader, length, error) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Color();
-        while (reader.pos < end) {
-            let tag = reader.uint32();
-            if (tag === error)
-                break;
-            switch (tag >>> 3) {
-            case 1: {
-                    message.r = reader.uint32();
-                    break;
-                }
-            case 2: {
-                    message.g = reader.uint32();
-                    break;
-                }
-            case 3: {
-                    message.b = reader.uint32();
-                    break;
-                }
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
-        }
-        return message;
-    };
-
-    /**
-     * Decodes a Color message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof Color
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {Color} Color
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Color.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a Color message.
-     * @function verify
-     * @memberof Color
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    Color.verify = function verify(message) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (message.r != null && message.hasOwnProperty("r"))
-            if (!$util.isInteger(message.r))
-                return "r: integer expected";
-        if (message.g != null && message.hasOwnProperty("g"))
-            if (!$util.isInteger(message.g))
-                return "g: integer expected";
-        if (message.b != null && message.hasOwnProperty("b"))
-            if (!$util.isInteger(message.b))
-                return "b: integer expected";
-        return null;
-    };
-
-    /**
-     * Creates a Color message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof Color
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {Color} Color
-     */
-    Color.fromObject = function fromObject(object) {
-        if (object instanceof $root.Color)
-            return object;
-        let message = new $root.Color();
-        if (object.r != null)
-            message.r = object.r >>> 0;
-        if (object.g != null)
-            message.g = object.g >>> 0;
-        if (object.b != null)
-            message.b = object.b >>> 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a Color message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof Color
-     * @static
-     * @param {Color} message Color
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    Color.toObject = function toObject(message, options) {
-        if (!options)
-            options = {};
-        let object = {};
-        if (options.defaults) {
-            object.r = 0;
-            object.g = 0;
-            object.b = 0;
-        }
-        if (message.r != null && message.hasOwnProperty("r"))
-            object.r = message.r;
-        if (message.g != null && message.hasOwnProperty("g"))
-            object.g = message.g;
-        if (message.b != null && message.hasOwnProperty("b"))
-            object.b = message.b;
-        return object;
-    };
-
-    /**
-     * Converts this Color to JSON.
-     * @function toJSON
-     * @memberof Color
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    Color.prototype.toJSON = function toJSON() {
-        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the default type url for Color
-     * @function getTypeUrl
-     * @memberof Color
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
-    Color.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-        if (typeUrlPrefix === undefined) {
-            typeUrlPrefix = "type.googleapis.com";
-        }
-        return typeUrlPrefix + "/Color";
-    };
-
-    return Color;
-})();
-
-export const Vector3 = $root.Vector3 = (() => {
-
-    /**
-     * Properties of a Vector3.
-     * @exports IVector3
-     * @interface IVector3
-     * @property {number|null} [x] Vector3 x
-     * @property {number|null} [y] Vector3 y
-     * @property {number|null} [z] Vector3 z
-     */
-
-    /**
-     * Constructs a new Vector3.
-     * @exports Vector3
-     * @classdesc Represents a Vector3.
-     * @implements IVector3
-     * @constructor
-     * @param {IVector3=} [properties] Properties to set
-     */
-    function Vector3(properties) {
-        if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * Vector3 x.
-     * @member {number} x
-     * @memberof Vector3
-     * @instance
-     */
-    Vector3.prototype.x = 0;
-
-    /**
-     * Vector3 y.
-     * @member {number} y
-     * @memberof Vector3
-     * @instance
-     */
-    Vector3.prototype.y = 0;
-
-    /**
-     * Vector3 z.
-     * @member {number} z
-     * @memberof Vector3
-     * @instance
-     */
-    Vector3.prototype.z = 0;
-
-    /**
-     * Creates a new Vector3 instance using the specified properties.
-     * @function create
-     * @memberof Vector3
-     * @static
-     * @param {IVector3=} [properties] Properties to set
-     * @returns {Vector3} Vector3 instance
-     */
-    Vector3.create = function create(properties) {
-        return new Vector3(properties);
-    };
-
-    /**
-     * Encodes the specified Vector3 message. Does not implicitly {@link Vector3.verify|verify} messages.
-     * @function encode
-     * @memberof Vector3
-     * @static
-     * @param {IVector3} message Vector3 message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Vector3.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        if (message.x != null && Object.hasOwnProperty.call(message, "x"))
-            writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
-        if (message.y != null && Object.hasOwnProperty.call(message, "y"))
-            writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
-        if (message.z != null && Object.hasOwnProperty.call(message, "z"))
-            writer.uint32(/* id 3, wireType 5 =*/29).float(message.z);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified Vector3 message, length delimited. Does not implicitly {@link Vector3.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof Vector3
-     * @static
-     * @param {IVector3} message Vector3 message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    Vector3.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes a Vector3 message from the specified reader or buffer.
-     * @function decode
-     * @memberof Vector3
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {Vector3} Vector3
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Vector3.decode = function decode(reader, length, error) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Vector3();
-        while (reader.pos < end) {
-            let tag = reader.uint32();
-            if (tag === error)
-                break;
-            switch (tag >>> 3) {
-            case 1: {
-                    message.x = reader.float();
-                    break;
-                }
-            case 2: {
-                    message.y = reader.float();
-                    break;
-                }
-            case 3: {
-                    message.z = reader.float();
-                    break;
-                }
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
-        }
-        return message;
-    };
-
-    /**
-     * Decodes a Vector3 message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof Vector3
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {Vector3} Vector3
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    Vector3.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a Vector3 message.
-     * @function verify
-     * @memberof Vector3
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    Vector3.verify = function verify(message) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (message.x != null && message.hasOwnProperty("x"))
-            if (typeof message.x !== "number")
-                return "x: number expected";
-        if (message.y != null && message.hasOwnProperty("y"))
-            if (typeof message.y !== "number")
-                return "y: number expected";
-        if (message.z != null && message.hasOwnProperty("z"))
-            if (typeof message.z !== "number")
-                return "z: number expected";
-        return null;
-    };
-
-    /**
-     * Creates a Vector3 message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof Vector3
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {Vector3} Vector3
-     */
-    Vector3.fromObject = function fromObject(object) {
-        if (object instanceof $root.Vector3)
-            return object;
-        let message = new $root.Vector3();
-        if (object.x != null)
-            message.x = Number(object.x);
-        if (object.y != null)
-            message.y = Number(object.y);
-        if (object.z != null)
-            message.z = Number(object.z);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a Vector3 message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof Vector3
-     * @static
-     * @param {Vector3} message Vector3
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    Vector3.toObject = function toObject(message, options) {
-        if (!options)
-            options = {};
-        let object = {};
-        if (options.defaults) {
-            object.x = 0;
-            object.y = 0;
-            object.z = 0;
-        }
-        if (message.x != null && message.hasOwnProperty("x"))
-            object.x = options.json && !isFinite(message.x) ? String(message.x) : message.x;
-        if (message.y != null && message.hasOwnProperty("y"))
-            object.y = options.json && !isFinite(message.y) ? String(message.y) : message.y;
-        if (message.z != null && message.hasOwnProperty("z"))
-            object.z = options.json && !isFinite(message.z) ? String(message.z) : message.z;
-        return object;
-    };
-
-    /**
-     * Converts this Vector3 to JSON.
-     * @function toJSON
-     * @memberof Vector3
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    Vector3.prototype.toJSON = function toJSON() {
-        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the default type url for Vector3
-     * @function getTypeUrl
-     * @memberof Vector3
-     * @static
-     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-     * @returns {string} The default type url
-     */
-    Vector3.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-        if (typeUrlPrefix === undefined) {
-            typeUrlPrefix = "type.googleapis.com";
-        }
-        return typeUrlPrefix + "/Vector3";
-    };
-
-    return Vector3;
-})();
-
 export const TrinkeyState = $root.TrinkeyState = (() => {
 
     /**
@@ -5232,7 +4734,7 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
      * @exports ITrinkeyState
      * @interface ITrinkeyState
      * @property {number|null} [brightness] TrinkeyState brightness
-     * @property {IColor|null} [pixel] TrinkeyState pixel
+     * @property {number|null} [pixel] TrinkeyState pixel
      */
 
     /**
@@ -5260,11 +4762,11 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
 
     /**
      * TrinkeyState pixel.
-     * @member {IColor|null|undefined} pixel
+     * @member {number} pixel
      * @memberof TrinkeyState
      * @instance
      */
-    TrinkeyState.prototype.pixel = null;
+    TrinkeyState.prototype.pixel = 0;
 
     /**
      * Creates a new TrinkeyState instance using the specified properties.
@@ -5293,7 +4795,7 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
         if (message.brightness != null && Object.hasOwnProperty.call(message, "brightness"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.brightness);
         if (message.pixel != null && Object.hasOwnProperty.call(message, "pixel"))
-            $root.Color.encode(message.pixel, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.pixel);
         return writer;
     };
 
@@ -5335,7 +4837,7 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
                     break;
                 }
             case 2: {
-                    message.pixel = $root.Color.decode(reader, reader.uint32());
+                    message.pixel = reader.uint32();
                     break;
                 }
             default:
@@ -5376,11 +4878,9 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
         if (message.brightness != null && message.hasOwnProperty("brightness"))
             if (!$util.isInteger(message.brightness))
                 return "brightness: integer expected";
-        if (message.pixel != null && message.hasOwnProperty("pixel")) {
-            let error = $root.Color.verify(message.pixel);
-            if (error)
-                return "pixel." + error;
-        }
+        if (message.pixel != null && message.hasOwnProperty("pixel"))
+            if (!$util.isInteger(message.pixel))
+                return "pixel: integer expected";
         return null;
     };
 
@@ -5398,11 +4898,8 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
         let message = new $root.TrinkeyState();
         if (object.brightness != null)
             message.brightness = object.brightness >>> 0;
-        if (object.pixel != null) {
-            if (typeof object.pixel !== "object")
-                throw TypeError(".TrinkeyState.pixel: object expected");
-            message.pixel = $root.Color.fromObject(object.pixel);
-        }
+        if (object.pixel != null)
+            message.pixel = object.pixel >>> 0;
         return message;
     };
 
@@ -5421,12 +4918,12 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
         let object = {};
         if (options.defaults) {
             object.brightness = 0;
-            object.pixel = null;
+            object.pixel = 0;
         }
         if (message.brightness != null && message.hasOwnProperty("brightness"))
             object.brightness = message.brightness;
         if (message.pixel != null && message.hasOwnProperty("pixel"))
-            object.pixel = $root.Color.toObject(message.pixel, options);
+            object.pixel = message.pixel;
         return object;
     };
 
@@ -5695,7 +5192,7 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
      * @exports IRotaryEncoderState
      * @interface IRotaryEncoderState
      * @property {number|null} [brightness] RotaryEncoderState brightness
-     * @property {IColor|null} [pixel] RotaryEncoderState pixel
+     * @property {number|null} [pixel] RotaryEncoderState pixel
      * @property {boolean|null} [isPressed] RotaryEncoderState isPressed
      * @property {number|null} [value] RotaryEncoderState value
      */
@@ -5725,11 +5222,11 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
 
     /**
      * RotaryEncoderState pixel.
-     * @member {IColor|null|undefined} pixel
+     * @member {number} pixel
      * @memberof RotaryEncoderState
      * @instance
      */
-    RotaryEncoderState.prototype.pixel = null;
+    RotaryEncoderState.prototype.pixel = 0;
 
     /**
      * RotaryEncoderState isPressed.
@@ -5774,7 +5271,7 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
         if (message.brightness != null && Object.hasOwnProperty.call(message, "brightness"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.brightness);
         if (message.pixel != null && Object.hasOwnProperty.call(message, "pixel"))
-            $root.Color.encode(message.pixel, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.pixel);
         if (message.isPressed != null && Object.hasOwnProperty.call(message, "isPressed"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isPressed);
         if (message.value != null && Object.hasOwnProperty.call(message, "value"))
@@ -5820,7 +5317,7 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
                     break;
                 }
             case 2: {
-                    message.pixel = $root.Color.decode(reader, reader.uint32());
+                    message.pixel = reader.uint32();
                     break;
                 }
             case 3: {
@@ -5869,11 +5366,9 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
         if (message.brightness != null && message.hasOwnProperty("brightness"))
             if (!$util.isInteger(message.brightness))
                 return "brightness: integer expected";
-        if (message.pixel != null && message.hasOwnProperty("pixel")) {
-            let error = $root.Color.verify(message.pixel);
-            if (error)
-                return "pixel." + error;
-        }
+        if (message.pixel != null && message.hasOwnProperty("pixel"))
+            if (!$util.isInteger(message.pixel))
+                return "pixel: integer expected";
         if (message.isPressed != null && message.hasOwnProperty("isPressed"))
             if (typeof message.isPressed !== "boolean")
                 return "isPressed: boolean expected";
@@ -5897,11 +5392,8 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
         let message = new $root.RotaryEncoderState();
         if (object.brightness != null)
             message.brightness = object.brightness >>> 0;
-        if (object.pixel != null) {
-            if (typeof object.pixel !== "object")
-                throw TypeError(".RotaryEncoderState.pixel: object expected");
-            message.pixel = $root.Color.fromObject(object.pixel);
-        }
+        if (object.pixel != null)
+            message.pixel = object.pixel >>> 0;
         if (object.isPressed != null)
             message.isPressed = Boolean(object.isPressed);
         if (object.value != null)
@@ -5924,14 +5416,14 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
         let object = {};
         if (options.defaults) {
             object.brightness = 0;
-            object.pixel = null;
+            object.pixel = 0;
             object.isPressed = false;
             object.value = 0;
         }
         if (message.brightness != null && message.hasOwnProperty("brightness"))
             object.brightness = message.brightness;
         if (message.pixel != null && message.hasOwnProperty("pixel"))
-            object.pixel = $root.Color.toObject(message.pixel, options);
+            object.pixel = message.pixel;
         if (message.isPressed != null && message.hasOwnProperty("isPressed"))
             object.isPressed = message.isPressed;
         if (message.value != null && message.hasOwnProperty("value"))
@@ -6409,7 +5901,7 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
      * @exports ILinearEncoderState
      * @interface ILinearEncoderState
      * @property {number|null} [brightness] LinearEncoderState brightness
-     * @property {Array.<IColor>|null} [pixels] LinearEncoderState pixels
+     * @property {Uint8Array|null} [pixels] LinearEncoderState pixels
      * @property {number|null} [value] LinearEncoderState value
      */
 
@@ -6422,7 +5914,6 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
      * @param {ILinearEncoderState=} [properties] Properties to set
      */
     function LinearEncoderState(properties) {
-        this.pixels = [];
         if (properties)
             for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -6439,11 +5930,11 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
 
     /**
      * LinearEncoderState pixels.
-     * @member {Array.<IColor>} pixels
+     * @member {Uint8Array} pixels
      * @memberof LinearEncoderState
      * @instance
      */
-    LinearEncoderState.prototype.pixels = $util.emptyArray;
+    LinearEncoderState.prototype.pixels = $util.newBuffer([]);
 
     /**
      * LinearEncoderState value.
@@ -6479,9 +5970,8 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
             writer = $Writer.create();
         if (message.brightness != null && Object.hasOwnProperty.call(message, "brightness"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.brightness);
-        if (message.pixels != null && message.pixels.length)
-            for (let i = 0; i < message.pixels.length; ++i)
-                $root.Color.encode(message.pixels[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+        if (message.pixels != null && Object.hasOwnProperty.call(message, "pixels"))
+            writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.pixels);
         if (message.value != null && Object.hasOwnProperty.call(message, "value"))
             writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.value);
         return writer;
@@ -6525,9 +6015,7 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
                     break;
                 }
             case 2: {
-                    if (!(message.pixels && message.pixels.length))
-                        message.pixels = [];
-                    message.pixels.push($root.Color.decode(reader, reader.uint32()));
+                    message.pixels = reader.bytes();
                     break;
                 }
             case 3: {
@@ -6572,15 +6060,9 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
         if (message.brightness != null && message.hasOwnProperty("brightness"))
             if (!$util.isInteger(message.brightness))
                 return "brightness: integer expected";
-        if (message.pixels != null && message.hasOwnProperty("pixels")) {
-            if (!Array.isArray(message.pixels))
-                return "pixels: array expected";
-            for (let i = 0; i < message.pixels.length; ++i) {
-                let error = $root.Color.verify(message.pixels[i]);
-                if (error)
-                    return "pixels." + error;
-            }
-        }
+        if (message.pixels != null && message.hasOwnProperty("pixels"))
+            if (!(message.pixels && typeof message.pixels.length === "number" || $util.isString(message.pixels)))
+                return "pixels: buffer expected";
         if (message.value != null && message.hasOwnProperty("value"))
             if (!$util.isInteger(message.value))
                 return "value: integer expected";
@@ -6601,16 +6083,11 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
         let message = new $root.LinearEncoderState();
         if (object.brightness != null)
             message.brightness = object.brightness >>> 0;
-        if (object.pixels) {
-            if (!Array.isArray(object.pixels))
-                throw TypeError(".LinearEncoderState.pixels: array expected");
-            message.pixels = [];
-            for (let i = 0; i < object.pixels.length; ++i) {
-                if (typeof object.pixels[i] !== "object")
-                    throw TypeError(".LinearEncoderState.pixels: object expected");
-                message.pixels[i] = $root.Color.fromObject(object.pixels[i]);
-            }
-        }
+        if (object.pixels != null)
+            if (typeof object.pixels === "string")
+                $util.base64.decode(object.pixels, message.pixels = $util.newBuffer($util.base64.length(object.pixels)), 0);
+            else if (object.pixels.length >= 0)
+                message.pixels = object.pixels;
         if (object.value != null)
             message.value = object.value >>> 0;
         return message;
@@ -6629,19 +6106,21 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
         if (!options)
             options = {};
         let object = {};
-        if (options.arrays || options.defaults)
-            object.pixels = [];
         if (options.defaults) {
             object.brightness = 0;
+            if (options.bytes === String)
+                object.pixels = "";
+            else {
+                object.pixels = [];
+                if (options.bytes !== Array)
+                    object.pixels = $util.newBuffer(object.pixels);
+            }
             object.value = 0;
         }
         if (message.brightness != null && message.hasOwnProperty("brightness"))
             object.brightness = message.brightness;
-        if (message.pixels && message.pixels.length) {
-            object.pixels = [];
-            for (let j = 0; j < message.pixels.length; ++j)
-                object.pixels[j] = $root.Color.toObject(message.pixels[j], options);
-        }
+        if (message.pixels != null && message.hasOwnProperty("pixels"))
+            object.pixels = options.bytes === String ? $util.base64.encode(message.pixels, 0, message.pixels.length) : options.bytes === Array ? Array.prototype.slice.call(message.pixels) : message.pixels;
         if (message.value != null && message.hasOwnProperty("value"))
             object.value = message.value;
         return object;
