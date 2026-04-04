@@ -17,6 +17,19 @@ import type { TouchSensorAddress } from "./devices/TouchSensor";
 
 export type DeviceManagerEvents = ConnectionEvents;
 
+function toAddress<T extends number>(
+  address: T | number,
+  addresses: ReadonlyArray<T>,
+): T {
+  if (addresses.indexOf(address as T) !== -1) {
+    return address as T;
+  } else if (address >= 0 && address < addresses.length) {
+    return addresses[address];
+  } else {
+    return addresses[0];
+  }
+}
+
 export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
   private readonly _connection: Connection;
   private readonly _devices = new Map<string, BaseDevice<number>>();
@@ -31,9 +44,11 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
   }
 
   getGyroscope(
-    address: GyroscopeAddress = Gyroscope.ADDRESSES[0],
+    addressOrIndex: GyroscopeAddress | number = Gyroscope.ADDRESSES[0],
     chipset: GyroscopeChipset = GyroscopeChipset.GYROSCOPE_CHIPSET_LSM6DSOX,
   ) {
+    const address = toAddress(addressOrIndex, Gyroscope.ADDRESSES);
+
     return this._createDevice(
       DeviceType.DEVICE_TYPE_GYROSCOPE,
       address,
@@ -41,7 +56,11 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
     );
   }
 
-  getLinearEncoder(address: LinearEncoderAddress = LinearEncoder.ADDRESSES[0]) {
+  getLinearEncoder(
+    addressOrIndex: LinearEncoderAddress | number = LinearEncoder.ADDRESSES[0],
+  ) {
+    const address = toAddress(addressOrIndex, LinearEncoder.ADDRESSES);
+
     return this._createDevice(
       DeviceType.DEVICE_TYPE_LINEAR_ENCODER,
       address,
@@ -49,15 +68,23 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
     );
   }
 
-  getNeoDriver(address: NeoDriverAddress = NeoDriver.ADDRESSES[0]) {
+  getNeoDriver(
+    addressOrIndex: NeoDriverAddress | number = NeoDriver.ADDRESSES[0],
+  ) {
+    const address = toAddress(addressOrIndex, NeoDriver.ADDRESSES);
+
     return this._createDevice(
       DeviceType.DEVICE_TYPE_NEO_DRIVER,
       address,
-      () => new NeoDriver(address as NeoDriverAddress, this._connection),
+      () => new NeoDriver(address, this._connection),
     );
   }
 
-  getRotaryEncoder(address: RotaryEncoderAddress = RotaryEncoder.ADDRESSES[0]) {
+  getRotaryEncoder(
+    addressOrIndex: RotaryEncoderAddress | number = RotaryEncoder.ADDRESSES[0],
+  ) {
+    const address = toAddress(addressOrIndex, RotaryEncoder.ADDRESSES);
+
     return this._createDevice(
       DeviceType.DEVICE_TYPE_ROTARY_ENCODER,
       address,
@@ -65,7 +92,11 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
     );
   }
 
-  getTouchSensor(address: TouchSensorAddress = TouchSensor.ADDRESSES[0]) {
+  getTouchSensor(
+    addressOrIndex: TouchSensorAddress | number = TouchSensor.ADDRESSES[0],
+  ) {
+    const address = toAddress(addressOrIndex, TouchSensor.ADDRESSES);
+
     return this._createDevice(
       DeviceType.DEVICE_TYPE_TOUCH_SENSOR,
       address,
@@ -105,6 +136,8 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
 
     const device = factory();
     this._devices.set(key, device);
+    device.connect();
+
     return device;
   }
 

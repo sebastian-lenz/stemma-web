@@ -14,6 +14,8 @@ export type ConnectionEvents = {
 };
 
 export class Connection {
+  private _connectGeneration: number = 0;
+  private _connectPromise: Promise<void> | null = null;
   private _device: USBDevice | null = null;
   private _endpointIn: number | null = null;
   private _endpointOut: number | null = null;
@@ -36,35 +38,57 @@ export class Connection {
   }
 
   async connect(): Promise<void> {
-    const device = await navigator.usb.requestDevice({
-      filters: [{ vendorId: ADAFRUIT_VID }],
+    if (this._connectPromise) {
+      return this._connectPromise;
+    }
+
+    const generation = ++this._connectGeneration;
+
+    this._connectPromise = (async () => {
+      const device = await navigator.usb.requestDevice({
+        filters: [{ vendorId: ADAFRUIT_VID }],
+      });
+
+      await device.open();
+      await device.selectConfiguration(1);
+
+      const config = device.configuration;
+      if (!config) {
+        throw new Error("No active USB configuration");
+      }
+
+      const iface = config.interfaces.find(
+        (iface) => iface.alternates[0].interfaceClass === 0xff,
+      );
+
+      if (!iface) {
+        throw new Error("WebUSB vendor interface not found");
+      }
+
+      await this._claimInterface(device, iface);
+
+      if (generation !== this._connectGeneration) {
+        await device.close().catch(() => {});
+        return;
+      }
+
+      this._device = device;
+      this._startReading();
+      this._eventTarget.dispatchEvent(new Event("connect"));
+    })();
+
+    this._connectPromise.catch(() => {
+      this._connectPromise = null;
     });
 
-    await device.open();
-    await device.selectConfiguration(1);
-
-    const config = device.configuration;
-    if (!config) {
-      throw new Error("No active USB configuration");
-    }
-
-    const iface = config.interfaces.find(
-      (iface) => iface.alternates[0].interfaceClass === 0xff,
-    );
-
-    if (!iface) {
-      throw new Error("WebUSB vendor interface not found");
-    }
-
-    await this._claimInterface(device, iface);
-
-    this._device = device;
-    this._startReading();
-    this._eventTarget.dispatchEvent(new Event("connect"));
+    return this._connectPromise;
   }
 
   async disconnect(): Promise<void> {
     this._isReading = false;
+    this._connectPromise = null;
+    this._connectGeneration++;
+
     if (this._device?.opened) {
       await this._device.close();
     }
@@ -77,7 +101,7 @@ export class Connection {
   }
 
   async request(payload: DeviceCommand): Promise<Response> {
-    const id = this._nextId + 1;
+    const id = ++this._nextId;
 
     return new Promise<Response>((resolve, reject) => {
       const timeout = setTimeout(() => {
@@ -91,7 +115,7 @@ export class Connection {
         resolve(response);
       });
 
-      this.send(payload).catch((err) => {
+      this.send(payload, id).catch((err) => {
         this._requests.delete(id);
         clearTimeout(timeout);
         reject(err);
@@ -99,15 +123,13 @@ export class Connection {
     });
   }
 
-  async send(payload: DeviceCommand): Promise<number> {
+  async send(payload: DeviceCommand, id = ++this._nextId): Promise<number> {
     if (!this.isConnected) {
       throw new Error("Not connected");
     }
 
-    const id = ++this._nextId;
     const encoded = encodeCommand(id, payload);
     await this._device!.transferOut(this._endpointOut!, frame(encoded));
-
     return id;
   }
 
@@ -143,8 +165,6 @@ export class Connection {
   private _handleResponse(payload: Uint8Array): void {
     const { _requests } = this;
     const response = decodeResponse(payload);
-
-    console.log(JSON.stringify(response));
 
     const request = _requests.get(response.id);
     if (request) {

@@ -13,6 +13,7 @@ export abstract class BaseDevice<
   readonly id: DeviceIdentifier<TAddress>;
 
   protected readonly _connection: Connection;
+  private _connectPromise: Promise<Response> | null = null;
   private _isConnected = false;
 
   constructor(type: DeviceType, address: TAddress, connection: Connection) {
@@ -26,25 +27,42 @@ export abstract class BaseDevice<
     return this._isConnected;
   }
 
+  async connect(): Promise<Response> {
+    if (this._connectPromise) {
+      return this._connectPromise;
+    }
+
+    this._connectPromise = (async () => {
+      await this._connection.connect();
+      return this._request({ start: {} });
+    })();
+
+    this._connectPromise.catch(() => {
+      this._connectPromise = null;
+    });
+
+    return this._connectPromise;
+  }
+
   _applyState(deviceState: IDeviceState): void {
     this._isConnected = deviceState.connected ?? false;
   }
 
   _applyEvent(event: IDeviceEvent): void {}
 
-  _start(): Promise<Response> {
-    return this._request({ start: {} });
-  }
-
-  dispatch<K extends CustomEventKeysOf<TEvents>>(
+  protected _dispatch<K extends CustomEventKeysOf<TEvents>>(
     type: K,
     detail: TEvents[K] extends CustomEvent<infer D> ? D : never,
   ): boolean {
     return super.dispatchEvent(new CustomEvent(type as string, { detail }));
   }
 
-  protected _send(payload: DeviceCommandPayload): Promise<number> {
-    return this._connection.send({
+  protected _request(payload: DeviceCommandPayload): Promise<Response> {
+    if (!this._isConnected) {
+      throw new Error("Device is not connected");
+    }
+
+    return this._connection.request({
       type: "device_command",
       deviceType: this.id.type,
       address: this.id.address,
@@ -52,8 +70,12 @@ export abstract class BaseDevice<
     });
   }
 
-  protected _request(payload: DeviceCommandPayload): Promise<Response> {
-    return this._connection.request({
+  protected _send(payload: DeviceCommandPayload): Promise<number> {
+    if (!this._isConnected) {
+      throw new Error("Device is not connected");
+    }
+
+    return this._connection.send({
       type: "device_command",
       deviceType: this.id.type,
       address: this.id.address,

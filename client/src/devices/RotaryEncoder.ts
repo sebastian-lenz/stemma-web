@@ -65,14 +65,14 @@ export class RotaryEncoder extends BaseNeoPixelDevice<
       this._value = event.rotaryChanged.value ?? this._value;
       this._pressed = event.rotaryChanged.isPressed ?? this._pressed;
 
-      this.dispatch("changed", {
+      this._dispatch("changed", {
         isPressed: this._pressed,
         value: this._value,
       });
     } else if (event.rotaryButton) {
       this._pressed = event.rotaryButton.isPressed ?? this._pressed;
 
-      this.dispatch(this._pressed ? "pressed" : "released", {
+      this._dispatch(this._pressed ? "pressed" : "released", {
         isPressed: this._pressed,
         value: this._value,
       });

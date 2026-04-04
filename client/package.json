@@ -8,7 +8,8 @@
     ".": {
       "import": "./dist/stemma-web.js",
       "require": "./dist/stemma-web.umd.cjs"
-    }
+    },
+    "./p5": "./dist/stemma-web.p5.js"
   },
   "types": "./dist/stemma-web.d.ts",
   "files": [
@@ -16,7 +17,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --config vite.config.p5.js",
     "build-proto": "pbjs -t static-module -w es6 --es6 --path ../proto ../proto/messages.proto -o src/proto/messages.js && pbts src/proto/messages.js -o src/proto/messages.d.ts",
     "preview": "vite preview"
   },
@@ -26,6 +27,6 @@
     "protobufjs-cli": "^2.0.0",
     "typescript": "^5.0.0",
     "vite": "^6.0.0",
-    "vite-plugin-dts": "^1.0.5"
+    "vite-plugin-dts": "^4.0.0"
   }
 }

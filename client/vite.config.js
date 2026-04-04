@@ -1,22 +1,7 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
-
-/** @returns {import('vite').Plugin} */
-function protobufPatch() {
-  return {
-    name: "protobuf-patch",
-    transform(code, id) {
-      // https://github.com/protobufjs/protobuf.js/issues/1754
-      if (id.endsWith("@protobufjs/inquire/index.js")) {
-        return {
-          code: code.replace(`eval("quire".replace(/^/,"re"))`, "require"),
-          map: null,
-        };
-      }
-    },
-  };
-}
+import { protobufPatch } from "./vite.config.shared.js";
 
 export default defineConfig({
   plugins: [protobufPatch(), dts({ rollupTypes: true })],

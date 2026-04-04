@@ -57,7 +57,7 @@ export class TouchSensor extends BaseDevice<
         continue;
       }
 
-      this.dispatch(isPressed ? "pressed" : "released", {
+      this._dispatch(isPressed ? "pressed" : "released", {
         isPressed,
         sensorId,
       });

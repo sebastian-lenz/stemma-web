@@ -159,14 +159,14 @@ export class Gyroscope extends BaseDevice<GyroscopeAddress, GyrosocopeEvents> {
       this._temperature = data.temperature ?? 0;
     }
 
-    this.dispatch("changed", {
+    this._dispatch("changed", {
       acceleration: { ...this._acceleration },
       rotation: { ...this._rotation },
       temperature: this._temperature,
     });
   }
 
-  override _start(): Promise<Response> {
+  override _connect(): Promise<Response> {
     return this._request({ start: { gyroscopeChipset: this._chipset } });
   }
 }

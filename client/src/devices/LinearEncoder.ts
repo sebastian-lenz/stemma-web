@@ -58,7 +58,7 @@ export class LinearEncoder extends BaseNeoPixelDevice<
 
     this._value = linearChanged.value ?? this._value;
 
-    this.dispatch("changed", {
+    this._dispatch("changed", {
       value: this._value,
     });
   }
