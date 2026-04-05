@@ -7,7 +7,7 @@ export abstract class BaseNeoPixelDevice<
   TAddress extends number = 0,
   TEvents extends EventMap = {},
 > extends BaseDevice<TAddress, TEvents> {
-  protected _brightness = 0;
+  protected _brightness = 128;
   protected _pixels: ColorObject[] = [];
 
   abstract getLength(): number;
@@ -28,6 +28,7 @@ export abstract class BaseNeoPixelDevice<
   }
 
   async setBrightness(value: number): Promise<void> {
+    value = Math.max(0, Math.min(255, Math.round(value)));
     this._brightness = value;
 
     await this._send({

@@ -37,7 +37,10 @@ export abstract class BaseDevice<
 
     this._connectPromise = (async () => {
       await this._connection.connect();
-      return this._request({ start: {} });
+      const reponse = await this._request({ start: {} });
+
+      this._isConnected = true;
+      return reponse;
     })();
 
     this._connectPromise.catch(() => {

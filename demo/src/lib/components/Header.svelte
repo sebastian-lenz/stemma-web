@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { appState } from '$lib/stores.svelte';
+  import { appState } from "$lib/stores.svelte";
 
   async function disconnect() {
     await appState.manager!.disconnect();
@@ -7,7 +7,7 @@
 </script>
 
 <header class="border-b border-gray-800 bg-gray-900">
-  <div class="mx-auto flex max-w-4xl items-center gap-4 px-6 py-4">
+  <div class="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
     <h1 class="text-base font-bold tracking-wide text-white">StemmaWeb</h1>
 
     <div class="flex-1"></div>
@@ -20,7 +20,7 @@
             : 'bg-gray-600'}"
         ></div>
         <span class="text-sm text-gray-400">
-          {appState.connected ? 'Connected' : 'Disconnected'}
+          {appState.connected ? "Connected" : "Disconnected"}
         </span>
       </div>
 

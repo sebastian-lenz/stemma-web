@@ -1,13 +1,13 @@
 #pragma once
-#include "Device.h"
+#include "NeoPixelDevice.h"
 #include <Adafruit_seesaw.h>
 #include <seesaw_neopixel.h>
 
 // Pin assignments on the seesaw rotary encoder breakout
-static constexpr uint8_t ROTARY_ENCODER_BUTTON_PIN = 24;
+static constexpr uint8_t ROTARY_ENCODER_BUTTON_PIN  = 24;
 static constexpr uint8_t ROTARY_ENCODER_NEOPIXEL_PIN = 6;
 
-class RotaryEncoderDevice : public Device {
+class RotaryEncoderDevice : public NeoPixelDevice {
 public:
     explicit RotaryEncoderDevice(uint8_t address)
         : _address(address), _pixel(1, ROTARY_ENCODER_NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800) {}
@@ -15,12 +15,11 @@ public:
     bool begin() override {
         if (!_seesaw.begin(_address)) return false;
         _pixel.begin(_address);
-        _pixel.setBrightness(_brightness);
-        _pixel.show();
+        _beginPixels(1);
         _seesaw.pinMode(ROTARY_ENCODER_BUTTON_PIN, INPUT_PULLUP);
         _seesaw.setGPIOInterrupts(1UL << ROTARY_ENCODER_BUTTON_PIN, true);
         _seesaw.enableEncoderInterrupt();
-        _lastValue  = _seesaw.getEncoderPosition();
+        _lastValue   = _seesaw.getEncoderPosition();
         _lastPressed = !_seesaw.digitalRead(ROTARY_ENCODER_BUTTON_PIN);
         return true;
     }
@@ -29,6 +28,8 @@ public:
     uint8_t    getAddress() const override { return _address; }
 
     bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
+        if (_handleNeoPixelCommand(cmd)) return false;
+
         resp.id      = 0;
         resp.success = true;
 
@@ -37,32 +38,18 @@ public:
                 resp.which_payload = Response_device_state_tag;
 
                 auto& ds = resp.payload.device_state;
-                ds.type    = DEVICE_TYPE_ROTARY_ENCODER;
-                ds.address = _address;
+                ds.type      = DEVICE_TYPE_ROTARY_ENCODER;
+                ds.address   = _address;
                 ds.connected = true;
                 ds.which_state = DeviceState_rotary_encoder_tag;
 
                 auto& re = ds.state.rotary_encoder;
                 re.brightness = _brightness;
-                re.pixel      = _pixelColor;
+                re.pixel      = _rawColors[0];
                 re.is_pressed = _lastPressed;
                 re.value      = _lastValue;
                 return true;
             }
-            case DeviceCommand_set_brightness_tag:
-                _brightness = cmd.payload.set_brightness.brightness;
-                _pixel.setBrightness(_brightness);
-                _pixel.show();
-                return false;
-
-            case DeviceCommand_set_pixel_color_tag:
-                if (cmd.payload.set_pixel_color.index == 0) {
-                    _pixelColor = cmd.payload.set_pixel_color.color;
-                    _pixel.setPixelColor(0, _pixelColor);
-                    _pixel.show();
-                }
-                return false;
-
             default:
                 resp.success = false;
                 return false;
@@ -72,8 +59,8 @@ public:
     bool poll(Response& event) override {
         bool changed = false;
 
-        int32_t pos = _seesaw.getEncoderPosition();
-        bool pressed = !_seesaw.digitalRead(ROTARY_ENCODER_BUTTON_PIN);
+        int32_t pos     = _seesaw.getEncoderPosition();
+        bool    pressed = !_seesaw.digitalRead(ROTARY_ENCODER_BUTTON_PIN);
 
         if (pos != _lastValue) {
             _lastValue = pos;
@@ -87,6 +74,11 @@ public:
 
         return changed;
     }
+
+protected:
+    void _neoSetBrightness(uint8_t b)              override { _pixel.setBrightness(b); }
+    void _neoSetPixelColor(uint16_t i, uint32_t c) override { _pixel.setPixelColor(i, c); }
+    void _neoShow()                                override { _pixel.show(); }
 
 private:
     void _buildChangedEvent(Response& event) {
@@ -115,8 +107,6 @@ private:
     uint8_t         _address;
     Adafruit_seesaw _seesaw;
     seesaw_NeoPixel _pixel;
-    uint8_t  _brightness  = 50;
-    uint32_t _pixelColor  = 0;
     int32_t  _lastValue   = 0;
     bool     _lastPressed = false;
 };
