@@ -12,7 +12,7 @@
     creating = true;
     try {
       const device = appState.manager!.getLinearEncoder(address);
-      await device._start();
+      await device.connect();
       const key = `linear-encoder:${address}`;
       appState.addInstance({ kind: "linear-encoder", key, device });
       oncreated();

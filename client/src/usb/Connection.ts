@@ -31,6 +31,12 @@ export class Connection {
     this._requests = new Map();
     this._responseBuffer = new Uint8Array(256);
     this._responseLength = 0;
+
+    navigator.usb.addEventListener("disconnect", (event) => {
+      if (event.device == this._device) {
+        this.disconnect();
+      }
+    });
   }
 
   get isConnected(): boolean {

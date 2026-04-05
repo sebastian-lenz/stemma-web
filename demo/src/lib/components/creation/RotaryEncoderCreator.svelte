@@ -12,7 +12,7 @@
     creating = true;
     try {
       const device = appState.manager!.getRotaryEncoder(address);
-      await device._start();
+      await device.connect();
       const key = `rotary-encoder:${address}`;
       appState.addInstance({ kind: "rotary-encoder", key, device });
       oncreated();

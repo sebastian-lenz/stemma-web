@@ -8,7 +8,7 @@
     creating = true;
     try {
       const device = appState.manager!.getTrinkey();
-      await device._start();
+      await device.connect();
       appState.addInstance({ kind: 'trinkey', key: 'trinkey', device });
       oncreated();
     } finally {

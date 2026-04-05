@@ -16,6 +16,9 @@ export abstract class BaseDevice<
   private _connectPromise: Promise<Response> | null = null;
   private _isConnected = false;
 
+  static readonly ADDRESSES: Array<number> = [];
+  static readonly EVENTS: Array<string> = [];
+
   constructor(type: DeviceType, address: TAddress, connection: Connection) {
     super();
 
@@ -58,7 +61,7 @@ export abstract class BaseDevice<
   }
 
   protected _request(payload: DeviceCommandPayload): Promise<Response> {
-    if (!this._isConnected) {
+    if (!this._isConnected && !("start" in payload)) {
       throw new Error("Device is not connected");
     }
 

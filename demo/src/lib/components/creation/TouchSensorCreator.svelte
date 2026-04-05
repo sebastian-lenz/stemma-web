@@ -12,7 +12,7 @@
     creating = true;
     try {
       const device = appState.manager!.getTouchSensor(address);
-      await device._start();
+      await device.connect();
       const key = `touch-sensor:${address}`;
       appState.addInstance({ kind: "touch-sensor", key, device });
       oncreated();

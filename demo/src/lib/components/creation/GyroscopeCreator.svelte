@@ -22,7 +22,7 @@
     creating = true;
     try {
       const device = appState.manager!.getGyroscope(address, chipset);
-      await device._start();
+      await device.connect();
       const key = `gyroscope:${address}`;
       appState.addInstance({ kind: "gyroscope", key, device });
       oncreated();

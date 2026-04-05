@@ -34,7 +34,8 @@ export class Gyroscope extends BaseDevice<GyroscopeAddress, GyrosocopeEvents> {
   private _rotationRange = RotationRange.ROTATION_RANGE_DPS_250;
   private _rotationDataRate = DataRate.DATA_RATE_HZ_104;
 
-  static readonly ADDRESSES = <const>[0x6a, 0x6b];
+  static readonly ADDRESSES: Array<number> = [0x6a, 0x6b];
+  static readonly EVENTS: Array<string> = ["changed"];
 
   constructor(
     address: GyroscopeAddress,
@@ -44,6 +45,10 @@ export class Gyroscope extends BaseDevice<GyroscopeAddress, GyrosocopeEvents> {
     super(DeviceType.DEVICE_TYPE_GYROSCOPE, address, connection);
 
     this._chipset = chipset;
+  }
+
+  override connect(): Promise<Response> {
+    return this._request({ start: { gyroscopeChipset: this._chipset } });
   }
 
   getAcceleration(): Vector {
@@ -164,9 +169,5 @@ export class Gyroscope extends BaseDevice<GyroscopeAddress, GyrosocopeEvents> {
       rotation: { ...this._rotation },
       temperature: this._temperature,
     });
-  }
-
-  override _connect(): Promise<Response> {
-    return this._request({ start: { gyroscopeChipset: this._chipset } });
   }
 }

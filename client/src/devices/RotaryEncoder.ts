@@ -24,7 +24,8 @@ export class RotaryEncoder extends BaseNeoPixelDevice<
   private _value = 0;
   private _pressed = false;
 
-  static readonly ADDRESSES = <const>[
+  static readonly EVENTS: Array<string> = ["changed", "pressed", "released"];
+  static readonly ADDRESSES: Array<number> = [
     0x36, 0x37, 0x38, 0x39, 0x3a, 0x3b, 0x3c, 0x3d,
   ];
 

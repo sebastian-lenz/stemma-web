@@ -13,7 +13,7 @@
     creating = true;
     try {
       const device = appState.manager!.getNeoDriver(address);
-      await device._start();
+      await device.connect();
       await device.setLength(ledCount);
       const key = `neo-driver:${address}`;
       appState.addInstance({ kind: "neo-driver", key, device });

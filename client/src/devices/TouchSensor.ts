@@ -21,7 +21,8 @@ export class TouchSensor extends BaseDevice<
 > {
   private _touchedMask = 0;
 
-  static ADDRESSES = <const>[0x5a, 0x5b];
+  static readonly EVENTS: Array<string> = ["pressed", "released"];
+  static readonly ADDRESSES: Array<number> = [0x5a, 0x5b];
 
   constructor(address: TouchSensorAddress, connection: Connection) {
     super(DeviceType.DEVICE_TYPE_TOUCH_SENSOR, address, connection);

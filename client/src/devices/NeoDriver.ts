@@ -8,7 +8,7 @@ export type NeoDriverAddress = (typeof NeoDriver.ADDRESSES)[number];
 export class NeoDriver extends BaseNeoPixelDevice<NeoDriverAddress> {
   private _length: number = 0;
 
-  static readonly ADDRESSES = <const>[
+  static readonly ADDRESSES: Array<number> = [
     0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67,
   ];
 

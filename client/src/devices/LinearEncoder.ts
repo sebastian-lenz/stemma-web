@@ -16,7 +16,8 @@ export class LinearEncoder extends BaseNeoPixelDevice<
 > {
   private _value = 0;
 
-  static readonly ADDRESSES = <const>[
+  static readonly EVENTS: Array<string> = ["changed"];
+  static readonly ADDRESSES: Array<number> = [
     0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a, 0x3b,
     0x3c, 0x3d, 0x3e, 0x3f,
   ];

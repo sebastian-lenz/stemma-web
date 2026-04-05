@@ -1,19 +1,6 @@
 <script lang="ts">
   import { appState } from '$lib/stores.svelte';
 
-  let connecting = $state(false);
-
-  async function connect() {
-    connecting = true;
-    try {
-      await appState.manager!.connect();
-    } catch {
-      // user cancelled or error — silently ignore
-    } finally {
-      connecting = false;
-    }
-  }
-
   async function disconnect() {
     await appState.manager!.disconnect();
   }
@@ -43,14 +30,6 @@
           class="rounded-lg bg-gray-700 px-4 py-1.5 text-sm font-medium text-gray-200 transition-colors hover:bg-gray-600"
         >
           Disconnect
-        </button>
-      {:else}
-        <button
-          onclick={connect}
-          disabled={connecting}
-          class="rounded-lg bg-indigo-600 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-indigo-500 disabled:cursor-default disabled:opacity-50"
-        >
-          {connecting ? 'Connecting…' : 'Connect'}
         </button>
       {/if}
     </div>
