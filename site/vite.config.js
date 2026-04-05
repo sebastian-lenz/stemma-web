@@ -22,7 +22,7 @@ export default defineConfig({
   plugins: [sveltekit(), protobufPatch()],
   resolve: {
     alias: {
-      "stemma-web": resolve(__dirname, "../client/src/index.ts"),
+      "stemma-web": resolve(__dirname, "../library/src/index.ts"),
     },
   },
 });

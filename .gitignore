@@ -1,5 +1,5 @@
-client/dist/
-client/node_modules/
-demo/.svelte-kit/
-demo/build/
-demo/node_modules/
+library/dist/
+library/node_modules/
+site/.svelte-kit/
+site/build/
+site/node_modules/

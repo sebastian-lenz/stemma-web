@@ -7,7 +7,7 @@
       "$lib": ["./src/lib"],
       "$lib/*": ["./src/lib/*"],
       "$app/types": ["./.svelte-kit/types/index.d.ts"],
-      "stemma-web": ["../client/src/index.ts"]
+      "stemma-web": ["../library/src/index.ts"]
     }
   }
 }

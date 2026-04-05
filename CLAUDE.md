@@ -6,8 +6,8 @@ Ein System zum Anschluss von Adafruit StemmaQT-Geräten an einen Browser via Web
 
 ```
 firmware/   — C++ Firmware für den Adafruit Trinkey RP2040 Qt (PlatformIO/Arduino)
-client/     — TypeScript/WebUSB Client-Library (Vite, protobufjs)
-demo/       — Svelte Demo-App, nutzt die Client-Library
+library/    — TypeScript/WebUSB Client-Library (Vite, protobufjs)
+site/       — Svelte Site-App, nutzt die Client-Library
 proto/      — Protocol Buffer Definitionen (Nanopb + protobufjs)
 ```
 
@@ -32,7 +32,7 @@ proto/      — Protocol Buffer Definitionen (Nanopb + protobufjs)
 Die `.proto`-Dateien liegen in `proto/`. Es gibt zwei Verwendungszwecke:
 
 - **Firmware (Nanopb):** `.options`-Dateien begrenzen Array-Größen für den Mikrocontroller. Codegenerierung muss separat mit dem Nanopb-Generator erfolgen.
-- **Client (protobufjs):** `npm run build-proto` im `client/`-Verzeichnis generiert `src/proto/messages.js` und `src/proto/messages.d.ts` aus den `.proto`-Dateien.
+- **Client (protobufjs):** `npm run build-proto` im `library/`-Verzeichnis generiert `src/proto/messages.js` und `src/proto/messages.d.ts` aus den `.proto`-Dateien.
 
 **Neue Geräte erfordern immer:**
 
@@ -76,14 +76,14 @@ pio device monitor   # Serielle Ausgabe (Debug)
 - `Adafruit MPR121` — TouchSensor
 - `Adafruit LSM6DS` + `Adafruit BusIO` + `Adafruit Unified Sensor` — Gyroscope
 
-## Client-Library (client/)
+## Client-Library (library/)
 
 **Tech Stack:** TypeScript, Vite, protobufjs
 
 **Wichtige Befehle:**
 
 ```bash
-cd client
+cd library
 npm install
 npm run proto   # Proto-Dateien zu JS/TS kompilieren
 npm run build   # Library bauen (ESM + UMD)
@@ -114,12 +114,12 @@ npm run dev     # Entwicklungsmodus
 | TouchSensor   | 0x5A–0x5D    | MPR121  | nein     |
 | Gyroscope     | 0x6A–0x6B    | LSM6DS  | nein     |
 
-## Demo-App (demo/)
+## Site (site/)
 
 ```bash
-cd demo
+cd site
 npm install
-npm run dev   # Startet Dev-Server mit WebUSB-Demo
+npm run dev   # Startet Dev-Server
 ```
 
 ## Wichtige Konventionen
