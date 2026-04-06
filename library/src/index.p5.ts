@@ -26,8 +26,8 @@ export const stemmaWeb: P5Addon = (
 (function () {
   if (typeof window !== "undefined" && window.p5) {
     const { p5 } = window;
-
-    if ("_incrementPreload" in window.p5) {
+    debugger;
+    if (("_incrementPreload" in p5) as any) {
       const lifecycles: P5LifecylceMap = {};
       new Extension(p5, p5.prototype, lifecycles);
       for (const key in lifecycles) {

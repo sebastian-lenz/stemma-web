@@ -122,6 +122,21 @@ npm install
 npm run dev   # Startet Dev-Server
 ```
 
+**Doc-Seiten Konventionen:**
+
+- Tailwind-Klassen für Dokumentationsseiten sind als `@layer components`-Klassen in `src/app.css` gebündelt:
+  - `.doc-h2` — Abschnittsüberschrift
+  - `.doc-p` — Fließtext (gedimmt)
+  - `.doc-link` — Externer Link (indigo, underline)
+  - `.doc-code` — Inline-Code
+  - `.doc-kbd` — Tastaturkürzel
+  - `.doc-codeblock` — Code-Block-Container (Pre-Wrapper)
+  - `.doc-card` — Bordered Card
+  - `.doc-step` — Nummerierter Schritt-Badge
+  - `.doc-badge` — Pill-Badge (Farbe per Utility ergänzen, z.B. `doc-badge bg-indigo-900/60 text-indigo-300`)
+- Icons werden als SVG-Sprite in `src/lib/icons.svg` verwaltet (je Icon ein `<symbol id="icon-xxx">`). Das Sprite wird per `?raw`-Import in `+layout.svelte` inline eingebettet.
+- Icon-Verwendung: `<Icon id="icon-xxx" />` aus `$lib/components/Icon.svelte`. Standard-Größe `h-4 w-4`, überschreibbar per `class`-Prop.
+
 ## Wichtige Konventionen
 
 - Jedes Gerät hat exakt eine `.proto`-Datei, eine Firmware-Klasse (`XxxDevice.h`) und eine Client-Klasse (`xxx.ts`)

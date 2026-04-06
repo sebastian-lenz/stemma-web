@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #030712;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const base = params.get("base") || "";
+      const example = params.get("example") || "";
+
+      function loadScript(src, onload) {
+        const s = document.createElement("script");
+        s.src = src;
+        if (onload) s.onload = onload;
+        document.head.appendChild(s);
+      }
+
+      loadScript("https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js", () => {
+        loadScript(base + "/download/stemma-web.p5.js", () => {
+          loadScript(base + example);
+        });
+      });
+    </script>
+  </body>
+</html>

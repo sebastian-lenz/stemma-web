@@ -13,7 +13,7 @@ static DeviceManager deviceManager;
 // ── WebUSB ────────────────────────────────────────────────────────────────────
 
 Adafruit_USBD_WebUSB usb_web;
-WEBUSB_URL_DEF(landingPage, 1 /*https*/, "example.com");
+WEBUSB_URL_DEF(landingPage, 1 /*https*/, "sebastian-lenz.github.io/stemma-web/");
 
 // ── Framing: 2-byte big-endian length prefix + protobuf payload ───────────────
 // Increased from 64 to accommodate device state/event messages.

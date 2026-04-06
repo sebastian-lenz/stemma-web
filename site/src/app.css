@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Doc page prose helpers */
+  .doc-h2 {
+    @apply mb-4 text-lg font-semibold text-white;
+  }
+
+  .doc-p {
+    @apply text-sm text-gray-400;
+  }
+
+  .doc-link {
+    @apply text-indigo-400 underline hover:text-indigo-300;
+  }
+
+  .doc-code {
+    @apply rounded bg-gray-700 px-1 py-0.5 font-mono text-xs text-gray-200;
+  }
+
+  .doc-kbd {
+    @apply rounded border border-gray-600 bg-gray-700 px-1.5 py-0.5 font-mono text-xs text-gray-200;
+  }
+
+  .doc-codeblock {
+    @apply overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-300;
+  }
+
+  .doc-card {
+    @apply rounded-lg border border-gray-700 bg-gray-800/50 p-5;
+  }
+
+  .doc-step {
+    @apply mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white;
+  }
+
+  .doc-badge {
+    @apply rounded px-1.5 py-0.5 text-xs font-medium;
+  }
+}
