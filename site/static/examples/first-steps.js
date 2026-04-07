@@ -5,9 +5,13 @@ function preload() {
 }
 
 function setup() {
+  createCanvas(254, 254);
   colorMode(HSB);
 }
 
 function draw() {
-  trinkey.setPixelColor(color(frameCount * 0.01, 100, 100));
+  let rainbowColor = color(frameCount % 360, 100, 100);
+
+  background(rainbowColor);
+  trinkey.setPixelColor(rainbowColor);
 }

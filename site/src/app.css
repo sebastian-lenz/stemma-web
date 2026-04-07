@@ -5,11 +5,11 @@
 @layer components {
   /* Doc page prose helpers */
   .doc-h2 {
-    @apply mb-4 text-lg font-semibold text-white;
+    @apply mt-8 mb-5 text-lg font-semibold text-white;
   }
 
   .doc-p {
-    @apply text-sm text-gray-400;
+    @apply mb-5 text-base text-gray-200;
   }
 
   .doc-link {
@@ -25,7 +25,7 @@
   }
 
   .doc-codeblock {
-    @apply overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-300;
+    @apply my-8 overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-300;
   }
 
   .doc-card {

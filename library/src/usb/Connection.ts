@@ -51,9 +51,7 @@ export class Connection {
     const generation = ++this._connectGeneration;
 
     this._connectPromise = (async () => {
-      const device = await navigator.usb.requestDevice({
-        filters: [{ vendorId: ADAFRUIT_VID }],
-      });
+      const device = await this._requestDevice();
 
       await device.open();
       await device.selectConfiguration(1);
@@ -180,6 +178,62 @@ export class Connection {
     this._eventTarget.dispatchEvent(
       new CustomEvent<Response>("response", { detail: response }),
     );
+  }
+
+  private _showConnectDialog(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const overlay = document.createElement("div");
+      overlay.style.cssText =
+        "position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:999999";
+
+      const dialog = document.createElement("div");
+      dialog.style.cssText =
+        "background:#1e1e1e;color:#fff;padding:24px 32px;border-radius:8px;display:flex;flex-direction:column;gap:16px;align-items:center;font-family:sans-serif";
+
+      const msg = document.createElement("p");
+      msg.style.cssText = "margin:0;font-size:14px;opacity:.8";
+      msg.textContent = "Click the button below to select a USB device.";
+
+      const btn = document.createElement("button");
+      btn.style.cssText =
+        "padding:8px 20px;background:#6366f1;color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer";
+      btn.textContent = "Select USB Device";
+
+      const close = () => overlay.remove();
+
+      btn.addEventListener("click", () => {
+        close();
+        resolve();
+      });
+
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          close();
+          reject(new DOMException("No device selected.", "NotFoundError"));
+        }
+      });
+
+      dialog.append(msg, btn);
+      overlay.append(dialog);
+      document.body.append(overlay);
+    });
+  }
+
+  private async _requestDevice() {
+    const [existing] = await navigator.usb.getDevices();
+    if (existing) {
+      return existing;
+    }
+
+    if (!navigator.userActivation.isActive) {
+      await this._showConnectDialog();
+    }
+
+    const device = await navigator.usb.requestDevice({
+      filters: [{ vendorId: ADAFRUIT_VID }],
+    });
+
+    return device;
   }
 
   private async _startReading(): Promise<void> {

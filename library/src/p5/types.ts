@@ -1,19 +1,28 @@
-export interface P5Instance {
-  _isGlobal: boolean;
+import * as P5 from "p5";
+import { Color } from "p5";
 
+export type P5Instance = P5 & {
+  Color: typeof Color;
   registerAddon(addon: P5Addon): void;
+};
+
+export interface P5Static {
   registerMethod(method: P5Method, callback: VoidFunction): void;
+}
+
+export interface P5Internal {
+  _isGlobal: boolean;
   _decrementPreload(): void;
   _incrementPreload(): void;
 }
 
 export type P5Constructor = P5Instance & {
   new (...args: unknown[]): unknown;
-  prototype: P5Instance;
+  prototype: P5Instance & P5Static;
 };
 
 export type P5Addon = (
-  p5: P5Instance,
+  p5: P5Constructor,
   fn: any,
   lifecycles: P5LifecylceMap,
 ) => void;

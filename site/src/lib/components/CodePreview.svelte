@@ -24,13 +24,12 @@
   });
 </script>
 
-<div class="doc-codeblock flex overflow-hidden">
-  <pre
-    class="flex-1 overflow-auto p-4 text-sm leading-relaxed"><code>{@html highlighted}</code></pre>
+<div class="doc-codeblock flex overflow-hidden items-start">
+  <pre class="flex-1 overflow-auto p-4 text-sm leading-relaxed"><code
+      >{@html highlighted}</code
+    ></pre>
 
-  <div
-    class="flex w-64 shrink-0 flex-col border-l border-gray-700 bg-gray-950"
-  >
+  <div class="flex w-64 shrink-0 flex-col border border-gray-700 bg-gray-950">
     <div class="flex gap-2 border-b border-gray-700 p-2">
       <button
         onclick={() => (playing = true)}
@@ -58,7 +57,7 @@
       </button>
     </div>
 
-    <div class="flex-1">
+    <div class="aspect-square">
       {#if playing}
         <iframe src={iframeSrc} allow="usb" class="h-full w-full border-0"
         ></iframe>

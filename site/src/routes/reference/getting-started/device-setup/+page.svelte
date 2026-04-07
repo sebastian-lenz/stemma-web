@@ -1,4 +1,5 @@
 <script>
+  import { resolve } from '$app/paths';
   import Icon from '$lib/components/Icon.svelte';
 </script>
 
@@ -112,7 +113,7 @@
           <strong class="text-gray-200">RPI-RP2</strong> drive.
         </p>
         <a
-          href="/download/firmware.uf2"
+          href={resolve("/download/firmware.uf2")}
           download
           class="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-500"
         >

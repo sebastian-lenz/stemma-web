@@ -1,4 +1,5 @@
 import { DeviceManager } from "../DeviceManager";
+import { getP5Version } from "./utils";
 import { Gyroscope } from "../devices/Gyroscope";
 import { LinearEncoder } from "../devices/LinearEncoder";
 import { NeoDriver } from "../devices/NeoDriver";
@@ -8,7 +9,7 @@ import type { BaseDevice } from "../devices/BaseDevice";
 import type { GyroscopeAddress } from "../devices/Gyroscope";
 import type { LinearEncoderAddress } from "../devices/LinearEncoder";
 import type { NeoDriverAddress } from "../devices/NeoDriver";
-import type { P5Instance, P5LifecylceMap } from "./types";
+import type { P5Constructor, P5Internal, P5LifecylceMap } from "./types";
 import type { RotaryEncoderAddress } from "../devices/RotaryEncoder";
 import type { TouchSensorAddress } from "../devices/TouchSensor";
 import type { Trinkey } from "../devices/Trinkey";
@@ -20,14 +21,14 @@ export class Extension {
   private _deviceManager: DeviceManager | null = null;
   private _hookPrefixes: Array<string> = [];
   private _listeners: Array<VoidFunction> = [];
-  private _usePromises: boolean = false;
+  private _usePromises: boolean;
 
   constructor(
-    private readonly p5: P5Instance,
+    private readonly p5: P5Constructor,
     fn: any,
     lifecycles: P5LifecylceMap,
   ) {
-    this._usePromises = !("_incrementPreload" in p5);
+    this._usePromises = getP5Version(p5) == 2;
 
     lifecycles.remove = this.remove.bind(this);
 
@@ -50,22 +51,31 @@ export class Extension {
   }
 
   expose(fn: any, names: Array<string>) {
+    const that: any = this;
+
     for (const name of names) {
-      fn[name] = (this as any)[name].bind(this);
+      const source = that[name];
+
+      if (typeof source === "function") {
+        fn[name] = function (this: P5Internal, ...args: Array<any>) {
+          return source.apply(that, [this, ...args]);
+        };
+      }
     }
   }
 
   exposeDevice<T extends BaseDevice<number, any>>(
+    p5: P5Internal,
     device: T,
     hookPrefix: string | false | null = null,
     events: Array<string> = [],
   ): T | Promise<T> {
-    const { p5, _hookPrefixes, _listeners } = this;
+    const { _hookPrefixes, _listeners } = this;
 
     if (hookPrefix && _hookPrefixes.indexOf(hookPrefix) == -1) {
       _hookPrefixes.push(hookPrefix);
 
-      const context: any = this.p5._isGlobal ? window : this.p5;
+      const context: any = p5._isGlobal ? window : this.p5;
 
       for (const event of events) {
         const hookName = hookPrefix + ucfirst(event);
@@ -95,46 +105,51 @@ export class Extension {
   }
 
   startGyroscope(
+    p5: P5Internal,
     name: string | false | null = "gyroscope",
     addressOrIndex: GyroscopeAddress = Gyroscope.ADDRESSES[0],
   ): Gyroscope | Promise<Gyroscope> {
     const device = this.deviceManager.getGyroscope(addressOrIndex);
-    return this.exposeDevice(device, name, Gyroscope.EVENTS);
+    return this.exposeDevice(p5, device, name, Gyroscope.EVENTS);
   }
 
   startLinearEncoder(
+    p5: P5Internal,
     name: string | false | null = "linearEncoder",
     addressOrIndex: LinearEncoderAddress = LinearEncoder.ADDRESSES[0],
   ): LinearEncoder | Promise<LinearEncoder> {
     const device = this.deviceManager.getLinearEncoder(addressOrIndex);
-    return this.exposeDevice(device, name, LinearEncoder.EVENTS);
+    return this.exposeDevice(p5, device, name, LinearEncoder.EVENTS);
   }
 
   startNeoDriver(
+    p5: P5Internal,
     addressOrIndex: NeoDriverAddress = NeoDriver.ADDRESSES[0],
   ): NeoDriver | Promise<NeoDriver> {
     const device = this.deviceManager.getNeoDriver(addressOrIndex);
-    return this.exposeDevice(device);
+    return this.exposeDevice(p5, device);
   }
 
   startRotaryEncoder(
+    p5: P5Internal,
     name: string | false | null = "rotaryEncoder",
     addressOrIndex: RotaryEncoderAddress = RotaryEncoder.ADDRESSES[0],
   ): RotaryEncoder | Promise<RotaryEncoder> {
     const device = this.deviceManager.getRotaryEncoder(addressOrIndex);
-    return this.exposeDevice(device, name, RotaryEncoder.EVENTS);
+    return this.exposeDevice(p5, device, name, RotaryEncoder.EVENTS);
   }
 
   startTouchSensor(
+    p5: P5Internal,
     name: string | false | null = "touchSensor",
     addressOrIndex: TouchSensorAddress = TouchSensor.ADDRESSES[0],
   ): TouchSensor | Promise<TouchSensor> {
     const device = this.deviceManager.getTouchSensor(addressOrIndex);
-    return this.exposeDevice(device, name, TouchSensor.EVENTS);
+    return this.exposeDevice(p5, device, name, TouchSensor.EVENTS);
   }
 
-  startTrinkey(): Trinkey | Promise<Trinkey> {
+  startTrinkey(p5: P5Internal): Trinkey | Promise<Trinkey> {
     const device = this.deviceManager.getTrinkey();
-    return this.exposeDevice(device);
+    return this.exposeDevice(p5, device);
   }
 }

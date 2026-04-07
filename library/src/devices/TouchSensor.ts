@@ -33,7 +33,6 @@ export class TouchSensor extends BaseDevice<
   }
 
   override _applyState(deviceState: IDeviceState): void {
-    debugger;
     super._applyState(deviceState);
 
     const { touchSensor: state } = deviceState;

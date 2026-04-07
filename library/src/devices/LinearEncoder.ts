@@ -25,11 +25,7 @@ export class LinearEncoder extends BaseNeoPixelDevice<
   constructor(address: LinearEncoderAddress, connection: Connection) {
     super(DeviceType.DEVICE_TYPE_LINEAR_ENCODER, address, connection);
 
-    this._pixels = Array.from({ length: 4 }, () => ({
-      red: 0,
-      green: 0,
-      blue: 0,
-    }));
+    this._pixels = [0, 0, 0, 0];
   }
 
   getLength(): number {

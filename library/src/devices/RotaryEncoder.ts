@@ -32,7 +32,7 @@ export class RotaryEncoder extends BaseNeoPixelDevice<
   constructor(address: RotaryEncoderAddress, connection: Connection) {
     super(DeviceType.DEVICE_TYPE_ROTARY_ENCODER, address, connection);
 
-    this._pixels = [{ red: 0, green: 0, blue: 0 }];
+    this._pixels = [0];
   }
 
   getLength(): number {
@@ -57,7 +57,7 @@ export class RotaryEncoder extends BaseNeoPixelDevice<
     this._value = state.value ?? 0;
 
     if (state.pixel) {
-      this._pixels[0] = toColorObject(state.pixel);
+      this._pixels[0] = state.pixel;
     }
   }
 

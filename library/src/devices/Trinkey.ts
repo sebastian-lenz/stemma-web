@@ -1,6 +1,5 @@
 import { BaseNeoPixelDevice } from "./BaseNeoPixelDevice";
 import { DeviceType } from "../proto/messages";
-import { toColorObject } from "../utils/color";
 import type { Connection } from "../usb/Connection";
 import type { IDeviceState } from "../proto/messages";
 
@@ -8,11 +7,7 @@ export class Trinkey extends BaseNeoPixelDevice {
   constructor(connection: Connection) {
     super(DeviceType.DEVICE_TYPE_TRINKEY, 0, connection);
 
-    this._pixels = Array.from({ length: 1 }, () => ({
-      red: 0,
-      green: 0,
-      blue: 0,
-    }));
+    this._pixels = [0];
   }
 
   getLength(): number {
@@ -28,7 +23,7 @@ export class Trinkey extends BaseNeoPixelDevice {
     this._brightness = state.brightness ?? 0;
 
     if (state.pixel) {
-      this._pixels[0] = toColorObject(state.pixel);
+      this._pixels[0] = state.pixel;
     }
   }
 }

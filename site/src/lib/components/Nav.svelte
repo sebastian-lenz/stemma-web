@@ -1,24 +1,26 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import { resolve } from "$app/paths";
 
-  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  // resolve('/') → '{base}/' — strip trailing slash to get the bare base prefix
+  const siteBase = resolve("/").slice(0, -1);
 
   function isActive(path: string) {
     const current = page.url.pathname;
-    return current === path || current.startsWith(path + "/");
+    const full = siteBase + path;
+    return current === full || current.startsWith(full + "/");
   }
 </script>
 
 <nav class="border-b border-gray-800 bg-gray-900">
   <div class="mx-auto flex max-w-6xl items-center gap-1 px-6 py-3">
-    <a href="{base}/" class="mr-6 text-base font-bold tracking-wide text-white"
-      >StemmaWeb</a
-    >
+    <a href={resolve("/")} class="mr-6 text-base font-bold tracking-wide text-white">
+      StemmaWeb
+    </a>
 
     <a
-      href="{base}/"
-      class="rounded-md px-3 py-1.5 text-sm transition-colors {page.url
-        .pathname === '/'
+      href={resolve("/")}
+      class="rounded-md px-3 py-1.5 text-sm transition-colors {isActive('/')
         ? 'bg-gray-800 text-white'
         : 'text-gray-400 hover:text-white'}"
     >
@@ -26,7 +28,7 @@
     </a>
 
     <a
-      href="{base}/reference/getting-started/device-setup"
+      href={resolve("/reference/getting-started/device-setup")}
       class="rounded-md px-3 py-1.5 text-sm transition-colors {isActive(
         '/reference',
       )
@@ -37,7 +39,7 @@
     </a>
 
     <a
-      href="{base}/playground"
+      href={resolve("/playground")}
       class="rounded-md px-3 py-1.5 text-sm transition-colors {isActive(
         '/playground',
       )

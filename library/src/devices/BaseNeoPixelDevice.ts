@@ -1,6 +1,6 @@
 import { BaseDevice } from "./BaseDevice";
-import { packColors, parseColor, toColorObject } from "../utils/color";
-import type { Color, ColorObject } from "../utils/types";
+import { colorApi, packColors } from "../utils/color";
+import type { Color, ColorObject, ColorValue } from "../utils/types";
 import type { EventMap } from "../utils/events";
 
 export abstract class BaseNeoPixelDevice<
@@ -8,7 +8,7 @@ export abstract class BaseNeoPixelDevice<
   TEvents extends EventMap = {},
 > extends BaseDevice<TAddress, TEvents> {
   protected _brightness = 128;
-  protected _pixels: ColorObject[] = [];
+  protected _pixels: ColorValue[] = [];
 
   abstract getLength(): number;
 
@@ -17,14 +17,14 @@ export abstract class BaseNeoPixelDevice<
   }
 
   getPixelColor(index: number = 0): ColorObject {
-    return this._pixels[index] ?? { red: 0, green: 0, blue: 0 };
+    return colorApi.toObject(this._pixels[index] ?? 0);
   }
 
   getPixelColors(
     offset = 0,
     length = this._pixels.length - offset,
   ): ColorObject[] {
-    return this._pixels.slice(offset, offset + length);
+    return this._pixels.slice(offset, offset + length).map(colorApi.toObject);
   }
 
   async setBrightness(value: number): Promise<void> {
@@ -36,25 +36,42 @@ export abstract class BaseNeoPixelDevice<
     });
   }
 
-  async setPixelColor(index: number = 0, color: Color): Promise<void> {
-    const packed = parseColor(color);
-    this._pixels[index] = toColorObject(packed);
+  async setPixelColor(color: Color): Promise<void>;
+  async setPixelColor(index: number, color: Color): Promise<void>;
+  async setPixelColor(
+    indexOrColor: number | Color,
+    color?: Color,
+  ): Promise<void> {
+    const index = color !== undefined ? (indexOrColor as number) : 0;
+    const c = color !== undefined ? color : (indexOrColor as Color);
+
+    const packed = colorApi.parse(c);
+    this._pixels[index] = packed;
 
     await this._send({
       setPixelColor: { index, color: packed },
     });
   }
 
-  async setPixelColors(offset: number = 0, colors: Color[]): Promise<void> {
-    const packed = colors.map(parseColor);
-    packed.forEach((c, i) => {
-      this._pixels[offset + i] = toColorObject(c);
+  async setPixelColors(colors: Color[]): Promise<void>;
+  async setPixelColors(offset: number, colors: Color[]): Promise<void>;
+  async setPixelColors(
+    offsetOrColors: number | Color[],
+    colors?: Color[],
+  ): Promise<void> {
+    const offset = colors !== undefined ? (offsetOrColors as number) : 0;
+    const c = colors !== undefined ? colors : (offsetOrColors as Color[]);
+
+    const packed = c.map(colorApi.parse);
+    packed.forEach((v, i) => {
+      this._pixels[offset + i] = v;
     });
 
     const chunkSize = 64;
     for (let i = 0; i < packed.length; i += chunkSize) {
       const chunk = packed.slice(i, i + chunkSize);
       const show = i + chunkSize >= packed.length;
+
       await this._send({
         setPixelColors: { offset: offset + i, colors: packColors(chunk), show },
       });

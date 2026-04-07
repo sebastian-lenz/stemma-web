@@ -6,13 +6,15 @@ export interface Vector {
   z: number;
 }
 
+export type ColorValue = number;
+
 export interface ColorObject {
   red: number;
   green: number;
   blue: number;
 }
 
-export type Color = ColorObject | string;
+export type Color = ColorObject | string | number;
 
 export interface DeviceIdentifier<TAddress> {
   type: DeviceType;

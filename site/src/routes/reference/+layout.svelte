@@ -1,7 +1,8 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import { resolve } from "$app/paths";
 
-  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const siteBase = resolve("/").slice(0, -1);
 
   let { children } = $props();
 
@@ -50,9 +51,9 @@
           {#each section.items as item}
             <li>
               <a
-                href="{base}{item.href}"
+                href={siteBase + item.href}
                 class="block rounded-md px-3 py-1.5 text-sm transition-colors {page
-                  .url.pathname === item.href
+                  .url.pathname === siteBase + item.href
                   ? 'bg-gray-800 text-white'
                   : 'text-gray-400 hover:text-white'}"
               >

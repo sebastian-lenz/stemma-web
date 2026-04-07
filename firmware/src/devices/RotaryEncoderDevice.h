@@ -85,6 +85,7 @@ private:
         event.id = 0;
         event.success = true;
         event.which_payload = Response_device_event_tag;
+
         auto& de = event.payload.device_event;
         de.type    = DEVICE_TYPE_ROTARY_ENCODER;
         de.address = _address;
@@ -97,6 +98,7 @@ private:
         event.id = 0;
         event.success = true;
         event.which_payload = Response_device_event_tag;
+
         auto& de = event.payload.device_event;
         de.type    = DEVICE_TYPE_ROTARY_ENCODER;
         de.address = _address;

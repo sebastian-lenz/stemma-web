@@ -1,8 +1,8 @@
 import { Extension } from "./p5/Extension";
+import { extendColorApi, getP5Version } from "./p5/utils";
 import type {
   P5Addon,
   P5Constructor,
-  P5Instance,
   P5LifecylceMap,
   P5Method,
 } from "./p5/types";
@@ -16,7 +16,7 @@ declare global {
 }
 
 export const stemmaWeb: P5Addon = (
-  p5: P5Instance,
+  p5: P5Constructor,
   fn: any,
   lifecycles: P5LifecylceMap,
 ) => {
@@ -26,15 +26,20 @@ export const stemmaWeb: P5Addon = (
 (function () {
   if (typeof window !== "undefined" && window.p5) {
     const { p5 } = window;
-    debugger;
-    if (("_incrementPreload" in p5) as any) {
+    extendColorApi(p5);
+
+    if (getP5Version(p5) === 2) {
+      p5.registerAddon(stemmaWeb);
+    } else {
       const lifecycles: P5LifecylceMap = {};
       new Extension(p5, p5.prototype, lifecycles);
+
       for (const key in lifecycles) {
-        p5.registerMethod(key as P5Method, lifecycles[key as P5Method]!);
+        p5.prototype.registerMethod(
+          key as P5Method,
+          lifecycles[key as P5Method]!,
+        );
       }
-    } else {
-      p5.registerAddon(stemmaWeb);
     }
   }
 })();
