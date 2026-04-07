@@ -2,7 +2,7 @@
   import CodePreview from "$lib/components/CodePreview.svelte";
 </script>
 
-<h1 class="doc-h2">First Steps</h1>
+<h1 class="mb-4 text-2xl font-bold text-white">First Steps</h1>
 
 <p class="doc-p">
   The sketch below connects to a Trinkey and cycles the onboard NeoPixel through
@@ -26,10 +26,10 @@
 <p class="doc-p">
   <span class="doc-code">preload()</span> is a special p5.js function that runs
   before anything else. Calling <span class="doc-code">startTrinkey()</span>
-  inside it initiates the USB connection and waits until the device is ready.
-  p5.js will not call <span class="doc-code">setup()</span> until
-  <span class="doc-code">preload()</span> has finished, so the rest of your
-  sketch is guaranteed to have a working device from the very first frame.
+  inside it initiates the USB connection and waits until the device is ready. p5.js
+  will not call <span class="doc-code">setup()</span> until
+  <span class="doc-code">preload()</span> has finished, so the rest of your sketch
+  is guaranteed to have a working device from the very first frame.
 </p>
 
 <p class="doc-p">
@@ -43,7 +43,7 @@
 <p class="doc-p">
   Everything inside <span class="doc-code">setup()</span> is standard p5.js:
   create a canvas and switch to HSB color mode so hue values from 0–360 map
-  directly to the rainbow. The <span class="doc-code">draw()</span> loop then
-  advances the hue each frame and applies the same color to both the canvas
-  background and the Trinkey's pixel.
+  directly to the rainbow. The <span class="doc-code">draw()</span> loop then advances
+  the hue each frame and applies the same color to both the canvas background and
+  the Trinkey's pixel.
 </p>

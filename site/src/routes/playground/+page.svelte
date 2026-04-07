@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { appState } from "$lib/stores.svelte";
-  import Header from "$lib/components/Header.svelte";
+  import Header from "$lib/components/PlaygroundHeader.svelte";
   import DeviceList from "$lib/components/DeviceList.svelte";
   import DeviceCreator from "$lib/components/DeviceCreator.svelte";
 

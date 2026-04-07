@@ -39,4 +39,18 @@
   .doc-badge {
     @apply rounded px-1.5 py-0.5 text-xs font-medium;
   }
+
+  /* Semantic badge color variants — use on top of .doc-badge */
+  .doc-badge-number  { @apply bg-amber-900/60 text-amber-300; }
+  .doc-badge-boolean { @apply bg-green-900/60 text-green-300; }
+  .doc-badge-string  { @apply bg-sky-900/60 text-sky-300; }
+  .doc-badge-promise { @apply bg-blue-900/60 text-blue-300; }
+  .doc-badge-object  { @apply bg-rose-900/60 text-rose-300; }
+  .doc-badge-type    { @apply bg-gray-700 text-gray-400; }
+  .doc-badge-event   { @apply bg-indigo-900/60 text-indigo-300; }
+
+  /* In-page TOC pill link */
+  .doc-toc-link {
+    @apply doc-badge bg-gray-700 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white;
+  }
 }
