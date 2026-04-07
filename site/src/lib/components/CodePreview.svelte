@@ -24,6 +24,14 @@
   });
 </script>
 
+<pre class="text-xs text-yellow-400 p-2 bg-black">
+BASE_URL={import.meta.env.BASE_URL}
+base={base}
+example={example}
+iframeSrc={iframeSrc}
+fetchUrl={base + example}
+</pre>
+
 <div class="doc-codeblock flex overflow-hidden items-start">
   <pre class="flex-1 overflow-auto p-4 text-sm leading-relaxed"><code
       >{@html highlighted}</code
