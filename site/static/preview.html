@@ -19,8 +19,8 @@
   <body>
     <script>
       const params = new URLSearchParams(location.search);
-      const base = params.get("base") || "";
       const example = params.get("example") || "";
+      const runtime = params.get("runtime") || "";
 
       function loadScript(src, onload) {
         const s = document.createElement("script");
@@ -30,8 +30,8 @@
       }
 
       loadScript("https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js", () => {
-        loadScript(base + "/download/stemma-web.p5.js", () => {
-          loadScript(base + example);
+        loadScript(runtime, () => {
+          loadScript(example);
         });
       });
     </script>

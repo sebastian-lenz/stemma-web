@@ -1,15 +1,15 @@
 <script lang="ts">
+  import { asset } from "$app/paths";
   import { onMount } from "svelte";
+
   import "highlight.js/styles/github-dark.css";
 
   let { example }: { example: string } = $props();
 
-  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-
   let highlighted = $state("");
   let playing = $state(false);
 
-  const iframeSrc = `${base}/preview.html?base=${encodeURIComponent(base)}&example=${encodeURIComponent(example)}`;
+  const iframeSrc = `${asset("/preview.html")}?runtime=${encodeURIComponent(asset("/download/stemma-web.p5.js"))}&example=${encodeURIComponent(asset(example))}`;
 
   onMount(async () => {
     const [{ default: hljs }, { default: js }] = await Promise.all([
@@ -18,19 +18,11 @@
     ]);
     hljs.registerLanguage("javascript", js);
 
-    const response = await fetch(`${base}${example}`);
+    const response = await fetch(`${asset(example)}`);
     const code = await response.text();
     highlighted = hljs.highlight(code, { language: "javascript" }).value;
   });
 </script>
-
-<pre class="text-xs text-yellow-400 p-2 bg-black">
-BASE_URL={import.meta.env.BASE_URL}
-base={base}
-example={example}
-iframeSrc={iframeSrc}
-fetchUrl={base + example}
-</pre>
 
 <div class="doc-codeblock flex overflow-hidden items-start">
   <pre class="flex-1 overflow-auto p-4 text-sm leading-relaxed"><code
