@@ -46,11 +46,13 @@ Reference: https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder
   time <span class="doc-code">setup()</span> runs.
 </p>
 
-<CodeBlock code={`let encoder;
+<CodeBlock
+  code={`let encoder;
 
 function preload() {
   encoder = startRotaryEncoder(name?, addressOrIndex?);
-}`} />
+}`}
+/>
 
 <div class="doc-card mb-3">
   <p class="mb-2">
@@ -63,11 +65,15 @@ function preload() {
     named <span class="doc-code">name + EventName</span> (event name capitalised)
     is called whenever that event fires. With the default name:
   </p>
-  <CodeBlock nested code={`function rotaryEncoderChanged(event) { /* knob turned or button changed */ }
+  <CodeBlock
+    nested
+    code={`function rotaryEncoderChanged(event) { /* knob turned or button changed */ }
 function rotaryEncoderPressed(event) { /* button pressed */ }
-function rotaryEncoderReleased(event) { /* button released */ }`} />
+function rotaryEncoderReleased(event) { /* button released */ }`}
+  />
   <p class="doc-p mb-0">
-    Pass <span class="doc-code">false</span> or <span class="doc-code">null</span>
+    Pass <span class="doc-code">false</span> or
+    <span class="doc-code">null</span>
     to disable automatic registration and use
     <span class="doc-code">addEventListener</span> instead.
   </p>
@@ -80,79 +86,79 @@ function rotaryEncoderReleased(event) { /* button released */ }`} />
     <span class="doc-badge doc-badge-number ml-2">0x36</span>
   </p>
   <p class="doc-p">
-    The I2C address of the device, or an index (0–7) into the address list. Eight
-    addresses are available, set by the A0, A1, and A2 solder jumpers on the back
-    of the board:
+    The I2C address of the device, or an index (0–7) into the address list.
+    Eight addresses are available, set by the A0, A1, and A2 solder jumpers on
+    the back of the board:
   </p>
   <table class="w-full text-sm text-left text-gray-300">
-  <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
-    <tr>
-      <th class="py-2 pl-3 pr-4">Address</th>
-      <th class="py-2 pl-3 pr-4">Index</th>
-      <th class="py-2 pl-3 pr-4">A0</th>
-      <th class="py-2 pl-3 pr-4">A1</th>
-      <th class="py-2 pl-3">A2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="border-b border-gray-800">
-      <td class="py-2 pl-3 pr-4 doc-code">0x36</td>
-      <td class="py-2 pl-3 pr-4">0</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3">open</td>
-    </tr>
-    <tr class="border-b border-gray-800">
-      <td class="py-2 pl-3 pr-4 doc-code">0x37</td>
-      <td class="py-2 pl-3 pr-4">1</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3">open</td>
-    </tr>
-    <tr class="border-b border-gray-800">
-      <td class="py-2 pl-3 pr-4 doc-code">0x38</td>
-      <td class="py-2 pl-3 pr-4">2</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3">open</td>
-    </tr>
-    <tr class="border-b border-gray-800">
-      <td class="py-2 pl-3 pr-4 doc-code">0x39</td>
-      <td class="py-2 pl-3 pr-4">3</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3">open</td>
-    </tr>
-    <tr class="border-b border-gray-800">
-      <td class="py-2 pl-3 pr-4 doc-code">0x3A</td>
-      <td class="py-2 pl-3 pr-4">4</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3">closed</td>
-    </tr>
-    <tr class="border-b border-gray-800">
-      <td class="py-2 pl-3 pr-4 doc-code">0x3B</td>
-      <td class="py-2 pl-3 pr-4">5</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3">closed</td>
-    </tr>
-    <tr class="border-b border-gray-800">
-      <td class="py-2 pl-3 pr-4 doc-code">0x3C</td>
-      <td class="py-2 pl-3 pr-4">6</td>
-      <td class="py-2 pl-3 pr-4">open</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3">closed</td>
-    </tr>
-    <tr>
-      <td class="py-2 pl-3 pr-4 doc-code">0x3D</td>
-      <td class="py-2 pl-3 pr-4">7</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3 pr-4">closed</td>
-      <td class="py-2 pl-3">closed</td>
-    </tr>
-  </tbody>
-</table>
+    <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
+      <tr>
+        <th class="py-2 pl-3 pr-4">Address</th>
+        <th class="py-2 pl-3 pr-4">Index</th>
+        <th class="py-2 pl-3 pr-4">A0</th>
+        <th class="py-2 pl-3 pr-4">A1</th>
+        <th class="py-2 pl-3">A2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">0x36</td>
+        <td class="py-2 pl-3 pr-4">0</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3">open</td>
+      </tr>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">0x37</td>
+        <td class="py-2 pl-3 pr-4">1</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3">open</td>
+      </tr>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">0x38</td>
+        <td class="py-2 pl-3 pr-4">2</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3">open</td>
+      </tr>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">0x39</td>
+        <td class="py-2 pl-3 pr-4">3</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3">open</td>
+      </tr>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">0x3A</td>
+        <td class="py-2 pl-3 pr-4">4</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3">closed</td>
+      </tr>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">0x3B</td>
+        <td class="py-2 pl-3 pr-4">5</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3">closed</td>
+      </tr>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">0x3C</td>
+        <td class="py-2 pl-3 pr-4">6</td>
+        <td class="py-2 pl-3 pr-4">open</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3">closed</td>
+      </tr>
+      <tr>
+        <td class="py-2 pl-3 pr-4 doc-code">0x3D</td>
+        <td class="py-2 pl-3 pr-4">7</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3 pr-4">closed</td>
+        <td class="py-2 pl-3">closed</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <h2 id="methods" class="doc-h2">Methods</h2>
@@ -192,7 +198,7 @@ function rotaryEncoderReleased(event) { /* button released */ }`} />
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">rotaryEncoderChanged(event)</span>
+    <span class="doc-code">changed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">changed</span>
   </p>
   <p class="doc-p">
@@ -203,7 +209,7 @@ function rotaryEncoderReleased(event) { /* button released */ }`} />
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">rotaryEncoderPressed(event)</span>
+    <span class="doc-code">pressed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">pressed</span>
   </p>
   <p class="doc-p">Fires when the encoder button is pressed down.</p>
@@ -211,7 +217,7 @@ function rotaryEncoderReleased(event) { /* button released */ }`} />
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">rotaryEncoderReleased(event)</span>
+    <span class="doc-code">released(event)</span>
     <span class="doc-badge doc-badge-event ml-2">released</span>
   </p>
   <p class="doc-p">Fires when the encoder button is released.</p>

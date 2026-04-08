@@ -350,7 +350,7 @@ function preload() {
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">gyroscopeChanged(event)</span>
+    <span class="doc-code">changed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">changed</span>
   </p>
   <p class="doc-p">

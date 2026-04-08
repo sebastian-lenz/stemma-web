@@ -130,7 +130,7 @@ function touchSensorReleased(event) { /* pad released */ }`}
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">touchSensorPressed(event)</span>
+    <span class="doc-code">pressed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">pressed</span>
   </p>
   <p class="doc-p">
@@ -142,7 +142,7 @@ function touchSensorReleased(event) { /* pad released */ }`}
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">touchSensorReleased(event)</span>
+    <span class="doc-code">released(event)</span>
     <span class="doc-badge doc-badge-event ml-2">released</span>
   </p>
   <p class="doc-p">
@@ -164,8 +164,10 @@ function touchSensorReleased(event) { /* pad released */ }`}
   <p class="doc-p mb-0">
     <span class="doc-code">event.detail.isPressed</span>
     <span class="doc-badge doc-badge-boolean ml-2">boolean</span>
-    — <span class="doc-code">true</span> for a <span class="doc-badge doc-badge-event">pressed</span>
-    event, <span class="doc-code">false</span> for a <span class="doc-badge doc-badge-event">released</span> event.
+    — <span class="doc-code">true</span> for a
+    <span class="doc-badge doc-badge-event">pressed</span>
+    event, <span class="doc-code">false</span> for a
+    <span class="doc-badge doc-badge-event">released</span> event.
   </p>
 </div>
 
@@ -176,4 +178,3 @@ function touchSensorReleased(event) { /* pad released */ }`}
     — The index of the pad that was touched or released (0–11).
   </p>
 </div>
-

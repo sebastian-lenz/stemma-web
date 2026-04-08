@@ -1,6 +1,7 @@
 <script>
-  import { resolve } from '$app/paths';
-  import Icon from '$lib/components/Icon.svelte';
+  import { devices } from "$lib/constants/devices";
+  import { resolve } from "$app/paths";
+  import Icon from "$lib/components/Icon.svelte";
 </script>
 
 <h1 class="mb-4 text-2xl font-bold text-white">Device Setup</h1>
@@ -56,21 +57,12 @@
     <ul
       class="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-gray-300 sm:grid-cols-3"
     >
-      <li class="flex items-center gap-1.5">
-        <span class="text-gray-600">—</span> Rotary Encoder
-      </li>
-      <li class="flex items-center gap-1.5">
-        <span class="text-gray-600">—</span> Linear Encoder
-      </li>
-      <li class="flex items-center gap-1.5">
-        <span class="text-gray-600">—</span> Touch Sensor
-      </li>
-      <li class="flex items-center gap-1.5">
-        <span class="text-gray-600">—</span> Gyroscope
-      </li>
-      <li class="flex items-center gap-1.5">
-        <span class="text-gray-600">—</span> NeoDriver
-      </li>
+      {#each devices as device}
+        <li class="flex items-center gap-1.5">
+          <span class="text-gray-600">—</span>
+          {device.name}
+        </li>
+      {/each}
     </ul>
   </div>
 </section>

@@ -9,7 +9,9 @@
   let highlighted = $state("");
   let playing = $state(false);
 
-  const iframeSrc = `${asset("/preview.html")}?runtime=${encodeURIComponent(asset("/download/stemma-web.p5.js"))}&example=${encodeURIComponent(asset(example))}`;
+  let iframeSrc = $derived(
+    `${asset("/preview.html")}?runtime=${encodeURIComponent(asset("/download/stemma-web.p5.js"))}&example=${encodeURIComponent(asset(example))}`,
+  );
 
   onMount(async () => {
     const [{ default: hljs }, { default: js }] = await Promise.all([

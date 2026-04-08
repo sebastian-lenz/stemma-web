@@ -22,10 +22,16 @@ Reference: https://learn.adafruit.com/adafruit-lps25-pressure-sensor
 </nav>
 
 <p class="doc-p">
-  The <a class="doc-link" href="https://www.adafruit.com/product/4633">Adafruit LPS25</a>
-  is a barometric pressure and temperature sensor. It supports two chipset variants (LPS22 and LPS25)
-  with configurable output data rates. See the
-  <a class="doc-link" href="https://learn.adafruit.com/adafruit-lps25-pressure-sensor">Adafruit learn guide</a>
+  The <a class="doc-link" href="https://www.adafruit.com/product/4633"
+    >Adafruit LPS25</a
+  >
+  is a barometric pressure and temperature sensor. It supports two chipset variants
+  (LPS22 and LPS25) with configurable output data rates. See the
+  <a
+    class="doc-link"
+    href="https://learn.adafruit.com/adafruit-lps25-pressure-sensor"
+    >Adafruit learn guide</a
+  >
   for wiring and hardware details.
 </p>
 
@@ -54,9 +60,13 @@ function preload() {
   <p class="doc-p">
     Controls automatic event callback registration. With the default name:
   </p>
-  <CodeBlock nested code={`function pressureChanged(event) { /* new reading */ }`} />
+  <CodeBlock
+    nested
+    code={`function pressureChanged(event) { /* new reading */ }`}
+  />
   <p class="doc-p mb-0">
-    Pass <span class="doc-code">false</span> or <span class="doc-code">null</span>
+    Pass <span class="doc-code">false</span> or
+    <span class="doc-code">null</span>
     to disable and use <span class="doc-code">addEventListener</span> instead.
   </p>
 </div>
@@ -68,7 +78,8 @@ function preload() {
     <span class="doc-badge doc-badge-number ml-2">0x5D</span>
   </p>
   <p class="doc-p">
-    The I2C address of the device, or an index (0–1) into the address list. Set by the SDO pin:
+    The I2C address of the device, or an index (0–1) into the address list. Set
+    by the SDO pin:
   </p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
@@ -97,10 +108,13 @@ function preload() {
   <p class="mb-2">
     <span class="doc-code">chipset</span>
     <span class="doc-badge doc-badge-type ml-2">PressureSensorChipset</span>
-    <span class="doc-badge doc-badge-type ml-2">PRESSURE_SENSOR_CHIPSET_LPS25</span>
+    <span class="doc-badge doc-badge-type ml-2"
+      >PRESSURE_SENSOR_CHIPSET_LPS25</span
+    >
   </p>
   <p class="doc-p">
-    The chipset variant on the board. All constants are available as global variables in p5.js sketches:
+    The chipset variant on the board. All constants are available as global
+    variables in p5.js sketches:
   </p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
@@ -154,8 +168,9 @@ function preload() {
     <span class="doc-badge doc-badge-promise ml-2">Promise&lt;boolean&gt;</span>
   </p>
   <p class="doc-p">
-    Sets the output data rate. Unsupported rates on a given chipset are mapped to the nearest
-    available rate. Available constants (all global in p5.js sketches):
+    Sets the output data rate. Unsupported rates on a given chipset are mapped
+    to the nearest available rate. Available constants (all global in p5.js
+    sketches):
   </p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
@@ -166,16 +181,7 @@ function preload() {
       </tr>
     </thead>
     <tbody>
-      {#each [
-        ["PRESSURE_SENSOR_DATA_RATE_ONE_SHOT", "one-shot", "one-shot"],
-        ["PRESSURE_SENSOR_DATA_RATE_1_HZ", "1 Hz", "1 Hz"],
-        ["PRESSURE_SENSOR_DATA_RATE_7_HZ", "7 Hz", "~10 Hz"],
-        ["PRESSURE_SENSOR_DATA_RATE_10_HZ", "~12.5 Hz", "10 Hz"],
-        ["PRESSURE_SENSOR_DATA_RATE_12_5_HZ", "12.5 Hz", "~10 Hz"],
-        ["PRESSURE_SENSOR_DATA_RATE_25_HZ", "25 Hz (default)", "25 Hz (default)"],
-        ["PRESSURE_SENSOR_DATA_RATE_50_HZ", "~25 Hz", "50 Hz"],
-        ["PRESSURE_SENSOR_DATA_RATE_75_HZ", "~25 Hz", "75 Hz"],
-      ] as [name, lps25, lps22]}
+      {#each [["PRESSURE_SENSOR_DATA_RATE_ONE_SHOT", "one-shot", "one-shot"], ["PRESSURE_SENSOR_DATA_RATE_1_HZ", "1 Hz", "1 Hz"], ["PRESSURE_SENSOR_DATA_RATE_7_HZ", "7 Hz", "~10 Hz"], ["PRESSURE_SENSOR_DATA_RATE_10_HZ", "~12.5 Hz", "10 Hz"], ["PRESSURE_SENSOR_DATA_RATE_12_5_HZ", "12.5 Hz", "~10 Hz"], ["PRESSURE_SENSOR_DATA_RATE_25_HZ", "25 Hz (default)", "25 Hz (default)"], ["PRESSURE_SENSOR_DATA_RATE_50_HZ", "~25 Hz", "50 Hz"], ["PRESSURE_SENSOR_DATA_RATE_75_HZ", "~25 Hz", "75 Hz"]] as [name, lps25, lps22]}
         <tr class="border-b border-gray-800 last:border-0">
           <td class="py-2 pl-3 pr-4 doc-code">{name}</td>
           <td class="py-2 pl-3 pr-4">{lps25}</td>
@@ -196,17 +202,20 @@ function preload() {
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">pressureChanged(event)</span>
+    <span class="doc-code">changed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">changed</span>
   </p>
-  <p class="doc-p">Fires on every sensor poll with updated pressure and temperature readings.</p>
+  <p class="doc-p">
+    Fires on every sensor poll with updated pressure and temperature readings.
+  </p>
 </div>
 
 <h2 id="event-argument" class="doc-h2">Event Argument</h2>
 
 <p class="doc-p">
-  All event callbacks receive a single <span class="doc-code">event</span> argument.
-  The event detail is available at <span class="doc-code">event.detail</span> and contains:
+  All event callbacks receive a single <span class="doc-code">event</span>
+  argument. The event detail is available at
+  <span class="doc-code">event.detail</span> and contains:
 </p>
 
 <div class="doc-card mb-3">

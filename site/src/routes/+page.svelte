@@ -1,128 +1,66 @@
 <script lang="ts">
-  import { resolve } from '$app/paths';
-  import CodeBlock from '$lib/components/CodeBlock.svelte';
+  import { resolve } from "$app/paths";
+  import { devices } from "$lib/constants/devices";
+  import CodeBlock from "$lib/components/CodeBlock.svelte";
 
   const flowSteps = [
-    { label: 'StemmaQT Module', sub: 'Rotary encoder, touch sensor, gyroscope…', accent: true },
-    { label: 'Trinkey RP2040', sub: 'Reads I²C, speaks USB', accent: false },
-    { label: 'USB', sub: 'Physical connection, no drivers', accent: false },
-    { label: 'WebUSB API', sub: 'Browser talks directly to the Trinkey', accent: false },
-    { label: 'p5.js Sketch', sub: 'Your creative code gets live sensor data', accent: true },
+    {
+      label: "StemmaQT Module",
+      sub: "Rotary encoder, touch sensor, gyroscope…",
+      accent: true,
+    },
+    { label: "Trinkey RP2040", sub: "Reads I²C, speaks USB", accent: false },
+    { label: "USB", sub: "Physical connection, no drivers", accent: false },
+    {
+      label: "WebUSB API",
+      sub: "Browser talks directly to the Trinkey",
+      accent: false,
+    },
+    {
+      label: "p5.js Sketch",
+      sub: "Your creative code gets live sensor data",
+      accent: true,
+    },
   ];
 
   const gettingStartedSteps = [
     {
-      step: '1',
-      title: 'Buy the hardware',
-      body: 'Pick up an Adafruit Trinkey RP2040 QT and any supported StemmaQT module from the Adafruit shop.',
+      step: "1",
+      title: "Buy the hardware",
+      body: "Pick up an Adafruit Trinkey RP2040 QT and any supported StemmaQT module from the Adafruit shop.",
     },
     {
-      step: '2',
-      title: 'Flash the firmware',
-      body: 'Download the prebuilt firmware and drag it onto the Trinkey — it reboots in seconds, no toolchain needed.',
+      step: "2",
+      title: "Flash the firmware",
+      body: "Download the prebuilt firmware and drag it onto the Trinkey — it reboots in seconds, no toolchain needed.",
     },
     {
-      step: '3',
-      title: 'Load the library',
-      body: 'Add one script tag to your p5.js sketch. The StemmaWeb library registers the start functions automatically.',
+      step: "3",
+      title: "Load the library",
+      body: "Add one script tag to your p5.js sketch. The StemmaWeb library registers the start functions automatically.",
     },
     {
-      step: '4',
-      title: 'Write code',
-      body: 'Call startRotaryEncoder(), startTouchSensor(), or any other start function and your device is live.',
-    },
-  ];
-
-  const devices = [
-    {
-      name: 'Rotary Encoder',
-      desc: 'Quadrature knob with push button and one NeoPixel. Tracks absolute position.',
-      addr: '0x36–0x3D',
-      href: '/reference/devices/rotary-encoder',
-    },
-    {
-      name: 'Linear Encoder',
-      desc: 'Sliding fader with four NeoPixels. Tracks absolute position.',
-      addr: '0x30–0x3F',
-      href: '/reference/devices/linear-encoder',
-    },
-    {
-      name: 'Touch Sensor',
-      desc: '12-channel capacitive touch controller. Reports touch and release events per pad.',
-      addr: '0x5A–0x5D',
-      href: '/reference/devices/touch-sensor',
-    },
-    {
-      name: 'Gyroscope',
-      desc: '6-DoF IMU with accelerometer and gyroscope. Reports orientation and motion data.',
-      addr: '0x6A–0x6B',
-      href: '/reference/devices/gyroscope',
-    },
-    {
-      name: 'NeoDriver',
-      desc: 'I²C NeoPixel driver for up to 60 addressable LEDs. Full RGB color control.',
-      addr: '0x60–0x67',
-      href: '/reference/devices/neo-driver',
-    },
-    {
-      name: 'Trinkey RP2040',
-      desc: 'The USB bridge itself. One onboard NeoPixel, controllable from your sketch.',
-      addr: 'USB',
-      href: '/reference/devices/trinkey',
-    },
-    {
-      name: 'Pressure Sensor',
-      desc: 'Barometric pressure and temperature sensor. Supports LPS22 and LPS25 chipsets.',
-      addr: '0x5C–0x5D',
-      href: '/reference/devices/pressure-sensor',
-    },
-    {
-      name: 'CO2 Sensor',
-      desc: 'Photoacoustic CO₂ sensor that also measures humidity and temperature.',
-      addr: '0x62',
-      href: '/reference/devices/co2-sensor',
-    },
-    {
-      name: 'Distance Sensor',
-      desc: 'Time-of-flight laser ranging sensor. Measures distances up to 2 m.',
-      addr: '0x29',
-      href: '/reference/devices/distance-sensor',
-    },
-    {
-      name: 'UV Sensor',
-      desc: 'Ambient light and UV index sensor with selectable gain and resolution.',
-      addr: '0x53',
-      href: '/reference/devices/uv-sensor',
-    },
-    {
-      name: 'NFC Tag',
-      desc: 'I²C EEPROM that doubles as an NFC tag. Write NDEF records readable by phones.',
-      addr: '0x2D',
-      href: '/reference/devices/nfc-tag',
-    },
-    {
-      name: 'RFID Reader',
-      desc: '125 kHz RFID reader. Detects tag presence and reports tag IDs over I²C.',
-      addr: '0x30–0x37',
-      href: '/reference/devices/rfid-reader',
+      step: "4",
+      title: "Write code",
+      body: "Call startRotaryEncoder(), startTouchSensor(), or any other start function and your device is live.",
     },
   ];
 
   const useCases = [
     {
-      symbol: '◎',
-      title: 'Learning',
-      body: 'Immediate feedback makes physical computing concepts click. Students see the effect of turning a knob in their sketch before writing a single event handler.',
+      symbol: "◎",
+      title: "Learning",
+      body: "Immediate feedback makes physical computing concepts click. Students see the effect of turning a knob in their sketch before writing a single event handler.",
     },
     {
-      symbol: '◈',
-      title: 'Exhibitions',
-      body: 'Build interactive installations that run entirely in the browser. No app to install, no backend to maintain — just a USB cable and a URL.',
+      symbol: "◈",
+      title: "Exhibitions",
+      body: "Build interactive installations that run entirely in the browser. No app to install, no backend to maintain — just a USB cable and a URL.",
     },
     {
-      symbol: '◇',
-      title: 'Rapid Prototyping',
-      body: 'Test hardware interaction ideas in minutes. Swap devices, tweak mappings, and iterate without touching firmware or wiring a custom PCB.',
+      symbol: "◇",
+      title: "Rapid Prototyping",
+      body: "Test hardware interaction ideas in minutes. Swap devices, tweak mappings, and iterate without touching firmware or wiring a custom PCB.",
     },
   ];
 
@@ -151,7 +89,9 @@ function rotaryEncoderChanged(event) {
 </script>
 
 <!-- Hero -->
-<section class="relative overflow-hidden border-b border-gray-800 px-6 py-24 text-center">
+<section
+  class="relative overflow-hidden border-b border-gray-800 px-6 py-24 text-center"
+>
   <div
     class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(99,102,241,0.15),transparent)]"
   ></div>
@@ -165,18 +105,19 @@ function rotaryEncoderChanged(event) {
       Connect StemmaQT devices<br />to p5.js sketches in your browser
     </h1>
     <p class="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-gray-400">
-      StemmaWeb bridges Adafruit StemmaQT sensors to the browser via WebUSB. Turn physical knobs,
-      sliders, and touch pads into live inputs for creative code — no server, no drivers.
+      StemmaWeb bridges Adafruit StemmaQT sensors to the browser via WebUSB.
+      Turn physical knobs, sliders, and touch pads into live inputs for creative
+      code — no server, no drivers.
     </p>
     <div class="flex flex-wrap justify-center gap-3">
       <a
-        href={resolve('/reference/getting-started/device-setup')}
+        href={resolve("/reference/getting-started/device-setup")}
         class="rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-indigo-500"
       >
         Get Started
       </a>
       <a
-        href={resolve('/playground')}
+        href={resolve("/playground")}
         class="rounded-md border border-gray-700 bg-gray-800 px-5 py-2.5 text-sm font-medium text-gray-200 transition-colors hover:bg-gray-700 hover:text-white"
       >
         Open Playground
@@ -190,9 +131,12 @@ function rotaryEncoderChanged(event) {
   <div class="mx-auto max-w-5xl">
     <h2 class="mb-3 text-center text-2xl font-bold text-white">How it works</h2>
     <p class="mb-12 text-center text-gray-400">
-      Five steps from hardware to browser — all over USB, no drivers or servers required.
+      Five steps from hardware to browser — all over USB, no drivers or servers
+      required.
     </p>
-    <div class="flex flex-col items-stretch gap-2 sm:flex-row sm:items-stretch sm:gap-0">
+    <div
+      class="flex flex-col items-stretch gap-2 sm:flex-row sm:items-stretch sm:gap-0"
+    >
       {#each flowSteps as step, i}
         <div
           class="flex min-w-0 flex-1 rounded-lg border p-4 text-center {step.accent
@@ -205,8 +149,14 @@ function rotaryEncoderChanged(event) {
           </div>
         </div>
         {#if i < flowSteps.length - 1}
-          <div class="flex shrink-0 items-center justify-center px-1 text-gray-600">
-            <svg class="h-5 w-5 rotate-90 sm:rotate-0" viewBox="0 0 20 20" fill="currentColor">
+          <div
+            class="flex shrink-0 items-center justify-center px-1 text-gray-600"
+          >
+            <svg
+              class="h-5 w-5 rotate-90 sm:rotate-0"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
               <path
                 fill-rule="evenodd"
                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -228,15 +178,17 @@ function rotaryEncoderChanged(event) {
         <h2 class="mb-4 text-2xl font-bold text-white">A few lines of code</h2>
         <p class="mb-4 leading-relaxed text-gray-400">
           Call <span class="doc-code">startRotaryEncoder()</span> inside p5.js's
-          <span class="doc-code">preload()</span> and the device is ready by the time
+          <span class="doc-code">preload()</span> and the device is ready by the
+          time
           <span class="doc-code">setup()</span> runs. Read values in
           <span class="doc-code">draw()</span> or react to events with named callbacks.
         </p>
         <p class="leading-relaxed text-gray-400">
-          Every device follows the same pattern — just swap the start function and method names.
+          Every device follows the same pattern — just swap the start function
+          and method names.
         </p>
         <a
-          href={resolve('/reference/getting-started/first-steps')}
+          href={resolve("/reference/getting-started/first-steps")}
           class="mt-6 inline-block text-sm text-indigo-400 underline hover:text-indigo-300"
         >
           Explore First Steps →
@@ -250,8 +202,12 @@ function rotaryEncoderChanged(event) {
 <!-- Getting Started -->
 <section class="border-b border-gray-800 bg-gray-900/50 px-6 py-16">
   <div class="mx-auto max-w-5xl">
-    <h2 class="mb-3 text-center text-2xl font-bold text-white">Get started in four steps</h2>
-    <p class="mb-12 text-center text-gray-400">Everything you need, from hardware to running sketch.</p>
+    <h2 class="mb-3 text-center text-2xl font-bold text-white">
+      Get started in four steps
+    </h2>
+    <p class="mb-12 text-center text-gray-400">
+      Everything you need, from hardware to running sketch.
+    </p>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {#each gettingStartedSteps as item}
         <div class="doc-card flex flex-col gap-3">
@@ -263,7 +219,7 @@ function rotaryEncoderChanged(event) {
     </div>
     <div class="mt-10 text-center">
       <a
-        href={resolve('/reference/getting-started/device-setup')}
+        href={resolve("/reference/getting-started/device-setup")}
         class="text-sm text-indigo-400 underline hover:text-indigo-300"
       >
         Read the full setup guide →
@@ -275,9 +231,12 @@ function rotaryEncoderChanged(event) {
 <!-- Supported Devices -->
 <section class="border-b border-gray-800 px-6 py-16">
   <div class="mx-auto max-w-5xl">
-    <h2 class="mb-3 text-center text-2xl font-bold text-white">Supported devices</h2>
+    <h2 class="mb-3 text-center text-2xl font-bold text-white">
+      Supported devices
+    </h2>
     <p class="mb-12 text-center text-gray-400">
-      All modules connect via the StemmaQT (JST-SH 4-pin) cable and can be daisy-chained.
+      All modules connect via the StemmaQT (JST-SH 4-pin) cable and can be
+      daisy-chained.
     </p>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {#each devices as device}
@@ -290,7 +249,9 @@ function rotaryEncoderChanged(event) {
             <span class="doc-badge doc-badge-type shrink-0">{device.addr}</span>
           </div>
           <p class="text-sm leading-relaxed text-gray-400">{device.desc}</p>
-          <p class="mt-3 text-xs text-indigo-400 group-hover:text-indigo-300">Reference →</p>
+          <p class="mt-3 text-xs text-indigo-400 group-hover:text-indigo-300">
+            Reference →
+          </p>
         </a>
       {/each}
     </div>
@@ -300,9 +261,12 @@ function rotaryEncoderChanged(event) {
 <!-- Use Cases -->
 <section class="border-b border-gray-800 bg-gray-900/50 px-6 py-16">
   <div class="mx-auto max-w-5xl">
-    <h2 class="mb-3 text-center text-2xl font-bold text-white">Built for creative work</h2>
+    <h2 class="mb-3 text-center text-2xl font-bold text-white">
+      Built for creative work
+    </h2>
     <p class="mb-12 text-center text-gray-400">
-      From classroom to gallery — StemmaWeb fits wherever creative code meets the physical world.
+      From classroom to gallery — StemmaWeb fits wherever creative code meets
+      the physical world.
     </p>
     <div class="grid gap-6 sm:grid-cols-3">
       {#each useCases as item}
@@ -321,8 +285,8 @@ function rotaryEncoderChanged(event) {
   <div class="mx-auto max-w-xl text-center">
     <h2 class="mb-4 text-2xl font-bold text-white">Free and open source</h2>
     <p class="mb-8 leading-relaxed text-gray-400">
-      StemmaWeb is MIT-licensed. The firmware, client library, and this site are all on GitHub.
-      Contributions, bug reports, and feature ideas are welcome.
+      StemmaWeb is MIT-licensed. The firmware, client library, and this site are
+      all on GitHub. Contributions, bug reports, and feature ideas are welcome.
     </p>
     <a
       href="https://github.com/sebastian-lenz/stemma-web"

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { devices } from "$lib/constants/devices";
   import { page } from "$app/state";
   import { resolve } from "$app/paths";
 
@@ -26,14 +27,10 @@
     },
     {
       group: "Devices",
-      items: [
-        { label: "Trinkey", href: "/reference/devices/trinkey" },
-        { label: "Rotary Encoder", href: "/reference/devices/rotary-encoder" },
-        { label: "Linear Encoder", href: "/reference/devices/linear-encoder" },
-        { label: "Touch Sensor", href: "/reference/devices/touch-sensor" },
-        { label: "Gyroscope", href: "/reference/devices/gyroscope" },
-        { label: "NeoDriver", href: "/reference/devices/neo-driver" },
-      ],
+      items: devices.map((device) => ({
+        label: device.name,
+        href: device.href,
+      })),
     },
   ];
 </script>
@@ -53,7 +50,8 @@
               <a
                 href={siteBase + item.href}
                 class="block rounded-md px-3 py-1.5 text-sm transition-colors {page
-                  .url.pathname === siteBase + item.href
+                  .url.pathname ===
+                siteBase + item.href
                   ? 'bg-gray-800 text-white'
                   : 'text-gray-400 hover:text-white'}"
               >

@@ -22,10 +22,16 @@ Reference: https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sens
 </nav>
 
 <p class="doc-p">
-  The <a class="doc-link" href="https://www.adafruit.com/product/3317">Adafruit VL53L0X</a>
-  is a time-of-flight laser ranging sensor capable of measuring distances up to 2 m. It has a
-  fixed I2C address. See the
-  <a class="doc-link" href="https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout">Adafruit learn guide</a>
+  The <a class="doc-link" href="https://www.adafruit.com/product/3317"
+    >Adafruit VL53L0X</a
+  >
+  is a time-of-flight laser ranging sensor capable of measuring distances up to 2
+  m. It has a fixed I2C address. See the
+  <a
+    class="doc-link"
+    href="https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout"
+    >Adafruit learn guide</a
+  >
   for wiring and hardware details.
 </p>
 
@@ -54,9 +60,13 @@ function preload() {
   <p class="doc-p">
     Controls automatic event callback registration. With the default name:
   </p>
-  <CodeBlock nested code={`function distanceChanged(event) { /* new reading */ }`} />
+  <CodeBlock
+    nested
+    code={`function distanceChanged(event) { /* new reading */ }`}
+  />
   <p class="doc-p mb-0">
-    Pass <span class="doc-code">false</span> or <span class="doc-code">null</span>
+    Pass <span class="doc-code">false</span> or
+    <span class="doc-code">null</span>
     to disable and use <span class="doc-code">addEventListener</span> instead.
   </p>
 </div>
@@ -69,8 +79,9 @@ function preload() {
     <span class="doc-badge doc-badge-number ml-2">number</span>
   </p>
   <p class="doc-p">
-    Returns the last measured distance in mm. Returns <span class="doc-code">8190</span> when the
-    target is out of range.
+    Returns the last measured distance in mm. Returns <span class="doc-code"
+      >8190</span
+    > when the target is out of range.
   </p>
 </div>
 
@@ -84,17 +95,20 @@ function preload() {
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">distanceChanged(event)</span>
+    <span class="doc-code">changed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">changed</span>
   </p>
-  <p class="doc-p">Fires on every sensor poll with an updated distance reading.</p>
+  <p class="doc-p">
+    Fires on every sensor poll with an updated distance reading.
+  </p>
 </div>
 
 <h2 id="event-argument" class="doc-h2">Event Argument</h2>
 
 <p class="doc-p">
-  All event callbacks receive a single <span class="doc-code">event</span> argument.
-  The event detail is available at <span class="doc-code">event.detail</span> and contains:
+  All event callbacks receive a single <span class="doc-code">event</span>
+  argument. The event detail is available at
+  <span class="doc-code">event.detail</span> and contains:
 </p>
 
 <div class="doc-card mb-3">

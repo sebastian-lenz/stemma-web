@@ -22,10 +22,16 @@ Reference: https://learn.adafruit.com/adafruit-scd-40-and-scd-41
 </nav>
 
 <p class="doc-p">
-  The <a class="doc-link" href="https://www.adafruit.com/product/5187">Adafruit SCD-40</a>
-  is a photoacoustic CO₂ sensor that also measures relative humidity and temperature. It takes
-  a new measurement approximately every 5 seconds. See the
-  <a class="doc-link" href="https://learn.adafruit.com/adafruit-scd-40-and-scd-41">Adafruit learn guide</a>
+  The <a class="doc-link" href="https://www.adafruit.com/product/5187"
+    >Adafruit SCD-40</a
+  >
+  is a photoacoustic CO₂ sensor that also measures relative humidity and temperature.
+  It takes a new measurement approximately every 5 seconds. See the
+  <a
+    class="doc-link"
+    href="https://learn.adafruit.com/adafruit-scd-40-and-scd-41"
+    >Adafruit learn guide</a
+  >
   for wiring and hardware details.
 </p>
 
@@ -41,7 +47,7 @@ Reference: https://learn.adafruit.com/adafruit-scd-40-and-scd-41
   code={`let sensor;
 
 function preload() {
-  sensor = startCO2Sensor(name?, addressOrIndex?);
+  sensor = startCO2Sensor(name?);
 }`}
 />
 
@@ -56,20 +62,9 @@ function preload() {
   </p>
   <CodeBlock nested code={`function co2Changed(event) { /* new reading */ }`} />
   <p class="doc-p mb-0">
-    Pass <span class="doc-code">false</span> or <span class="doc-code">null</span>
+    Pass <span class="doc-code">false</span> or
+    <span class="doc-code">null</span>
     to disable and use <span class="doc-code">addEventListener</span> instead.
-  </p>
-</div>
-
-<div class="doc-card mb-3">
-  <p class="mb-2">
-    <span class="doc-code">addressOrIndex</span>
-    <span class="doc-badge doc-badge-number ml-2">number</span>
-    <span class="doc-badge doc-badge-number ml-2">0x62</span>
-  </p>
-  <p class="doc-p">
-    The SCD-40/41 has a fixed I2C address of <span class="doc-code">0x62</span>.
-    Only one sensor can be connected at a time.
   </p>
 </div>
 
@@ -109,20 +104,21 @@ function preload() {
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">co2Changed(event)</span>
+    <span class="doc-code">changed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">changed</span>
   </p>
   <p class="doc-p">
-    Fires approximately every 5 seconds when a new CO₂, humidity, and temperature measurement
-    is available.
+    Fires approximately every 5 seconds when a new CO₂, humidity, and
+    temperature measurement is available.
   </p>
 </div>
 
 <h2 id="event-argument" class="doc-h2">Event Argument</h2>
 
 <p class="doc-p">
-  All event callbacks receive a single <span class="doc-code">event</span> argument.
-  The event detail is available at <span class="doc-code">event.detail</span> and contains:
+  All event callbacks receive a single <span class="doc-code">event</span>
+  argument. The event detail is available at
+  <span class="doc-code">event.detail</span> and contains:
 </p>
 
 <div class="doc-card mb-3">

@@ -23,11 +23,15 @@ Reference: https://learn.adafruit.com/adafruit-neoslider
 </nav>
 
 <p class="doc-p">
-  The <a class="doc-link" href="https://www.adafruit.com/product/5295">Adafruit NeoSlider</a>
-  is a slide potentiometer with four NeoPixels along its track, controlled over I2C via the
-  seesaw chip. The slider reports an absolute position value and can be lit independently
-  of the position. See the
-  <a class="doc-link" href="https://learn.adafruit.com/adafruit-neoslider">Adafruit learn guide</a>
+  The <a class="doc-link" href="https://www.adafruit.com/product/5295"
+    >Adafruit NeoSlider</a
+  >
+  is a slide potentiometer with four NeoPixels along its track, controlled over I2C
+  via the seesaw chip. The slider reports an absolute position value and can be lit
+  independently of the position. See the
+  <a class="doc-link" href="https://learn.adafruit.com/adafruit-neoslider"
+    >Adafruit learn guide</a
+  >
   for wiring and hardware details.
 </p>
 
@@ -39,11 +43,13 @@ Reference: https://learn.adafruit.com/adafruit-neoslider
   time <span class="doc-code">setup()</span> runs.
 </p>
 
-<CodeBlock code={`let slider;
+<CodeBlock
+  code={`let slider;
 
 function preload() {
   slider = startLinearEncoder(name?, addressOrIndex?);
-}`} />
+}`}
+/>
 
 <div class="doc-card mb-3">
   <p class="mb-2">
@@ -56,9 +62,13 @@ function preload() {
     named <span class="doc-code">name + EventName</span> (event name capitalised)
     is called whenever that event fires. With the default name:
   </p>
-  <CodeBlock nested code={`function linearEncoderChanged(event) { /* slider moved */ }`} />
+  <CodeBlock
+    nested
+    code={`function linearEncoderChanged(event) { /* slider moved */ }`}
+  />
   <p class="doc-p mb-0">
-    Pass <span class="doc-code">false</span> or <span class="doc-code">null</span>
+    Pass <span class="doc-code">false</span> or
+    <span class="doc-code">null</span>
     to disable automatic registration and use
     <span class="doc-code">addEventListener</span> instead.
   </p>
@@ -71,9 +81,9 @@ function preload() {
     <span class="doc-badge doc-badge-number ml-2">0x30</span>
   </p>
   <p class="doc-p">
-    The I2C address of the device, or an index (0–15) into the address list. Sixteen
-    addresses are available, set by the A0, A1, A2, and A3 solder jumpers on the back
-    of the board:
+    The I2C address of the device, or an index (0–15) into the address list.
+    Sixteen addresses are available, set by the A0, A1, A2, and A3 solder
+    jumpers on the back of the board:
   </p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
@@ -87,26 +97,11 @@ function preload() {
       </tr>
     </thead>
     <tbody>
-      {#each [
-        [0x30,0,'open','open','open','open'],
-        [0x31,1,'closed','open','open','open'],
-        [0x32,2,'open','closed','open','open'],
-        [0x33,3,'closed','closed','open','open'],
-        [0x34,4,'open','open','closed','open'],
-        [0x35,5,'closed','open','closed','open'],
-        [0x36,6,'open','closed','closed','open'],
-        [0x37,7,'closed','closed','closed','open'],
-        [0x38,8,'open','open','open','closed'],
-        [0x39,9,'closed','open','open','closed'],
-        [0x3A,10,'open','closed','open','closed'],
-        [0x3B,11,'closed','closed','open','closed'],
-        [0x3C,12,'open','open','closed','closed'],
-        [0x3D,13,'closed','open','closed','closed'],
-        [0x3E,14,'open','closed','closed','closed'],
-        [0x3F,15,'closed','closed','closed','closed'],
-      ] as [addr, idx, a0, a1, a2, a3], i}
-        <tr class={i < 15 ? 'border-b border-gray-800' : ''}>
-          <td class="py-2 pl-3 pr-4 doc-code">{'0x' + addr.toString(16).toUpperCase()}</td>
+      {#each [[0x30, 0, "open", "open", "open", "open"], [0x31, 1, "closed", "open", "open", "open"], [0x32, 2, "open", "closed", "open", "open"], [0x33, 3, "closed", "closed", "open", "open"], [0x34, 4, "open", "open", "closed", "open"], [0x35, 5, "closed", "open", "closed", "open"], [0x36, 6, "open", "closed", "closed", "open"], [0x37, 7, "closed", "closed", "closed", "open"], [0x38, 8, "open", "open", "open", "closed"], [0x39, 9, "closed", "open", "open", "closed"], [0x3a, 10, "open", "closed", "open", "closed"], [0x3b, 11, "closed", "closed", "open", "closed"], [0x3c, 12, "open", "open", "closed", "closed"], [0x3d, 13, "closed", "open", "closed", "closed"], [0x3e, 14, "open", "closed", "closed", "closed"], [0x3f, 15, "closed", "closed", "closed", "closed"]] as [addr, idx, a0, a1, a2, a3], i}
+        <tr class={i < 15 ? "border-b border-gray-800" : ""}>
+          <td class="py-2 pl-3 pr-4 doc-code"
+            >{"0x" + addr.toString(16).toUpperCase()}</td
+          >
           <td class="py-2 pl-3 pr-4">{idx}</td>
           <td class="py-2 pl-3 pr-4">{a0}</td>
           <td class="py-2 pl-3 pr-4">{a1}</td>
@@ -143,7 +138,7 @@ function preload() {
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">linearEncoderChanged(event)</span>
+    <span class="doc-code">changed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">changed</span>
   </p>
   <p class="doc-p">Fires whenever the slider position changes.</p>

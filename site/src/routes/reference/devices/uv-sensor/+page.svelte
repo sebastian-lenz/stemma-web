@@ -22,10 +22,16 @@ Reference: https://learn.adafruit.com/adafruit-ltr390-uv-sensor
 </nav>
 
 <p class="doc-p">
-  The <a class="doc-link" href="https://www.adafruit.com/product/4831">Adafruit LTR390</a>
-  measures ambient light (ALS) and UV index (UVS) in two selectable modes. It has a fixed I2C
-  address. See the
-  <a class="doc-link" href="https://learn.adafruit.com/adafruit-ltr390-uv-sensor">Adafruit learn guide</a>
+  The <a class="doc-link" href="https://www.adafruit.com/product/4831"
+    >Adafruit LTR390</a
+  >
+  measures ambient light (ALS) and UV index (UVS) in two selectable modes. It has
+  a fixed I2C address. See the
+  <a
+    class="doc-link"
+    href="https://learn.adafruit.com/adafruit-ltr390-uv-sensor"
+    >Adafruit learn guide</a
+  >
   for wiring and hardware details.
 </p>
 
@@ -56,7 +62,8 @@ function preload() {
   </p>
   <CodeBlock nested code={`function uvChanged(event) { /* new reading */ }`} />
   <p class="doc-p mb-0">
-    Pass <span class="doc-code">false</span> or <span class="doc-code">null</span>
+    Pass <span class="doc-code">false</span> or
+    <span class="doc-code">null</span>
     to disable and use <span class="doc-code">addEventListener</span> instead.
   </p>
 </div>
@@ -77,7 +84,9 @@ function preload() {
     <span class="doc-badge doc-badge-object ml-2">UVSensorMode</span>
   </p>
   <p class="doc-p">
-    Returns the current measurement mode: <span class="doc-code">UV_SENSOR_MODE_ALS</span>
+    Returns the current measurement mode: <span class="doc-code"
+      >UV_SENSOR_MODE_ALS</span
+    >
     (ambient light) or <span class="doc-code">UV_SENSOR_MODE_UVS</span> (UV index).
   </p>
 </div>
@@ -96,7 +105,8 @@ function preload() {
     <span class="doc-badge doc-badge-number ml-2">number</span>
   </p>
   <p class="doc-p">
-    Returns the last reading — an ALS lux count or UVS count depending on the current mode.
+    Returns the last reading — an ALS lux count or UVS count depending on the
+    current mode.
   </p>
 </div>
 
@@ -108,10 +118,13 @@ function preload() {
   <p class="doc-p">Sets the sensor gain. Available constants:</p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
-      <tr><th class="py-2 pl-3 pr-4">Constant</th><th class="py-2 pl-3">Gain</th></tr>
+      <tr
+        ><th class="py-2 pl-3 pr-4">Constant</th><th class="py-2 pl-3">Gain</th
+        ></tr
+      >
     </thead>
     <tbody>
-      {#each [["UV_SENSOR_GAIN_1","×1"],["UV_SENSOR_GAIN_3","×3 (default)"],["UV_SENSOR_GAIN_6","×6"],["UV_SENSOR_GAIN_9","×9"],["UV_SENSOR_GAIN_18","×18"]] as [name, gain]}
+      {#each [["UV_SENSOR_GAIN_1", "×1"], ["UV_SENSOR_GAIN_3", "×3 (default)"], ["UV_SENSOR_GAIN_6", "×6"], ["UV_SENSOR_GAIN_9", "×9"], ["UV_SENSOR_GAIN_18", "×18"]] as [name, gain]}
         <tr class="border-b border-gray-800 last:border-0">
           <td class="py-2 pl-3 pr-4 doc-code">{name}</td>
           <td class="py-2 pl-3">{gain}</td>
@@ -127,12 +140,15 @@ function preload() {
     <span class="doc-badge doc-badge-promise ml-2">Promise&lt;boolean&gt;</span>
   </p>
   <p class="doc-p">
-    Sets the measurement mode. The sensor can only operate in one mode at a time; switching
-    modes takes effect on the next reading.
+    Sets the measurement mode. The sensor can only operate in one mode at a
+    time; switching modes takes effect on the next reading.
   </p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
-      <tr><th class="py-2 pl-3 pr-4">Constant</th><th class="py-2 pl-3">Mode</th></tr>
+      <tr
+        ><th class="py-2 pl-3 pr-4">Constant</th><th class="py-2 pl-3">Mode</th
+        ></tr
+      >
     </thead>
     <tbody>
       <tr class="border-b border-gray-800">
@@ -152,13 +168,20 @@ function preload() {
     <span class="doc-code">setResolution(value)</span>
     <span class="doc-badge doc-badge-promise ml-2">Promise&lt;boolean&gt;</span>
   </p>
-  <p class="doc-p">Sets the ADC resolution. Higher resolution increases integration time. Available constants:</p>
+  <p class="doc-p">
+    Sets the ADC resolution. Higher resolution increases integration time.
+    Available constants:
+  </p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
-      <tr><th class="py-2 pl-3 pr-4">Constant</th><th class="py-2 pl-3">Resolution</th></tr>
+      <tr
+        ><th class="py-2 pl-3 pr-4">Constant</th><th class="py-2 pl-3"
+          >Resolution</th
+        ></tr
+      >
     </thead>
     <tbody>
-      {#each [["UV_SENSOR_RESOLUTION_20_BIT","20-bit"],["UV_SENSOR_RESOLUTION_19_BIT","19-bit"],["UV_SENSOR_RESOLUTION_18_BIT","18-bit (default)"],["UV_SENSOR_RESOLUTION_17_BIT","17-bit"],["UV_SENSOR_RESOLUTION_16_BIT","16-bit"],["UV_SENSOR_RESOLUTION_13_BIT","13-bit"]] as [name, res]}
+      {#each [["UV_SENSOR_RESOLUTION_20_BIT", "20-bit"], ["UV_SENSOR_RESOLUTION_19_BIT", "19-bit"], ["UV_SENSOR_RESOLUTION_18_BIT", "18-bit (default)"], ["UV_SENSOR_RESOLUTION_17_BIT", "17-bit"], ["UV_SENSOR_RESOLUTION_16_BIT", "16-bit"], ["UV_SENSOR_RESOLUTION_13_BIT", "13-bit"]] as [name, res]}
         <tr class="border-b border-gray-800 last:border-0">
           <td class="py-2 pl-3 pr-4 doc-code">{name}</td>
           <td class="py-2 pl-3">{res}</td>
@@ -178,27 +201,29 @@ function preload() {
 
 <div class="doc-card mb-3">
   <p class="mb-1">
-    <span class="doc-code">uvChanged(event)</span>
+    <span class="doc-code">changed(event)</span>
     <span class="doc-badge doc-badge-event ml-2">changed</span>
   </p>
   <p class="doc-p">
-    Fires when a new reading is available. The <span class="doc-code">value</span> field reflects
-    the current mode (ALS or UVS).
+    Fires when a new reading is available. The <span class="doc-code"
+      >value</span
+    > field reflects the current mode (ALS or UVS).
   </p>
 </div>
 
 <h2 id="event-argument" class="doc-h2">Event Argument</h2>
 
 <p class="doc-p">
-  All event callbacks receive a single <span class="doc-code">event</span> argument.
-  The event detail is available at <span class="doc-code">event.detail</span> and contains:
+  All event callbacks receive a single <span class="doc-code">event</span>
+  argument. The event detail is available at
+  <span class="doc-code">event.detail</span> and contains:
 </p>
 
 <div class="doc-card mb-3">
   <p class="doc-p mb-0">
     <span class="doc-code">event.detail.value</span>
     <span class="doc-badge doc-badge-number ml-2">number</span>
-    — The latest sensor reading. Interpretation depends on the current mode: ALS count (lux)
-    or UVS count (UV index).
+    — The latest sensor reading. Interpretation depends on the current mode: ALS
+    count (lux) or UVS count (UV index).
   </p>
 </div>
