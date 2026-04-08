@@ -3,3 +3,4 @@ library/node_modules/
 site/.svelte-kit/
 site/build/
 site/node_modules/
+etc/
