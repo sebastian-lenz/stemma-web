@@ -3,8 +3,6 @@
   import { page } from "$app/state";
   import { resolve } from "$app/paths";
 
-  const siteBase = resolve("/").slice(0, -1);
-
   let { children } = $props();
 
   const nav = [
@@ -13,15 +11,15 @@
       items: [
         {
           label: "Device Setup",
-          href: "/reference/getting-started/device-setup",
+          href: resolve("/reference/getting-started/device-setup"),
         },
         {
           label: "Library Setup",
-          href: "/reference/getting-started/library-setup",
+          href: resolve("/reference/getting-started/library-setup"),
         },
         {
           label: "First Steps",
-          href: "/reference/getting-started/first-steps",
+          href: resolve("/reference/getting-started/first-steps"),
         },
       ],
     },
@@ -48,10 +46,9 @@
           {#each section.items as item}
             <li>
               <a
-                href={siteBase + item.href}
+                href={item.href}
                 class="block rounded-md px-3 py-1.5 text-sm transition-colors {page
-                  .url.pathname ===
-                siteBase + item.href
+                  .url.pathname === item.href
                   ? 'bg-gray-800 text-white'
                   : 'text-gray-400 hover:text-white'}"
               >
