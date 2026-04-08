@@ -1,6 +1,7 @@
 import { DeviceManager } from "../DeviceManager";
 import { getP5Version } from "./utils";
 import { Gyroscope } from "../devices/Gyroscope";
+import { GyroscopeChipset } from "../proto/messages";
 import { LinearEncoder } from "../devices/LinearEncoder";
 import { NeoDriver } from "../devices/NeoDriver";
 import { RotaryEncoder } from "../devices/RotaryEncoder";
@@ -40,6 +41,10 @@ export class Extension {
       "startTouchSensor",
       "startTrinkey",
     ]);
+
+    this.exposeEnums(fn, {
+      GyroscopeChipset,
+    });
   }
 
   get deviceManager(): DeviceManager {
@@ -98,6 +103,14 @@ export class Extension {
     }
   }
 
+  exposeEnums(fn: any, enums: any) {
+    for (const values of Object.values<any>(enums)) {
+      for (const key in values) {
+        fn[key] = values[key];
+      }
+    }
+  }
+
   remove(): void {
     const { _listeners } = this;
     for (const listener of _listeners) listener();
@@ -108,8 +121,9 @@ export class Extension {
     p5: P5Internal,
     name: string | false | null = "gyroscope",
     addressOrIndex: GyroscopeAddress = Gyroscope.ADDRESSES[0],
+    chipset: GyroscopeChipset = GyroscopeChipset.GYROSCOPE_CHIPSET_LSM6DSOX,
   ): Gyroscope | Promise<Gyroscope> {
-    const device = this.deviceManager.getGyroscope(addressOrIndex);
+    const device = this.deviceManager.getGyroscope(addressOrIndex, chipset);
     return this.exposeDevice(p5, device, name, Gyroscope.EVENTS);
   }
 

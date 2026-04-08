@@ -33,7 +33,7 @@ public:
             return false;
         }
 
-        _applyAccelRange(ACCELERATION_RANGE_4_G);
+        _applyAccelRange(GYROSCOPE_ACCELERATION_RANGE_4_G);
         _lsm->setGyroRange(LSM6DS_GYRO_RANGE_250_DPS);
         _lsm->setAccelDataRate(LSM6DS_RATE_104_HZ);
         _lsm->setGyroDataRate(LSM6DS_RATE_104_HZ);
@@ -132,18 +132,18 @@ private:
         if (_chipset == GYROSCOPE_CHIPSET_LSM6DSO32) {
             lsm6dso32_accel_range_t range;
             switch (r) {
-                case ACCELERATION_RANGE_8_G:  range = LSM6DSO32_ACCEL_RANGE_8_G;  break;
-                case ACCELERATION_RANGE_16_G: range = LSM6DSO32_ACCEL_RANGE_16_G; break;
-                case ACCELERATION_RANGE_32_G: range = LSM6DSO32_ACCEL_RANGE_32_G; break;
-                default:                      range = LSM6DSO32_ACCEL_RANGE_4_G;  break;
+                case GYROSCOPE_ACCELERATION_RANGE_8_G:  range = LSM6DSO32_ACCEL_RANGE_8_G;  break;
+                case GYROSCOPE_ACCELERATION_RANGE_16_G: range = LSM6DSO32_ACCEL_RANGE_16_G; break;
+                case GYROSCOPE_ACCELERATION_RANGE_32_G: range = LSM6DSO32_ACCEL_RANGE_32_G; break;
+                default:                                range = LSM6DSO32_ACCEL_RANGE_4_G;  break;
             }
             static_cast<Adafruit_LSM6DSO32*>(_lsm)->setAccelRange(range);
         } else {
             lsm6ds_accel_range_t range;
             switch (r) {
-                case ACCELERATION_RANGE_8_G:  range = LSM6DS_ACCEL_RANGE_8_G;  break;
-                case ACCELERATION_RANGE_16_G: range = LSM6DS_ACCEL_RANGE_16_G; break;
-                default:                      range = LSM6DS_ACCEL_RANGE_4_G;  break;
+                case GYROSCOPE_ACCELERATION_RANGE_8_G:  range = LSM6DS_ACCEL_RANGE_8_G;  break;
+                case GYROSCOPE_ACCELERATION_RANGE_16_G: range = LSM6DS_ACCEL_RANGE_16_G; break;
+                default:                                range = LSM6DS_ACCEL_RANGE_4_G;  break;
                 // 32 G not supported on LSM6DSOX / ISM330DHCX — falls back to 4 G
             }
             _lsm->setAccelRange(range);
@@ -154,11 +154,11 @@ private:
     // fall back to 2000 DPS.
     lsm6ds_gyro_range_t _toGyroRange(RotationRange r) const {
         switch (r) {
-            case ROTATION_RANGE_DPS_125:  return LSM6DS_GYRO_RANGE_125_DPS;
-            case ROTATION_RANGE_DPS_500:  return LSM6DS_GYRO_RANGE_500_DPS;
-            case ROTATION_RANGE_DPS_1000: return LSM6DS_GYRO_RANGE_1000_DPS;
-            case ROTATION_RANGE_DPS_2000: return LSM6DS_GYRO_RANGE_2000_DPS;
-            case ROTATION_RANGE_DPS_4000:
+            case GYROSCOPE_ROTATION_RANGE_DPS_125:  return LSM6DS_GYRO_RANGE_125_DPS;
+            case GYROSCOPE_ROTATION_RANGE_DPS_500:  return LSM6DS_GYRO_RANGE_500_DPS;
+            case GYROSCOPE_ROTATION_RANGE_DPS_1000: return LSM6DS_GYRO_RANGE_1000_DPS;
+            case GYROSCOPE_ROTATION_RANGE_DPS_2000: return LSM6DS_GYRO_RANGE_2000_DPS;
+            case GYROSCOPE_ROTATION_RANGE_DPS_4000:
                 if (_chipset == GYROSCOPE_CHIPSET_ISM330DHCX)
                     return ISM330DHCX_GYRO_RANGE_4000_DPS;
                 return LSM6DS_GYRO_RANGE_2000_DPS;
@@ -168,25 +168,25 @@ private:
 
     static lsm6ds_data_rate_t _toDataRate(DataRate r) {
         switch (r) {
-            case DATA_RATE_SHUTDOWN: return LSM6DS_RATE_SHUTDOWN;
-            case DATA_RATE_HZ_12_5:  return LSM6DS_RATE_12_5_HZ;
-            case DATA_RATE_HZ_26:    return LSM6DS_RATE_26_HZ;
-            case DATA_RATE_HZ_52:    return LSM6DS_RATE_52_HZ;
-            case DATA_RATE_HZ_104:   return LSM6DS_RATE_104_HZ;
-            case DATA_RATE_HZ_208:   return LSM6DS_RATE_208_HZ;
-            case DATA_RATE_HZ_416:   return LSM6DS_RATE_416_HZ;
-            case DATA_RATE_HZ_833:   return LSM6DS_RATE_833_HZ;
-            case DATA_RATE_HZ_1_66K: return LSM6DS_RATE_1_66K_HZ;
-            case DATA_RATE_HZ_3_33K: return LSM6DS_RATE_3_33K_HZ;
-            default:                 return LSM6DS_RATE_6_66K_HZ;
+            case GYROSCOPE_DATA_RATE_SHUTDOWN: return LSM6DS_RATE_SHUTDOWN;
+            case GYROSCOPE_DATA_RATE_HZ_12_5:  return LSM6DS_RATE_12_5_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_26:    return LSM6DS_RATE_26_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_52:    return LSM6DS_RATE_52_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_104:   return LSM6DS_RATE_104_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_208:   return LSM6DS_RATE_208_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_416:   return LSM6DS_RATE_416_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_833:   return LSM6DS_RATE_833_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_1_66K: return LSM6DS_RATE_1_66K_HZ;
+            case GYROSCOPE_DATA_RATE_HZ_3_33K: return LSM6DS_RATE_3_33K_HZ;
+            default:                           return LSM6DS_RATE_6_66K_HZ;
         }
     }
 
     uint8_t           _address;
     GyroscopeChipset  _chipset;
     Adafruit_LSM6DS*  _lsm;
-    AccelerationRange _accelRange = ACCELERATION_RANGE_4_G;
-    RotationRange     _rotRange   = ROTATION_RANGE_DPS_250;
-    DataRate          _accelRate  = DATA_RATE_HZ_104;
-    DataRate          _rotRate    = DATA_RATE_HZ_104;
+    AccelerationRange _accelRange = GYROSCOPE_ACCELERATION_RANGE_4_G;
+    RotationRange     _rotRange   = GYROSCOPE_ROTATION_RANGE_DPS_250;
+    DataRate          _accelRate  = GYROSCOPE_DATA_RATE_HZ_104;
+    DataRate          _rotRate    = GYROSCOPE_DATA_RATE_HZ_104;
 };

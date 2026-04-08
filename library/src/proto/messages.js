@@ -2584,19 +2584,19 @@ export const SetAccelerationRange = $root.SetAccelerationRange = (() => {
                 break;
             }
             break;
-        case "ACCELERATION_RANGE_4_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_4_G":
         case 0:
             message.range = 0;
             break;
-        case "ACCELERATION_RANGE_8_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_8_G":
         case 1:
             message.range = 1;
             break;
-        case "ACCELERATION_RANGE_16_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_16_G":
         case 2:
             message.range = 2;
             break;
-        case "ACCELERATION_RANGE_32_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_32_G":
         case 3:
             message.range = 3;
             break;
@@ -2618,7 +2618,7 @@ export const SetAccelerationRange = $root.SetAccelerationRange = (() => {
             options = {};
         let object = {};
         if (options.defaults)
-            object.range = options.enums === String ? "ACCELERATION_RANGE_4_G" : 0;
+            object.range = options.enums === String ? "GYROSCOPE_ACCELERATION_RANGE_4_G" : 0;
         if (message.range != null && message.hasOwnProperty("range"))
             object.range = options.enums === String ? $root.AccelerationRange[message.range] === undefined ? message.range : $root.AccelerationRange[message.range] : message.range;
         return object;
@@ -2820,27 +2820,27 @@ export const SetRotationRange = $root.SetRotationRange = (() => {
                 break;
             }
             break;
-        case "ROTATION_RANGE_DPS_125":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_125":
         case 0:
             message.range = 0;
             break;
-        case "ROTATION_RANGE_DPS_250":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_250":
         case 1:
             message.range = 1;
             break;
-        case "ROTATION_RANGE_DPS_500":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_500":
         case 2:
             message.range = 2;
             break;
-        case "ROTATION_RANGE_DPS_1000":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_1000":
         case 3:
             message.range = 3;
             break;
-        case "ROTATION_RANGE_DPS_2000":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_2000":
         case 4:
             message.range = 4;
             break;
-        case "ROTATION_RANGE_DPS_4000":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_4000":
         case 5:
             message.range = 5;
             break;
@@ -2862,7 +2862,7 @@ export const SetRotationRange = $root.SetRotationRange = (() => {
             options = {};
         let object = {};
         if (options.defaults)
-            object.range = options.enums === String ? "ROTATION_RANGE_DPS_125" : 0;
+            object.range = options.enums === String ? "GYROSCOPE_ROTATION_RANGE_DPS_125" : 0;
         if (message.range != null && message.hasOwnProperty("range"))
             object.range = options.enums === String ? $root.RotationRange[message.range] === undefined ? message.range : $root.RotationRange[message.range] : message.range;
         return object;
@@ -3069,47 +3069,47 @@ export const SetAccelerationRate = $root.SetAccelerationRate = (() => {
                 break;
             }
             break;
-        case "DATA_RATE_SHUTDOWN":
+        case "GYROSCOPE_DATA_RATE_SHUTDOWN":
         case 0:
             message.rate = 0;
             break;
-        case "DATA_RATE_HZ_12_5":
+        case "GYROSCOPE_DATA_RATE_HZ_12_5":
         case 1:
             message.rate = 1;
             break;
-        case "DATA_RATE_HZ_26":
+        case "GYROSCOPE_DATA_RATE_HZ_26":
         case 2:
             message.rate = 2;
             break;
-        case "DATA_RATE_HZ_52":
+        case "GYROSCOPE_DATA_RATE_HZ_52":
         case 3:
             message.rate = 3;
             break;
-        case "DATA_RATE_HZ_104":
+        case "GYROSCOPE_DATA_RATE_HZ_104":
         case 4:
             message.rate = 4;
             break;
-        case "DATA_RATE_HZ_208":
+        case "GYROSCOPE_DATA_RATE_HZ_208":
         case 5:
             message.rate = 5;
             break;
-        case "DATA_RATE_HZ_416":
+        case "GYROSCOPE_DATA_RATE_HZ_416":
         case 6:
             message.rate = 6;
             break;
-        case "DATA_RATE_HZ_833":
+        case "GYROSCOPE_DATA_RATE_HZ_833":
         case 7:
             message.rate = 7;
             break;
-        case "DATA_RATE_HZ_1_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_1_66K":
         case 8:
             message.rate = 8;
             break;
-        case "DATA_RATE_HZ_3_33K":
+        case "GYROSCOPE_DATA_RATE_HZ_3_33K":
         case 9:
             message.rate = 9;
             break;
-        case "DATA_RATE_HZ_6_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_6_66K":
         case 10:
             message.rate = 10;
             break;
@@ -3131,7 +3131,7 @@ export const SetAccelerationRate = $root.SetAccelerationRate = (() => {
             options = {};
         let object = {};
         if (options.defaults)
-            object.rate = options.enums === String ? "DATA_RATE_SHUTDOWN" : 0;
+            object.rate = options.enums === String ? "GYROSCOPE_DATA_RATE_SHUTDOWN" : 0;
         if (message.rate != null && message.hasOwnProperty("rate"))
             object.rate = options.enums === String ? $root.DataRate[message.rate] === undefined ? message.rate : $root.DataRate[message.rate] : message.rate;
         return object;
@@ -3338,47 +3338,47 @@ export const SetRotationRate = $root.SetRotationRate = (() => {
                 break;
             }
             break;
-        case "DATA_RATE_SHUTDOWN":
+        case "GYROSCOPE_DATA_RATE_SHUTDOWN":
         case 0:
             message.rate = 0;
             break;
-        case "DATA_RATE_HZ_12_5":
+        case "GYROSCOPE_DATA_RATE_HZ_12_5":
         case 1:
             message.rate = 1;
             break;
-        case "DATA_RATE_HZ_26":
+        case "GYROSCOPE_DATA_RATE_HZ_26":
         case 2:
             message.rate = 2;
             break;
-        case "DATA_RATE_HZ_52":
+        case "GYROSCOPE_DATA_RATE_HZ_52":
         case 3:
             message.rate = 3;
             break;
-        case "DATA_RATE_HZ_104":
+        case "GYROSCOPE_DATA_RATE_HZ_104":
         case 4:
             message.rate = 4;
             break;
-        case "DATA_RATE_HZ_208":
+        case "GYROSCOPE_DATA_RATE_HZ_208":
         case 5:
             message.rate = 5;
             break;
-        case "DATA_RATE_HZ_416":
+        case "GYROSCOPE_DATA_RATE_HZ_416":
         case 6:
             message.rate = 6;
             break;
-        case "DATA_RATE_HZ_833":
+        case "GYROSCOPE_DATA_RATE_HZ_833":
         case 7:
             message.rate = 7;
             break;
-        case "DATA_RATE_HZ_1_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_1_66K":
         case 8:
             message.rate = 8;
             break;
-        case "DATA_RATE_HZ_3_33K":
+        case "GYROSCOPE_DATA_RATE_HZ_3_33K":
         case 9:
             message.rate = 9;
             break;
-        case "DATA_RATE_HZ_6_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_6_66K":
         case 10:
             message.rate = 10;
             break;
@@ -3400,7 +3400,7 @@ export const SetRotationRate = $root.SetRotationRate = (() => {
             options = {};
         let object = {};
         if (options.defaults)
-            object.rate = options.enums === String ? "DATA_RATE_SHUTDOWN" : 0;
+            object.rate = options.enums === String ? "GYROSCOPE_DATA_RATE_SHUTDOWN" : 0;
         if (message.rate != null && message.hasOwnProperty("rate"))
             object.rate = options.enums === String ? $root.DataRate[message.rate] === undefined ? message.rate : $root.DataRate[message.rate] : message.rate;
         return object;
@@ -7166,47 +7166,47 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
                 break;
             }
             break;
-        case "DATA_RATE_SHUTDOWN":
+        case "GYROSCOPE_DATA_RATE_SHUTDOWN":
         case 0:
             message.accelerationDataRate = 0;
             break;
-        case "DATA_RATE_HZ_12_5":
+        case "GYROSCOPE_DATA_RATE_HZ_12_5":
         case 1:
             message.accelerationDataRate = 1;
             break;
-        case "DATA_RATE_HZ_26":
+        case "GYROSCOPE_DATA_RATE_HZ_26":
         case 2:
             message.accelerationDataRate = 2;
             break;
-        case "DATA_RATE_HZ_52":
+        case "GYROSCOPE_DATA_RATE_HZ_52":
         case 3:
             message.accelerationDataRate = 3;
             break;
-        case "DATA_RATE_HZ_104":
+        case "GYROSCOPE_DATA_RATE_HZ_104":
         case 4:
             message.accelerationDataRate = 4;
             break;
-        case "DATA_RATE_HZ_208":
+        case "GYROSCOPE_DATA_RATE_HZ_208":
         case 5:
             message.accelerationDataRate = 5;
             break;
-        case "DATA_RATE_HZ_416":
+        case "GYROSCOPE_DATA_RATE_HZ_416":
         case 6:
             message.accelerationDataRate = 6;
             break;
-        case "DATA_RATE_HZ_833":
+        case "GYROSCOPE_DATA_RATE_HZ_833":
         case 7:
             message.accelerationDataRate = 7;
             break;
-        case "DATA_RATE_HZ_1_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_1_66K":
         case 8:
             message.accelerationDataRate = 8;
             break;
-        case "DATA_RATE_HZ_3_33K":
+        case "GYROSCOPE_DATA_RATE_HZ_3_33K":
         case 9:
             message.accelerationDataRate = 9;
             break;
-        case "DATA_RATE_HZ_6_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_6_66K":
         case 10:
             message.accelerationDataRate = 10;
             break;
@@ -7218,47 +7218,47 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
                 break;
             }
             break;
-        case "DATA_RATE_SHUTDOWN":
+        case "GYROSCOPE_DATA_RATE_SHUTDOWN":
         case 0:
             message.rotationDataRate = 0;
             break;
-        case "DATA_RATE_HZ_12_5":
+        case "GYROSCOPE_DATA_RATE_HZ_12_5":
         case 1:
             message.rotationDataRate = 1;
             break;
-        case "DATA_RATE_HZ_26":
+        case "GYROSCOPE_DATA_RATE_HZ_26":
         case 2:
             message.rotationDataRate = 2;
             break;
-        case "DATA_RATE_HZ_52":
+        case "GYROSCOPE_DATA_RATE_HZ_52":
         case 3:
             message.rotationDataRate = 3;
             break;
-        case "DATA_RATE_HZ_104":
+        case "GYROSCOPE_DATA_RATE_HZ_104":
         case 4:
             message.rotationDataRate = 4;
             break;
-        case "DATA_RATE_HZ_208":
+        case "GYROSCOPE_DATA_RATE_HZ_208":
         case 5:
             message.rotationDataRate = 5;
             break;
-        case "DATA_RATE_HZ_416":
+        case "GYROSCOPE_DATA_RATE_HZ_416":
         case 6:
             message.rotationDataRate = 6;
             break;
-        case "DATA_RATE_HZ_833":
+        case "GYROSCOPE_DATA_RATE_HZ_833":
         case 7:
             message.rotationDataRate = 7;
             break;
-        case "DATA_RATE_HZ_1_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_1_66K":
         case 8:
             message.rotationDataRate = 8;
             break;
-        case "DATA_RATE_HZ_3_33K":
+        case "GYROSCOPE_DATA_RATE_HZ_3_33K":
         case 9:
             message.rotationDataRate = 9;
             break;
-        case "DATA_RATE_HZ_6_66K":
+        case "GYROSCOPE_DATA_RATE_HZ_6_66K":
         case 10:
             message.rotationDataRate = 10;
             break;
@@ -7270,19 +7270,19 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
                 break;
             }
             break;
-        case "ACCELERATION_RANGE_4_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_4_G":
         case 0:
             message.accelerationRange = 0;
             break;
-        case "ACCELERATION_RANGE_8_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_8_G":
         case 1:
             message.accelerationRange = 1;
             break;
-        case "ACCELERATION_RANGE_16_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_16_G":
         case 2:
             message.accelerationRange = 2;
             break;
-        case "ACCELERATION_RANGE_32_G":
+        case "GYROSCOPE_ACCELERATION_RANGE_32_G":
         case 3:
             message.accelerationRange = 3;
             break;
@@ -7294,27 +7294,27 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
                 break;
             }
             break;
-        case "ROTATION_RANGE_DPS_125":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_125":
         case 0:
             message.rotationRange = 0;
             break;
-        case "ROTATION_RANGE_DPS_250":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_250":
         case 1:
             message.rotationRange = 1;
             break;
-        case "ROTATION_RANGE_DPS_500":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_500":
         case 2:
             message.rotationRange = 2;
             break;
-        case "ROTATION_RANGE_DPS_1000":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_1000":
         case 3:
             message.rotationRange = 3;
             break;
-        case "ROTATION_RANGE_DPS_2000":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_2000":
         case 4:
             message.rotationRange = 4;
             break;
-        case "ROTATION_RANGE_DPS_4000":
+        case "GYROSCOPE_ROTATION_RANGE_DPS_4000":
         case 5:
             message.rotationRange = 5;
             break;
@@ -7343,10 +7343,10 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
             object.rotationY = 0;
             object.rotationZ = 0;
             object.temperature = 0;
-            object.accelerationDataRate = options.enums === String ? "DATA_RATE_SHUTDOWN" : 0;
-            object.rotationDataRate = options.enums === String ? "DATA_RATE_SHUTDOWN" : 0;
-            object.accelerationRange = options.enums === String ? "ACCELERATION_RANGE_4_G" : 0;
-            object.rotationRange = options.enums === String ? "ROTATION_RANGE_DPS_125" : 0;
+            object.accelerationDataRate = options.enums === String ? "GYROSCOPE_DATA_RATE_SHUTDOWN" : 0;
+            object.rotationDataRate = options.enums === String ? "GYROSCOPE_DATA_RATE_SHUTDOWN" : 0;
+            object.accelerationRange = options.enums === String ? "GYROSCOPE_ACCELERATION_RANGE_4_G" : 0;
+            object.rotationRange = options.enums === String ? "GYROSCOPE_ROTATION_RANGE_DPS_125" : 0;
         }
         if (message.accelerationX != null && message.hasOwnProperty("accelerationX"))
             object.accelerationX = options.json && !isFinite(message.accelerationX) ? String(message.accelerationX) : message.accelerationX;
@@ -7768,31 +7768,31 @@ export const GyroscopeChipset = $root.GyroscopeChipset = (() => {
  * DataRate enum.
  * @exports DataRate
  * @enum {number}
- * @property {number} DATA_RATE_SHUTDOWN=0 DATA_RATE_SHUTDOWN value
- * @property {number} DATA_RATE_HZ_12_5=1 DATA_RATE_HZ_12_5 value
- * @property {number} DATA_RATE_HZ_26=2 DATA_RATE_HZ_26 value
- * @property {number} DATA_RATE_HZ_52=3 DATA_RATE_HZ_52 value
- * @property {number} DATA_RATE_HZ_104=4 DATA_RATE_HZ_104 value
- * @property {number} DATA_RATE_HZ_208=5 DATA_RATE_HZ_208 value
- * @property {number} DATA_RATE_HZ_416=6 DATA_RATE_HZ_416 value
- * @property {number} DATA_RATE_HZ_833=7 DATA_RATE_HZ_833 value
- * @property {number} DATA_RATE_HZ_1_66K=8 DATA_RATE_HZ_1_66K value
- * @property {number} DATA_RATE_HZ_3_33K=9 DATA_RATE_HZ_3_33K value
- * @property {number} DATA_RATE_HZ_6_66K=10 DATA_RATE_HZ_6_66K value
+ * @property {number} GYROSCOPE_DATA_RATE_SHUTDOWN=0 GYROSCOPE_DATA_RATE_SHUTDOWN value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_12_5=1 GYROSCOPE_DATA_RATE_HZ_12_5 value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_26=2 GYROSCOPE_DATA_RATE_HZ_26 value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_52=3 GYROSCOPE_DATA_RATE_HZ_52 value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_104=4 GYROSCOPE_DATA_RATE_HZ_104 value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_208=5 GYROSCOPE_DATA_RATE_HZ_208 value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_416=6 GYROSCOPE_DATA_RATE_HZ_416 value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_833=7 GYROSCOPE_DATA_RATE_HZ_833 value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_1_66K=8 GYROSCOPE_DATA_RATE_HZ_1_66K value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_3_33K=9 GYROSCOPE_DATA_RATE_HZ_3_33K value
+ * @property {number} GYROSCOPE_DATA_RATE_HZ_6_66K=10 GYROSCOPE_DATA_RATE_HZ_6_66K value
  */
 export const DataRate = $root.DataRate = (() => {
     const valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "DATA_RATE_SHUTDOWN"] = 0;
-    values[valuesById[1] = "DATA_RATE_HZ_12_5"] = 1;
-    values[valuesById[2] = "DATA_RATE_HZ_26"] = 2;
-    values[valuesById[3] = "DATA_RATE_HZ_52"] = 3;
-    values[valuesById[4] = "DATA_RATE_HZ_104"] = 4;
-    values[valuesById[5] = "DATA_RATE_HZ_208"] = 5;
-    values[valuesById[6] = "DATA_RATE_HZ_416"] = 6;
-    values[valuesById[7] = "DATA_RATE_HZ_833"] = 7;
-    values[valuesById[8] = "DATA_RATE_HZ_1_66K"] = 8;
-    values[valuesById[9] = "DATA_RATE_HZ_3_33K"] = 9;
-    values[valuesById[10] = "DATA_RATE_HZ_6_66K"] = 10;
+    values[valuesById[0] = "GYROSCOPE_DATA_RATE_SHUTDOWN"] = 0;
+    values[valuesById[1] = "GYROSCOPE_DATA_RATE_HZ_12_5"] = 1;
+    values[valuesById[2] = "GYROSCOPE_DATA_RATE_HZ_26"] = 2;
+    values[valuesById[3] = "GYROSCOPE_DATA_RATE_HZ_52"] = 3;
+    values[valuesById[4] = "GYROSCOPE_DATA_RATE_HZ_104"] = 4;
+    values[valuesById[5] = "GYROSCOPE_DATA_RATE_HZ_208"] = 5;
+    values[valuesById[6] = "GYROSCOPE_DATA_RATE_HZ_416"] = 6;
+    values[valuesById[7] = "GYROSCOPE_DATA_RATE_HZ_833"] = 7;
+    values[valuesById[8] = "GYROSCOPE_DATA_RATE_HZ_1_66K"] = 8;
+    values[valuesById[9] = "GYROSCOPE_DATA_RATE_HZ_3_33K"] = 9;
+    values[valuesById[10] = "GYROSCOPE_DATA_RATE_HZ_6_66K"] = 10;
     return values;
 })();
 
@@ -7800,17 +7800,17 @@ export const DataRate = $root.DataRate = (() => {
  * AccelerationRange enum.
  * @exports AccelerationRange
  * @enum {number}
- * @property {number} ACCELERATION_RANGE_4_G=0 ACCELERATION_RANGE_4_G value
- * @property {number} ACCELERATION_RANGE_8_G=1 ACCELERATION_RANGE_8_G value
- * @property {number} ACCELERATION_RANGE_16_G=2 ACCELERATION_RANGE_16_G value
- * @property {number} ACCELERATION_RANGE_32_G=3 ACCELERATION_RANGE_32_G value
+ * @property {number} GYROSCOPE_ACCELERATION_RANGE_4_G=0 GYROSCOPE_ACCELERATION_RANGE_4_G value
+ * @property {number} GYROSCOPE_ACCELERATION_RANGE_8_G=1 GYROSCOPE_ACCELERATION_RANGE_8_G value
+ * @property {number} GYROSCOPE_ACCELERATION_RANGE_16_G=2 GYROSCOPE_ACCELERATION_RANGE_16_G value
+ * @property {number} GYROSCOPE_ACCELERATION_RANGE_32_G=3 GYROSCOPE_ACCELERATION_RANGE_32_G value
  */
 export const AccelerationRange = $root.AccelerationRange = (() => {
     const valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "ACCELERATION_RANGE_4_G"] = 0;
-    values[valuesById[1] = "ACCELERATION_RANGE_8_G"] = 1;
-    values[valuesById[2] = "ACCELERATION_RANGE_16_G"] = 2;
-    values[valuesById[3] = "ACCELERATION_RANGE_32_G"] = 3;
+    values[valuesById[0] = "GYROSCOPE_ACCELERATION_RANGE_4_G"] = 0;
+    values[valuesById[1] = "GYROSCOPE_ACCELERATION_RANGE_8_G"] = 1;
+    values[valuesById[2] = "GYROSCOPE_ACCELERATION_RANGE_16_G"] = 2;
+    values[valuesById[3] = "GYROSCOPE_ACCELERATION_RANGE_32_G"] = 3;
     return values;
 })();
 
@@ -7818,21 +7818,21 @@ export const AccelerationRange = $root.AccelerationRange = (() => {
  * RotationRange enum.
  * @exports RotationRange
  * @enum {number}
- * @property {number} ROTATION_RANGE_DPS_125=0 ROTATION_RANGE_DPS_125 value
- * @property {number} ROTATION_RANGE_DPS_250=1 ROTATION_RANGE_DPS_250 value
- * @property {number} ROTATION_RANGE_DPS_500=2 ROTATION_RANGE_DPS_500 value
- * @property {number} ROTATION_RANGE_DPS_1000=3 ROTATION_RANGE_DPS_1000 value
- * @property {number} ROTATION_RANGE_DPS_2000=4 ROTATION_RANGE_DPS_2000 value
- * @property {number} ROTATION_RANGE_DPS_4000=5 ROTATION_RANGE_DPS_4000 value
+ * @property {number} GYROSCOPE_ROTATION_RANGE_DPS_125=0 GYROSCOPE_ROTATION_RANGE_DPS_125 value
+ * @property {number} GYROSCOPE_ROTATION_RANGE_DPS_250=1 GYROSCOPE_ROTATION_RANGE_DPS_250 value
+ * @property {number} GYROSCOPE_ROTATION_RANGE_DPS_500=2 GYROSCOPE_ROTATION_RANGE_DPS_500 value
+ * @property {number} GYROSCOPE_ROTATION_RANGE_DPS_1000=3 GYROSCOPE_ROTATION_RANGE_DPS_1000 value
+ * @property {number} GYROSCOPE_ROTATION_RANGE_DPS_2000=4 GYROSCOPE_ROTATION_RANGE_DPS_2000 value
+ * @property {number} GYROSCOPE_ROTATION_RANGE_DPS_4000=5 GYROSCOPE_ROTATION_RANGE_DPS_4000 value
  */
 export const RotationRange = $root.RotationRange = (() => {
     const valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "ROTATION_RANGE_DPS_125"] = 0;
-    values[valuesById[1] = "ROTATION_RANGE_DPS_250"] = 1;
-    values[valuesById[2] = "ROTATION_RANGE_DPS_500"] = 2;
-    values[valuesById[3] = "ROTATION_RANGE_DPS_1000"] = 3;
-    values[valuesById[4] = "ROTATION_RANGE_DPS_2000"] = 4;
-    values[valuesById[5] = "ROTATION_RANGE_DPS_4000"] = 5;
+    values[valuesById[0] = "GYROSCOPE_ROTATION_RANGE_DPS_125"] = 0;
+    values[valuesById[1] = "GYROSCOPE_ROTATION_RANGE_DPS_250"] = 1;
+    values[valuesById[2] = "GYROSCOPE_ROTATION_RANGE_DPS_500"] = 2;
+    values[valuesById[3] = "GYROSCOPE_ROTATION_RANGE_DPS_1000"] = 3;
+    values[valuesById[4] = "GYROSCOPE_ROTATION_RANGE_DPS_2000"] = 4;
+    values[valuesById[5] = "GYROSCOPE_ROTATION_RANGE_DPS_4000"] = 5;
     return values;
 })();
 

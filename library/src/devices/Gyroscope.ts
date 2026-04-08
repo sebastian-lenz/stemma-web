@@ -28,11 +28,12 @@ export class Gyroscope extends BaseDevice<GyroscopeAddress, GyrosocopeEvents> {
   private _rotation: Vector = { x: 0, y: 0, z: 0 };
   private _temperature = 0;
 
-  private _accelerationRange = AccelerationRange.ACCELERATION_RANGE_4_G;
-  private _accelerationDataRate = DataRate.DATA_RATE_HZ_104;
+  private _accelerationRange =
+    AccelerationRange.GYROSCOPE_ACCELERATION_RANGE_4_G;
+  private _accelerationDataRate = DataRate.GYROSCOPE_DATA_RATE_HZ_104;
   private _chipset: GyroscopeChipset;
-  private _rotationRange = RotationRange.ROTATION_RANGE_DPS_250;
-  private _rotationDataRate = DataRate.DATA_RATE_HZ_104;
+  private _rotationRange = RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_250;
+  private _rotationDataRate = DataRate.GYROSCOPE_DATA_RATE_HZ_104;
 
   static readonly ADDRESSES: Array<number> = [0x6a, 0x6b];
   static readonly EVENTS: Array<string> = ["changed"];

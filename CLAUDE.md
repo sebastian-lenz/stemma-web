@@ -104,6 +104,10 @@ npm run dev     # Development mode
 2. Add a `startXxx()` method in `src/trinkey.ts`
 3. Add types in `src/devices/types.ts` (address, events)
 
+**p5.js global enum exposure (`library/src/p5/Extension.ts`):**
+
+`Extension.exposeEnums(fn, { EnumName })` copies every member of each enum directly onto the p5 `fn` object, making them plain globals in sketches (e.g. `GYROSCOPE_CHIPSET_LSM6DSOX` instead of `GyroscopeChipset.GYROSCOPE_CHIPSET_LSM6DSOX`). When documenting enum parameters on reference pages, show the bare constant names (no namespace prefix) and note that they are available as global variables.
+
 ## Supported Devices
 
 | Device        | I2C Addresses | Library | NeoPixel |

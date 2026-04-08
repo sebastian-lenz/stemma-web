@@ -48,7 +48,7 @@ Reference: https://learn.adafruit.com/lsm6dsox-and-ism330dhc-6-dof-imu
   code={`let imu;
 
 function preload() {
-  imu = startGyroscope(name?, addressOrIndex?);
+  imu = startGyroscope(name?, addressOrIndex?, chipset?);
 }`}
 />
 
@@ -108,6 +108,42 @@ function preload() {
   </table>
 </div>
 
+<div class="doc-card mb-3">
+  <p class="mb-2">
+    <span class="doc-code">chipset</span>
+    <span class="doc-badge doc-badge-type ml-2">GyroscopeChipset</span>
+    <span class="doc-badge doc-badge-type ml-2">GYROSCOPE_CHIPSET_LSM6DSOX</span
+    >
+  </p>
+  <p class="doc-p">
+    The chipset variant of the connected sensor. Use this when the board uses a
+    different LSM6DS-family chip than the default LSM6DSOX. All constants are
+    available as global variables in p5.js sketches:
+  </p>
+  <table class="w-full text-sm text-left text-gray-300">
+    <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
+      <tr>
+        <th class="py-2 pl-3 pr-4">Constant</th>
+        <th class="py-2 pl-3">Chip</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">GYROSCOPE_CHIPSET_LSM6DSOX</td>
+        <td class="py-2 pl-3">LSM6DSOX (default)</td>
+      </tr>
+      <tr class="border-b border-gray-800">
+        <td class="py-2 pl-3 pr-4 doc-code">GYROSCOPE_CHIPSET_ISM330DHCX</td>
+        <td class="py-2 pl-3">ISM330DHCX</td>
+      </tr>
+      <tr>
+        <td class="py-2 pl-3 pr-4 doc-code">GYROSCOPE_CHIPSET_LSM6DSO32</td>
+        <td class="py-2 pl-3">LSM6DSO32</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <h2 id="methods" class="doc-h2">Methods</h2>
 
 <div class="doc-card mb-3">
@@ -143,11 +179,12 @@ function preload() {
 </div>
 
 <details class="mb-3 rounded-lg border border-gray-700">
-  <summary class="cursor-pointer select-none rounded-lg px-5 py-3 text-sm text-gray-400 hover:bg-gray-800/50 hover:text-gray-200">
+  <summary
+    class="cursor-pointer select-none rounded-lg px-5 py-3 text-sm text-gray-400 hover:bg-gray-800/50 hover:text-gray-200"
+  >
     Configuration methods — ranges &amp; data rates
   </summary>
   <div class="border-t border-gray-700 p-5 flex flex-col gap-3">
-
     <div class="doc-card">
       <p class="mb-1">
         <span class="doc-code">getAccelerationDataRate()</span>
@@ -199,7 +236,9 @@ function preload() {
     <div class="doc-card">
       <p class="mb-1">
         <span class="doc-code">setAccelerationDataRate(value)</span>
-        <span class="doc-badge doc-badge-promise ml-2">Promise&lt;boolean&gt;</span>
+        <span class="doc-badge doc-badge-promise ml-2"
+          >Promise&lt;boolean&gt;</span
+        >
       </p>
       <p class="doc-p">
         Sets the accelerometer output data rate. Resolves to
@@ -214,9 +253,9 @@ function preload() {
           </tr>
         </thead>
         <tbody>
-          {#each [["DATA_RATE_SHUTDOWN", "off"], ["DATA_RATE_HZ_12_5", "12.5 Hz"], ["DATA_RATE_HZ_26", "26 Hz"], ["DATA_RATE_HZ_52", "52 Hz"], ["DATA_RATE_HZ_104", "104 Hz (default)"], ["DATA_RATE_HZ_208", "208 Hz"], ["DATA_RATE_HZ_416", "416 Hz"], ["DATA_RATE_HZ_833", "833 Hz"], ["DATA_RATE_HZ_1_66K", "1.66 kHz"], ["DATA_RATE_HZ_3_33K", "3.33 kHz"], ["DATA_RATE_HZ_6_66K", "6.66 kHz"]] as [name, rate]}
+          {#each [["GYROSCOPE_DATA_RATE_SHUTDOWN", "off"], ["GYROSCOPE_DATA_RATE_HZ_12_5", "12.5 Hz"], ["GYROSCOPE_DATA_RATE_HZ_26", "26 Hz"], ["GYROSCOPE_DATA_RATE_HZ_52", "52 Hz"], ["GYROSCOPE_DATA_RATE_HZ_104", "104 Hz (default)"], ["GYROSCOPE_DATA_RATE_HZ_208", "208 Hz"], ["GYROSCOPE_DATA_RATE_HZ_416", "416 Hz"], ["GYROSCOPE_DATA_RATE_HZ_833", "833 Hz"], ["GYROSCOPE_DATA_RATE_HZ_1_66K", "1.66 kHz"], ["GYROSCOPE_DATA_RATE_HZ_3_33K", "3.33 kHz"], ["GYROSCOPE_DATA_RATE_HZ_6_66K", "6.66 kHz"]] as [name, rate]}
             <tr class="border-b border-gray-800 last:border-0">
-              <td class="py-2 pl-3 pr-4 doc-code">DataRate.{name}</td>
+              <td class="py-2 pl-3 pr-4 doc-code">{name}</td>
               <td class="py-2 pl-3">{rate}</td>
             </tr>
           {/each}
@@ -227,7 +266,9 @@ function preload() {
     <div class="doc-card">
       <p class="mb-1">
         <span class="doc-code">setAccelerationRange(value)</span>
-        <span class="doc-badge doc-badge-promise ml-2">Promise&lt;boolean&gt;</span>
+        <span class="doc-badge doc-badge-promise ml-2"
+          >Promise&lt;boolean&gt;</span
+        >
       </p>
       <p class="doc-p">
         Sets the acceleration full-scale range. Resolves to
@@ -242,9 +283,9 @@ function preload() {
           </tr>
         </thead>
         <tbody>
-          {#each [["ACCELERATION_RANGE_4_G", "±4 g (default)"], ["ACCELERATION_RANGE_8_G", "±8 g"], ["ACCELERATION_RANGE_16_G", "±16 g"], ["ACCELERATION_RANGE_32_G", "±32 g"]] as [name, range]}
+          {#each [["GYROSCOPE_ACCELERATION_RANGE_4_G", "±4 g (default)"], ["GYROSCOPE_ACCELERATION_RANGE_8_G", "±8 g"], ["GYROSCOPE_ACCELERATION_RANGE_16_G", "±16 g"], ["GYROSCOPE_ACCELERATION_RANGE_32_G", "±32 g"]] as [name, range]}
             <tr class="border-b border-gray-800 last:border-0">
-              <td class="py-2 pl-3 pr-4 doc-code">AccelerationRange.{name}</td>
+              <td class="py-2 pl-3 pr-4 doc-code">{name}</td>
               <td class="py-2 pl-3">{range}</td>
             </tr>
           {/each}
@@ -255,7 +296,9 @@ function preload() {
     <div class="doc-card">
       <p class="mb-1">
         <span class="doc-code">setRotationDataRate(value)</span>
-        <span class="doc-badge doc-badge-promise ml-2">Promise&lt;boolean&gt;</span>
+        <span class="doc-badge doc-badge-promise ml-2"
+          >Promise&lt;boolean&gt;</span
+        >
       </p>
       <p class="doc-p">
         Sets the gyroscope output data rate. Accepts the same
@@ -268,7 +311,9 @@ function preload() {
     <div class="doc-card">
       <p class="mb-1">
         <span class="doc-code">setRotationRange(value)</span>
-        <span class="doc-badge doc-badge-promise ml-2">Promise&lt;boolean&gt;</span>
+        <span class="doc-badge doc-badge-promise ml-2"
+          >Promise&lt;boolean&gt;</span
+        >
       </p>
       <p class="doc-p">
         Sets the gyroscope full-scale range. Resolves to
@@ -283,16 +328,15 @@ function preload() {
           </tr>
         </thead>
         <tbody>
-          {#each [["ROTATION_RANGE_DPS_125", "±125 dps"], ["ROTATION_RANGE_DPS_250", "±250 dps (default)"], ["ROTATION_RANGE_DPS_500", "±500 dps"], ["ROTATION_RANGE_DPS_1000", "±1000 dps"], ["ROTATION_RANGE_DPS_2000", "±2000 dps"], ["ROTATION_RANGE_DPS_4000", "±4000 dps"]] as [name, range]}
+          {#each [["GYROSCOPE_ROTATION_RANGE_DPS_125", "±125 dps"], ["GYROSCOPE_ROTATION_RANGE_DPS_250", "±250 dps (default)"], ["GYROSCOPE_ROTATION_RANGE_DPS_500", "±500 dps"], ["GYROSCOPE_ROTATION_RANGE_DPS_1000", "±1000 dps"], ["GYROSCOPE_ROTATION_RANGE_DPS_2000", "±2000 dps"], ["GYROSCOPE_ROTATION_RANGE_DPS_4000", "±4000 dps"]] as [name, range]}
             <tr class="border-b border-gray-800 last:border-0">
-              <td class="py-2 pl-3 pr-4 doc-code">RotationRange.{name}</td>
+              <td class="py-2 pl-3 pr-4 doc-code">{name}</td>
               <td class="py-2 pl-3">{range}</td>
             </tr>
           {/each}
         </tbody>
       </table>
     </div>
-
   </div>
 </details>
 
