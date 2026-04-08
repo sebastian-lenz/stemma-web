@@ -1,6 +1,6 @@
 #pragma once
 #include "Device.h"
-#include <SensirionI2CScd4x.h>
+#include <SensirionI2cScd4x.h>
 
 class CO2SensorDevice : public Device {
 public:
