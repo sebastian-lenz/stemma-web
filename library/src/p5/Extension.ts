@@ -10,6 +10,7 @@ import { RFIDReader } from "../devices/RFIDReader";
 import { RotaryEncoder } from "../devices/RotaryEncoder";
 import { TouchSensor } from "../devices/TouchSensor";
 import { UVSensor } from "../devices/UVSensor";
+
 import {
   GyroscopeChipset,
   PressureSensorChipset,
@@ -18,6 +19,7 @@ import {
   UVSensorMode,
   UVSensorResolution,
 } from "../proto/messages";
+
 import type { BaseDevice } from "../devices/BaseDevice";
 import type { GyroscopeAddress } from "../devices/Gyroscope";
 import type { LinearEncoderAddress } from "../devices/LinearEncoder";
@@ -132,6 +134,7 @@ export class Extension {
   exposeEnums(fn: any, enums: any) {
     for (const values of Object.values<any>(enums)) {
       for (const key in values) {
+        if (/^\d/.exec(key)) continue;
         fn[key] = values[key];
       }
     }
