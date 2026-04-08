@@ -1,5 +1,6 @@
 # nanopb options for gyroscope.proto
-GyroscopeChipset  long_names: false
-DataRate          long_names: false
-AccelerationRange long_names: false
-RotationRange     long_names: false
+# Enumerations moved to device_enums.options
+GyroscopeChipset       long_names: false
+DataRate               long_names: false
+AccelerationRange      long_names: false
+RotationRange          long_names: false

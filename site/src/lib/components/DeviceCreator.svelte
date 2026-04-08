@@ -6,6 +6,12 @@
   import LinearEncoderCreator from './creation/LinearEncoderCreator.svelte';
   import TouchSensorCreator from './creation/TouchSensorCreator.svelte';
   import GyroscopeCreator from './creation/GyroscopeCreator.svelte';
+  import PressureSensorCreator from './creation/PressureSensorCreator.svelte';
+  import CO2SensorCreator from './creation/CO2SensorCreator.svelte';
+  import DistanceSensorCreator from './creation/DistanceSensorCreator.svelte';
+  import UVSensorCreator from './creation/UVSensorCreator.svelte';
+  import NFCTagCreator from './creation/NFCTagCreator.svelte';
+  import RFIDReaderCreator from './creation/RFIDReaderCreator.svelte';
 
   const DEVICE_KINDS: { kind: DeviceKind; label: string }[] = [
     { kind: 'trinkey', label: 'Trinkey (built-in)' },
@@ -14,6 +20,12 @@
     { kind: 'linear-encoder', label: 'Linear Encoder' },
     { kind: 'touch-sensor', label: 'Touch Sensor' },
     { kind: 'gyroscope', label: 'Gyroscope' },
+    { kind: 'pressure-sensor', label: 'Pressure Sensor' },
+    { kind: 'co2-sensor', label: 'CO2 Sensor' },
+    { kind: 'distance-sensor', label: 'Distance Sensor' },
+    { kind: 'uv-sensor', label: 'UV Sensor' },
+    { kind: 'nfc-tag', label: 'NFC Tag' },
+    { kind: 'rfid-reader', label: 'RFID Reader' },
   ];
 
   let selectedKind = $state<DeviceKind | ''>('');
@@ -51,6 +63,18 @@
         <TouchSensorCreator oncreated={onCreated} />
       {:else if selectedKind === 'gyroscope'}
         <GyroscopeCreator oncreated={onCreated} />
+      {:else if selectedKind === 'pressure-sensor'}
+        <PressureSensorCreator oncreated={onCreated} />
+      {:else if selectedKind === 'co2-sensor'}
+        <CO2SensorCreator oncreated={onCreated} />
+      {:else if selectedKind === 'distance-sensor'}
+        <DistanceSensorCreator oncreated={onCreated} />
+      {:else if selectedKind === 'uv-sensor'}
+        <UVSensorCreator oncreated={onCreated} />
+      {:else if selectedKind === 'nfc-tag'}
+        <NFCTagCreator oncreated={onCreated} />
+      {:else if selectedKind === 'rfid-reader'}
+        <RFIDReaderCreator oncreated={onCreated} />
       {/if}
     </div>
   {/if}

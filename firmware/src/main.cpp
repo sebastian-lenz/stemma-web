@@ -16,8 +16,8 @@ Adafruit_USBD_WebUSB usb_web;
 WEBUSB_URL_DEF(landingPage, 1 /*https*/, "sebastian-lenz.github.io/stemma-web/");
 
 // ── Framing: 2-byte big-endian length prefix + protobuf payload ───────────────
-// Increased from 64 to accommodate device state/event messages.
-static constexpr size_t MAX_MSG_SIZE = 256;
+// Increased to 4096 to accommodate NFC tag read/write payloads (VCard, email).
+static constexpr size_t MAX_MSG_SIZE = 4096;
 
 static uint8_t rx_buf[2 + MAX_MSG_SIZE];
 static size_t  rx_len = 0;
@@ -39,11 +39,13 @@ static void send_response(const Response& resp) {
 }
 
 // Process a fully-received Command.
+// cmd/resp are static to avoid stack overflow — NFC payloads can be several KB.
 static void handle_command(const uint8_t* data, uint16_t len) {
-    Command cmd = Command_init_zero;
+    static Command  cmd;
+    static Response resp;
+    cmd  = Command_init_zero;
+    resp = Response_init_zero;
     pb_istream_t stream = pb_istream_from_buffer(data, len);
-
-    Response resp = Response_init_zero;
 
     if (!pb_decode(&stream, Command_fields, &cmd)) {
         resp.id      = 0;

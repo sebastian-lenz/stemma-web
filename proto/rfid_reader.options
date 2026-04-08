@@ -1,0 +1,4 @@
+# nanopb options for rfid_reader.proto
+# 125 kHz RFID tag IDs are at most 10 hex bytes (20 hex chars) + null terminator
+RFIDReaderState.tag_id  max_size:24
+RFIDReaderData.tag_id   max_size:24

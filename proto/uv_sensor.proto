@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+// ── UVSensor messages ─────────────────────────────────────────────────────────
+
+// State returned by GetDeviceState for a UVSensor (LTR390).
+message UVSensorState {
+    uint32           value      = 1;  // ALS or UVS reading, depending on mode
+    UVSensorMode     mode       = 2;
+    UVSensorGain     gain       = 3;
+    UVSensorResolution resolution = 4;
+}
+
+// Unsolicited event — sent when a new reading is available.
+message UVSensorData {
+    uint32 value = 1;
+}
+
+// ── UVSensor enumerations ─────────────────────────────────────────────────────
+
+// Measurement mode: ambient light sensor or UV index.
+enum UVSensorMode {
+    UV_SENSOR_MODE_ALS = 0;
+    UV_SENSOR_MODE_UVS = 1;
+}
+
+// Sensor gain.
+enum UVSensorGain {
+    UV_SENSOR_GAIN_1  = 0;
+    UV_SENSOR_GAIN_3  = 1;
+    UV_SENSOR_GAIN_6  = 2;
+    UV_SENSOR_GAIN_9  = 3;
+    UV_SENSOR_GAIN_18 = 4;
+}
+
+// ADC resolution / integration time.
+enum UVSensorResolution {
+    UV_SENSOR_RESOLUTION_20_BIT = 0;
+    UV_SENSOR_RESOLUTION_19_BIT = 1;
+    UV_SENSOR_RESOLUTION_18_BIT = 2;
+    UV_SENSOR_RESOLUTION_17_BIT = 3;
+    UV_SENSOR_RESOLUTION_16_BIT = 4;
+    UV_SENSOR_RESOLUTION_13_BIT = 5;
+}

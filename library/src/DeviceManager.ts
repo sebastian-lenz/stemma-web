@@ -1,16 +1,29 @@
 import { BaseDevice } from "./devices/BaseDevice";
 import { Connection, type ConnectionEvents } from "./usb/Connection";
+import { CO2Sensor } from "./devices/CO2Sensor";
+import { DistanceSensor } from "./devices/DistanceSensor";
 import { Gyroscope } from "./devices/Gyroscope";
-import { DeviceType, GyroscopeChipset } from "./proto/messages";
 import { LinearEncoder } from "./devices/LinearEncoder";
+import { NFCTag } from "./devices/NFCTag";
 import { NeoDriver } from "./devices/NeoDriver";
+import { PressureSensor } from "./devices/PressureSensor";
+import { RFIDReader } from "./devices/RFIDReader";
 import { RotaryEncoder } from "./devices/RotaryEncoder";
 import { TouchSensor } from "./devices/TouchSensor";
 import { Trinkey } from "./devices/Trinkey";
+import { UVSensor } from "./devices/UVSensor";
+import {
+  DeviceType,
+  GyroscopeChipset,
+  PressureSensorChipset,
+} from "./proto/messages";
 import { TypedEventTarget } from "./utils/events";
+import type { CO2SensorAddress } from "./devices/CO2Sensor";
 import type { GyroscopeAddress } from "./devices/Gyroscope";
 import type { LinearEncoderAddress } from "./devices/LinearEncoder";
 import type { NeoDriverAddress } from "./devices/NeoDriver";
+import type { PressureSensorAddress } from "./devices/PressureSensor";
+import type { RFIDReaderAddress } from "./devices/RFIDReader";
 import type { Response } from "./proto/messages";
 import type { RotaryEncoderAddress } from "./devices/RotaryEncoder";
 import type { TouchSensorAddress } from "./devices/TouchSensor";
@@ -43,6 +56,26 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
     this.addEventListener("response", this._onResponse.bind(this));
   }
 
+  getCO2Sensor(
+    addressOrIndex: CO2SensorAddress | number = CO2Sensor.ADDRESSES[0],
+  ) {
+    const address = toAddress(addressOrIndex, CO2Sensor.ADDRESSES);
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_CO2_SENSOR,
+      address,
+      () => new CO2Sensor(address, this._connection),
+    );
+  }
+
+  getDistanceSensor() {
+    const address = DistanceSensor.ADDRESSES[0];
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_DISTANCE_SENSOR,
+      address,
+      () => new DistanceSensor(address, this._connection),
+    );
+  }
+
   getGyroscope(
     addressOrIndex: GyroscopeAddress | number = Gyroscope.ADDRESSES[0],
     chipset: GyroscopeChipset = GyroscopeChipset.GYROSCOPE_CHIPSET_LSM6DSOX,
@@ -68,6 +101,15 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
     );
   }
 
+  getNFCTag() {
+    const address = NFCTag.ADDRESSES[0];
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_NFC_TAG,
+      address,
+      () => new NFCTag(address, this._connection),
+    );
+  }
+
   getNeoDriver(
     addressOrIndex: NeoDriverAddress | number = NeoDriver.ADDRESSES[0],
   ) {
@@ -77,6 +119,30 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
       DeviceType.DEVICE_TYPE_NEO_DRIVER,
       address,
       () => new NeoDriver(address, this._connection),
+    );
+  }
+
+  getPressureSensor(
+    addressOrIndex: PressureSensorAddress | number = PressureSensor
+      .ADDRESSES[0],
+    chipset: PressureSensorChipset = PressureSensorChipset.PRESSURE_SENSOR_CHIPSET_LPS25,
+  ) {
+    const address = toAddress(addressOrIndex, PressureSensor.ADDRESSES);
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_PRESSURE_SENSOR,
+      address,
+      () => new PressureSensor(address, chipset, this._connection),
+    );
+  }
+
+  getRFIDReader(
+    addressOrIndex: RFIDReaderAddress | number = RFIDReader.ADDRESSES[0],
+  ) {
+    const address = toAddress(addressOrIndex, RFIDReader.ADDRESSES);
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_RFID_READER,
+      address,
+      () => new RFIDReader(address, this._connection),
     );
   }
 
@@ -109,6 +175,15 @@ export class DeviceManager extends TypedEventTarget<DeviceManagerEvents> {
       DeviceType.DEVICE_TYPE_TRINKEY,
       0,
       () => new Trinkey(this._connection),
+    );
+  }
+
+  getUVSensor() {
+    const address = UVSensor.ADDRESSES[0];
+    return this._createDevice(
+      DeviceType.DEVICE_TYPE_UV_SENSOR,
+      address,
+      () => new UVSensor(address, this._connection),
     );
   }
 

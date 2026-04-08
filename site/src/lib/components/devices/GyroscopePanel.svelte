@@ -7,39 +7,60 @@
   let acceleration = $state<Vector>({ x: 0, y: 0, z: 0 });
   let rotation = $state<Vector>({ x: 0, y: 0, z: 0 });
   let temperature = $state(0);
-  let accelRange = $state(AccelerationRange.ACCELERATION_RANGE_4_G);
-  let accelRate = $state(DataRate.DATA_RATE_HZ_104);
-  let rotRange = $state(RotationRange.ROTATION_RANGE_DPS_250);
-  let rotRate = $state(DataRate.DATA_RATE_HZ_104);
+  let accelRange = $state(AccelerationRange.GYROSCOPE_ACCELERATION_RANGE_4_G);
+  let accelRate = $state(DataRate.GYROSCOPE_DATA_RATE_HZ_104);
+  let rotRange = $state(RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_250);
+  let rotRate = $state(DataRate.GYROSCOPE_DATA_RATE_HZ_104);
 
   const ACCEL_RANGES = [
-    { value: AccelerationRange.ACCELERATION_RANGE_4_G, label: "±4 g" },
-    { value: AccelerationRange.ACCELERATION_RANGE_8_G, label: "±8 g" },
-    { value: AccelerationRange.ACCELERATION_RANGE_16_G, label: "±16 g" },
-    { value: AccelerationRange.ACCELERATION_RANGE_32_G, label: "±32 g" },
+    {
+      value: AccelerationRange.GYROSCOPE_ACCELERATION_RANGE_4_G,
+      label: "±4 g",
+    },
+    {
+      value: AccelerationRange.GYROSCOPE_ACCELERATION_RANGE_8_G,
+      label: "±8 g",
+    },
+    {
+      value: AccelerationRange.GYROSCOPE_ACCELERATION_RANGE_16_G,
+      label: "±16 g",
+    },
+    {
+      value: AccelerationRange.GYROSCOPE_ACCELERATION_RANGE_32_G,
+      label: "±32 g",
+    },
   ];
 
   const ROT_RANGES = [
-    { value: RotationRange.ROTATION_RANGE_DPS_125, label: "125 dps" },
-    { value: RotationRange.ROTATION_RANGE_DPS_250, label: "250 dps" },
-    { value: RotationRange.ROTATION_RANGE_DPS_500, label: "500 dps" },
-    { value: RotationRange.ROTATION_RANGE_DPS_1000, label: "1000 dps" },
-    { value: RotationRange.ROTATION_RANGE_DPS_2000, label: "2000 dps" },
-    { value: RotationRange.ROTATION_RANGE_DPS_4000, label: "4000 dps" },
+    { value: RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_125, label: "125 dps" },
+    { value: RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_250, label: "250 dps" },
+    { value: RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_500, label: "500 dps" },
+    {
+      value: RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_1000,
+      label: "1000 dps",
+    },
+    {
+      value: RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_2000,
+      label: "2000 dps",
+    },
+    {
+      value: RotationRange.GYROSCOPE_ROTATION_RANGE_DPS_4000,
+      label: "4000 dps",
+    },
   ];
 
   const DATA_RATES = [
-    { value: DataRate.DATA_RATE_SHUTDOWN, label: "Shutdown" },
-    { value: DataRate.DATA_RATE_HZ_12_5, label: "12.5 Hz" },
-    { value: DataRate.DATA_RATE_HZ_26, label: "26 Hz" },
-    { value: DataRate.DATA_RATE_HZ_52, label: "52 Hz" },
-    { value: DataRate.DATA_RATE_HZ_104, label: "104 Hz" },
-    { value: DataRate.DATA_RATE_HZ_208, label: "208 Hz" },
-    { value: DataRate.DATA_RATE_HZ_416, label: "416 Hz" },
-    { value: DataRate.DATA_RATE_HZ_833, label: "833 Hz" },
-    { value: DataRate.DATA_RATE_HZ_1_66K, label: "1.66 kHz" },
-    { value: DataRate.DATA_RATE_HZ_3_33K, label: "3.33 kHz" },
-    { value: DataRate.DATA_RATE_HZ_6_66K, label: "6.66 kHz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_SHUTDOWN, label: "Shutdown" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_12_5, label: "12.5 Hz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_26, label: "26 Hz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_52, label: "52 Hz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_104, label: "104 Hz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_208, label: "208 Hz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_416, label: "416 Hz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_833, label: "833 Hz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_1_66K, label: "1.66 kHz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_3_33K, label: "3.33 kHz" },
+    { value: DataRate.GYROSCOPE_DATA_RATE_HZ_6_66K, label: "6.66 kHz" },
   ];
 
   $effect(() => {

@@ -6,6 +6,12 @@
 #include "devices/LinearEncoderDevice.h"
 #include "devices/TouchSensorDevice.h"
 #include "devices/GyroscopeDevice.h"
+#include "devices/PressureSensorDevice.h"
+#include "devices/CO2SensorDevice.h"
+#include "devices/DistanceSensorDevice.h"
+#include "devices/UVSensorDevice.h"
+#include "devices/NFCTagDevice.h"
+#include "devices/RFIDReaderDevice.h"
 
 /**
  * Owns and manages all active StemmaQT I2C device instances.
@@ -55,10 +61,12 @@ public:
     /**
      * Poll all active devices. For each device that produces an event,
      * invoke the callback so the caller can send it immediately.
+     * event is static to avoid stack overflow with large NFC structs.
      */
     void pollAll(void (*sendEvent)(const Response&)) {
+        static Response event;
         for (uint8_t i = 0; i < _count; i++) {
-            Response event = Response_init_zero;
+            event = Response_init_zero;
             if (_devices[i]->poll(event)) {
                 sendEvent(event);
             }
@@ -143,6 +151,23 @@ private:
                     : GYROSCOPE_CHIPSET_LSM6DSO32;
                 return new GyroscopeDevice(addr, chipset);
             }
+            case DEVICE_TYPE_PRESSURE_SENSOR: {
+                PressureSensorChipset chipset =
+                    cmd.which_payload == DeviceCommand_start_tag
+                    ? cmd.payload.start.pressure_sensor_chipset
+                    : PRESSURE_SENSOR_CHIPSET_LPS25;
+                return new PressureSensorDevice(addr, chipset);
+            }
+            case DEVICE_TYPE_CO2_SENSOR:
+                return new CO2SensorDevice(addr);
+            case DEVICE_TYPE_DISTANCE_SENSOR:
+                return new DistanceSensorDevice(addr);
+            case DEVICE_TYPE_UV_SENSOR:
+                return new UVSensorDevice(addr);
+            case DEVICE_TYPE_NFC_TAG:
+                return new NFCTagDevice(addr);
+            case DEVICE_TYPE_RFID_READER:
+                return new RFIDReaderDevice(addr);
             default:
                 return nullptr;
         }

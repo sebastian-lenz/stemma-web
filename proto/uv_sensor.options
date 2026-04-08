@@ -1,0 +1,4 @@
+# nanopb options for uv_sensor.proto
+UVSensorMode           long_names: false
+UVSensorGain           long_names: false
+UVSensorResolution     long_names: false

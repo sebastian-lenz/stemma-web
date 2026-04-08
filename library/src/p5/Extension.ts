@@ -1,16 +1,31 @@
 import { DeviceManager } from "../DeviceManager";
 import { getP5Version } from "./utils";
+import { CO2Sensor } from "../devices/CO2Sensor";
+import { DistanceSensor } from "../devices/DistanceSensor";
 import { Gyroscope } from "../devices/Gyroscope";
-import { GyroscopeChipset } from "../proto/messages";
 import { LinearEncoder } from "../devices/LinearEncoder";
 import { NeoDriver } from "../devices/NeoDriver";
+import { PressureSensor } from "../devices/PressureSensor";
+import { RFIDReader } from "../devices/RFIDReader";
 import { RotaryEncoder } from "../devices/RotaryEncoder";
 import { TouchSensor } from "../devices/TouchSensor";
+import { UVSensor } from "../devices/UVSensor";
+import {
+  GyroscopeChipset,
+  PressureSensorChipset,
+  PressureSensorDataRate,
+  UVSensorGain,
+  UVSensorMode,
+  UVSensorResolution,
+} from "../proto/messages";
 import type { BaseDevice } from "../devices/BaseDevice";
 import type { GyroscopeAddress } from "../devices/Gyroscope";
 import type { LinearEncoderAddress } from "../devices/LinearEncoder";
+import type { NFCTag } from "../devices/NFCTag";
 import type { NeoDriverAddress } from "../devices/NeoDriver";
 import type { P5Constructor, P5Internal, P5LifecylceMap } from "./types";
+import type { PressureSensorAddress } from "../devices/PressureSensor";
+import type { RFIDReaderAddress } from "../devices/RFIDReader";
 import type { RotaryEncoderAddress } from "../devices/RotaryEncoder";
 import type { TouchSensorAddress } from "../devices/TouchSensor";
 import type { Trinkey } from "../devices/Trinkey";
@@ -34,16 +49,27 @@ export class Extension {
     lifecycles.remove = this.remove.bind(this);
 
     this.expose(fn, [
+      "startCO2Sensor",
+      "startDistanceSensor",
       "startGyroscope",
       "startLinearEncoder",
+      "startNFCTag",
       "startNeoDriver",
+      "startPressureSensor",
+      "startRFIDReader",
       "startRotaryEncoder",
       "startTouchSensor",
       "startTrinkey",
+      "startUVSensor",
     ]);
 
     this.exposeEnums(fn, {
       GyroscopeChipset,
+      PressureSensorChipset,
+      PressureSensorDataRate,
+      UVSensorGain,
+      UVSensorMode,
+      UVSensorResolution,
     });
   }
 
@@ -117,6 +143,23 @@ export class Extension {
     _listeners.length = 0;
   }
 
+  startCO2Sensor(
+    p5: P5Internal,
+    name: string | false | null = "co2",
+    addressOrIndex: number = CO2Sensor.ADDRESSES[0],
+  ): CO2Sensor | Promise<CO2Sensor> {
+    const device = this.deviceManager.getCO2Sensor(addressOrIndex);
+    return this.exposeDevice(p5, device, name, CO2Sensor.EVENTS);
+  }
+
+  startDistanceSensor(
+    p5: P5Internal,
+    name: string | false | null = "distance",
+  ): DistanceSensor | Promise<DistanceSensor> {
+    const device = this.deviceManager.getDistanceSensor();
+    return this.exposeDevice(p5, device, name, DistanceSensor.EVENTS);
+  }
+
   startGyroscope(
     p5: P5Internal,
     name: string | false | null = "gyroscope",
@@ -136,12 +179,39 @@ export class Extension {
     return this.exposeDevice(p5, device, name, LinearEncoder.EVENTS);
   }
 
+  startNFCTag(p5: P5Internal): NFCTag | Promise<NFCTag> {
+    const device = this.deviceManager.getNFCTag();
+    return this.exposeDevice(p5, device);
+  }
+
   startNeoDriver(
     p5: P5Internal,
     addressOrIndex: NeoDriverAddress = NeoDriver.ADDRESSES[0],
   ): NeoDriver | Promise<NeoDriver> {
     const device = this.deviceManager.getNeoDriver(addressOrIndex);
     return this.exposeDevice(p5, device);
+  }
+
+  startPressureSensor(
+    p5: P5Internal,
+    name: string | false | null = "pressure",
+    addressOrIndex: PressureSensorAddress = PressureSensor.ADDRESSES[0],
+    chipset: PressureSensorChipset = PressureSensorChipset.PRESSURE_SENSOR_CHIPSET_LPS25,
+  ): PressureSensor | Promise<PressureSensor> {
+    const device = this.deviceManager.getPressureSensor(
+      addressOrIndex,
+      chipset,
+    );
+    return this.exposeDevice(p5, device, name, PressureSensor.EVENTS);
+  }
+
+  startRFIDReader(
+    p5: P5Internal,
+    name: string | false | null = "rfid",
+    addressOrIndex: RFIDReaderAddress = RFIDReader.ADDRESSES[0],
+  ): RFIDReader | Promise<RFIDReader> {
+    const device = this.deviceManager.getRFIDReader(addressOrIndex);
+    return this.exposeDevice(p5, device, name, RFIDReader.EVENTS);
   }
 
   startRotaryEncoder(
@@ -165,5 +235,13 @@ export class Extension {
   startTrinkey(p5: P5Internal): Trinkey | Promise<Trinkey> {
     const device = this.deviceManager.getTrinkey();
     return this.exposeDevice(p5, device);
+  }
+
+  startUVSensor(
+    p5: P5Internal,
+    name: string | false | null = "uv",
+  ): UVSensor | Promise<UVSensor> {
+    const device = this.deviceManager.getUVSensor();
+    return this.exposeDevice(p5, device, name, UVSensor.EVENTS);
   }
 }

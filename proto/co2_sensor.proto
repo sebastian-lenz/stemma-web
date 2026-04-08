@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// ── CO2Sensor messages ────────────────────────────────────────────────────────
+
+// State returned by GetDeviceState for a CO2Sensor (SCD4x).
+message CO2SensorState {
+    uint32 co2         = 1;  // ppm
+    float  humidity    = 2;  // %RH
+    float  temperature = 3;  // °C
+}
+
+// Unsolicited event — sent when a new measurement is available (~5 s interval).
+message CO2SensorData {
+    uint32 co2         = 1;
+    float  humidity    = 2;
+    float  temperature = 3;
+}

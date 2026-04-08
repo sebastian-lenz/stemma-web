@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+// ── DistanceSensor messages ───────────────────────────────────────────────────
+
+// State returned by GetDeviceState for a DistanceSensor (VL53L0X).
+message DistanceSensorState {
+    uint32 distance = 1;  // mm; 8190 indicates out-of-range
+}
+
+// Unsolicited event — sent on every sensor poll.
+message DistanceSensorData {
+    uint32 distance = 1;
+}

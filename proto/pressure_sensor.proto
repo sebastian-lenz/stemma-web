@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// ── PressureSensor messages ───────────────────────────────────────────────────
+
+// State returned by GetDeviceState for a PressureSensor (LPS22/LPS25).
+message PressureSensorState {
+    float                  pressure  = 1;
+    float                  temperature = 2;
+    PressureSensorDataRate data_rate = 3;
+}
+
+// Unsolicited event — sent on every sensor poll.
+message PressureSensorData {
+    float pressure    = 1;
+    float temperature = 2;
+}
+
+// ── PressureSensor enumerations ───────────────────────────────────────────────
+
+// Which physical chip is soldered on the board.
+enum PressureSensorChipset {
+    PRESSURE_SENSOR_CHIPSET_UNSPECIFIED = 0;
+    PRESSURE_SENSOR_CHIPSET_LPS22       = 1;
+    PRESSURE_SENSOR_CHIPSET_LPS25       = 2;
+}
+
+// Output data rates. LPS22HB supports: ONE_SHOT, 1, 10, 25, 50, 75 Hz.
+// LPS25HB supports: ONE_SHOT, 1, 7, 12.5, 25 Hz. Unsupported rates on a
+// given chipset are mapped to the nearest available rate in the firmware.
+enum PressureSensorDataRate {
+    PRESSURE_SENSOR_DATA_RATE_ONE_SHOT = 0;
+    PRESSURE_SENSOR_DATA_RATE_1_HZ     = 1;
+    PRESSURE_SENSOR_DATA_RATE_7_HZ     = 2;
+    PRESSURE_SENSOR_DATA_RATE_10_HZ    = 3;
+    PRESSURE_SENSOR_DATA_RATE_12_5_HZ  = 4;
+    PRESSURE_SENSOR_DATA_RATE_25_HZ    = 5;
+    PRESSURE_SENSOR_DATA_RATE_50_HZ    = 6;
+    PRESSURE_SENSOR_DATA_RATE_75_HZ    = 7;
+}

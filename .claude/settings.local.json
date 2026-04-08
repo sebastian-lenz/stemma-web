@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npx pbts:*)",
       "Bash(npx pbjs:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(ls /Volumes/Daten/Projekte/OpenSource/StemmaWeb/proto/*.options)"
     ]
   }
 }

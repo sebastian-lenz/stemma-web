@@ -1,0 +1,65 @@
+# nanopb options for nfc_tag.proto
+NFCRecordType          long_names: false
+
+# NFCTagState string field limits (constrained by the 2 KB tag EEPROM)
+NFCTagState.information           max_size:256
+NFCTagState.text                  max_size:256
+NFCTagState.language              max_size:8
+NFCTagState.uri                   max_size:256
+NFCTagState.protocol              max_size:32
+NFCTagState.phone_number          max_size:24
+NFCTagState.sms_message           max_size:256
+NFCTagState.email_address         max_size:128
+NFCTagState.subject               max_size:128
+NFCTagState.email_message         max_size:512
+NFCTagState.vcard_first_name      max_size:128
+NFCTagState.vcard_name            max_size:128
+NFCTagState.vcard_title           max_size:128
+NFCTagState.vcard_organization    max_size:128
+NFCTagState.vcard_email           max_size:128
+NFCTagState.vcard_home_email      max_size:128
+NFCTagState.vcard_work_email      max_size:128
+NFCTagState.vcard_cellular_phone  max_size:64
+NFCTagState.vcard_home_phone      max_size:64
+NFCTagState.vcard_work_phone      max_size:64
+NFCTagState.vcard_address         max_size:128
+NFCTagState.vcard_home_address    max_size:128
+NFCTagState.vcard_work_address    max_size:128
+NFCTagState.vcard_url             max_size:128
+
+# Write command message string limits
+NFCWriteText.text               max_size:256
+NFCWriteText.language           max_size:8
+
+NFCWriteUri.protocol            max_size:32
+NFCWriteUri.uri                 max_size:256
+NFCWriteUri.information         max_size:256
+
+NFCWriteUnabridgedUri.uri         max_size:256
+NFCWriteUnabridgedUri.information max_size:256
+
+NFCWriteSms.phone_number        max_size:24
+NFCWriteSms.message             max_size:256
+NFCWriteSms.information         max_size:256
+
+NFCWriteEmail.email             max_size:128
+NFCWriteEmail.subject           max_size:128
+NFCWriteEmail.message           max_size:512
+NFCWriteEmail.information       max_size:256
+
+NFCWriteGeoLocation.information max_size:256
+
+NFCWriteVCard.first_name        max_size:128
+NFCWriteVCard.name              max_size:128
+NFCWriteVCard.title             max_size:128
+NFCWriteVCard.organization      max_size:128
+NFCWriteVCard.email             max_size:128
+NFCWriteVCard.home_email        max_size:128
+NFCWriteVCard.work_email        max_size:128
+NFCWriteVCard.cellular_phone    max_size:64
+NFCWriteVCard.home_phone        max_size:64
+NFCWriteVCard.work_phone        max_size:64
+NFCWriteVCard.address           max_size:128
+NFCWriteVCard.home_address      max_size:128
+NFCWriteVCard.work_address      max_size:128
+NFCWriteVCard.url               max_size:128

@@ -6,6 +6,12 @@ import "rotary_encoder.proto";
 import "linear_encoder.proto";
 import "touch_sensor.proto";
 import "gyroscope.proto";
+import "pressure_sensor.proto";
+import "co2_sensor.proto";
+import "distance_sensor.proto";
+import "uv_sensor.proto";
+import "nfc_tag.proto";
+import "rfid_reader.proto";
 import "device_type.proto";
 
 // ── Commands: host → device ──────────────────────────────────────────────────
@@ -39,12 +45,28 @@ message DeviceCommand {
         SetRotationRange     set_rot_range   = 11;
         SetAccelerationRate  set_accel_rate  = 12;
         SetRotationRate      set_rot_rate    = 13;
+        // PressureSensor configuration
+        SetPressureSensorDataRate set_pressure_rate = 14;
+        // UVSensor configuration
+        SetUVSensorGain       set_uv_gain       = 15;
+        SetUVSensorMode       set_uv_mode       = 16;
+        SetUVSensorResolution set_uv_resolution = 17;
+        // NFC Tag write commands
+        NFCWriteText         nfc_write_text          = 20;
+        NFCWriteUri          nfc_write_uri           = 21;
+        NFCWriteUnabridgedUri nfc_write_unabridged_uri = 22;
+        NFCWriteSms          nfc_write_sms           = 23;
+        NFCWriteEmail        nfc_write_email         = 24;
+        NFCWriteGeoLocation  nfc_write_geo           = 25;
+        NFCWriteVCard        nfc_write_vcard         = 26;
     }
 }
 
 message StartDevice {
     // Only populated when starting a Gyroscope
     GyroscopeChipset gyroscope_chipset = 1;
+    // Only populated when starting a PressureSensor
+    PressureSensorChipset pressure_sensor_chipset = 2;
 }
 message StopDevice     {}
 message GetDeviceState {}
@@ -59,6 +81,11 @@ message SetAccelerationRange { AccelerationRange range = 1; }
 message SetRotationRange     { RotationRange     range = 1; }
 message SetAccelerationRate  { DataRate          rate  = 1; }
 message SetRotationRate      { DataRate          rate  = 1; }
+
+message SetPressureSensorDataRate { PressureSensorDataRate rate = 1; }
+message SetUVSensorGain           { UVSensorGain           gain = 1; }
+message SetUVSensorMode           { UVSensorMode           mode = 1; }
+message SetUVSensorResolution     { UVSensorResolution     resolution = 1; }
 
 // ── Responses: device → host ─────────────────────────────────────────────────
 
@@ -79,12 +106,18 @@ message DeviceState {
     uint32     address   = 2;
     bool       connected = 3;
     oneof state {
-        TrinkeyState       trinkey        = 4;
-        NeoDriverState     neo_driver     = 5;
-        RotaryEncoderState rotary_encoder = 6;
-        LinearEncoderState linear_encoder = 7;
-        TouchSensorState   touch_sensor   = 8;
-        GyroscopeState     gyroscope      = 9;
+        CO2SensorState      co2_sensor      = 4;
+        DistanceSensorState distance_sensor = 5;
+        GyroscopeState      gyroscope       = 6;
+        LinearEncoderState  linear_encoder  = 7;
+        NeoDriverState      neo_driver      = 8;
+        NFCTagState         nfc_tag         = 9;
+        PressureSensorState pressure_sensor = 10;
+        RFIDReaderState     rfid_reader     = 11;
+        RotaryEncoderState  rotary_encoder  = 12;
+        TrinkeyState        trinkey         = 13;
+        TouchSensorState    touch_sensor    = 14;
+        UVSensorState       uv_sensor       = 15;
     }
 }
 
@@ -94,11 +127,15 @@ message DeviceEvent {
     DeviceType type    = 1;
     uint32     address = 2;
     oneof event {
-        RotaryEncoderChanged rotary_changed = 3;
-        RotaryEncoderButton  rotary_button  = 4;
-        LinearEncoderChanged linear_changed = 5;
-        TouchSensorButton    touch_button   = 6;
-        GyroscopeChanged     gyroscope_data = 7;
+        RotaryEncoderChanged rotary_changed        = 3;
+        RotaryEncoderButton  rotary_button         = 4;
+        LinearEncoderChanged linear_changed        = 5;
+        TouchSensorButton    touch_button          = 6;
+        GyroscopeChanged     gyroscope_data        = 7;
+        PressureSensorData   pressure_sensor_data  = 8;
+        CO2SensorData        co2_sensor_data       = 9;
+        DistanceSensorData   distance_sensor_data  = 10;
+        UVSensorData         uv_sensor_data        = 11;
+        RFIDReaderData       rfid_reader_data      = 12;
     }
 }
-

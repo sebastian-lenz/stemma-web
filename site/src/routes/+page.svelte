@@ -70,6 +70,42 @@
       addr: 'USB',
       href: '/reference/devices/trinkey',
     },
+    {
+      name: 'Pressure Sensor',
+      desc: 'Barometric pressure and temperature sensor. Supports LPS22 and LPS25 chipsets.',
+      addr: '0x5C–0x5D',
+      href: '/reference/devices/pressure-sensor',
+    },
+    {
+      name: 'CO2 Sensor',
+      desc: 'Photoacoustic CO₂ sensor that also measures humidity and temperature.',
+      addr: '0x62',
+      href: '/reference/devices/co2-sensor',
+    },
+    {
+      name: 'Distance Sensor',
+      desc: 'Time-of-flight laser ranging sensor. Measures distances up to 2 m.',
+      addr: '0x29',
+      href: '/reference/devices/distance-sensor',
+    },
+    {
+      name: 'UV Sensor',
+      desc: 'Ambient light and UV index sensor with selectable gain and resolution.',
+      addr: '0x53',
+      href: '/reference/devices/uv-sensor',
+    },
+    {
+      name: 'NFC Tag',
+      desc: 'I²C EEPROM that doubles as an NFC tag. Write NDEF records readable by phones.',
+      addr: '0x2D',
+      href: '/reference/devices/nfc-tag',
+    },
+    {
+      name: 'RFID Reader',
+      desc: '125 kHz RFID reader. Detects tag presence and reports tag IDs over I²C.',
+      addr: '0x30–0x37',
+      href: '/reference/devices/rfid-reader',
+    },
   ];
 
   const useCases = [

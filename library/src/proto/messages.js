@@ -279,6 +279,17 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
      * @property {ISetRotationRange|null} [setRotRange] DeviceCommand setRotRange
      * @property {ISetAccelerationRate|null} [setAccelRate] DeviceCommand setAccelRate
      * @property {ISetRotationRate|null} [setRotRate] DeviceCommand setRotRate
+     * @property {ISetPressureSensorDataRate|null} [setPressureRate] DeviceCommand setPressureRate
+     * @property {ISetUVSensorGain|null} [setUvGain] DeviceCommand setUvGain
+     * @property {ISetUVSensorMode|null} [setUvMode] DeviceCommand setUvMode
+     * @property {ISetUVSensorResolution|null} [setUvResolution] DeviceCommand setUvResolution
+     * @property {INFCWriteText|null} [nfcWriteText] DeviceCommand nfcWriteText
+     * @property {INFCWriteUri|null} [nfcWriteUri] DeviceCommand nfcWriteUri
+     * @property {INFCWriteUnabridgedUri|null} [nfcWriteUnabridgedUri] DeviceCommand nfcWriteUnabridgedUri
+     * @property {INFCWriteSms|null} [nfcWriteSms] DeviceCommand nfcWriteSms
+     * @property {INFCWriteEmail|null} [nfcWriteEmail] DeviceCommand nfcWriteEmail
+     * @property {INFCWriteGeoLocation|null} [nfcWriteGeo] DeviceCommand nfcWriteGeo
+     * @property {INFCWriteVCard|null} [nfcWriteVcard] DeviceCommand nfcWriteVcard
      */
 
     /**
@@ -400,17 +411,105 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
      */
     DeviceCommand.prototype.setRotRate = null;
 
+    /**
+     * DeviceCommand setPressureRate.
+     * @member {ISetPressureSensorDataRate|null|undefined} setPressureRate
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.setPressureRate = null;
+
+    /**
+     * DeviceCommand setUvGain.
+     * @member {ISetUVSensorGain|null|undefined} setUvGain
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.setUvGain = null;
+
+    /**
+     * DeviceCommand setUvMode.
+     * @member {ISetUVSensorMode|null|undefined} setUvMode
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.setUvMode = null;
+
+    /**
+     * DeviceCommand setUvResolution.
+     * @member {ISetUVSensorResolution|null|undefined} setUvResolution
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.setUvResolution = null;
+
+    /**
+     * DeviceCommand nfcWriteText.
+     * @member {INFCWriteText|null|undefined} nfcWriteText
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.nfcWriteText = null;
+
+    /**
+     * DeviceCommand nfcWriteUri.
+     * @member {INFCWriteUri|null|undefined} nfcWriteUri
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.nfcWriteUri = null;
+
+    /**
+     * DeviceCommand nfcWriteUnabridgedUri.
+     * @member {INFCWriteUnabridgedUri|null|undefined} nfcWriteUnabridgedUri
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.nfcWriteUnabridgedUri = null;
+
+    /**
+     * DeviceCommand nfcWriteSms.
+     * @member {INFCWriteSms|null|undefined} nfcWriteSms
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.nfcWriteSms = null;
+
+    /**
+     * DeviceCommand nfcWriteEmail.
+     * @member {INFCWriteEmail|null|undefined} nfcWriteEmail
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.nfcWriteEmail = null;
+
+    /**
+     * DeviceCommand nfcWriteGeo.
+     * @member {INFCWriteGeoLocation|null|undefined} nfcWriteGeo
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.nfcWriteGeo = null;
+
+    /**
+     * DeviceCommand nfcWriteVcard.
+     * @member {INFCWriteVCard|null|undefined} nfcWriteVcard
+     * @memberof DeviceCommand
+     * @instance
+     */
+    DeviceCommand.prototype.nfcWriteVcard = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     /**
      * DeviceCommand payload.
-     * @member {"start"|"stop"|"getState"|"setBrightness"|"setPixelColor"|"setPixelColors"|"setLength"|"setAccelRange"|"setRotRange"|"setAccelRate"|"setRotRate"|undefined} payload
+     * @member {"start"|"stop"|"getState"|"setBrightness"|"setPixelColor"|"setPixelColors"|"setLength"|"setAccelRange"|"setRotRange"|"setAccelRate"|"setRotRate"|"setPressureRate"|"setUvGain"|"setUvMode"|"setUvResolution"|"nfcWriteText"|"nfcWriteUri"|"nfcWriteUnabridgedUri"|"nfcWriteSms"|"nfcWriteEmail"|"nfcWriteGeo"|"nfcWriteVcard"|undefined} payload
      * @memberof DeviceCommand
      * @instance
      */
     Object.defineProperty(DeviceCommand.prototype, "payload", {
-        get: $util.oneOfGetter($oneOfFields = ["start", "stop", "getState", "setBrightness", "setPixelColor", "setPixelColors", "setLength", "setAccelRange", "setRotRange", "setAccelRate", "setRotRate"]),
+        get: $util.oneOfGetter($oneOfFields = ["start", "stop", "getState", "setBrightness", "setPixelColor", "setPixelColors", "setLength", "setAccelRange", "setRotRange", "setAccelRate", "setRotRate", "setPressureRate", "setUvGain", "setUvMode", "setUvResolution", "nfcWriteText", "nfcWriteUri", "nfcWriteUnabridgedUri", "nfcWriteSms", "nfcWriteEmail", "nfcWriteGeo", "nfcWriteVcard"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -464,6 +563,28 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
             $root.SetAccelerationRate.encode(message.setAccelRate, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
         if (message.setRotRate != null && Object.hasOwnProperty.call(message, "setRotRate"))
             $root.SetRotationRate.encode(message.setRotRate, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+        if (message.setPressureRate != null && Object.hasOwnProperty.call(message, "setPressureRate"))
+            $root.SetPressureSensorDataRate.encode(message.setPressureRate, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+        if (message.setUvGain != null && Object.hasOwnProperty.call(message, "setUvGain"))
+            $root.SetUVSensorGain.encode(message.setUvGain, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+        if (message.setUvMode != null && Object.hasOwnProperty.call(message, "setUvMode"))
+            $root.SetUVSensorMode.encode(message.setUvMode, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+        if (message.setUvResolution != null && Object.hasOwnProperty.call(message, "setUvResolution"))
+            $root.SetUVSensorResolution.encode(message.setUvResolution, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+        if (message.nfcWriteText != null && Object.hasOwnProperty.call(message, "nfcWriteText"))
+            $root.NFCWriteText.encode(message.nfcWriteText, writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
+        if (message.nfcWriteUri != null && Object.hasOwnProperty.call(message, "nfcWriteUri"))
+            $root.NFCWriteUri.encode(message.nfcWriteUri, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
+        if (message.nfcWriteUnabridgedUri != null && Object.hasOwnProperty.call(message, "nfcWriteUnabridgedUri"))
+            $root.NFCWriteUnabridgedUri.encode(message.nfcWriteUnabridgedUri, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
+        if (message.nfcWriteSms != null && Object.hasOwnProperty.call(message, "nfcWriteSms"))
+            $root.NFCWriteSms.encode(message.nfcWriteSms, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
+        if (message.nfcWriteEmail != null && Object.hasOwnProperty.call(message, "nfcWriteEmail"))
+            $root.NFCWriteEmail.encode(message.nfcWriteEmail, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
+        if (message.nfcWriteGeo != null && Object.hasOwnProperty.call(message, "nfcWriteGeo"))
+            $root.NFCWriteGeoLocation.encode(message.nfcWriteGeo, writer.uint32(/* id 25, wireType 2 =*/202).fork()).ldelim();
+        if (message.nfcWriteVcard != null && Object.hasOwnProperty.call(message, "nfcWriteVcard"))
+            $root.NFCWriteVCard.encode(message.nfcWriteVcard, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
         return writer;
     };
 
@@ -552,6 +673,50 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
                     message.setRotRate = $root.SetRotationRate.decode(reader, reader.uint32());
                     break;
                 }
+            case 14: {
+                    message.setPressureRate = $root.SetPressureSensorDataRate.decode(reader, reader.uint32());
+                    break;
+                }
+            case 15: {
+                    message.setUvGain = $root.SetUVSensorGain.decode(reader, reader.uint32());
+                    break;
+                }
+            case 16: {
+                    message.setUvMode = $root.SetUVSensorMode.decode(reader, reader.uint32());
+                    break;
+                }
+            case 17: {
+                    message.setUvResolution = $root.SetUVSensorResolution.decode(reader, reader.uint32());
+                    break;
+                }
+            case 20: {
+                    message.nfcWriteText = $root.NFCWriteText.decode(reader, reader.uint32());
+                    break;
+                }
+            case 21: {
+                    message.nfcWriteUri = $root.NFCWriteUri.decode(reader, reader.uint32());
+                    break;
+                }
+            case 22: {
+                    message.nfcWriteUnabridgedUri = $root.NFCWriteUnabridgedUri.decode(reader, reader.uint32());
+                    break;
+                }
+            case 23: {
+                    message.nfcWriteSms = $root.NFCWriteSms.decode(reader, reader.uint32());
+                    break;
+                }
+            case 24: {
+                    message.nfcWriteEmail = $root.NFCWriteEmail.decode(reader, reader.uint32());
+                    break;
+                }
+            case 25: {
+                    message.nfcWriteGeo = $root.NFCWriteGeoLocation.decode(reader, reader.uint32());
+                    break;
+                }
+            case 26: {
+                    message.nfcWriteVcard = $root.NFCWriteVCard.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -599,6 +764,12 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
             case 4:
             case 5:
             case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 break;
             }
         if (message.address != null && message.hasOwnProperty("address"))
@@ -712,6 +883,116 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
                     return "setRotRate." + error;
             }
         }
+        if (message.setPressureRate != null && message.hasOwnProperty("setPressureRate")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.SetPressureSensorDataRate.verify(message.setPressureRate);
+                if (error)
+                    return "setPressureRate." + error;
+            }
+        }
+        if (message.setUvGain != null && message.hasOwnProperty("setUvGain")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.SetUVSensorGain.verify(message.setUvGain);
+                if (error)
+                    return "setUvGain." + error;
+            }
+        }
+        if (message.setUvMode != null && message.hasOwnProperty("setUvMode")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.SetUVSensorMode.verify(message.setUvMode);
+                if (error)
+                    return "setUvMode." + error;
+            }
+        }
+        if (message.setUvResolution != null && message.hasOwnProperty("setUvResolution")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.SetUVSensorResolution.verify(message.setUvResolution);
+                if (error)
+                    return "setUvResolution." + error;
+            }
+        }
+        if (message.nfcWriteText != null && message.hasOwnProperty("nfcWriteText")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.NFCWriteText.verify(message.nfcWriteText);
+                if (error)
+                    return "nfcWriteText." + error;
+            }
+        }
+        if (message.nfcWriteUri != null && message.hasOwnProperty("nfcWriteUri")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.NFCWriteUri.verify(message.nfcWriteUri);
+                if (error)
+                    return "nfcWriteUri." + error;
+            }
+        }
+        if (message.nfcWriteUnabridgedUri != null && message.hasOwnProperty("nfcWriteUnabridgedUri")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.NFCWriteUnabridgedUri.verify(message.nfcWriteUnabridgedUri);
+                if (error)
+                    return "nfcWriteUnabridgedUri." + error;
+            }
+        }
+        if (message.nfcWriteSms != null && message.hasOwnProperty("nfcWriteSms")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.NFCWriteSms.verify(message.nfcWriteSms);
+                if (error)
+                    return "nfcWriteSms." + error;
+            }
+        }
+        if (message.nfcWriteEmail != null && message.hasOwnProperty("nfcWriteEmail")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.NFCWriteEmail.verify(message.nfcWriteEmail);
+                if (error)
+                    return "nfcWriteEmail." + error;
+            }
+        }
+        if (message.nfcWriteGeo != null && message.hasOwnProperty("nfcWriteGeo")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.NFCWriteGeoLocation.verify(message.nfcWriteGeo);
+                if (error)
+                    return "nfcWriteGeo." + error;
+            }
+        }
+        if (message.nfcWriteVcard != null && message.hasOwnProperty("nfcWriteVcard")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.NFCWriteVCard.verify(message.nfcWriteVcard);
+                if (error)
+                    return "nfcWriteVcard." + error;
+            }
+        }
         return null;
     };
 
@@ -761,6 +1042,30 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
         case "DEVICE_TYPE_TRINKEY":
         case 6:
             message.type = 6;
+            break;
+        case "DEVICE_TYPE_PRESSURE_SENSOR":
+        case 7:
+            message.type = 7;
+            break;
+        case "DEVICE_TYPE_CO2_SENSOR":
+        case 8:
+            message.type = 8;
+            break;
+        case "DEVICE_TYPE_DISTANCE_SENSOR":
+        case 9:
+            message.type = 9;
+            break;
+        case "DEVICE_TYPE_UV_SENSOR":
+        case 10:
+            message.type = 10;
+            break;
+        case "DEVICE_TYPE_NFC_TAG":
+        case 11:
+            message.type = 11;
+            break;
+        case "DEVICE_TYPE_RFID_READER":
+        case 12:
+            message.type = 12;
             break;
         }
         if (object.address != null)
@@ -819,6 +1124,61 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
             if (typeof object.setRotRate !== "object")
                 throw TypeError(".DeviceCommand.setRotRate: object expected");
             message.setRotRate = $root.SetRotationRate.fromObject(object.setRotRate);
+        }
+        if (object.setPressureRate != null) {
+            if (typeof object.setPressureRate !== "object")
+                throw TypeError(".DeviceCommand.setPressureRate: object expected");
+            message.setPressureRate = $root.SetPressureSensorDataRate.fromObject(object.setPressureRate);
+        }
+        if (object.setUvGain != null) {
+            if (typeof object.setUvGain !== "object")
+                throw TypeError(".DeviceCommand.setUvGain: object expected");
+            message.setUvGain = $root.SetUVSensorGain.fromObject(object.setUvGain);
+        }
+        if (object.setUvMode != null) {
+            if (typeof object.setUvMode !== "object")
+                throw TypeError(".DeviceCommand.setUvMode: object expected");
+            message.setUvMode = $root.SetUVSensorMode.fromObject(object.setUvMode);
+        }
+        if (object.setUvResolution != null) {
+            if (typeof object.setUvResolution !== "object")
+                throw TypeError(".DeviceCommand.setUvResolution: object expected");
+            message.setUvResolution = $root.SetUVSensorResolution.fromObject(object.setUvResolution);
+        }
+        if (object.nfcWriteText != null) {
+            if (typeof object.nfcWriteText !== "object")
+                throw TypeError(".DeviceCommand.nfcWriteText: object expected");
+            message.nfcWriteText = $root.NFCWriteText.fromObject(object.nfcWriteText);
+        }
+        if (object.nfcWriteUri != null) {
+            if (typeof object.nfcWriteUri !== "object")
+                throw TypeError(".DeviceCommand.nfcWriteUri: object expected");
+            message.nfcWriteUri = $root.NFCWriteUri.fromObject(object.nfcWriteUri);
+        }
+        if (object.nfcWriteUnabridgedUri != null) {
+            if (typeof object.nfcWriteUnabridgedUri !== "object")
+                throw TypeError(".DeviceCommand.nfcWriteUnabridgedUri: object expected");
+            message.nfcWriteUnabridgedUri = $root.NFCWriteUnabridgedUri.fromObject(object.nfcWriteUnabridgedUri);
+        }
+        if (object.nfcWriteSms != null) {
+            if (typeof object.nfcWriteSms !== "object")
+                throw TypeError(".DeviceCommand.nfcWriteSms: object expected");
+            message.nfcWriteSms = $root.NFCWriteSms.fromObject(object.nfcWriteSms);
+        }
+        if (object.nfcWriteEmail != null) {
+            if (typeof object.nfcWriteEmail !== "object")
+                throw TypeError(".DeviceCommand.nfcWriteEmail: object expected");
+            message.nfcWriteEmail = $root.NFCWriteEmail.fromObject(object.nfcWriteEmail);
+        }
+        if (object.nfcWriteGeo != null) {
+            if (typeof object.nfcWriteGeo !== "object")
+                throw TypeError(".DeviceCommand.nfcWriteGeo: object expected");
+            message.nfcWriteGeo = $root.NFCWriteGeoLocation.fromObject(object.nfcWriteGeo);
+        }
+        if (object.nfcWriteVcard != null) {
+            if (typeof object.nfcWriteVcard !== "object")
+                throw TypeError(".DeviceCommand.nfcWriteVcard: object expected");
+            message.nfcWriteVcard = $root.NFCWriteVCard.fromObject(object.nfcWriteVcard);
         }
         return message;
     };
@@ -899,6 +1259,61 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
             if (options.oneofs)
                 object.payload = "setRotRate";
         }
+        if (message.setPressureRate != null && message.hasOwnProperty("setPressureRate")) {
+            object.setPressureRate = $root.SetPressureSensorDataRate.toObject(message.setPressureRate, options);
+            if (options.oneofs)
+                object.payload = "setPressureRate";
+        }
+        if (message.setUvGain != null && message.hasOwnProperty("setUvGain")) {
+            object.setUvGain = $root.SetUVSensorGain.toObject(message.setUvGain, options);
+            if (options.oneofs)
+                object.payload = "setUvGain";
+        }
+        if (message.setUvMode != null && message.hasOwnProperty("setUvMode")) {
+            object.setUvMode = $root.SetUVSensorMode.toObject(message.setUvMode, options);
+            if (options.oneofs)
+                object.payload = "setUvMode";
+        }
+        if (message.setUvResolution != null && message.hasOwnProperty("setUvResolution")) {
+            object.setUvResolution = $root.SetUVSensorResolution.toObject(message.setUvResolution, options);
+            if (options.oneofs)
+                object.payload = "setUvResolution";
+        }
+        if (message.nfcWriteText != null && message.hasOwnProperty("nfcWriteText")) {
+            object.nfcWriteText = $root.NFCWriteText.toObject(message.nfcWriteText, options);
+            if (options.oneofs)
+                object.payload = "nfcWriteText";
+        }
+        if (message.nfcWriteUri != null && message.hasOwnProperty("nfcWriteUri")) {
+            object.nfcWriteUri = $root.NFCWriteUri.toObject(message.nfcWriteUri, options);
+            if (options.oneofs)
+                object.payload = "nfcWriteUri";
+        }
+        if (message.nfcWriteUnabridgedUri != null && message.hasOwnProperty("nfcWriteUnabridgedUri")) {
+            object.nfcWriteUnabridgedUri = $root.NFCWriteUnabridgedUri.toObject(message.nfcWriteUnabridgedUri, options);
+            if (options.oneofs)
+                object.payload = "nfcWriteUnabridgedUri";
+        }
+        if (message.nfcWriteSms != null && message.hasOwnProperty("nfcWriteSms")) {
+            object.nfcWriteSms = $root.NFCWriteSms.toObject(message.nfcWriteSms, options);
+            if (options.oneofs)
+                object.payload = "nfcWriteSms";
+        }
+        if (message.nfcWriteEmail != null && message.hasOwnProperty("nfcWriteEmail")) {
+            object.nfcWriteEmail = $root.NFCWriteEmail.toObject(message.nfcWriteEmail, options);
+            if (options.oneofs)
+                object.payload = "nfcWriteEmail";
+        }
+        if (message.nfcWriteGeo != null && message.hasOwnProperty("nfcWriteGeo")) {
+            object.nfcWriteGeo = $root.NFCWriteGeoLocation.toObject(message.nfcWriteGeo, options);
+            if (options.oneofs)
+                object.payload = "nfcWriteGeo";
+        }
+        if (message.nfcWriteVcard != null && message.hasOwnProperty("nfcWriteVcard")) {
+            object.nfcWriteVcard = $root.NFCWriteVCard.toObject(message.nfcWriteVcard, options);
+            if (options.oneofs)
+                object.payload = "nfcWriteVcard";
+        }
         return object;
     };
 
@@ -938,6 +1353,7 @@ export const StartDevice = $root.StartDevice = (() => {
      * @exports IStartDevice
      * @interface IStartDevice
      * @property {GyroscopeChipset|null} [gyroscopeChipset] StartDevice gyroscopeChipset
+     * @property {PressureSensorChipset|null} [pressureSensorChipset] StartDevice pressureSensorChipset
      */
 
     /**
@@ -962,6 +1378,14 @@ export const StartDevice = $root.StartDevice = (() => {
      * @instance
      */
     StartDevice.prototype.gyroscopeChipset = 0;
+
+    /**
+     * StartDevice pressureSensorChipset.
+     * @member {PressureSensorChipset} pressureSensorChipset
+     * @memberof StartDevice
+     * @instance
+     */
+    StartDevice.prototype.pressureSensorChipset = 0;
 
     /**
      * Creates a new StartDevice instance using the specified properties.
@@ -989,6 +1413,8 @@ export const StartDevice = $root.StartDevice = (() => {
             writer = $Writer.create();
         if (message.gyroscopeChipset != null && Object.hasOwnProperty.call(message, "gyroscopeChipset"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.gyroscopeChipset);
+        if (message.pressureSensorChipset != null && Object.hasOwnProperty.call(message, "pressureSensorChipset"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pressureSensorChipset);
         return writer;
     };
 
@@ -1027,6 +1453,10 @@ export const StartDevice = $root.StartDevice = (() => {
             switch (tag >>> 3) {
             case 1: {
                     message.gyroscopeChipset = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.pressureSensorChipset = reader.int32();
                     break;
                 }
             default:
@@ -1074,6 +1504,15 @@ export const StartDevice = $root.StartDevice = (() => {
             case 3:
                 break;
             }
+        if (message.pressureSensorChipset != null && message.hasOwnProperty("pressureSensorChipset"))
+            switch (message.pressureSensorChipset) {
+            default:
+                return "pressureSensorChipset: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+                break;
+            }
         return null;
     };
 
@@ -1113,6 +1552,26 @@ export const StartDevice = $root.StartDevice = (() => {
             message.gyroscopeChipset = 3;
             break;
         }
+        switch (object.pressureSensorChipset) {
+        default:
+            if (typeof object.pressureSensorChipset === "number") {
+                message.pressureSensorChipset = object.pressureSensorChipset;
+                break;
+            }
+            break;
+        case "PRESSURE_SENSOR_CHIPSET_UNSPECIFIED":
+        case 0:
+            message.pressureSensorChipset = 0;
+            break;
+        case "PRESSURE_SENSOR_CHIPSET_LPS22":
+        case 1:
+            message.pressureSensorChipset = 1;
+            break;
+        case "PRESSURE_SENSOR_CHIPSET_LPS25":
+        case 2:
+            message.pressureSensorChipset = 2;
+            break;
+        }
         return message;
     };
 
@@ -1129,10 +1588,14 @@ export const StartDevice = $root.StartDevice = (() => {
         if (!options)
             options = {};
         let object = {};
-        if (options.defaults)
+        if (options.defaults) {
             object.gyroscopeChipset = options.enums === String ? "GYROSCOPE_CHIPSET_UNSPECIFIED" : 0;
+            object.pressureSensorChipset = options.enums === String ? "PRESSURE_SENSOR_CHIPSET_UNSPECIFIED" : 0;
+        }
         if (message.gyroscopeChipset != null && message.hasOwnProperty("gyroscopeChipset"))
             object.gyroscopeChipset = options.enums === String ? $root.GyroscopeChipset[message.gyroscopeChipset] === undefined ? message.gyroscopeChipset : $root.GyroscopeChipset[message.gyroscopeChipset] : message.gyroscopeChipset;
+        if (message.pressureSensorChipset != null && message.hasOwnProperty("pressureSensorChipset"))
+            object.pressureSensorChipset = options.enums === String ? $root.PressureSensorChipset[message.pressureSensorChipset] === undefined ? message.pressureSensorChipset : $root.PressureSensorChipset[message.pressureSensorChipset] : message.pressureSensorChipset;
         return object;
     };
 
@@ -3435,6 +3898,967 @@ export const SetRotationRate = $root.SetRotationRate = (() => {
     return SetRotationRate;
 })();
 
+export const SetPressureSensorDataRate = $root.SetPressureSensorDataRate = (() => {
+
+    /**
+     * Properties of a SetPressureSensorDataRate.
+     * @exports ISetPressureSensorDataRate
+     * @interface ISetPressureSensorDataRate
+     * @property {PressureSensorDataRate|null} [rate] SetPressureSensorDataRate rate
+     */
+
+    /**
+     * Constructs a new SetPressureSensorDataRate.
+     * @exports SetPressureSensorDataRate
+     * @classdesc Represents a SetPressureSensorDataRate.
+     * @implements ISetPressureSensorDataRate
+     * @constructor
+     * @param {ISetPressureSensorDataRate=} [properties] Properties to set
+     */
+    function SetPressureSensorDataRate(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * SetPressureSensorDataRate rate.
+     * @member {PressureSensorDataRate} rate
+     * @memberof SetPressureSensorDataRate
+     * @instance
+     */
+    SetPressureSensorDataRate.prototype.rate = 0;
+
+    /**
+     * Creates a new SetPressureSensorDataRate instance using the specified properties.
+     * @function create
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {ISetPressureSensorDataRate=} [properties] Properties to set
+     * @returns {SetPressureSensorDataRate} SetPressureSensorDataRate instance
+     */
+    SetPressureSensorDataRate.create = function create(properties) {
+        return new SetPressureSensorDataRate(properties);
+    };
+
+    /**
+     * Encodes the specified SetPressureSensorDataRate message. Does not implicitly {@link SetPressureSensorDataRate.verify|verify} messages.
+     * @function encode
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {ISetPressureSensorDataRate} message SetPressureSensorDataRate message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetPressureSensorDataRate.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.rate != null && Object.hasOwnProperty.call(message, "rate"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.rate);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified SetPressureSensorDataRate message, length delimited. Does not implicitly {@link SetPressureSensorDataRate.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {ISetPressureSensorDataRate} message SetPressureSensorDataRate message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetPressureSensorDataRate.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a SetPressureSensorDataRate message from the specified reader or buffer.
+     * @function decode
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {SetPressureSensorDataRate} SetPressureSensorDataRate
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetPressureSensorDataRate.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.SetPressureSensorDataRate();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.rate = reader.int32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a SetPressureSensorDataRate message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {SetPressureSensorDataRate} SetPressureSensorDataRate
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetPressureSensorDataRate.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a SetPressureSensorDataRate message.
+     * @function verify
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    SetPressureSensorDataRate.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.rate != null && message.hasOwnProperty("rate"))
+            switch (message.rate) {
+            default:
+                return "rate: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                break;
+            }
+        return null;
+    };
+
+    /**
+     * Creates a SetPressureSensorDataRate message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {SetPressureSensorDataRate} SetPressureSensorDataRate
+     */
+    SetPressureSensorDataRate.fromObject = function fromObject(object) {
+        if (object instanceof $root.SetPressureSensorDataRate)
+            return object;
+        let message = new $root.SetPressureSensorDataRate();
+        switch (object.rate) {
+        default:
+            if (typeof object.rate === "number") {
+                message.rate = object.rate;
+                break;
+            }
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_ONE_SHOT":
+        case 0:
+            message.rate = 0;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_1_HZ":
+        case 1:
+            message.rate = 1;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_7_HZ":
+        case 2:
+            message.rate = 2;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_10_HZ":
+        case 3:
+            message.rate = 3;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_12_5_HZ":
+        case 4:
+            message.rate = 4;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_25_HZ":
+        case 5:
+            message.rate = 5;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_50_HZ":
+        case 6:
+            message.rate = 6;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_75_HZ":
+        case 7:
+            message.rate = 7;
+            break;
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a SetPressureSensorDataRate message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {SetPressureSensorDataRate} message SetPressureSensorDataRate
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    SetPressureSensorDataRate.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.rate = options.enums === String ? "PRESSURE_SENSOR_DATA_RATE_ONE_SHOT" : 0;
+        if (message.rate != null && message.hasOwnProperty("rate"))
+            object.rate = options.enums === String ? $root.PressureSensorDataRate[message.rate] === undefined ? message.rate : $root.PressureSensorDataRate[message.rate] : message.rate;
+        return object;
+    };
+
+    /**
+     * Converts this SetPressureSensorDataRate to JSON.
+     * @function toJSON
+     * @memberof SetPressureSensorDataRate
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    SetPressureSensorDataRate.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for SetPressureSensorDataRate
+     * @function getTypeUrl
+     * @memberof SetPressureSensorDataRate
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    SetPressureSensorDataRate.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/SetPressureSensorDataRate";
+    };
+
+    return SetPressureSensorDataRate;
+})();
+
+export const SetUVSensorGain = $root.SetUVSensorGain = (() => {
+
+    /**
+     * Properties of a SetUVSensorGain.
+     * @exports ISetUVSensorGain
+     * @interface ISetUVSensorGain
+     * @property {UVSensorGain|null} [gain] SetUVSensorGain gain
+     */
+
+    /**
+     * Constructs a new SetUVSensorGain.
+     * @exports SetUVSensorGain
+     * @classdesc Represents a SetUVSensorGain.
+     * @implements ISetUVSensorGain
+     * @constructor
+     * @param {ISetUVSensorGain=} [properties] Properties to set
+     */
+    function SetUVSensorGain(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * SetUVSensorGain gain.
+     * @member {UVSensorGain} gain
+     * @memberof SetUVSensorGain
+     * @instance
+     */
+    SetUVSensorGain.prototype.gain = 0;
+
+    /**
+     * Creates a new SetUVSensorGain instance using the specified properties.
+     * @function create
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {ISetUVSensorGain=} [properties] Properties to set
+     * @returns {SetUVSensorGain} SetUVSensorGain instance
+     */
+    SetUVSensorGain.create = function create(properties) {
+        return new SetUVSensorGain(properties);
+    };
+
+    /**
+     * Encodes the specified SetUVSensorGain message. Does not implicitly {@link SetUVSensorGain.verify|verify} messages.
+     * @function encode
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {ISetUVSensorGain} message SetUVSensorGain message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetUVSensorGain.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.gain != null && Object.hasOwnProperty.call(message, "gain"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.gain);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified SetUVSensorGain message, length delimited. Does not implicitly {@link SetUVSensorGain.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {ISetUVSensorGain} message SetUVSensorGain message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetUVSensorGain.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a SetUVSensorGain message from the specified reader or buffer.
+     * @function decode
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {SetUVSensorGain} SetUVSensorGain
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetUVSensorGain.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.SetUVSensorGain();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.gain = reader.int32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a SetUVSensorGain message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {SetUVSensorGain} SetUVSensorGain
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetUVSensorGain.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a SetUVSensorGain message.
+     * @function verify
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    SetUVSensorGain.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.gain != null && message.hasOwnProperty("gain"))
+            switch (message.gain) {
+            default:
+                return "gain: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                break;
+            }
+        return null;
+    };
+
+    /**
+     * Creates a SetUVSensorGain message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {SetUVSensorGain} SetUVSensorGain
+     */
+    SetUVSensorGain.fromObject = function fromObject(object) {
+        if (object instanceof $root.SetUVSensorGain)
+            return object;
+        let message = new $root.SetUVSensorGain();
+        switch (object.gain) {
+        default:
+            if (typeof object.gain === "number") {
+                message.gain = object.gain;
+                break;
+            }
+            break;
+        case "UV_SENSOR_GAIN_1":
+        case 0:
+            message.gain = 0;
+            break;
+        case "UV_SENSOR_GAIN_3":
+        case 1:
+            message.gain = 1;
+            break;
+        case "UV_SENSOR_GAIN_6":
+        case 2:
+            message.gain = 2;
+            break;
+        case "UV_SENSOR_GAIN_9":
+        case 3:
+            message.gain = 3;
+            break;
+        case "UV_SENSOR_GAIN_18":
+        case 4:
+            message.gain = 4;
+            break;
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a SetUVSensorGain message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {SetUVSensorGain} message SetUVSensorGain
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    SetUVSensorGain.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.gain = options.enums === String ? "UV_SENSOR_GAIN_1" : 0;
+        if (message.gain != null && message.hasOwnProperty("gain"))
+            object.gain = options.enums === String ? $root.UVSensorGain[message.gain] === undefined ? message.gain : $root.UVSensorGain[message.gain] : message.gain;
+        return object;
+    };
+
+    /**
+     * Converts this SetUVSensorGain to JSON.
+     * @function toJSON
+     * @memberof SetUVSensorGain
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    SetUVSensorGain.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for SetUVSensorGain
+     * @function getTypeUrl
+     * @memberof SetUVSensorGain
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    SetUVSensorGain.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/SetUVSensorGain";
+    };
+
+    return SetUVSensorGain;
+})();
+
+export const SetUVSensorMode = $root.SetUVSensorMode = (() => {
+
+    /**
+     * Properties of a SetUVSensorMode.
+     * @exports ISetUVSensorMode
+     * @interface ISetUVSensorMode
+     * @property {UVSensorMode|null} [mode] SetUVSensorMode mode
+     */
+
+    /**
+     * Constructs a new SetUVSensorMode.
+     * @exports SetUVSensorMode
+     * @classdesc Represents a SetUVSensorMode.
+     * @implements ISetUVSensorMode
+     * @constructor
+     * @param {ISetUVSensorMode=} [properties] Properties to set
+     */
+    function SetUVSensorMode(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * SetUVSensorMode mode.
+     * @member {UVSensorMode} mode
+     * @memberof SetUVSensorMode
+     * @instance
+     */
+    SetUVSensorMode.prototype.mode = 0;
+
+    /**
+     * Creates a new SetUVSensorMode instance using the specified properties.
+     * @function create
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {ISetUVSensorMode=} [properties] Properties to set
+     * @returns {SetUVSensorMode} SetUVSensorMode instance
+     */
+    SetUVSensorMode.create = function create(properties) {
+        return new SetUVSensorMode(properties);
+    };
+
+    /**
+     * Encodes the specified SetUVSensorMode message. Does not implicitly {@link SetUVSensorMode.verify|verify} messages.
+     * @function encode
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {ISetUVSensorMode} message SetUVSensorMode message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetUVSensorMode.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.mode);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified SetUVSensorMode message, length delimited. Does not implicitly {@link SetUVSensorMode.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {ISetUVSensorMode} message SetUVSensorMode message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetUVSensorMode.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a SetUVSensorMode message from the specified reader or buffer.
+     * @function decode
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {SetUVSensorMode} SetUVSensorMode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetUVSensorMode.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.SetUVSensorMode();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.mode = reader.int32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a SetUVSensorMode message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {SetUVSensorMode} SetUVSensorMode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetUVSensorMode.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a SetUVSensorMode message.
+     * @function verify
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    SetUVSensorMode.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.mode != null && message.hasOwnProperty("mode"))
+            switch (message.mode) {
+            default:
+                return "mode: enum value expected";
+            case 0:
+            case 1:
+                break;
+            }
+        return null;
+    };
+
+    /**
+     * Creates a SetUVSensorMode message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {SetUVSensorMode} SetUVSensorMode
+     */
+    SetUVSensorMode.fromObject = function fromObject(object) {
+        if (object instanceof $root.SetUVSensorMode)
+            return object;
+        let message = new $root.SetUVSensorMode();
+        switch (object.mode) {
+        default:
+            if (typeof object.mode === "number") {
+                message.mode = object.mode;
+                break;
+            }
+            break;
+        case "UV_SENSOR_MODE_ALS":
+        case 0:
+            message.mode = 0;
+            break;
+        case "UV_SENSOR_MODE_UVS":
+        case 1:
+            message.mode = 1;
+            break;
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a SetUVSensorMode message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {SetUVSensorMode} message SetUVSensorMode
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    SetUVSensorMode.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.mode = options.enums === String ? "UV_SENSOR_MODE_ALS" : 0;
+        if (message.mode != null && message.hasOwnProperty("mode"))
+            object.mode = options.enums === String ? $root.UVSensorMode[message.mode] === undefined ? message.mode : $root.UVSensorMode[message.mode] : message.mode;
+        return object;
+    };
+
+    /**
+     * Converts this SetUVSensorMode to JSON.
+     * @function toJSON
+     * @memberof SetUVSensorMode
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    SetUVSensorMode.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for SetUVSensorMode
+     * @function getTypeUrl
+     * @memberof SetUVSensorMode
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    SetUVSensorMode.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/SetUVSensorMode";
+    };
+
+    return SetUVSensorMode;
+})();
+
+export const SetUVSensorResolution = $root.SetUVSensorResolution = (() => {
+
+    /**
+     * Properties of a SetUVSensorResolution.
+     * @exports ISetUVSensorResolution
+     * @interface ISetUVSensorResolution
+     * @property {UVSensorResolution|null} [resolution] SetUVSensorResolution resolution
+     */
+
+    /**
+     * Constructs a new SetUVSensorResolution.
+     * @exports SetUVSensorResolution
+     * @classdesc Represents a SetUVSensorResolution.
+     * @implements ISetUVSensorResolution
+     * @constructor
+     * @param {ISetUVSensorResolution=} [properties] Properties to set
+     */
+    function SetUVSensorResolution(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * SetUVSensorResolution resolution.
+     * @member {UVSensorResolution} resolution
+     * @memberof SetUVSensorResolution
+     * @instance
+     */
+    SetUVSensorResolution.prototype.resolution = 0;
+
+    /**
+     * Creates a new SetUVSensorResolution instance using the specified properties.
+     * @function create
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {ISetUVSensorResolution=} [properties] Properties to set
+     * @returns {SetUVSensorResolution} SetUVSensorResolution instance
+     */
+    SetUVSensorResolution.create = function create(properties) {
+        return new SetUVSensorResolution(properties);
+    };
+
+    /**
+     * Encodes the specified SetUVSensorResolution message. Does not implicitly {@link SetUVSensorResolution.verify|verify} messages.
+     * @function encode
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {ISetUVSensorResolution} message SetUVSensorResolution message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetUVSensorResolution.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.resolution != null && Object.hasOwnProperty.call(message, "resolution"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.resolution);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified SetUVSensorResolution message, length delimited. Does not implicitly {@link SetUVSensorResolution.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {ISetUVSensorResolution} message SetUVSensorResolution message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    SetUVSensorResolution.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a SetUVSensorResolution message from the specified reader or buffer.
+     * @function decode
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {SetUVSensorResolution} SetUVSensorResolution
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetUVSensorResolution.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.SetUVSensorResolution();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.resolution = reader.int32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a SetUVSensorResolution message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {SetUVSensorResolution} SetUVSensorResolution
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    SetUVSensorResolution.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a SetUVSensorResolution message.
+     * @function verify
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    SetUVSensorResolution.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.resolution != null && message.hasOwnProperty("resolution"))
+            switch (message.resolution) {
+            default:
+                return "resolution: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                break;
+            }
+        return null;
+    };
+
+    /**
+     * Creates a SetUVSensorResolution message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {SetUVSensorResolution} SetUVSensorResolution
+     */
+    SetUVSensorResolution.fromObject = function fromObject(object) {
+        if (object instanceof $root.SetUVSensorResolution)
+            return object;
+        let message = new $root.SetUVSensorResolution();
+        switch (object.resolution) {
+        default:
+            if (typeof object.resolution === "number") {
+                message.resolution = object.resolution;
+                break;
+            }
+            break;
+        case "UV_SENSOR_RESOLUTION_20_BIT":
+        case 0:
+            message.resolution = 0;
+            break;
+        case "UV_SENSOR_RESOLUTION_19_BIT":
+        case 1:
+            message.resolution = 1;
+            break;
+        case "UV_SENSOR_RESOLUTION_18_BIT":
+        case 2:
+            message.resolution = 2;
+            break;
+        case "UV_SENSOR_RESOLUTION_17_BIT":
+        case 3:
+            message.resolution = 3;
+            break;
+        case "UV_SENSOR_RESOLUTION_16_BIT":
+        case 4:
+            message.resolution = 4;
+            break;
+        case "UV_SENSOR_RESOLUTION_13_BIT":
+        case 5:
+            message.resolution = 5;
+            break;
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a SetUVSensorResolution message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {SetUVSensorResolution} message SetUVSensorResolution
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    SetUVSensorResolution.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.resolution = options.enums === String ? "UV_SENSOR_RESOLUTION_20_BIT" : 0;
+        if (message.resolution != null && message.hasOwnProperty("resolution"))
+            object.resolution = options.enums === String ? $root.UVSensorResolution[message.resolution] === undefined ? message.resolution : $root.UVSensorResolution[message.resolution] : message.resolution;
+        return object;
+    };
+
+    /**
+     * Converts this SetUVSensorResolution to JSON.
+     * @function toJSON
+     * @memberof SetUVSensorResolution
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    SetUVSensorResolution.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for SetUVSensorResolution
+     * @function getTypeUrl
+     * @memberof SetUVSensorResolution
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    SetUVSensorResolution.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/SetUVSensorResolution";
+    };
+
+    return SetUVSensorResolution;
+})();
+
 export const Response = $root.Response = (() => {
 
     /**
@@ -3756,12 +5180,18 @@ export const DeviceState = $root.DeviceState = (() => {
      * @property {DeviceType|null} [type] DeviceState type
      * @property {number|null} [address] DeviceState address
      * @property {boolean|null} [connected] DeviceState connected
-     * @property {ITrinkeyState|null} [trinkey] DeviceState trinkey
-     * @property {INeoDriverState|null} [neoDriver] DeviceState neoDriver
-     * @property {IRotaryEncoderState|null} [rotaryEncoder] DeviceState rotaryEncoder
-     * @property {ILinearEncoderState|null} [linearEncoder] DeviceState linearEncoder
-     * @property {ITouchSensorState|null} [touchSensor] DeviceState touchSensor
+     * @property {ICO2SensorState|null} [co2Sensor] DeviceState co2Sensor
+     * @property {IDistanceSensorState|null} [distanceSensor] DeviceState distanceSensor
      * @property {IGyroscopeState|null} [gyroscope] DeviceState gyroscope
+     * @property {ILinearEncoderState|null} [linearEncoder] DeviceState linearEncoder
+     * @property {INeoDriverState|null} [neoDriver] DeviceState neoDriver
+     * @property {INFCTagState|null} [nfcTag] DeviceState nfcTag
+     * @property {IPressureSensorState|null} [pressureSensor] DeviceState pressureSensor
+     * @property {IRFIDReaderState|null} [rfidReader] DeviceState rfidReader
+     * @property {IRotaryEncoderState|null} [rotaryEncoder] DeviceState rotaryEncoder
+     * @property {ITrinkeyState|null} [trinkey] DeviceState trinkey
+     * @property {ITouchSensorState|null} [touchSensor] DeviceState touchSensor
+     * @property {IUVSensorState|null} [uvSensor] DeviceState uvSensor
      */
 
     /**
@@ -3804,28 +5234,28 @@ export const DeviceState = $root.DeviceState = (() => {
     DeviceState.prototype.connected = false;
 
     /**
-     * DeviceState trinkey.
-     * @member {ITrinkeyState|null|undefined} trinkey
+     * DeviceState co2Sensor.
+     * @member {ICO2SensorState|null|undefined} co2Sensor
      * @memberof DeviceState
      * @instance
      */
-    DeviceState.prototype.trinkey = null;
+    DeviceState.prototype.co2Sensor = null;
 
     /**
-     * DeviceState neoDriver.
-     * @member {INeoDriverState|null|undefined} neoDriver
+     * DeviceState distanceSensor.
+     * @member {IDistanceSensorState|null|undefined} distanceSensor
      * @memberof DeviceState
      * @instance
      */
-    DeviceState.prototype.neoDriver = null;
+    DeviceState.prototype.distanceSensor = null;
 
     /**
-     * DeviceState rotaryEncoder.
-     * @member {IRotaryEncoderState|null|undefined} rotaryEncoder
+     * DeviceState gyroscope.
+     * @member {IGyroscopeState|null|undefined} gyroscope
      * @memberof DeviceState
      * @instance
      */
-    DeviceState.prototype.rotaryEncoder = null;
+    DeviceState.prototype.gyroscope = null;
 
     /**
      * DeviceState linearEncoder.
@@ -3836,6 +5266,54 @@ export const DeviceState = $root.DeviceState = (() => {
     DeviceState.prototype.linearEncoder = null;
 
     /**
+     * DeviceState neoDriver.
+     * @member {INeoDriverState|null|undefined} neoDriver
+     * @memberof DeviceState
+     * @instance
+     */
+    DeviceState.prototype.neoDriver = null;
+
+    /**
+     * DeviceState nfcTag.
+     * @member {INFCTagState|null|undefined} nfcTag
+     * @memberof DeviceState
+     * @instance
+     */
+    DeviceState.prototype.nfcTag = null;
+
+    /**
+     * DeviceState pressureSensor.
+     * @member {IPressureSensorState|null|undefined} pressureSensor
+     * @memberof DeviceState
+     * @instance
+     */
+    DeviceState.prototype.pressureSensor = null;
+
+    /**
+     * DeviceState rfidReader.
+     * @member {IRFIDReaderState|null|undefined} rfidReader
+     * @memberof DeviceState
+     * @instance
+     */
+    DeviceState.prototype.rfidReader = null;
+
+    /**
+     * DeviceState rotaryEncoder.
+     * @member {IRotaryEncoderState|null|undefined} rotaryEncoder
+     * @memberof DeviceState
+     * @instance
+     */
+    DeviceState.prototype.rotaryEncoder = null;
+
+    /**
+     * DeviceState trinkey.
+     * @member {ITrinkeyState|null|undefined} trinkey
+     * @memberof DeviceState
+     * @instance
+     */
+    DeviceState.prototype.trinkey = null;
+
+    /**
      * DeviceState touchSensor.
      * @member {ITouchSensorState|null|undefined} touchSensor
      * @memberof DeviceState
@@ -3844,24 +5322,24 @@ export const DeviceState = $root.DeviceState = (() => {
     DeviceState.prototype.touchSensor = null;
 
     /**
-     * DeviceState gyroscope.
-     * @member {IGyroscopeState|null|undefined} gyroscope
+     * DeviceState uvSensor.
+     * @member {IUVSensorState|null|undefined} uvSensor
      * @memberof DeviceState
      * @instance
      */
-    DeviceState.prototype.gyroscope = null;
+    DeviceState.prototype.uvSensor = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     /**
      * DeviceState state.
-     * @member {"trinkey"|"neoDriver"|"rotaryEncoder"|"linearEncoder"|"touchSensor"|"gyroscope"|undefined} state
+     * @member {"co2Sensor"|"distanceSensor"|"gyroscope"|"linearEncoder"|"neoDriver"|"nfcTag"|"pressureSensor"|"rfidReader"|"rotaryEncoder"|"trinkey"|"touchSensor"|"uvSensor"|undefined} state
      * @memberof DeviceState
      * @instance
      */
     Object.defineProperty(DeviceState.prototype, "state", {
-        get: $util.oneOfGetter($oneOfFields = ["trinkey", "neoDriver", "rotaryEncoder", "linearEncoder", "touchSensor", "gyroscope"]),
+        get: $util.oneOfGetter($oneOfFields = ["co2Sensor", "distanceSensor", "gyroscope", "linearEncoder", "neoDriver", "nfcTag", "pressureSensor", "rfidReader", "rotaryEncoder", "trinkey", "touchSensor", "uvSensor"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -3895,18 +5373,30 @@ export const DeviceState = $root.DeviceState = (() => {
             writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.address);
         if (message.connected != null && Object.hasOwnProperty.call(message, "connected"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.connected);
-        if (message.trinkey != null && Object.hasOwnProperty.call(message, "trinkey"))
-            $root.TrinkeyState.encode(message.trinkey, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-        if (message.neoDriver != null && Object.hasOwnProperty.call(message, "neoDriver"))
-            $root.NeoDriverState.encode(message.neoDriver, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-        if (message.rotaryEncoder != null && Object.hasOwnProperty.call(message, "rotaryEncoder"))
-            $root.RotaryEncoderState.encode(message.rotaryEncoder, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+        if (message.co2Sensor != null && Object.hasOwnProperty.call(message, "co2Sensor"))
+            $root.CO2SensorState.encode(message.co2Sensor, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+        if (message.distanceSensor != null && Object.hasOwnProperty.call(message, "distanceSensor"))
+            $root.DistanceSensorState.encode(message.distanceSensor, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+        if (message.gyroscope != null && Object.hasOwnProperty.call(message, "gyroscope"))
+            $root.GyroscopeState.encode(message.gyroscope, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
         if (message.linearEncoder != null && Object.hasOwnProperty.call(message, "linearEncoder"))
             $root.LinearEncoderState.encode(message.linearEncoder, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+        if (message.neoDriver != null && Object.hasOwnProperty.call(message, "neoDriver"))
+            $root.NeoDriverState.encode(message.neoDriver, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+        if (message.nfcTag != null && Object.hasOwnProperty.call(message, "nfcTag"))
+            $root.NFCTagState.encode(message.nfcTag, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+        if (message.pressureSensor != null && Object.hasOwnProperty.call(message, "pressureSensor"))
+            $root.PressureSensorState.encode(message.pressureSensor, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+        if (message.rfidReader != null && Object.hasOwnProperty.call(message, "rfidReader"))
+            $root.RFIDReaderState.encode(message.rfidReader, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+        if (message.rotaryEncoder != null && Object.hasOwnProperty.call(message, "rotaryEncoder"))
+            $root.RotaryEncoderState.encode(message.rotaryEncoder, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+        if (message.trinkey != null && Object.hasOwnProperty.call(message, "trinkey"))
+            $root.TrinkeyState.encode(message.trinkey, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
         if (message.touchSensor != null && Object.hasOwnProperty.call(message, "touchSensor"))
-            $root.TouchSensorState.encode(message.touchSensor, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-        if (message.gyroscope != null && Object.hasOwnProperty.call(message, "gyroscope"))
-            $root.GyroscopeState.encode(message.gyroscope, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+            $root.TouchSensorState.encode(message.touchSensor, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+        if (message.uvSensor != null && Object.hasOwnProperty.call(message, "uvSensor"))
+            $root.UVSensorState.encode(message.uvSensor, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
         return writer;
     };
 
@@ -3956,15 +5446,15 @@ export const DeviceState = $root.DeviceState = (() => {
                     break;
                 }
             case 4: {
-                    message.trinkey = $root.TrinkeyState.decode(reader, reader.uint32());
+                    message.co2Sensor = $root.CO2SensorState.decode(reader, reader.uint32());
                     break;
                 }
             case 5: {
-                    message.neoDriver = $root.NeoDriverState.decode(reader, reader.uint32());
+                    message.distanceSensor = $root.DistanceSensorState.decode(reader, reader.uint32());
                     break;
                 }
             case 6: {
-                    message.rotaryEncoder = $root.RotaryEncoderState.decode(reader, reader.uint32());
+                    message.gyroscope = $root.GyroscopeState.decode(reader, reader.uint32());
                     break;
                 }
             case 7: {
@@ -3972,11 +5462,35 @@ export const DeviceState = $root.DeviceState = (() => {
                     break;
                 }
             case 8: {
-                    message.touchSensor = $root.TouchSensorState.decode(reader, reader.uint32());
+                    message.neoDriver = $root.NeoDriverState.decode(reader, reader.uint32());
                     break;
                 }
             case 9: {
-                    message.gyroscope = $root.GyroscopeState.decode(reader, reader.uint32());
+                    message.nfcTag = $root.NFCTagState.decode(reader, reader.uint32());
+                    break;
+                }
+            case 10: {
+                    message.pressureSensor = $root.PressureSensorState.decode(reader, reader.uint32());
+                    break;
+                }
+            case 11: {
+                    message.rfidReader = $root.RFIDReaderState.decode(reader, reader.uint32());
+                    break;
+                }
+            case 12: {
+                    message.rotaryEncoder = $root.RotaryEncoderState.decode(reader, reader.uint32());
+                    break;
+                }
+            case 13: {
+                    message.trinkey = $root.TrinkeyState.decode(reader, reader.uint32());
+                    break;
+                }
+            case 14: {
+                    message.touchSensor = $root.TouchSensorState.decode(reader, reader.uint32());
+                    break;
+                }
+            case 15: {
+                    message.uvSensor = $root.UVSensorState.decode(reader, reader.uint32());
                     break;
                 }
             default:
@@ -4026,6 +5540,12 @@ export const DeviceState = $root.DeviceState = (() => {
             case 4:
             case 5:
             case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 break;
             }
         if (message.address != null && message.hasOwnProperty("address"))
@@ -4034,32 +5554,32 @@ export const DeviceState = $root.DeviceState = (() => {
         if (message.connected != null && message.hasOwnProperty("connected"))
             if (typeof message.connected !== "boolean")
                 return "connected: boolean expected";
-        if (message.trinkey != null && message.hasOwnProperty("trinkey")) {
+        if (message.co2Sensor != null && message.hasOwnProperty("co2Sensor")) {
             properties.state = 1;
             {
-                let error = $root.TrinkeyState.verify(message.trinkey);
+                let error = $root.CO2SensorState.verify(message.co2Sensor);
                 if (error)
-                    return "trinkey." + error;
+                    return "co2Sensor." + error;
             }
         }
-        if (message.neoDriver != null && message.hasOwnProperty("neoDriver")) {
+        if (message.distanceSensor != null && message.hasOwnProperty("distanceSensor")) {
             if (properties.state === 1)
                 return "state: multiple values";
             properties.state = 1;
             {
-                let error = $root.NeoDriverState.verify(message.neoDriver);
+                let error = $root.DistanceSensorState.verify(message.distanceSensor);
                 if (error)
-                    return "neoDriver." + error;
+                    return "distanceSensor." + error;
             }
         }
-        if (message.rotaryEncoder != null && message.hasOwnProperty("rotaryEncoder")) {
+        if (message.gyroscope != null && message.hasOwnProperty("gyroscope")) {
             if (properties.state === 1)
                 return "state: multiple values";
             properties.state = 1;
             {
-                let error = $root.RotaryEncoderState.verify(message.rotaryEncoder);
+                let error = $root.GyroscopeState.verify(message.gyroscope);
                 if (error)
-                    return "rotaryEncoder." + error;
+                    return "gyroscope." + error;
             }
         }
         if (message.linearEncoder != null && message.hasOwnProperty("linearEncoder")) {
@@ -4072,6 +5592,66 @@ export const DeviceState = $root.DeviceState = (() => {
                     return "linearEncoder." + error;
             }
         }
+        if (message.neoDriver != null && message.hasOwnProperty("neoDriver")) {
+            if (properties.state === 1)
+                return "state: multiple values";
+            properties.state = 1;
+            {
+                let error = $root.NeoDriverState.verify(message.neoDriver);
+                if (error)
+                    return "neoDriver." + error;
+            }
+        }
+        if (message.nfcTag != null && message.hasOwnProperty("nfcTag")) {
+            if (properties.state === 1)
+                return "state: multiple values";
+            properties.state = 1;
+            {
+                let error = $root.NFCTagState.verify(message.nfcTag);
+                if (error)
+                    return "nfcTag." + error;
+            }
+        }
+        if (message.pressureSensor != null && message.hasOwnProperty("pressureSensor")) {
+            if (properties.state === 1)
+                return "state: multiple values";
+            properties.state = 1;
+            {
+                let error = $root.PressureSensorState.verify(message.pressureSensor);
+                if (error)
+                    return "pressureSensor." + error;
+            }
+        }
+        if (message.rfidReader != null && message.hasOwnProperty("rfidReader")) {
+            if (properties.state === 1)
+                return "state: multiple values";
+            properties.state = 1;
+            {
+                let error = $root.RFIDReaderState.verify(message.rfidReader);
+                if (error)
+                    return "rfidReader." + error;
+            }
+        }
+        if (message.rotaryEncoder != null && message.hasOwnProperty("rotaryEncoder")) {
+            if (properties.state === 1)
+                return "state: multiple values";
+            properties.state = 1;
+            {
+                let error = $root.RotaryEncoderState.verify(message.rotaryEncoder);
+                if (error)
+                    return "rotaryEncoder." + error;
+            }
+        }
+        if (message.trinkey != null && message.hasOwnProperty("trinkey")) {
+            if (properties.state === 1)
+                return "state: multiple values";
+            properties.state = 1;
+            {
+                let error = $root.TrinkeyState.verify(message.trinkey);
+                if (error)
+                    return "trinkey." + error;
+            }
+        }
         if (message.touchSensor != null && message.hasOwnProperty("touchSensor")) {
             if (properties.state === 1)
                 return "state: multiple values";
@@ -4082,14 +5662,14 @@ export const DeviceState = $root.DeviceState = (() => {
                     return "touchSensor." + error;
             }
         }
-        if (message.gyroscope != null && message.hasOwnProperty("gyroscope")) {
+        if (message.uvSensor != null && message.hasOwnProperty("uvSensor")) {
             if (properties.state === 1)
                 return "state: multiple values";
             properties.state = 1;
             {
-                let error = $root.GyroscopeState.verify(message.gyroscope);
+                let error = $root.UVSensorState.verify(message.uvSensor);
                 if (error)
-                    return "gyroscope." + error;
+                    return "uvSensor." + error;
             }
         }
         return null;
@@ -4142,40 +5722,94 @@ export const DeviceState = $root.DeviceState = (() => {
         case 6:
             message.type = 6;
             break;
+        case "DEVICE_TYPE_PRESSURE_SENSOR":
+        case 7:
+            message.type = 7;
+            break;
+        case "DEVICE_TYPE_CO2_SENSOR":
+        case 8:
+            message.type = 8;
+            break;
+        case "DEVICE_TYPE_DISTANCE_SENSOR":
+        case 9:
+            message.type = 9;
+            break;
+        case "DEVICE_TYPE_UV_SENSOR":
+        case 10:
+            message.type = 10;
+            break;
+        case "DEVICE_TYPE_NFC_TAG":
+        case 11:
+            message.type = 11;
+            break;
+        case "DEVICE_TYPE_RFID_READER":
+        case 12:
+            message.type = 12;
+            break;
         }
         if (object.address != null)
             message.address = object.address >>> 0;
         if (object.connected != null)
             message.connected = Boolean(object.connected);
-        if (object.trinkey != null) {
-            if (typeof object.trinkey !== "object")
-                throw TypeError(".DeviceState.trinkey: object expected");
-            message.trinkey = $root.TrinkeyState.fromObject(object.trinkey);
+        if (object.co2Sensor != null) {
+            if (typeof object.co2Sensor !== "object")
+                throw TypeError(".DeviceState.co2Sensor: object expected");
+            message.co2Sensor = $root.CO2SensorState.fromObject(object.co2Sensor);
         }
-        if (object.neoDriver != null) {
-            if (typeof object.neoDriver !== "object")
-                throw TypeError(".DeviceState.neoDriver: object expected");
-            message.neoDriver = $root.NeoDriverState.fromObject(object.neoDriver);
+        if (object.distanceSensor != null) {
+            if (typeof object.distanceSensor !== "object")
+                throw TypeError(".DeviceState.distanceSensor: object expected");
+            message.distanceSensor = $root.DistanceSensorState.fromObject(object.distanceSensor);
         }
-        if (object.rotaryEncoder != null) {
-            if (typeof object.rotaryEncoder !== "object")
-                throw TypeError(".DeviceState.rotaryEncoder: object expected");
-            message.rotaryEncoder = $root.RotaryEncoderState.fromObject(object.rotaryEncoder);
+        if (object.gyroscope != null) {
+            if (typeof object.gyroscope !== "object")
+                throw TypeError(".DeviceState.gyroscope: object expected");
+            message.gyroscope = $root.GyroscopeState.fromObject(object.gyroscope);
         }
         if (object.linearEncoder != null) {
             if (typeof object.linearEncoder !== "object")
                 throw TypeError(".DeviceState.linearEncoder: object expected");
             message.linearEncoder = $root.LinearEncoderState.fromObject(object.linearEncoder);
         }
+        if (object.neoDriver != null) {
+            if (typeof object.neoDriver !== "object")
+                throw TypeError(".DeviceState.neoDriver: object expected");
+            message.neoDriver = $root.NeoDriverState.fromObject(object.neoDriver);
+        }
+        if (object.nfcTag != null) {
+            if (typeof object.nfcTag !== "object")
+                throw TypeError(".DeviceState.nfcTag: object expected");
+            message.nfcTag = $root.NFCTagState.fromObject(object.nfcTag);
+        }
+        if (object.pressureSensor != null) {
+            if (typeof object.pressureSensor !== "object")
+                throw TypeError(".DeviceState.pressureSensor: object expected");
+            message.pressureSensor = $root.PressureSensorState.fromObject(object.pressureSensor);
+        }
+        if (object.rfidReader != null) {
+            if (typeof object.rfidReader !== "object")
+                throw TypeError(".DeviceState.rfidReader: object expected");
+            message.rfidReader = $root.RFIDReaderState.fromObject(object.rfidReader);
+        }
+        if (object.rotaryEncoder != null) {
+            if (typeof object.rotaryEncoder !== "object")
+                throw TypeError(".DeviceState.rotaryEncoder: object expected");
+            message.rotaryEncoder = $root.RotaryEncoderState.fromObject(object.rotaryEncoder);
+        }
+        if (object.trinkey != null) {
+            if (typeof object.trinkey !== "object")
+                throw TypeError(".DeviceState.trinkey: object expected");
+            message.trinkey = $root.TrinkeyState.fromObject(object.trinkey);
+        }
         if (object.touchSensor != null) {
             if (typeof object.touchSensor !== "object")
                 throw TypeError(".DeviceState.touchSensor: object expected");
             message.touchSensor = $root.TouchSensorState.fromObject(object.touchSensor);
         }
-        if (object.gyroscope != null) {
-            if (typeof object.gyroscope !== "object")
-                throw TypeError(".DeviceState.gyroscope: object expected");
-            message.gyroscope = $root.GyroscopeState.fromObject(object.gyroscope);
+        if (object.uvSensor != null) {
+            if (typeof object.uvSensor !== "object")
+                throw TypeError(".DeviceState.uvSensor: object expected");
+            message.uvSensor = $root.UVSensorState.fromObject(object.uvSensor);
         }
         return message;
     };
@@ -4204,35 +5838,65 @@ export const DeviceState = $root.DeviceState = (() => {
             object.address = message.address;
         if (message.connected != null && message.hasOwnProperty("connected"))
             object.connected = message.connected;
-        if (message.trinkey != null && message.hasOwnProperty("trinkey")) {
-            object.trinkey = $root.TrinkeyState.toObject(message.trinkey, options);
+        if (message.co2Sensor != null && message.hasOwnProperty("co2Sensor")) {
+            object.co2Sensor = $root.CO2SensorState.toObject(message.co2Sensor, options);
             if (options.oneofs)
-                object.state = "trinkey";
+                object.state = "co2Sensor";
         }
-        if (message.neoDriver != null && message.hasOwnProperty("neoDriver")) {
-            object.neoDriver = $root.NeoDriverState.toObject(message.neoDriver, options);
+        if (message.distanceSensor != null && message.hasOwnProperty("distanceSensor")) {
+            object.distanceSensor = $root.DistanceSensorState.toObject(message.distanceSensor, options);
             if (options.oneofs)
-                object.state = "neoDriver";
+                object.state = "distanceSensor";
         }
-        if (message.rotaryEncoder != null && message.hasOwnProperty("rotaryEncoder")) {
-            object.rotaryEncoder = $root.RotaryEncoderState.toObject(message.rotaryEncoder, options);
+        if (message.gyroscope != null && message.hasOwnProperty("gyroscope")) {
+            object.gyroscope = $root.GyroscopeState.toObject(message.gyroscope, options);
             if (options.oneofs)
-                object.state = "rotaryEncoder";
+                object.state = "gyroscope";
         }
         if (message.linearEncoder != null && message.hasOwnProperty("linearEncoder")) {
             object.linearEncoder = $root.LinearEncoderState.toObject(message.linearEncoder, options);
             if (options.oneofs)
                 object.state = "linearEncoder";
         }
+        if (message.neoDriver != null && message.hasOwnProperty("neoDriver")) {
+            object.neoDriver = $root.NeoDriverState.toObject(message.neoDriver, options);
+            if (options.oneofs)
+                object.state = "neoDriver";
+        }
+        if (message.nfcTag != null && message.hasOwnProperty("nfcTag")) {
+            object.nfcTag = $root.NFCTagState.toObject(message.nfcTag, options);
+            if (options.oneofs)
+                object.state = "nfcTag";
+        }
+        if (message.pressureSensor != null && message.hasOwnProperty("pressureSensor")) {
+            object.pressureSensor = $root.PressureSensorState.toObject(message.pressureSensor, options);
+            if (options.oneofs)
+                object.state = "pressureSensor";
+        }
+        if (message.rfidReader != null && message.hasOwnProperty("rfidReader")) {
+            object.rfidReader = $root.RFIDReaderState.toObject(message.rfidReader, options);
+            if (options.oneofs)
+                object.state = "rfidReader";
+        }
+        if (message.rotaryEncoder != null && message.hasOwnProperty("rotaryEncoder")) {
+            object.rotaryEncoder = $root.RotaryEncoderState.toObject(message.rotaryEncoder, options);
+            if (options.oneofs)
+                object.state = "rotaryEncoder";
+        }
+        if (message.trinkey != null && message.hasOwnProperty("trinkey")) {
+            object.trinkey = $root.TrinkeyState.toObject(message.trinkey, options);
+            if (options.oneofs)
+                object.state = "trinkey";
+        }
         if (message.touchSensor != null && message.hasOwnProperty("touchSensor")) {
             object.touchSensor = $root.TouchSensorState.toObject(message.touchSensor, options);
             if (options.oneofs)
                 object.state = "touchSensor";
         }
-        if (message.gyroscope != null && message.hasOwnProperty("gyroscope")) {
-            object.gyroscope = $root.GyroscopeState.toObject(message.gyroscope, options);
+        if (message.uvSensor != null && message.hasOwnProperty("uvSensor")) {
+            object.uvSensor = $root.UVSensorState.toObject(message.uvSensor, options);
             if (options.oneofs)
-                object.state = "gyroscope";
+                object.state = "uvSensor";
         }
         return object;
     };
@@ -4279,6 +5943,11 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
      * @property {ILinearEncoderChanged|null} [linearChanged] DeviceEvent linearChanged
      * @property {ITouchSensorButton|null} [touchButton] DeviceEvent touchButton
      * @property {IGyroscopeChanged|null} [gyroscopeData] DeviceEvent gyroscopeData
+     * @property {IPressureSensorData|null} [pressureSensorData] DeviceEvent pressureSensorData
+     * @property {ICO2SensorData|null} [co2SensorData] DeviceEvent co2SensorData
+     * @property {IDistanceSensorData|null} [distanceSensorData] DeviceEvent distanceSensorData
+     * @property {IUVSensorData|null} [uvSensorData] DeviceEvent uvSensorData
+     * @property {IRFIDReaderData|null} [rfidReaderData] DeviceEvent rfidReaderData
      */
 
     /**
@@ -4352,17 +6021,57 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
      */
     DeviceEvent.prototype.gyroscopeData = null;
 
+    /**
+     * DeviceEvent pressureSensorData.
+     * @member {IPressureSensorData|null|undefined} pressureSensorData
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.pressureSensorData = null;
+
+    /**
+     * DeviceEvent co2SensorData.
+     * @member {ICO2SensorData|null|undefined} co2SensorData
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.co2SensorData = null;
+
+    /**
+     * DeviceEvent distanceSensorData.
+     * @member {IDistanceSensorData|null|undefined} distanceSensorData
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.distanceSensorData = null;
+
+    /**
+     * DeviceEvent uvSensorData.
+     * @member {IUVSensorData|null|undefined} uvSensorData
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.uvSensorData = null;
+
+    /**
+     * DeviceEvent rfidReaderData.
+     * @member {IRFIDReaderData|null|undefined} rfidReaderData
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.rfidReaderData = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     /**
      * DeviceEvent event.
-     * @member {"rotaryChanged"|"rotaryButton"|"linearChanged"|"touchButton"|"gyroscopeData"|undefined} event
+     * @member {"rotaryChanged"|"rotaryButton"|"linearChanged"|"touchButton"|"gyroscopeData"|"pressureSensorData"|"co2SensorData"|"distanceSensorData"|"uvSensorData"|"rfidReaderData"|undefined} event
      * @memberof DeviceEvent
      * @instance
      */
     Object.defineProperty(DeviceEvent.prototype, "event", {
-        get: $util.oneOfGetter($oneOfFields = ["rotaryChanged", "rotaryButton", "linearChanged", "touchButton", "gyroscopeData"]),
+        get: $util.oneOfGetter($oneOfFields = ["rotaryChanged", "rotaryButton", "linearChanged", "touchButton", "gyroscopeData", "pressureSensorData", "co2SensorData", "distanceSensorData", "uvSensorData", "rfidReaderData"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -4404,6 +6113,16 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
             $root.TouchSensorButton.encode(message.touchButton, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
         if (message.gyroscopeData != null && Object.hasOwnProperty.call(message, "gyroscopeData"))
             $root.GyroscopeChanged.encode(message.gyroscopeData, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+        if (message.pressureSensorData != null && Object.hasOwnProperty.call(message, "pressureSensorData"))
+            $root.PressureSensorData.encode(message.pressureSensorData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+        if (message.co2SensorData != null && Object.hasOwnProperty.call(message, "co2SensorData"))
+            $root.CO2SensorData.encode(message.co2SensorData, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+        if (message.distanceSensorData != null && Object.hasOwnProperty.call(message, "distanceSensorData"))
+            $root.DistanceSensorData.encode(message.distanceSensorData, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+        if (message.uvSensorData != null && Object.hasOwnProperty.call(message, "uvSensorData"))
+            $root.UVSensorData.encode(message.uvSensorData, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+        if (message.rfidReaderData != null && Object.hasOwnProperty.call(message, "rfidReaderData"))
+            $root.RFIDReaderData.encode(message.rfidReaderData, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
         return writer;
     };
 
@@ -4468,6 +6187,26 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
                     message.gyroscopeData = $root.GyroscopeChanged.decode(reader, reader.uint32());
                     break;
                 }
+            case 8: {
+                    message.pressureSensorData = $root.PressureSensorData.decode(reader, reader.uint32());
+                    break;
+                }
+            case 9: {
+                    message.co2SensorData = $root.CO2SensorData.decode(reader, reader.uint32());
+                    break;
+                }
+            case 10: {
+                    message.distanceSensorData = $root.DistanceSensorData.decode(reader, reader.uint32());
+                    break;
+                }
+            case 11: {
+                    message.uvSensorData = $root.UVSensorData.decode(reader, reader.uint32());
+                    break;
+                }
+            case 12: {
+                    message.rfidReaderData = $root.RFIDReaderData.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -4515,6 +6254,12 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
             case 4:
             case 5:
             case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 break;
             }
         if (message.address != null && message.hasOwnProperty("address"))
@@ -4568,6 +6313,56 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
                     return "gyroscopeData." + error;
             }
         }
+        if (message.pressureSensorData != null && message.hasOwnProperty("pressureSensorData")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.PressureSensorData.verify(message.pressureSensorData);
+                if (error)
+                    return "pressureSensorData." + error;
+            }
+        }
+        if (message.co2SensorData != null && message.hasOwnProperty("co2SensorData")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.CO2SensorData.verify(message.co2SensorData);
+                if (error)
+                    return "co2SensorData." + error;
+            }
+        }
+        if (message.distanceSensorData != null && message.hasOwnProperty("distanceSensorData")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.DistanceSensorData.verify(message.distanceSensorData);
+                if (error)
+                    return "distanceSensorData." + error;
+            }
+        }
+        if (message.uvSensorData != null && message.hasOwnProperty("uvSensorData")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.UVSensorData.verify(message.uvSensorData);
+                if (error)
+                    return "uvSensorData." + error;
+            }
+        }
+        if (message.rfidReaderData != null && message.hasOwnProperty("rfidReaderData")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.RFIDReaderData.verify(message.rfidReaderData);
+                if (error)
+                    return "rfidReaderData." + error;
+            }
+        }
         return null;
     };
 
@@ -4618,6 +6413,30 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
         case 6:
             message.type = 6;
             break;
+        case "DEVICE_TYPE_PRESSURE_SENSOR":
+        case 7:
+            message.type = 7;
+            break;
+        case "DEVICE_TYPE_CO2_SENSOR":
+        case 8:
+            message.type = 8;
+            break;
+        case "DEVICE_TYPE_DISTANCE_SENSOR":
+        case 9:
+            message.type = 9;
+            break;
+        case "DEVICE_TYPE_UV_SENSOR":
+        case 10:
+            message.type = 10;
+            break;
+        case "DEVICE_TYPE_NFC_TAG":
+        case 11:
+            message.type = 11;
+            break;
+        case "DEVICE_TYPE_RFID_READER":
+        case 12:
+            message.type = 12;
+            break;
         }
         if (object.address != null)
             message.address = object.address >>> 0;
@@ -4645,6 +6464,31 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
             if (typeof object.gyroscopeData !== "object")
                 throw TypeError(".DeviceEvent.gyroscopeData: object expected");
             message.gyroscopeData = $root.GyroscopeChanged.fromObject(object.gyroscopeData);
+        }
+        if (object.pressureSensorData != null) {
+            if (typeof object.pressureSensorData !== "object")
+                throw TypeError(".DeviceEvent.pressureSensorData: object expected");
+            message.pressureSensorData = $root.PressureSensorData.fromObject(object.pressureSensorData);
+        }
+        if (object.co2SensorData != null) {
+            if (typeof object.co2SensorData !== "object")
+                throw TypeError(".DeviceEvent.co2SensorData: object expected");
+            message.co2SensorData = $root.CO2SensorData.fromObject(object.co2SensorData);
+        }
+        if (object.distanceSensorData != null) {
+            if (typeof object.distanceSensorData !== "object")
+                throw TypeError(".DeviceEvent.distanceSensorData: object expected");
+            message.distanceSensorData = $root.DistanceSensorData.fromObject(object.distanceSensorData);
+        }
+        if (object.uvSensorData != null) {
+            if (typeof object.uvSensorData !== "object")
+                throw TypeError(".DeviceEvent.uvSensorData: object expected");
+            message.uvSensorData = $root.UVSensorData.fromObject(object.uvSensorData);
+        }
+        if (object.rfidReaderData != null) {
+            if (typeof object.rfidReaderData !== "object")
+                throw TypeError(".DeviceEvent.rfidReaderData: object expected");
+            message.rfidReaderData = $root.RFIDReaderData.fromObject(object.rfidReaderData);
         }
         return message;
     };
@@ -4694,6 +6538,31 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
             object.gyroscopeData = $root.GyroscopeChanged.toObject(message.gyroscopeData, options);
             if (options.oneofs)
                 object.event = "gyroscopeData";
+        }
+        if (message.pressureSensorData != null && message.hasOwnProperty("pressureSensorData")) {
+            object.pressureSensorData = $root.PressureSensorData.toObject(message.pressureSensorData, options);
+            if (options.oneofs)
+                object.event = "pressureSensorData";
+        }
+        if (message.co2SensorData != null && message.hasOwnProperty("co2SensorData")) {
+            object.co2SensorData = $root.CO2SensorData.toObject(message.co2SensorData, options);
+            if (options.oneofs)
+                object.event = "co2SensorData";
+        }
+        if (message.distanceSensorData != null && message.hasOwnProperty("distanceSensorData")) {
+            object.distanceSensorData = $root.DistanceSensorData.toObject(message.distanceSensorData, options);
+            if (options.oneofs)
+                object.event = "distanceSensorData";
+        }
+        if (message.uvSensorData != null && message.hasOwnProperty("uvSensorData")) {
+            object.uvSensorData = $root.UVSensorData.toObject(message.uvSensorData, options);
+            if (options.oneofs)
+                object.event = "uvSensorData";
+        }
+        if (message.rfidReaderData != null && message.hasOwnProperty("rfidReaderData")) {
+            object.rfidReaderData = $root.RFIDReaderData.toObject(message.rfidReaderData, options);
+            if (options.oneofs)
+                object.event = "rfidReaderData";
         }
         return object;
     };
@@ -7836,6 +9705,5403 @@ export const RotationRange = $root.RotationRange = (() => {
     return values;
 })();
 
+export const PressureSensorState = $root.PressureSensorState = (() => {
+
+    /**
+     * Properties of a PressureSensorState.
+     * @exports IPressureSensorState
+     * @interface IPressureSensorState
+     * @property {number|null} [pressure] PressureSensorState pressure
+     * @property {number|null} [temperature] PressureSensorState temperature
+     * @property {PressureSensorDataRate|null} [dataRate] PressureSensorState dataRate
+     */
+
+    /**
+     * Constructs a new PressureSensorState.
+     * @exports PressureSensorState
+     * @classdesc Represents a PressureSensorState.
+     * @implements IPressureSensorState
+     * @constructor
+     * @param {IPressureSensorState=} [properties] Properties to set
+     */
+    function PressureSensorState(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * PressureSensorState pressure.
+     * @member {number} pressure
+     * @memberof PressureSensorState
+     * @instance
+     */
+    PressureSensorState.prototype.pressure = 0;
+
+    /**
+     * PressureSensorState temperature.
+     * @member {number} temperature
+     * @memberof PressureSensorState
+     * @instance
+     */
+    PressureSensorState.prototype.temperature = 0;
+
+    /**
+     * PressureSensorState dataRate.
+     * @member {PressureSensorDataRate} dataRate
+     * @memberof PressureSensorState
+     * @instance
+     */
+    PressureSensorState.prototype.dataRate = 0;
+
+    /**
+     * Creates a new PressureSensorState instance using the specified properties.
+     * @function create
+     * @memberof PressureSensorState
+     * @static
+     * @param {IPressureSensorState=} [properties] Properties to set
+     * @returns {PressureSensorState} PressureSensorState instance
+     */
+    PressureSensorState.create = function create(properties) {
+        return new PressureSensorState(properties);
+    };
+
+    /**
+     * Encodes the specified PressureSensorState message. Does not implicitly {@link PressureSensorState.verify|verify} messages.
+     * @function encode
+     * @memberof PressureSensorState
+     * @static
+     * @param {IPressureSensorState} message PressureSensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PressureSensorState.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.pressure != null && Object.hasOwnProperty.call(message, "pressure"))
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.pressure);
+        if (message.temperature != null && Object.hasOwnProperty.call(message, "temperature"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.temperature);
+        if (message.dataRate != null && Object.hasOwnProperty.call(message, "dataRate"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.dataRate);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PressureSensorState message, length delimited. Does not implicitly {@link PressureSensorState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PressureSensorState
+     * @static
+     * @param {IPressureSensorState} message PressureSensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PressureSensorState.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a PressureSensorState message from the specified reader or buffer.
+     * @function decode
+     * @memberof PressureSensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PressureSensorState} PressureSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PressureSensorState.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.PressureSensorState();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.pressure = reader.float();
+                    break;
+                }
+            case 2: {
+                    message.temperature = reader.float();
+                    break;
+                }
+            case 3: {
+                    message.dataRate = reader.int32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a PressureSensorState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PressureSensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PressureSensorState} PressureSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PressureSensorState.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PressureSensorState message.
+     * @function verify
+     * @memberof PressureSensorState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PressureSensorState.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.pressure != null && message.hasOwnProperty("pressure"))
+            if (typeof message.pressure !== "number")
+                return "pressure: number expected";
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            if (typeof message.temperature !== "number")
+                return "temperature: number expected";
+        if (message.dataRate != null && message.hasOwnProperty("dataRate"))
+            switch (message.dataRate) {
+            default:
+                return "dataRate: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                break;
+            }
+        return null;
+    };
+
+    /**
+     * Creates a PressureSensorState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PressureSensorState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PressureSensorState} PressureSensorState
+     */
+    PressureSensorState.fromObject = function fromObject(object) {
+        if (object instanceof $root.PressureSensorState)
+            return object;
+        let message = new $root.PressureSensorState();
+        if (object.pressure != null)
+            message.pressure = Number(object.pressure);
+        if (object.temperature != null)
+            message.temperature = Number(object.temperature);
+        switch (object.dataRate) {
+        default:
+            if (typeof object.dataRate === "number") {
+                message.dataRate = object.dataRate;
+                break;
+            }
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_ONE_SHOT":
+        case 0:
+            message.dataRate = 0;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_1_HZ":
+        case 1:
+            message.dataRate = 1;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_7_HZ":
+        case 2:
+            message.dataRate = 2;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_10_HZ":
+        case 3:
+            message.dataRate = 3;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_12_5_HZ":
+        case 4:
+            message.dataRate = 4;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_25_HZ":
+        case 5:
+            message.dataRate = 5;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_50_HZ":
+        case 6:
+            message.dataRate = 6;
+            break;
+        case "PRESSURE_SENSOR_DATA_RATE_75_HZ":
+        case 7:
+            message.dataRate = 7;
+            break;
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PressureSensorState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PressureSensorState
+     * @static
+     * @param {PressureSensorState} message PressureSensorState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PressureSensorState.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.pressure = 0;
+            object.temperature = 0;
+            object.dataRate = options.enums === String ? "PRESSURE_SENSOR_DATA_RATE_ONE_SHOT" : 0;
+        }
+        if (message.pressure != null && message.hasOwnProperty("pressure"))
+            object.pressure = options.json && !isFinite(message.pressure) ? String(message.pressure) : message.pressure;
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            object.temperature = options.json && !isFinite(message.temperature) ? String(message.temperature) : message.temperature;
+        if (message.dataRate != null && message.hasOwnProperty("dataRate"))
+            object.dataRate = options.enums === String ? $root.PressureSensorDataRate[message.dataRate] === undefined ? message.dataRate : $root.PressureSensorDataRate[message.dataRate] : message.dataRate;
+        return object;
+    };
+
+    /**
+     * Converts this PressureSensorState to JSON.
+     * @function toJSON
+     * @memberof PressureSensorState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PressureSensorState.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for PressureSensorState
+     * @function getTypeUrl
+     * @memberof PressureSensorState
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    PressureSensorState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/PressureSensorState";
+    };
+
+    return PressureSensorState;
+})();
+
+export const PressureSensorData = $root.PressureSensorData = (() => {
+
+    /**
+     * Properties of a PressureSensorData.
+     * @exports IPressureSensorData
+     * @interface IPressureSensorData
+     * @property {number|null} [pressure] PressureSensorData pressure
+     * @property {number|null} [temperature] PressureSensorData temperature
+     */
+
+    /**
+     * Constructs a new PressureSensorData.
+     * @exports PressureSensorData
+     * @classdesc Represents a PressureSensorData.
+     * @implements IPressureSensorData
+     * @constructor
+     * @param {IPressureSensorData=} [properties] Properties to set
+     */
+    function PressureSensorData(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * PressureSensorData pressure.
+     * @member {number} pressure
+     * @memberof PressureSensorData
+     * @instance
+     */
+    PressureSensorData.prototype.pressure = 0;
+
+    /**
+     * PressureSensorData temperature.
+     * @member {number} temperature
+     * @memberof PressureSensorData
+     * @instance
+     */
+    PressureSensorData.prototype.temperature = 0;
+
+    /**
+     * Creates a new PressureSensorData instance using the specified properties.
+     * @function create
+     * @memberof PressureSensorData
+     * @static
+     * @param {IPressureSensorData=} [properties] Properties to set
+     * @returns {PressureSensorData} PressureSensorData instance
+     */
+    PressureSensorData.create = function create(properties) {
+        return new PressureSensorData(properties);
+    };
+
+    /**
+     * Encodes the specified PressureSensorData message. Does not implicitly {@link PressureSensorData.verify|verify} messages.
+     * @function encode
+     * @memberof PressureSensorData
+     * @static
+     * @param {IPressureSensorData} message PressureSensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PressureSensorData.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.pressure != null && Object.hasOwnProperty.call(message, "pressure"))
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.pressure);
+        if (message.temperature != null && Object.hasOwnProperty.call(message, "temperature"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.temperature);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PressureSensorData message, length delimited. Does not implicitly {@link PressureSensorData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PressureSensorData
+     * @static
+     * @param {IPressureSensorData} message PressureSensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PressureSensorData.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a PressureSensorData message from the specified reader or buffer.
+     * @function decode
+     * @memberof PressureSensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PressureSensorData} PressureSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PressureSensorData.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.PressureSensorData();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.pressure = reader.float();
+                    break;
+                }
+            case 2: {
+                    message.temperature = reader.float();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a PressureSensorData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PressureSensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PressureSensorData} PressureSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PressureSensorData.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PressureSensorData message.
+     * @function verify
+     * @memberof PressureSensorData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PressureSensorData.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.pressure != null && message.hasOwnProperty("pressure"))
+            if (typeof message.pressure !== "number")
+                return "pressure: number expected";
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            if (typeof message.temperature !== "number")
+                return "temperature: number expected";
+        return null;
+    };
+
+    /**
+     * Creates a PressureSensorData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PressureSensorData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PressureSensorData} PressureSensorData
+     */
+    PressureSensorData.fromObject = function fromObject(object) {
+        if (object instanceof $root.PressureSensorData)
+            return object;
+        let message = new $root.PressureSensorData();
+        if (object.pressure != null)
+            message.pressure = Number(object.pressure);
+        if (object.temperature != null)
+            message.temperature = Number(object.temperature);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PressureSensorData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PressureSensorData
+     * @static
+     * @param {PressureSensorData} message PressureSensorData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PressureSensorData.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.pressure = 0;
+            object.temperature = 0;
+        }
+        if (message.pressure != null && message.hasOwnProperty("pressure"))
+            object.pressure = options.json && !isFinite(message.pressure) ? String(message.pressure) : message.pressure;
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            object.temperature = options.json && !isFinite(message.temperature) ? String(message.temperature) : message.temperature;
+        return object;
+    };
+
+    /**
+     * Converts this PressureSensorData to JSON.
+     * @function toJSON
+     * @memberof PressureSensorData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PressureSensorData.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for PressureSensorData
+     * @function getTypeUrl
+     * @memberof PressureSensorData
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    PressureSensorData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/PressureSensorData";
+    };
+
+    return PressureSensorData;
+})();
+
+/**
+ * PressureSensorChipset enum.
+ * @exports PressureSensorChipset
+ * @enum {number}
+ * @property {number} PRESSURE_SENSOR_CHIPSET_UNSPECIFIED=0 PRESSURE_SENSOR_CHIPSET_UNSPECIFIED value
+ * @property {number} PRESSURE_SENSOR_CHIPSET_LPS22=1 PRESSURE_SENSOR_CHIPSET_LPS22 value
+ * @property {number} PRESSURE_SENSOR_CHIPSET_LPS25=2 PRESSURE_SENSOR_CHIPSET_LPS25 value
+ */
+export const PressureSensorChipset = $root.PressureSensorChipset = (() => {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "PRESSURE_SENSOR_CHIPSET_UNSPECIFIED"] = 0;
+    values[valuesById[1] = "PRESSURE_SENSOR_CHIPSET_LPS22"] = 1;
+    values[valuesById[2] = "PRESSURE_SENSOR_CHIPSET_LPS25"] = 2;
+    return values;
+})();
+
+/**
+ * PressureSensorDataRate enum.
+ * @exports PressureSensorDataRate
+ * @enum {number}
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_ONE_SHOT=0 PRESSURE_SENSOR_DATA_RATE_ONE_SHOT value
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_1_HZ=1 PRESSURE_SENSOR_DATA_RATE_1_HZ value
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_7_HZ=2 PRESSURE_SENSOR_DATA_RATE_7_HZ value
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_10_HZ=3 PRESSURE_SENSOR_DATA_RATE_10_HZ value
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_12_5_HZ=4 PRESSURE_SENSOR_DATA_RATE_12_5_HZ value
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_25_HZ=5 PRESSURE_SENSOR_DATA_RATE_25_HZ value
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_50_HZ=6 PRESSURE_SENSOR_DATA_RATE_50_HZ value
+ * @property {number} PRESSURE_SENSOR_DATA_RATE_75_HZ=7 PRESSURE_SENSOR_DATA_RATE_75_HZ value
+ */
+export const PressureSensorDataRate = $root.PressureSensorDataRate = (() => {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "PRESSURE_SENSOR_DATA_RATE_ONE_SHOT"] = 0;
+    values[valuesById[1] = "PRESSURE_SENSOR_DATA_RATE_1_HZ"] = 1;
+    values[valuesById[2] = "PRESSURE_SENSOR_DATA_RATE_7_HZ"] = 2;
+    values[valuesById[3] = "PRESSURE_SENSOR_DATA_RATE_10_HZ"] = 3;
+    values[valuesById[4] = "PRESSURE_SENSOR_DATA_RATE_12_5_HZ"] = 4;
+    values[valuesById[5] = "PRESSURE_SENSOR_DATA_RATE_25_HZ"] = 5;
+    values[valuesById[6] = "PRESSURE_SENSOR_DATA_RATE_50_HZ"] = 6;
+    values[valuesById[7] = "PRESSURE_SENSOR_DATA_RATE_75_HZ"] = 7;
+    return values;
+})();
+
+export const CO2SensorState = $root.CO2SensorState = (() => {
+
+    /**
+     * Properties of a CO2SensorState.
+     * @exports ICO2SensorState
+     * @interface ICO2SensorState
+     * @property {number|null} [co2] CO2SensorState co2
+     * @property {number|null} [humidity] CO2SensorState humidity
+     * @property {number|null} [temperature] CO2SensorState temperature
+     */
+
+    /**
+     * Constructs a new CO2SensorState.
+     * @exports CO2SensorState
+     * @classdesc Represents a CO2SensorState.
+     * @implements ICO2SensorState
+     * @constructor
+     * @param {ICO2SensorState=} [properties] Properties to set
+     */
+    function CO2SensorState(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * CO2SensorState co2.
+     * @member {number} co2
+     * @memberof CO2SensorState
+     * @instance
+     */
+    CO2SensorState.prototype.co2 = 0;
+
+    /**
+     * CO2SensorState humidity.
+     * @member {number} humidity
+     * @memberof CO2SensorState
+     * @instance
+     */
+    CO2SensorState.prototype.humidity = 0;
+
+    /**
+     * CO2SensorState temperature.
+     * @member {number} temperature
+     * @memberof CO2SensorState
+     * @instance
+     */
+    CO2SensorState.prototype.temperature = 0;
+
+    /**
+     * Creates a new CO2SensorState instance using the specified properties.
+     * @function create
+     * @memberof CO2SensorState
+     * @static
+     * @param {ICO2SensorState=} [properties] Properties to set
+     * @returns {CO2SensorState} CO2SensorState instance
+     */
+    CO2SensorState.create = function create(properties) {
+        return new CO2SensorState(properties);
+    };
+
+    /**
+     * Encodes the specified CO2SensorState message. Does not implicitly {@link CO2SensorState.verify|verify} messages.
+     * @function encode
+     * @memberof CO2SensorState
+     * @static
+     * @param {ICO2SensorState} message CO2SensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    CO2SensorState.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.co2 != null && Object.hasOwnProperty.call(message, "co2"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.co2);
+        if (message.humidity != null && Object.hasOwnProperty.call(message, "humidity"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.humidity);
+        if (message.temperature != null && Object.hasOwnProperty.call(message, "temperature"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.temperature);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified CO2SensorState message, length delimited. Does not implicitly {@link CO2SensorState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof CO2SensorState
+     * @static
+     * @param {ICO2SensorState} message CO2SensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    CO2SensorState.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a CO2SensorState message from the specified reader or buffer.
+     * @function decode
+     * @memberof CO2SensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {CO2SensorState} CO2SensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    CO2SensorState.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.CO2SensorState();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.co2 = reader.uint32();
+                    break;
+                }
+            case 2: {
+                    message.humidity = reader.float();
+                    break;
+                }
+            case 3: {
+                    message.temperature = reader.float();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a CO2SensorState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof CO2SensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {CO2SensorState} CO2SensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    CO2SensorState.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a CO2SensorState message.
+     * @function verify
+     * @memberof CO2SensorState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    CO2SensorState.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.co2 != null && message.hasOwnProperty("co2"))
+            if (!$util.isInteger(message.co2))
+                return "co2: integer expected";
+        if (message.humidity != null && message.hasOwnProperty("humidity"))
+            if (typeof message.humidity !== "number")
+                return "humidity: number expected";
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            if (typeof message.temperature !== "number")
+                return "temperature: number expected";
+        return null;
+    };
+
+    /**
+     * Creates a CO2SensorState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof CO2SensorState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {CO2SensorState} CO2SensorState
+     */
+    CO2SensorState.fromObject = function fromObject(object) {
+        if (object instanceof $root.CO2SensorState)
+            return object;
+        let message = new $root.CO2SensorState();
+        if (object.co2 != null)
+            message.co2 = object.co2 >>> 0;
+        if (object.humidity != null)
+            message.humidity = Number(object.humidity);
+        if (object.temperature != null)
+            message.temperature = Number(object.temperature);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a CO2SensorState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof CO2SensorState
+     * @static
+     * @param {CO2SensorState} message CO2SensorState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    CO2SensorState.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.co2 = 0;
+            object.humidity = 0;
+            object.temperature = 0;
+        }
+        if (message.co2 != null && message.hasOwnProperty("co2"))
+            object.co2 = message.co2;
+        if (message.humidity != null && message.hasOwnProperty("humidity"))
+            object.humidity = options.json && !isFinite(message.humidity) ? String(message.humidity) : message.humidity;
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            object.temperature = options.json && !isFinite(message.temperature) ? String(message.temperature) : message.temperature;
+        return object;
+    };
+
+    /**
+     * Converts this CO2SensorState to JSON.
+     * @function toJSON
+     * @memberof CO2SensorState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    CO2SensorState.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for CO2SensorState
+     * @function getTypeUrl
+     * @memberof CO2SensorState
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    CO2SensorState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/CO2SensorState";
+    };
+
+    return CO2SensorState;
+})();
+
+export const CO2SensorData = $root.CO2SensorData = (() => {
+
+    /**
+     * Properties of a CO2SensorData.
+     * @exports ICO2SensorData
+     * @interface ICO2SensorData
+     * @property {number|null} [co2] CO2SensorData co2
+     * @property {number|null} [humidity] CO2SensorData humidity
+     * @property {number|null} [temperature] CO2SensorData temperature
+     */
+
+    /**
+     * Constructs a new CO2SensorData.
+     * @exports CO2SensorData
+     * @classdesc Represents a CO2SensorData.
+     * @implements ICO2SensorData
+     * @constructor
+     * @param {ICO2SensorData=} [properties] Properties to set
+     */
+    function CO2SensorData(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * CO2SensorData co2.
+     * @member {number} co2
+     * @memberof CO2SensorData
+     * @instance
+     */
+    CO2SensorData.prototype.co2 = 0;
+
+    /**
+     * CO2SensorData humidity.
+     * @member {number} humidity
+     * @memberof CO2SensorData
+     * @instance
+     */
+    CO2SensorData.prototype.humidity = 0;
+
+    /**
+     * CO2SensorData temperature.
+     * @member {number} temperature
+     * @memberof CO2SensorData
+     * @instance
+     */
+    CO2SensorData.prototype.temperature = 0;
+
+    /**
+     * Creates a new CO2SensorData instance using the specified properties.
+     * @function create
+     * @memberof CO2SensorData
+     * @static
+     * @param {ICO2SensorData=} [properties] Properties to set
+     * @returns {CO2SensorData} CO2SensorData instance
+     */
+    CO2SensorData.create = function create(properties) {
+        return new CO2SensorData(properties);
+    };
+
+    /**
+     * Encodes the specified CO2SensorData message. Does not implicitly {@link CO2SensorData.verify|verify} messages.
+     * @function encode
+     * @memberof CO2SensorData
+     * @static
+     * @param {ICO2SensorData} message CO2SensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    CO2SensorData.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.co2 != null && Object.hasOwnProperty.call(message, "co2"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.co2);
+        if (message.humidity != null && Object.hasOwnProperty.call(message, "humidity"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.humidity);
+        if (message.temperature != null && Object.hasOwnProperty.call(message, "temperature"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.temperature);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified CO2SensorData message, length delimited. Does not implicitly {@link CO2SensorData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof CO2SensorData
+     * @static
+     * @param {ICO2SensorData} message CO2SensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    CO2SensorData.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a CO2SensorData message from the specified reader or buffer.
+     * @function decode
+     * @memberof CO2SensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {CO2SensorData} CO2SensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    CO2SensorData.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.CO2SensorData();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.co2 = reader.uint32();
+                    break;
+                }
+            case 2: {
+                    message.humidity = reader.float();
+                    break;
+                }
+            case 3: {
+                    message.temperature = reader.float();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a CO2SensorData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof CO2SensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {CO2SensorData} CO2SensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    CO2SensorData.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a CO2SensorData message.
+     * @function verify
+     * @memberof CO2SensorData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    CO2SensorData.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.co2 != null && message.hasOwnProperty("co2"))
+            if (!$util.isInteger(message.co2))
+                return "co2: integer expected";
+        if (message.humidity != null && message.hasOwnProperty("humidity"))
+            if (typeof message.humidity !== "number")
+                return "humidity: number expected";
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            if (typeof message.temperature !== "number")
+                return "temperature: number expected";
+        return null;
+    };
+
+    /**
+     * Creates a CO2SensorData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof CO2SensorData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {CO2SensorData} CO2SensorData
+     */
+    CO2SensorData.fromObject = function fromObject(object) {
+        if (object instanceof $root.CO2SensorData)
+            return object;
+        let message = new $root.CO2SensorData();
+        if (object.co2 != null)
+            message.co2 = object.co2 >>> 0;
+        if (object.humidity != null)
+            message.humidity = Number(object.humidity);
+        if (object.temperature != null)
+            message.temperature = Number(object.temperature);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a CO2SensorData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof CO2SensorData
+     * @static
+     * @param {CO2SensorData} message CO2SensorData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    CO2SensorData.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.co2 = 0;
+            object.humidity = 0;
+            object.temperature = 0;
+        }
+        if (message.co2 != null && message.hasOwnProperty("co2"))
+            object.co2 = message.co2;
+        if (message.humidity != null && message.hasOwnProperty("humidity"))
+            object.humidity = options.json && !isFinite(message.humidity) ? String(message.humidity) : message.humidity;
+        if (message.temperature != null && message.hasOwnProperty("temperature"))
+            object.temperature = options.json && !isFinite(message.temperature) ? String(message.temperature) : message.temperature;
+        return object;
+    };
+
+    /**
+     * Converts this CO2SensorData to JSON.
+     * @function toJSON
+     * @memberof CO2SensorData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    CO2SensorData.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for CO2SensorData
+     * @function getTypeUrl
+     * @memberof CO2SensorData
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    CO2SensorData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/CO2SensorData";
+    };
+
+    return CO2SensorData;
+})();
+
+export const DistanceSensorState = $root.DistanceSensorState = (() => {
+
+    /**
+     * Properties of a DistanceSensorState.
+     * @exports IDistanceSensorState
+     * @interface IDistanceSensorState
+     * @property {number|null} [distance] DistanceSensorState distance
+     */
+
+    /**
+     * Constructs a new DistanceSensorState.
+     * @exports DistanceSensorState
+     * @classdesc Represents a DistanceSensorState.
+     * @implements IDistanceSensorState
+     * @constructor
+     * @param {IDistanceSensorState=} [properties] Properties to set
+     */
+    function DistanceSensorState(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * DistanceSensorState distance.
+     * @member {number} distance
+     * @memberof DistanceSensorState
+     * @instance
+     */
+    DistanceSensorState.prototype.distance = 0;
+
+    /**
+     * Creates a new DistanceSensorState instance using the specified properties.
+     * @function create
+     * @memberof DistanceSensorState
+     * @static
+     * @param {IDistanceSensorState=} [properties] Properties to set
+     * @returns {DistanceSensorState} DistanceSensorState instance
+     */
+    DistanceSensorState.create = function create(properties) {
+        return new DistanceSensorState(properties);
+    };
+
+    /**
+     * Encodes the specified DistanceSensorState message. Does not implicitly {@link DistanceSensorState.verify|verify} messages.
+     * @function encode
+     * @memberof DistanceSensorState
+     * @static
+     * @param {IDistanceSensorState} message DistanceSensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    DistanceSensorState.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.distance);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified DistanceSensorState message, length delimited. Does not implicitly {@link DistanceSensorState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof DistanceSensorState
+     * @static
+     * @param {IDistanceSensorState} message DistanceSensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    DistanceSensorState.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a DistanceSensorState message from the specified reader or buffer.
+     * @function decode
+     * @memberof DistanceSensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {DistanceSensorState} DistanceSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    DistanceSensorState.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.DistanceSensorState();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.distance = reader.uint32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a DistanceSensorState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof DistanceSensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {DistanceSensorState} DistanceSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    DistanceSensorState.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a DistanceSensorState message.
+     * @function verify
+     * @memberof DistanceSensorState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    DistanceSensorState.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.distance != null && message.hasOwnProperty("distance"))
+            if (!$util.isInteger(message.distance))
+                return "distance: integer expected";
+        return null;
+    };
+
+    /**
+     * Creates a DistanceSensorState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof DistanceSensorState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {DistanceSensorState} DistanceSensorState
+     */
+    DistanceSensorState.fromObject = function fromObject(object) {
+        if (object instanceof $root.DistanceSensorState)
+            return object;
+        let message = new $root.DistanceSensorState();
+        if (object.distance != null)
+            message.distance = object.distance >>> 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a DistanceSensorState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof DistanceSensorState
+     * @static
+     * @param {DistanceSensorState} message DistanceSensorState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    DistanceSensorState.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.distance = 0;
+        if (message.distance != null && message.hasOwnProperty("distance"))
+            object.distance = message.distance;
+        return object;
+    };
+
+    /**
+     * Converts this DistanceSensorState to JSON.
+     * @function toJSON
+     * @memberof DistanceSensorState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    DistanceSensorState.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for DistanceSensorState
+     * @function getTypeUrl
+     * @memberof DistanceSensorState
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    DistanceSensorState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/DistanceSensorState";
+    };
+
+    return DistanceSensorState;
+})();
+
+export const DistanceSensorData = $root.DistanceSensorData = (() => {
+
+    /**
+     * Properties of a DistanceSensorData.
+     * @exports IDistanceSensorData
+     * @interface IDistanceSensorData
+     * @property {number|null} [distance] DistanceSensorData distance
+     */
+
+    /**
+     * Constructs a new DistanceSensorData.
+     * @exports DistanceSensorData
+     * @classdesc Represents a DistanceSensorData.
+     * @implements IDistanceSensorData
+     * @constructor
+     * @param {IDistanceSensorData=} [properties] Properties to set
+     */
+    function DistanceSensorData(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * DistanceSensorData distance.
+     * @member {number} distance
+     * @memberof DistanceSensorData
+     * @instance
+     */
+    DistanceSensorData.prototype.distance = 0;
+
+    /**
+     * Creates a new DistanceSensorData instance using the specified properties.
+     * @function create
+     * @memberof DistanceSensorData
+     * @static
+     * @param {IDistanceSensorData=} [properties] Properties to set
+     * @returns {DistanceSensorData} DistanceSensorData instance
+     */
+    DistanceSensorData.create = function create(properties) {
+        return new DistanceSensorData(properties);
+    };
+
+    /**
+     * Encodes the specified DistanceSensorData message. Does not implicitly {@link DistanceSensorData.verify|verify} messages.
+     * @function encode
+     * @memberof DistanceSensorData
+     * @static
+     * @param {IDistanceSensorData} message DistanceSensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    DistanceSensorData.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.distance != null && Object.hasOwnProperty.call(message, "distance"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.distance);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified DistanceSensorData message, length delimited. Does not implicitly {@link DistanceSensorData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof DistanceSensorData
+     * @static
+     * @param {IDistanceSensorData} message DistanceSensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    DistanceSensorData.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a DistanceSensorData message from the specified reader or buffer.
+     * @function decode
+     * @memberof DistanceSensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {DistanceSensorData} DistanceSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    DistanceSensorData.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.DistanceSensorData();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.distance = reader.uint32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a DistanceSensorData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof DistanceSensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {DistanceSensorData} DistanceSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    DistanceSensorData.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a DistanceSensorData message.
+     * @function verify
+     * @memberof DistanceSensorData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    DistanceSensorData.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.distance != null && message.hasOwnProperty("distance"))
+            if (!$util.isInteger(message.distance))
+                return "distance: integer expected";
+        return null;
+    };
+
+    /**
+     * Creates a DistanceSensorData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof DistanceSensorData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {DistanceSensorData} DistanceSensorData
+     */
+    DistanceSensorData.fromObject = function fromObject(object) {
+        if (object instanceof $root.DistanceSensorData)
+            return object;
+        let message = new $root.DistanceSensorData();
+        if (object.distance != null)
+            message.distance = object.distance >>> 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a DistanceSensorData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof DistanceSensorData
+     * @static
+     * @param {DistanceSensorData} message DistanceSensorData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    DistanceSensorData.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.distance = 0;
+        if (message.distance != null && message.hasOwnProperty("distance"))
+            object.distance = message.distance;
+        return object;
+    };
+
+    /**
+     * Converts this DistanceSensorData to JSON.
+     * @function toJSON
+     * @memberof DistanceSensorData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    DistanceSensorData.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for DistanceSensorData
+     * @function getTypeUrl
+     * @memberof DistanceSensorData
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    DistanceSensorData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/DistanceSensorData";
+    };
+
+    return DistanceSensorData;
+})();
+
+export const UVSensorState = $root.UVSensorState = (() => {
+
+    /**
+     * Properties of a UVSensorState.
+     * @exports IUVSensorState
+     * @interface IUVSensorState
+     * @property {number|null} [value] UVSensorState value
+     * @property {UVSensorMode|null} [mode] UVSensorState mode
+     * @property {UVSensorGain|null} [gain] UVSensorState gain
+     * @property {UVSensorResolution|null} [resolution] UVSensorState resolution
+     */
+
+    /**
+     * Constructs a new UVSensorState.
+     * @exports UVSensorState
+     * @classdesc Represents a UVSensorState.
+     * @implements IUVSensorState
+     * @constructor
+     * @param {IUVSensorState=} [properties] Properties to set
+     */
+    function UVSensorState(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * UVSensorState value.
+     * @member {number} value
+     * @memberof UVSensorState
+     * @instance
+     */
+    UVSensorState.prototype.value = 0;
+
+    /**
+     * UVSensorState mode.
+     * @member {UVSensorMode} mode
+     * @memberof UVSensorState
+     * @instance
+     */
+    UVSensorState.prototype.mode = 0;
+
+    /**
+     * UVSensorState gain.
+     * @member {UVSensorGain} gain
+     * @memberof UVSensorState
+     * @instance
+     */
+    UVSensorState.prototype.gain = 0;
+
+    /**
+     * UVSensorState resolution.
+     * @member {UVSensorResolution} resolution
+     * @memberof UVSensorState
+     * @instance
+     */
+    UVSensorState.prototype.resolution = 0;
+
+    /**
+     * Creates a new UVSensorState instance using the specified properties.
+     * @function create
+     * @memberof UVSensorState
+     * @static
+     * @param {IUVSensorState=} [properties] Properties to set
+     * @returns {UVSensorState} UVSensorState instance
+     */
+    UVSensorState.create = function create(properties) {
+        return new UVSensorState(properties);
+    };
+
+    /**
+     * Encodes the specified UVSensorState message. Does not implicitly {@link UVSensorState.verify|verify} messages.
+     * @function encode
+     * @memberof UVSensorState
+     * @static
+     * @param {IUVSensorState} message UVSensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    UVSensorState.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.value != null && Object.hasOwnProperty.call(message, "value"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.value);
+        if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.mode);
+        if (message.gain != null && Object.hasOwnProperty.call(message, "gain"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.gain);
+        if (message.resolution != null && Object.hasOwnProperty.call(message, "resolution"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.resolution);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified UVSensorState message, length delimited. Does not implicitly {@link UVSensorState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof UVSensorState
+     * @static
+     * @param {IUVSensorState} message UVSensorState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    UVSensorState.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a UVSensorState message from the specified reader or buffer.
+     * @function decode
+     * @memberof UVSensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {UVSensorState} UVSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    UVSensorState.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.UVSensorState();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.value = reader.uint32();
+                    break;
+                }
+            case 2: {
+                    message.mode = reader.int32();
+                    break;
+                }
+            case 3: {
+                    message.gain = reader.int32();
+                    break;
+                }
+            case 4: {
+                    message.resolution = reader.int32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a UVSensorState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof UVSensorState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {UVSensorState} UVSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    UVSensorState.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a UVSensorState message.
+     * @function verify
+     * @memberof UVSensorState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    UVSensorState.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.value != null && message.hasOwnProperty("value"))
+            if (!$util.isInteger(message.value))
+                return "value: integer expected";
+        if (message.mode != null && message.hasOwnProperty("mode"))
+            switch (message.mode) {
+            default:
+                return "mode: enum value expected";
+            case 0:
+            case 1:
+                break;
+            }
+        if (message.gain != null && message.hasOwnProperty("gain"))
+            switch (message.gain) {
+            default:
+                return "gain: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                break;
+            }
+        if (message.resolution != null && message.hasOwnProperty("resolution"))
+            switch (message.resolution) {
+            default:
+                return "resolution: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                break;
+            }
+        return null;
+    };
+
+    /**
+     * Creates a UVSensorState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof UVSensorState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {UVSensorState} UVSensorState
+     */
+    UVSensorState.fromObject = function fromObject(object) {
+        if (object instanceof $root.UVSensorState)
+            return object;
+        let message = new $root.UVSensorState();
+        if (object.value != null)
+            message.value = object.value >>> 0;
+        switch (object.mode) {
+        default:
+            if (typeof object.mode === "number") {
+                message.mode = object.mode;
+                break;
+            }
+            break;
+        case "UV_SENSOR_MODE_ALS":
+        case 0:
+            message.mode = 0;
+            break;
+        case "UV_SENSOR_MODE_UVS":
+        case 1:
+            message.mode = 1;
+            break;
+        }
+        switch (object.gain) {
+        default:
+            if (typeof object.gain === "number") {
+                message.gain = object.gain;
+                break;
+            }
+            break;
+        case "UV_SENSOR_GAIN_1":
+        case 0:
+            message.gain = 0;
+            break;
+        case "UV_SENSOR_GAIN_3":
+        case 1:
+            message.gain = 1;
+            break;
+        case "UV_SENSOR_GAIN_6":
+        case 2:
+            message.gain = 2;
+            break;
+        case "UV_SENSOR_GAIN_9":
+        case 3:
+            message.gain = 3;
+            break;
+        case "UV_SENSOR_GAIN_18":
+        case 4:
+            message.gain = 4;
+            break;
+        }
+        switch (object.resolution) {
+        default:
+            if (typeof object.resolution === "number") {
+                message.resolution = object.resolution;
+                break;
+            }
+            break;
+        case "UV_SENSOR_RESOLUTION_20_BIT":
+        case 0:
+            message.resolution = 0;
+            break;
+        case "UV_SENSOR_RESOLUTION_19_BIT":
+        case 1:
+            message.resolution = 1;
+            break;
+        case "UV_SENSOR_RESOLUTION_18_BIT":
+        case 2:
+            message.resolution = 2;
+            break;
+        case "UV_SENSOR_RESOLUTION_17_BIT":
+        case 3:
+            message.resolution = 3;
+            break;
+        case "UV_SENSOR_RESOLUTION_16_BIT":
+        case 4:
+            message.resolution = 4;
+            break;
+        case "UV_SENSOR_RESOLUTION_13_BIT":
+        case 5:
+            message.resolution = 5;
+            break;
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a UVSensorState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof UVSensorState
+     * @static
+     * @param {UVSensorState} message UVSensorState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    UVSensorState.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.value = 0;
+            object.mode = options.enums === String ? "UV_SENSOR_MODE_ALS" : 0;
+            object.gain = options.enums === String ? "UV_SENSOR_GAIN_1" : 0;
+            object.resolution = options.enums === String ? "UV_SENSOR_RESOLUTION_20_BIT" : 0;
+        }
+        if (message.value != null && message.hasOwnProperty("value"))
+            object.value = message.value;
+        if (message.mode != null && message.hasOwnProperty("mode"))
+            object.mode = options.enums === String ? $root.UVSensorMode[message.mode] === undefined ? message.mode : $root.UVSensorMode[message.mode] : message.mode;
+        if (message.gain != null && message.hasOwnProperty("gain"))
+            object.gain = options.enums === String ? $root.UVSensorGain[message.gain] === undefined ? message.gain : $root.UVSensorGain[message.gain] : message.gain;
+        if (message.resolution != null && message.hasOwnProperty("resolution"))
+            object.resolution = options.enums === String ? $root.UVSensorResolution[message.resolution] === undefined ? message.resolution : $root.UVSensorResolution[message.resolution] : message.resolution;
+        return object;
+    };
+
+    /**
+     * Converts this UVSensorState to JSON.
+     * @function toJSON
+     * @memberof UVSensorState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    UVSensorState.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for UVSensorState
+     * @function getTypeUrl
+     * @memberof UVSensorState
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    UVSensorState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/UVSensorState";
+    };
+
+    return UVSensorState;
+})();
+
+export const UVSensorData = $root.UVSensorData = (() => {
+
+    /**
+     * Properties of a UVSensorData.
+     * @exports IUVSensorData
+     * @interface IUVSensorData
+     * @property {number|null} [value] UVSensorData value
+     */
+
+    /**
+     * Constructs a new UVSensorData.
+     * @exports UVSensorData
+     * @classdesc Represents a UVSensorData.
+     * @implements IUVSensorData
+     * @constructor
+     * @param {IUVSensorData=} [properties] Properties to set
+     */
+    function UVSensorData(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * UVSensorData value.
+     * @member {number} value
+     * @memberof UVSensorData
+     * @instance
+     */
+    UVSensorData.prototype.value = 0;
+
+    /**
+     * Creates a new UVSensorData instance using the specified properties.
+     * @function create
+     * @memberof UVSensorData
+     * @static
+     * @param {IUVSensorData=} [properties] Properties to set
+     * @returns {UVSensorData} UVSensorData instance
+     */
+    UVSensorData.create = function create(properties) {
+        return new UVSensorData(properties);
+    };
+
+    /**
+     * Encodes the specified UVSensorData message. Does not implicitly {@link UVSensorData.verify|verify} messages.
+     * @function encode
+     * @memberof UVSensorData
+     * @static
+     * @param {IUVSensorData} message UVSensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    UVSensorData.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.value != null && Object.hasOwnProperty.call(message, "value"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.value);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified UVSensorData message, length delimited. Does not implicitly {@link UVSensorData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof UVSensorData
+     * @static
+     * @param {IUVSensorData} message UVSensorData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    UVSensorData.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a UVSensorData message from the specified reader or buffer.
+     * @function decode
+     * @memberof UVSensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {UVSensorData} UVSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    UVSensorData.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.UVSensorData();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.value = reader.uint32();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a UVSensorData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof UVSensorData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {UVSensorData} UVSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    UVSensorData.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a UVSensorData message.
+     * @function verify
+     * @memberof UVSensorData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    UVSensorData.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.value != null && message.hasOwnProperty("value"))
+            if (!$util.isInteger(message.value))
+                return "value: integer expected";
+        return null;
+    };
+
+    /**
+     * Creates a UVSensorData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof UVSensorData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {UVSensorData} UVSensorData
+     */
+    UVSensorData.fromObject = function fromObject(object) {
+        if (object instanceof $root.UVSensorData)
+            return object;
+        let message = new $root.UVSensorData();
+        if (object.value != null)
+            message.value = object.value >>> 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a UVSensorData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof UVSensorData
+     * @static
+     * @param {UVSensorData} message UVSensorData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    UVSensorData.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.value = 0;
+        if (message.value != null && message.hasOwnProperty("value"))
+            object.value = message.value;
+        return object;
+    };
+
+    /**
+     * Converts this UVSensorData to JSON.
+     * @function toJSON
+     * @memberof UVSensorData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    UVSensorData.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for UVSensorData
+     * @function getTypeUrl
+     * @memberof UVSensorData
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    UVSensorData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/UVSensorData";
+    };
+
+    return UVSensorData;
+})();
+
+/**
+ * UVSensorMode enum.
+ * @exports UVSensorMode
+ * @enum {number}
+ * @property {number} UV_SENSOR_MODE_ALS=0 UV_SENSOR_MODE_ALS value
+ * @property {number} UV_SENSOR_MODE_UVS=1 UV_SENSOR_MODE_UVS value
+ */
+export const UVSensorMode = $root.UVSensorMode = (() => {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "UV_SENSOR_MODE_ALS"] = 0;
+    values[valuesById[1] = "UV_SENSOR_MODE_UVS"] = 1;
+    return values;
+})();
+
+/**
+ * UVSensorGain enum.
+ * @exports UVSensorGain
+ * @enum {number}
+ * @property {number} UV_SENSOR_GAIN_1=0 UV_SENSOR_GAIN_1 value
+ * @property {number} UV_SENSOR_GAIN_3=1 UV_SENSOR_GAIN_3 value
+ * @property {number} UV_SENSOR_GAIN_6=2 UV_SENSOR_GAIN_6 value
+ * @property {number} UV_SENSOR_GAIN_9=3 UV_SENSOR_GAIN_9 value
+ * @property {number} UV_SENSOR_GAIN_18=4 UV_SENSOR_GAIN_18 value
+ */
+export const UVSensorGain = $root.UVSensorGain = (() => {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "UV_SENSOR_GAIN_1"] = 0;
+    values[valuesById[1] = "UV_SENSOR_GAIN_3"] = 1;
+    values[valuesById[2] = "UV_SENSOR_GAIN_6"] = 2;
+    values[valuesById[3] = "UV_SENSOR_GAIN_9"] = 3;
+    values[valuesById[4] = "UV_SENSOR_GAIN_18"] = 4;
+    return values;
+})();
+
+/**
+ * UVSensorResolution enum.
+ * @exports UVSensorResolution
+ * @enum {number}
+ * @property {number} UV_SENSOR_RESOLUTION_20_BIT=0 UV_SENSOR_RESOLUTION_20_BIT value
+ * @property {number} UV_SENSOR_RESOLUTION_19_BIT=1 UV_SENSOR_RESOLUTION_19_BIT value
+ * @property {number} UV_SENSOR_RESOLUTION_18_BIT=2 UV_SENSOR_RESOLUTION_18_BIT value
+ * @property {number} UV_SENSOR_RESOLUTION_17_BIT=3 UV_SENSOR_RESOLUTION_17_BIT value
+ * @property {number} UV_SENSOR_RESOLUTION_16_BIT=4 UV_SENSOR_RESOLUTION_16_BIT value
+ * @property {number} UV_SENSOR_RESOLUTION_13_BIT=5 UV_SENSOR_RESOLUTION_13_BIT value
+ */
+export const UVSensorResolution = $root.UVSensorResolution = (() => {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "UV_SENSOR_RESOLUTION_20_BIT"] = 0;
+    values[valuesById[1] = "UV_SENSOR_RESOLUTION_19_BIT"] = 1;
+    values[valuesById[2] = "UV_SENSOR_RESOLUTION_18_BIT"] = 2;
+    values[valuesById[3] = "UV_SENSOR_RESOLUTION_17_BIT"] = 3;
+    values[valuesById[4] = "UV_SENSOR_RESOLUTION_16_BIT"] = 4;
+    values[valuesById[5] = "UV_SENSOR_RESOLUTION_13_BIT"] = 5;
+    return values;
+})();
+
+export const NFCTagState = $root.NFCTagState = (() => {
+
+    /**
+     * Properties of a NFCTagState.
+     * @exports INFCTagState
+     * @interface INFCTagState
+     * @property {NFCRecordType|null} [recordType] NFCTagState recordType
+     * @property {string|null} [information] NFCTagState information
+     * @property {string|null} [text] NFCTagState text
+     * @property {string|null} [language] NFCTagState language
+     * @property {string|null} [uri] NFCTagState uri
+     * @property {string|null} [protocol] NFCTagState protocol
+     * @property {string|null} [phoneNumber] NFCTagState phoneNumber
+     * @property {string|null} [smsMessage] NFCTagState smsMessage
+     * @property {string|null} [emailAddress] NFCTagState emailAddress
+     * @property {string|null} [subject] NFCTagState subject
+     * @property {string|null} [emailMessage] NFCTagState emailMessage
+     * @property {number|null} [latitude] NFCTagState latitude
+     * @property {number|null} [longitude] NFCTagState longitude
+     * @property {string|null} [vcardFirstName] NFCTagState vcardFirstName
+     * @property {string|null} [vcardName] NFCTagState vcardName
+     * @property {string|null} [vcardTitle] NFCTagState vcardTitle
+     * @property {string|null} [vcardOrganization] NFCTagState vcardOrganization
+     * @property {string|null} [vcardEmail] NFCTagState vcardEmail
+     * @property {string|null} [vcardHomeEmail] NFCTagState vcardHomeEmail
+     * @property {string|null} [vcardWorkEmail] NFCTagState vcardWorkEmail
+     * @property {string|null} [vcardCellularPhone] NFCTagState vcardCellularPhone
+     * @property {string|null} [vcardHomePhone] NFCTagState vcardHomePhone
+     * @property {string|null} [vcardWorkPhone] NFCTagState vcardWorkPhone
+     * @property {string|null} [vcardAddress] NFCTagState vcardAddress
+     * @property {string|null} [vcardHomeAddress] NFCTagState vcardHomeAddress
+     * @property {string|null} [vcardWorkAddress] NFCTagState vcardWorkAddress
+     * @property {string|null} [vcardUrl] NFCTagState vcardUrl
+     */
+
+    /**
+     * Constructs a new NFCTagState.
+     * @exports NFCTagState
+     * @classdesc Represents a NFCTagState.
+     * @implements INFCTagState
+     * @constructor
+     * @param {INFCTagState=} [properties] Properties to set
+     */
+    function NFCTagState(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCTagState recordType.
+     * @member {NFCRecordType} recordType
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.recordType = 0;
+
+    /**
+     * NFCTagState information.
+     * @member {string} information
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.information = "";
+
+    /**
+     * NFCTagState text.
+     * @member {string} text
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.text = "";
+
+    /**
+     * NFCTagState language.
+     * @member {string} language
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.language = "";
+
+    /**
+     * NFCTagState uri.
+     * @member {string} uri
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.uri = "";
+
+    /**
+     * NFCTagState protocol.
+     * @member {string} protocol
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.protocol = "";
+
+    /**
+     * NFCTagState phoneNumber.
+     * @member {string} phoneNumber
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.phoneNumber = "";
+
+    /**
+     * NFCTagState smsMessage.
+     * @member {string} smsMessage
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.smsMessage = "";
+
+    /**
+     * NFCTagState emailAddress.
+     * @member {string} emailAddress
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.emailAddress = "";
+
+    /**
+     * NFCTagState subject.
+     * @member {string} subject
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.subject = "";
+
+    /**
+     * NFCTagState emailMessage.
+     * @member {string} emailMessage
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.emailMessage = "";
+
+    /**
+     * NFCTagState latitude.
+     * @member {number} latitude
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.latitude = 0;
+
+    /**
+     * NFCTagState longitude.
+     * @member {number} longitude
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.longitude = 0;
+
+    /**
+     * NFCTagState vcardFirstName.
+     * @member {string} vcardFirstName
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardFirstName = "";
+
+    /**
+     * NFCTagState vcardName.
+     * @member {string} vcardName
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardName = "";
+
+    /**
+     * NFCTagState vcardTitle.
+     * @member {string} vcardTitle
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardTitle = "";
+
+    /**
+     * NFCTagState vcardOrganization.
+     * @member {string} vcardOrganization
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardOrganization = "";
+
+    /**
+     * NFCTagState vcardEmail.
+     * @member {string} vcardEmail
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardEmail = "";
+
+    /**
+     * NFCTagState vcardHomeEmail.
+     * @member {string} vcardHomeEmail
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardHomeEmail = "";
+
+    /**
+     * NFCTagState vcardWorkEmail.
+     * @member {string} vcardWorkEmail
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardWorkEmail = "";
+
+    /**
+     * NFCTagState vcardCellularPhone.
+     * @member {string} vcardCellularPhone
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardCellularPhone = "";
+
+    /**
+     * NFCTagState vcardHomePhone.
+     * @member {string} vcardHomePhone
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardHomePhone = "";
+
+    /**
+     * NFCTagState vcardWorkPhone.
+     * @member {string} vcardWorkPhone
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardWorkPhone = "";
+
+    /**
+     * NFCTagState vcardAddress.
+     * @member {string} vcardAddress
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardAddress = "";
+
+    /**
+     * NFCTagState vcardHomeAddress.
+     * @member {string} vcardHomeAddress
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardHomeAddress = "";
+
+    /**
+     * NFCTagState vcardWorkAddress.
+     * @member {string} vcardWorkAddress
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardWorkAddress = "";
+
+    /**
+     * NFCTagState vcardUrl.
+     * @member {string} vcardUrl
+     * @memberof NFCTagState
+     * @instance
+     */
+    NFCTagState.prototype.vcardUrl = "";
+
+    /**
+     * Creates a new NFCTagState instance using the specified properties.
+     * @function create
+     * @memberof NFCTagState
+     * @static
+     * @param {INFCTagState=} [properties] Properties to set
+     * @returns {NFCTagState} NFCTagState instance
+     */
+    NFCTagState.create = function create(properties) {
+        return new NFCTagState(properties);
+    };
+
+    /**
+     * Encodes the specified NFCTagState message. Does not implicitly {@link NFCTagState.verify|verify} messages.
+     * @function encode
+     * @memberof NFCTagState
+     * @static
+     * @param {INFCTagState} message NFCTagState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCTagState.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.recordType != null && Object.hasOwnProperty.call(message, "recordType"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.recordType);
+        if (message.information != null && Object.hasOwnProperty.call(message, "information"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.information);
+        if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.text);
+        if (message.language != null && Object.hasOwnProperty.call(message, "language"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.language);
+        if (message.uri != null && Object.hasOwnProperty.call(message, "uri"))
+            writer.uint32(/* id 5, wireType 2 =*/42).string(message.uri);
+        if (message.protocol != null && Object.hasOwnProperty.call(message, "protocol"))
+            writer.uint32(/* id 6, wireType 2 =*/50).string(message.protocol);
+        if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.phoneNumber);
+        if (message.smsMessage != null && Object.hasOwnProperty.call(message, "smsMessage"))
+            writer.uint32(/* id 8, wireType 2 =*/66).string(message.smsMessage);
+        if (message.emailAddress != null && Object.hasOwnProperty.call(message, "emailAddress"))
+            writer.uint32(/* id 9, wireType 2 =*/74).string(message.emailAddress);
+        if (message.subject != null && Object.hasOwnProperty.call(message, "subject"))
+            writer.uint32(/* id 10, wireType 2 =*/82).string(message.subject);
+        if (message.emailMessage != null && Object.hasOwnProperty.call(message, "emailMessage"))
+            writer.uint32(/* id 11, wireType 2 =*/90).string(message.emailMessage);
+        if (message.latitude != null && Object.hasOwnProperty.call(message, "latitude"))
+            writer.uint32(/* id 12, wireType 5 =*/101).float(message.latitude);
+        if (message.longitude != null && Object.hasOwnProperty.call(message, "longitude"))
+            writer.uint32(/* id 13, wireType 5 =*/109).float(message.longitude);
+        if (message.vcardFirstName != null && Object.hasOwnProperty.call(message, "vcardFirstName"))
+            writer.uint32(/* id 14, wireType 2 =*/114).string(message.vcardFirstName);
+        if (message.vcardName != null && Object.hasOwnProperty.call(message, "vcardName"))
+            writer.uint32(/* id 15, wireType 2 =*/122).string(message.vcardName);
+        if (message.vcardTitle != null && Object.hasOwnProperty.call(message, "vcardTitle"))
+            writer.uint32(/* id 16, wireType 2 =*/130).string(message.vcardTitle);
+        if (message.vcardOrganization != null && Object.hasOwnProperty.call(message, "vcardOrganization"))
+            writer.uint32(/* id 17, wireType 2 =*/138).string(message.vcardOrganization);
+        if (message.vcardEmail != null && Object.hasOwnProperty.call(message, "vcardEmail"))
+            writer.uint32(/* id 18, wireType 2 =*/146).string(message.vcardEmail);
+        if (message.vcardHomeEmail != null && Object.hasOwnProperty.call(message, "vcardHomeEmail"))
+            writer.uint32(/* id 19, wireType 2 =*/154).string(message.vcardHomeEmail);
+        if (message.vcardWorkEmail != null && Object.hasOwnProperty.call(message, "vcardWorkEmail"))
+            writer.uint32(/* id 20, wireType 2 =*/162).string(message.vcardWorkEmail);
+        if (message.vcardCellularPhone != null && Object.hasOwnProperty.call(message, "vcardCellularPhone"))
+            writer.uint32(/* id 21, wireType 2 =*/170).string(message.vcardCellularPhone);
+        if (message.vcardHomePhone != null && Object.hasOwnProperty.call(message, "vcardHomePhone"))
+            writer.uint32(/* id 22, wireType 2 =*/178).string(message.vcardHomePhone);
+        if (message.vcardWorkPhone != null && Object.hasOwnProperty.call(message, "vcardWorkPhone"))
+            writer.uint32(/* id 23, wireType 2 =*/186).string(message.vcardWorkPhone);
+        if (message.vcardAddress != null && Object.hasOwnProperty.call(message, "vcardAddress"))
+            writer.uint32(/* id 24, wireType 2 =*/194).string(message.vcardAddress);
+        if (message.vcardHomeAddress != null && Object.hasOwnProperty.call(message, "vcardHomeAddress"))
+            writer.uint32(/* id 25, wireType 2 =*/202).string(message.vcardHomeAddress);
+        if (message.vcardWorkAddress != null && Object.hasOwnProperty.call(message, "vcardWorkAddress"))
+            writer.uint32(/* id 26, wireType 2 =*/210).string(message.vcardWorkAddress);
+        if (message.vcardUrl != null && Object.hasOwnProperty.call(message, "vcardUrl"))
+            writer.uint32(/* id 27, wireType 2 =*/218).string(message.vcardUrl);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCTagState message, length delimited. Does not implicitly {@link NFCTagState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCTagState
+     * @static
+     * @param {INFCTagState} message NFCTagState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCTagState.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCTagState message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCTagState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCTagState} NFCTagState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCTagState.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCTagState();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.recordType = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.information = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.text = reader.string();
+                    break;
+                }
+            case 4: {
+                    message.language = reader.string();
+                    break;
+                }
+            case 5: {
+                    message.uri = reader.string();
+                    break;
+                }
+            case 6: {
+                    message.protocol = reader.string();
+                    break;
+                }
+            case 7: {
+                    message.phoneNumber = reader.string();
+                    break;
+                }
+            case 8: {
+                    message.smsMessage = reader.string();
+                    break;
+                }
+            case 9: {
+                    message.emailAddress = reader.string();
+                    break;
+                }
+            case 10: {
+                    message.subject = reader.string();
+                    break;
+                }
+            case 11: {
+                    message.emailMessage = reader.string();
+                    break;
+                }
+            case 12: {
+                    message.latitude = reader.float();
+                    break;
+                }
+            case 13: {
+                    message.longitude = reader.float();
+                    break;
+                }
+            case 14: {
+                    message.vcardFirstName = reader.string();
+                    break;
+                }
+            case 15: {
+                    message.vcardName = reader.string();
+                    break;
+                }
+            case 16: {
+                    message.vcardTitle = reader.string();
+                    break;
+                }
+            case 17: {
+                    message.vcardOrganization = reader.string();
+                    break;
+                }
+            case 18: {
+                    message.vcardEmail = reader.string();
+                    break;
+                }
+            case 19: {
+                    message.vcardHomeEmail = reader.string();
+                    break;
+                }
+            case 20: {
+                    message.vcardWorkEmail = reader.string();
+                    break;
+                }
+            case 21: {
+                    message.vcardCellularPhone = reader.string();
+                    break;
+                }
+            case 22: {
+                    message.vcardHomePhone = reader.string();
+                    break;
+                }
+            case 23: {
+                    message.vcardWorkPhone = reader.string();
+                    break;
+                }
+            case 24: {
+                    message.vcardAddress = reader.string();
+                    break;
+                }
+            case 25: {
+                    message.vcardHomeAddress = reader.string();
+                    break;
+                }
+            case 26: {
+                    message.vcardWorkAddress = reader.string();
+                    break;
+                }
+            case 27: {
+                    message.vcardUrl = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCTagState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCTagState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCTagState} NFCTagState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCTagState.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCTagState message.
+     * @function verify
+     * @memberof NFCTagState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCTagState.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.recordType != null && message.hasOwnProperty("recordType"))
+            switch (message.recordType) {
+            default:
+                return "recordType: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                break;
+            }
+        if (message.information != null && message.hasOwnProperty("information"))
+            if (!$util.isString(message.information))
+                return "information: string expected";
+        if (message.text != null && message.hasOwnProperty("text"))
+            if (!$util.isString(message.text))
+                return "text: string expected";
+        if (message.language != null && message.hasOwnProperty("language"))
+            if (!$util.isString(message.language))
+                return "language: string expected";
+        if (message.uri != null && message.hasOwnProperty("uri"))
+            if (!$util.isString(message.uri))
+                return "uri: string expected";
+        if (message.protocol != null && message.hasOwnProperty("protocol"))
+            if (!$util.isString(message.protocol))
+                return "protocol: string expected";
+        if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+            if (!$util.isString(message.phoneNumber))
+                return "phoneNumber: string expected";
+        if (message.smsMessage != null && message.hasOwnProperty("smsMessage"))
+            if (!$util.isString(message.smsMessage))
+                return "smsMessage: string expected";
+        if (message.emailAddress != null && message.hasOwnProperty("emailAddress"))
+            if (!$util.isString(message.emailAddress))
+                return "emailAddress: string expected";
+        if (message.subject != null && message.hasOwnProperty("subject"))
+            if (!$util.isString(message.subject))
+                return "subject: string expected";
+        if (message.emailMessage != null && message.hasOwnProperty("emailMessage"))
+            if (!$util.isString(message.emailMessage))
+                return "emailMessage: string expected";
+        if (message.latitude != null && message.hasOwnProperty("latitude"))
+            if (typeof message.latitude !== "number")
+                return "latitude: number expected";
+        if (message.longitude != null && message.hasOwnProperty("longitude"))
+            if (typeof message.longitude !== "number")
+                return "longitude: number expected";
+        if (message.vcardFirstName != null && message.hasOwnProperty("vcardFirstName"))
+            if (!$util.isString(message.vcardFirstName))
+                return "vcardFirstName: string expected";
+        if (message.vcardName != null && message.hasOwnProperty("vcardName"))
+            if (!$util.isString(message.vcardName))
+                return "vcardName: string expected";
+        if (message.vcardTitle != null && message.hasOwnProperty("vcardTitle"))
+            if (!$util.isString(message.vcardTitle))
+                return "vcardTitle: string expected";
+        if (message.vcardOrganization != null && message.hasOwnProperty("vcardOrganization"))
+            if (!$util.isString(message.vcardOrganization))
+                return "vcardOrganization: string expected";
+        if (message.vcardEmail != null && message.hasOwnProperty("vcardEmail"))
+            if (!$util.isString(message.vcardEmail))
+                return "vcardEmail: string expected";
+        if (message.vcardHomeEmail != null && message.hasOwnProperty("vcardHomeEmail"))
+            if (!$util.isString(message.vcardHomeEmail))
+                return "vcardHomeEmail: string expected";
+        if (message.vcardWorkEmail != null && message.hasOwnProperty("vcardWorkEmail"))
+            if (!$util.isString(message.vcardWorkEmail))
+                return "vcardWorkEmail: string expected";
+        if (message.vcardCellularPhone != null && message.hasOwnProperty("vcardCellularPhone"))
+            if (!$util.isString(message.vcardCellularPhone))
+                return "vcardCellularPhone: string expected";
+        if (message.vcardHomePhone != null && message.hasOwnProperty("vcardHomePhone"))
+            if (!$util.isString(message.vcardHomePhone))
+                return "vcardHomePhone: string expected";
+        if (message.vcardWorkPhone != null && message.hasOwnProperty("vcardWorkPhone"))
+            if (!$util.isString(message.vcardWorkPhone))
+                return "vcardWorkPhone: string expected";
+        if (message.vcardAddress != null && message.hasOwnProperty("vcardAddress"))
+            if (!$util.isString(message.vcardAddress))
+                return "vcardAddress: string expected";
+        if (message.vcardHomeAddress != null && message.hasOwnProperty("vcardHomeAddress"))
+            if (!$util.isString(message.vcardHomeAddress))
+                return "vcardHomeAddress: string expected";
+        if (message.vcardWorkAddress != null && message.hasOwnProperty("vcardWorkAddress"))
+            if (!$util.isString(message.vcardWorkAddress))
+                return "vcardWorkAddress: string expected";
+        if (message.vcardUrl != null && message.hasOwnProperty("vcardUrl"))
+            if (!$util.isString(message.vcardUrl))
+                return "vcardUrl: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCTagState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCTagState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCTagState} NFCTagState
+     */
+    NFCTagState.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCTagState)
+            return object;
+        let message = new $root.NFCTagState();
+        switch (object.recordType) {
+        default:
+            if (typeof object.recordType === "number") {
+                message.recordType = object.recordType;
+                break;
+            }
+            break;
+        case "NFC_RECORD_UNSPECIFIED":
+        case 0:
+            message.recordType = 0;
+            break;
+        case "NFC_RECORD_TEXT":
+        case 1:
+            message.recordType = 1;
+            break;
+        case "NFC_RECORD_URI":
+        case 2:
+            message.recordType = 2;
+            break;
+        case "NFC_RECORD_UNABRIDGED_URI":
+        case 3:
+            message.recordType = 3;
+            break;
+        case "NFC_RECORD_SMS":
+        case 4:
+            message.recordType = 4;
+            break;
+        case "NFC_RECORD_EMAIL":
+        case 5:
+            message.recordType = 5;
+            break;
+        case "NFC_RECORD_GEO_LOCATION":
+        case 6:
+            message.recordType = 6;
+            break;
+        case "NFC_RECORD_VCARD":
+        case 7:
+            message.recordType = 7;
+            break;
+        }
+        if (object.information != null)
+            message.information = String(object.information);
+        if (object.text != null)
+            message.text = String(object.text);
+        if (object.language != null)
+            message.language = String(object.language);
+        if (object.uri != null)
+            message.uri = String(object.uri);
+        if (object.protocol != null)
+            message.protocol = String(object.protocol);
+        if (object.phoneNumber != null)
+            message.phoneNumber = String(object.phoneNumber);
+        if (object.smsMessage != null)
+            message.smsMessage = String(object.smsMessage);
+        if (object.emailAddress != null)
+            message.emailAddress = String(object.emailAddress);
+        if (object.subject != null)
+            message.subject = String(object.subject);
+        if (object.emailMessage != null)
+            message.emailMessage = String(object.emailMessage);
+        if (object.latitude != null)
+            message.latitude = Number(object.latitude);
+        if (object.longitude != null)
+            message.longitude = Number(object.longitude);
+        if (object.vcardFirstName != null)
+            message.vcardFirstName = String(object.vcardFirstName);
+        if (object.vcardName != null)
+            message.vcardName = String(object.vcardName);
+        if (object.vcardTitle != null)
+            message.vcardTitle = String(object.vcardTitle);
+        if (object.vcardOrganization != null)
+            message.vcardOrganization = String(object.vcardOrganization);
+        if (object.vcardEmail != null)
+            message.vcardEmail = String(object.vcardEmail);
+        if (object.vcardHomeEmail != null)
+            message.vcardHomeEmail = String(object.vcardHomeEmail);
+        if (object.vcardWorkEmail != null)
+            message.vcardWorkEmail = String(object.vcardWorkEmail);
+        if (object.vcardCellularPhone != null)
+            message.vcardCellularPhone = String(object.vcardCellularPhone);
+        if (object.vcardHomePhone != null)
+            message.vcardHomePhone = String(object.vcardHomePhone);
+        if (object.vcardWorkPhone != null)
+            message.vcardWorkPhone = String(object.vcardWorkPhone);
+        if (object.vcardAddress != null)
+            message.vcardAddress = String(object.vcardAddress);
+        if (object.vcardHomeAddress != null)
+            message.vcardHomeAddress = String(object.vcardHomeAddress);
+        if (object.vcardWorkAddress != null)
+            message.vcardWorkAddress = String(object.vcardWorkAddress);
+        if (object.vcardUrl != null)
+            message.vcardUrl = String(object.vcardUrl);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCTagState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCTagState
+     * @static
+     * @param {NFCTagState} message NFCTagState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCTagState.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.recordType = options.enums === String ? "NFC_RECORD_UNSPECIFIED" : 0;
+            object.information = "";
+            object.text = "";
+            object.language = "";
+            object.uri = "";
+            object.protocol = "";
+            object.phoneNumber = "";
+            object.smsMessage = "";
+            object.emailAddress = "";
+            object.subject = "";
+            object.emailMessage = "";
+            object.latitude = 0;
+            object.longitude = 0;
+            object.vcardFirstName = "";
+            object.vcardName = "";
+            object.vcardTitle = "";
+            object.vcardOrganization = "";
+            object.vcardEmail = "";
+            object.vcardHomeEmail = "";
+            object.vcardWorkEmail = "";
+            object.vcardCellularPhone = "";
+            object.vcardHomePhone = "";
+            object.vcardWorkPhone = "";
+            object.vcardAddress = "";
+            object.vcardHomeAddress = "";
+            object.vcardWorkAddress = "";
+            object.vcardUrl = "";
+        }
+        if (message.recordType != null && message.hasOwnProperty("recordType"))
+            object.recordType = options.enums === String ? $root.NFCRecordType[message.recordType] === undefined ? message.recordType : $root.NFCRecordType[message.recordType] : message.recordType;
+        if (message.information != null && message.hasOwnProperty("information"))
+            object.information = message.information;
+        if (message.text != null && message.hasOwnProperty("text"))
+            object.text = message.text;
+        if (message.language != null && message.hasOwnProperty("language"))
+            object.language = message.language;
+        if (message.uri != null && message.hasOwnProperty("uri"))
+            object.uri = message.uri;
+        if (message.protocol != null && message.hasOwnProperty("protocol"))
+            object.protocol = message.protocol;
+        if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+            object.phoneNumber = message.phoneNumber;
+        if (message.smsMessage != null && message.hasOwnProperty("smsMessage"))
+            object.smsMessage = message.smsMessage;
+        if (message.emailAddress != null && message.hasOwnProperty("emailAddress"))
+            object.emailAddress = message.emailAddress;
+        if (message.subject != null && message.hasOwnProperty("subject"))
+            object.subject = message.subject;
+        if (message.emailMessage != null && message.hasOwnProperty("emailMessage"))
+            object.emailMessage = message.emailMessage;
+        if (message.latitude != null && message.hasOwnProperty("latitude"))
+            object.latitude = options.json && !isFinite(message.latitude) ? String(message.latitude) : message.latitude;
+        if (message.longitude != null && message.hasOwnProperty("longitude"))
+            object.longitude = options.json && !isFinite(message.longitude) ? String(message.longitude) : message.longitude;
+        if (message.vcardFirstName != null && message.hasOwnProperty("vcardFirstName"))
+            object.vcardFirstName = message.vcardFirstName;
+        if (message.vcardName != null && message.hasOwnProperty("vcardName"))
+            object.vcardName = message.vcardName;
+        if (message.vcardTitle != null && message.hasOwnProperty("vcardTitle"))
+            object.vcardTitle = message.vcardTitle;
+        if (message.vcardOrganization != null && message.hasOwnProperty("vcardOrganization"))
+            object.vcardOrganization = message.vcardOrganization;
+        if (message.vcardEmail != null && message.hasOwnProperty("vcardEmail"))
+            object.vcardEmail = message.vcardEmail;
+        if (message.vcardHomeEmail != null && message.hasOwnProperty("vcardHomeEmail"))
+            object.vcardHomeEmail = message.vcardHomeEmail;
+        if (message.vcardWorkEmail != null && message.hasOwnProperty("vcardWorkEmail"))
+            object.vcardWorkEmail = message.vcardWorkEmail;
+        if (message.vcardCellularPhone != null && message.hasOwnProperty("vcardCellularPhone"))
+            object.vcardCellularPhone = message.vcardCellularPhone;
+        if (message.vcardHomePhone != null && message.hasOwnProperty("vcardHomePhone"))
+            object.vcardHomePhone = message.vcardHomePhone;
+        if (message.vcardWorkPhone != null && message.hasOwnProperty("vcardWorkPhone"))
+            object.vcardWorkPhone = message.vcardWorkPhone;
+        if (message.vcardAddress != null && message.hasOwnProperty("vcardAddress"))
+            object.vcardAddress = message.vcardAddress;
+        if (message.vcardHomeAddress != null && message.hasOwnProperty("vcardHomeAddress"))
+            object.vcardHomeAddress = message.vcardHomeAddress;
+        if (message.vcardWorkAddress != null && message.hasOwnProperty("vcardWorkAddress"))
+            object.vcardWorkAddress = message.vcardWorkAddress;
+        if (message.vcardUrl != null && message.hasOwnProperty("vcardUrl"))
+            object.vcardUrl = message.vcardUrl;
+        return object;
+    };
+
+    /**
+     * Converts this NFCTagState to JSON.
+     * @function toJSON
+     * @memberof NFCTagState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCTagState.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCTagState
+     * @function getTypeUrl
+     * @memberof NFCTagState
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCTagState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCTagState";
+    };
+
+    return NFCTagState;
+})();
+
+export const NFCWriteText = $root.NFCWriteText = (() => {
+
+    /**
+     * Properties of a NFCWriteText.
+     * @exports INFCWriteText
+     * @interface INFCWriteText
+     * @property {string|null} [text] NFCWriteText text
+     * @property {string|null} [language] NFCWriteText language
+     */
+
+    /**
+     * Constructs a new NFCWriteText.
+     * @exports NFCWriteText
+     * @classdesc Represents a NFCWriteText.
+     * @implements INFCWriteText
+     * @constructor
+     * @param {INFCWriteText=} [properties] Properties to set
+     */
+    function NFCWriteText(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCWriteText text.
+     * @member {string} text
+     * @memberof NFCWriteText
+     * @instance
+     */
+    NFCWriteText.prototype.text = "";
+
+    /**
+     * NFCWriteText language.
+     * @member {string} language
+     * @memberof NFCWriteText
+     * @instance
+     */
+    NFCWriteText.prototype.language = "";
+
+    /**
+     * Creates a new NFCWriteText instance using the specified properties.
+     * @function create
+     * @memberof NFCWriteText
+     * @static
+     * @param {INFCWriteText=} [properties] Properties to set
+     * @returns {NFCWriteText} NFCWriteText instance
+     */
+    NFCWriteText.create = function create(properties) {
+        return new NFCWriteText(properties);
+    };
+
+    /**
+     * Encodes the specified NFCWriteText message. Does not implicitly {@link NFCWriteText.verify|verify} messages.
+     * @function encode
+     * @memberof NFCWriteText
+     * @static
+     * @param {INFCWriteText} message NFCWriteText message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteText.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+        if (message.language != null && Object.hasOwnProperty.call(message, "language"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.language);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCWriteText message, length delimited. Does not implicitly {@link NFCWriteText.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCWriteText
+     * @static
+     * @param {INFCWriteText} message NFCWriteText message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteText.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCWriteText message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCWriteText
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCWriteText} NFCWriteText
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteText.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCWriteText();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.text = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.language = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCWriteText message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCWriteText
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCWriteText} NFCWriteText
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteText.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCWriteText message.
+     * @function verify
+     * @memberof NFCWriteText
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCWriteText.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.text != null && message.hasOwnProperty("text"))
+            if (!$util.isString(message.text))
+                return "text: string expected";
+        if (message.language != null && message.hasOwnProperty("language"))
+            if (!$util.isString(message.language))
+                return "language: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCWriteText message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCWriteText
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCWriteText} NFCWriteText
+     */
+    NFCWriteText.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCWriteText)
+            return object;
+        let message = new $root.NFCWriteText();
+        if (object.text != null)
+            message.text = String(object.text);
+        if (object.language != null)
+            message.language = String(object.language);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCWriteText message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCWriteText
+     * @static
+     * @param {NFCWriteText} message NFCWriteText
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCWriteText.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.text = "";
+            object.language = "";
+        }
+        if (message.text != null && message.hasOwnProperty("text"))
+            object.text = message.text;
+        if (message.language != null && message.hasOwnProperty("language"))
+            object.language = message.language;
+        return object;
+    };
+
+    /**
+     * Converts this NFCWriteText to JSON.
+     * @function toJSON
+     * @memberof NFCWriteText
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCWriteText.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCWriteText
+     * @function getTypeUrl
+     * @memberof NFCWriteText
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCWriteText.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCWriteText";
+    };
+
+    return NFCWriteText;
+})();
+
+export const NFCWriteUri = $root.NFCWriteUri = (() => {
+
+    /**
+     * Properties of a NFCWriteUri.
+     * @exports INFCWriteUri
+     * @interface INFCWriteUri
+     * @property {string|null} [protocol] NFCWriteUri protocol
+     * @property {string|null} [uri] NFCWriteUri uri
+     * @property {string|null} [information] NFCWriteUri information
+     */
+
+    /**
+     * Constructs a new NFCWriteUri.
+     * @exports NFCWriteUri
+     * @classdesc Represents a NFCWriteUri.
+     * @implements INFCWriteUri
+     * @constructor
+     * @param {INFCWriteUri=} [properties] Properties to set
+     */
+    function NFCWriteUri(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCWriteUri protocol.
+     * @member {string} protocol
+     * @memberof NFCWriteUri
+     * @instance
+     */
+    NFCWriteUri.prototype.protocol = "";
+
+    /**
+     * NFCWriteUri uri.
+     * @member {string} uri
+     * @memberof NFCWriteUri
+     * @instance
+     */
+    NFCWriteUri.prototype.uri = "";
+
+    /**
+     * NFCWriteUri information.
+     * @member {string} information
+     * @memberof NFCWriteUri
+     * @instance
+     */
+    NFCWriteUri.prototype.information = "";
+
+    /**
+     * Creates a new NFCWriteUri instance using the specified properties.
+     * @function create
+     * @memberof NFCWriteUri
+     * @static
+     * @param {INFCWriteUri=} [properties] Properties to set
+     * @returns {NFCWriteUri} NFCWriteUri instance
+     */
+    NFCWriteUri.create = function create(properties) {
+        return new NFCWriteUri(properties);
+    };
+
+    /**
+     * Encodes the specified NFCWriteUri message. Does not implicitly {@link NFCWriteUri.verify|verify} messages.
+     * @function encode
+     * @memberof NFCWriteUri
+     * @static
+     * @param {INFCWriteUri} message NFCWriteUri message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteUri.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.protocol != null && Object.hasOwnProperty.call(message, "protocol"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.protocol);
+        if (message.uri != null && Object.hasOwnProperty.call(message, "uri"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.uri);
+        if (message.information != null && Object.hasOwnProperty.call(message, "information"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.information);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCWriteUri message, length delimited. Does not implicitly {@link NFCWriteUri.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCWriteUri
+     * @static
+     * @param {INFCWriteUri} message NFCWriteUri message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteUri.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCWriteUri message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCWriteUri
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCWriteUri} NFCWriteUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteUri.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCWriteUri();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.protocol = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.uri = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.information = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCWriteUri message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCWriteUri
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCWriteUri} NFCWriteUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteUri.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCWriteUri message.
+     * @function verify
+     * @memberof NFCWriteUri
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCWriteUri.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.protocol != null && message.hasOwnProperty("protocol"))
+            if (!$util.isString(message.protocol))
+                return "protocol: string expected";
+        if (message.uri != null && message.hasOwnProperty("uri"))
+            if (!$util.isString(message.uri))
+                return "uri: string expected";
+        if (message.information != null && message.hasOwnProperty("information"))
+            if (!$util.isString(message.information))
+                return "information: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCWriteUri message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCWriteUri
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCWriteUri} NFCWriteUri
+     */
+    NFCWriteUri.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCWriteUri)
+            return object;
+        let message = new $root.NFCWriteUri();
+        if (object.protocol != null)
+            message.protocol = String(object.protocol);
+        if (object.uri != null)
+            message.uri = String(object.uri);
+        if (object.information != null)
+            message.information = String(object.information);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCWriteUri message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCWriteUri
+     * @static
+     * @param {NFCWriteUri} message NFCWriteUri
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCWriteUri.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.protocol = "";
+            object.uri = "";
+            object.information = "";
+        }
+        if (message.protocol != null && message.hasOwnProperty("protocol"))
+            object.protocol = message.protocol;
+        if (message.uri != null && message.hasOwnProperty("uri"))
+            object.uri = message.uri;
+        if (message.information != null && message.hasOwnProperty("information"))
+            object.information = message.information;
+        return object;
+    };
+
+    /**
+     * Converts this NFCWriteUri to JSON.
+     * @function toJSON
+     * @memberof NFCWriteUri
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCWriteUri.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCWriteUri
+     * @function getTypeUrl
+     * @memberof NFCWriteUri
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCWriteUri.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCWriteUri";
+    };
+
+    return NFCWriteUri;
+})();
+
+export const NFCWriteUnabridgedUri = $root.NFCWriteUnabridgedUri = (() => {
+
+    /**
+     * Properties of a NFCWriteUnabridgedUri.
+     * @exports INFCWriteUnabridgedUri
+     * @interface INFCWriteUnabridgedUri
+     * @property {string|null} [uri] NFCWriteUnabridgedUri uri
+     * @property {string|null} [information] NFCWriteUnabridgedUri information
+     */
+
+    /**
+     * Constructs a new NFCWriteUnabridgedUri.
+     * @exports NFCWriteUnabridgedUri
+     * @classdesc Represents a NFCWriteUnabridgedUri.
+     * @implements INFCWriteUnabridgedUri
+     * @constructor
+     * @param {INFCWriteUnabridgedUri=} [properties] Properties to set
+     */
+    function NFCWriteUnabridgedUri(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCWriteUnabridgedUri uri.
+     * @member {string} uri
+     * @memberof NFCWriteUnabridgedUri
+     * @instance
+     */
+    NFCWriteUnabridgedUri.prototype.uri = "";
+
+    /**
+     * NFCWriteUnabridgedUri information.
+     * @member {string} information
+     * @memberof NFCWriteUnabridgedUri
+     * @instance
+     */
+    NFCWriteUnabridgedUri.prototype.information = "";
+
+    /**
+     * Creates a new NFCWriteUnabridgedUri instance using the specified properties.
+     * @function create
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {INFCWriteUnabridgedUri=} [properties] Properties to set
+     * @returns {NFCWriteUnabridgedUri} NFCWriteUnabridgedUri instance
+     */
+    NFCWriteUnabridgedUri.create = function create(properties) {
+        return new NFCWriteUnabridgedUri(properties);
+    };
+
+    /**
+     * Encodes the specified NFCWriteUnabridgedUri message. Does not implicitly {@link NFCWriteUnabridgedUri.verify|verify} messages.
+     * @function encode
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {INFCWriteUnabridgedUri} message NFCWriteUnabridgedUri message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteUnabridgedUri.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.uri != null && Object.hasOwnProperty.call(message, "uri"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.uri);
+        if (message.information != null && Object.hasOwnProperty.call(message, "information"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.information);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCWriteUnabridgedUri message, length delimited. Does not implicitly {@link NFCWriteUnabridgedUri.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {INFCWriteUnabridgedUri} message NFCWriteUnabridgedUri message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteUnabridgedUri.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCWriteUnabridgedUri message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCWriteUnabridgedUri} NFCWriteUnabridgedUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteUnabridgedUri.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCWriteUnabridgedUri();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.uri = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.information = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCWriteUnabridgedUri message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCWriteUnabridgedUri} NFCWriteUnabridgedUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteUnabridgedUri.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCWriteUnabridgedUri message.
+     * @function verify
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCWriteUnabridgedUri.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.uri != null && message.hasOwnProperty("uri"))
+            if (!$util.isString(message.uri))
+                return "uri: string expected";
+        if (message.information != null && message.hasOwnProperty("information"))
+            if (!$util.isString(message.information))
+                return "information: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCWriteUnabridgedUri message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCWriteUnabridgedUri} NFCWriteUnabridgedUri
+     */
+    NFCWriteUnabridgedUri.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCWriteUnabridgedUri)
+            return object;
+        let message = new $root.NFCWriteUnabridgedUri();
+        if (object.uri != null)
+            message.uri = String(object.uri);
+        if (object.information != null)
+            message.information = String(object.information);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCWriteUnabridgedUri message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {NFCWriteUnabridgedUri} message NFCWriteUnabridgedUri
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCWriteUnabridgedUri.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.uri = "";
+            object.information = "";
+        }
+        if (message.uri != null && message.hasOwnProperty("uri"))
+            object.uri = message.uri;
+        if (message.information != null && message.hasOwnProperty("information"))
+            object.information = message.information;
+        return object;
+    };
+
+    /**
+     * Converts this NFCWriteUnabridgedUri to JSON.
+     * @function toJSON
+     * @memberof NFCWriteUnabridgedUri
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCWriteUnabridgedUri.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCWriteUnabridgedUri
+     * @function getTypeUrl
+     * @memberof NFCWriteUnabridgedUri
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCWriteUnabridgedUri.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCWriteUnabridgedUri";
+    };
+
+    return NFCWriteUnabridgedUri;
+})();
+
+export const NFCWriteSms = $root.NFCWriteSms = (() => {
+
+    /**
+     * Properties of a NFCWriteSms.
+     * @exports INFCWriteSms
+     * @interface INFCWriteSms
+     * @property {string|null} [phoneNumber] NFCWriteSms phoneNumber
+     * @property {string|null} [message] NFCWriteSms message
+     * @property {string|null} [information] NFCWriteSms information
+     */
+
+    /**
+     * Constructs a new NFCWriteSms.
+     * @exports NFCWriteSms
+     * @classdesc Represents a NFCWriteSms.
+     * @implements INFCWriteSms
+     * @constructor
+     * @param {INFCWriteSms=} [properties] Properties to set
+     */
+    function NFCWriteSms(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCWriteSms phoneNumber.
+     * @member {string} phoneNumber
+     * @memberof NFCWriteSms
+     * @instance
+     */
+    NFCWriteSms.prototype.phoneNumber = "";
+
+    /**
+     * NFCWriteSms message.
+     * @member {string} message
+     * @memberof NFCWriteSms
+     * @instance
+     */
+    NFCWriteSms.prototype.message = "";
+
+    /**
+     * NFCWriteSms information.
+     * @member {string} information
+     * @memberof NFCWriteSms
+     * @instance
+     */
+    NFCWriteSms.prototype.information = "";
+
+    /**
+     * Creates a new NFCWriteSms instance using the specified properties.
+     * @function create
+     * @memberof NFCWriteSms
+     * @static
+     * @param {INFCWriteSms=} [properties] Properties to set
+     * @returns {NFCWriteSms} NFCWriteSms instance
+     */
+    NFCWriteSms.create = function create(properties) {
+        return new NFCWriteSms(properties);
+    };
+
+    /**
+     * Encodes the specified NFCWriteSms message. Does not implicitly {@link NFCWriteSms.verify|verify} messages.
+     * @function encode
+     * @memberof NFCWriteSms
+     * @static
+     * @param {INFCWriteSms} message NFCWriteSms message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteSms.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.phoneNumber != null && Object.hasOwnProperty.call(message, "phoneNumber"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.phoneNumber);
+        if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+        if (message.information != null && Object.hasOwnProperty.call(message, "information"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.information);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCWriteSms message, length delimited. Does not implicitly {@link NFCWriteSms.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCWriteSms
+     * @static
+     * @param {INFCWriteSms} message NFCWriteSms message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteSms.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCWriteSms message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCWriteSms
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCWriteSms} NFCWriteSms
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteSms.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCWriteSms();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.phoneNumber = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.message = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.information = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCWriteSms message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCWriteSms
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCWriteSms} NFCWriteSms
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteSms.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCWriteSms message.
+     * @function verify
+     * @memberof NFCWriteSms
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCWriteSms.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+            if (!$util.isString(message.phoneNumber))
+                return "phoneNumber: string expected";
+        if (message.message != null && message.hasOwnProperty("message"))
+            if (!$util.isString(message.message))
+                return "message: string expected";
+        if (message.information != null && message.hasOwnProperty("information"))
+            if (!$util.isString(message.information))
+                return "information: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCWriteSms message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCWriteSms
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCWriteSms} NFCWriteSms
+     */
+    NFCWriteSms.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCWriteSms)
+            return object;
+        let message = new $root.NFCWriteSms();
+        if (object.phoneNumber != null)
+            message.phoneNumber = String(object.phoneNumber);
+        if (object.message != null)
+            message.message = String(object.message);
+        if (object.information != null)
+            message.information = String(object.information);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCWriteSms message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCWriteSms
+     * @static
+     * @param {NFCWriteSms} message NFCWriteSms
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCWriteSms.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.phoneNumber = "";
+            object.message = "";
+            object.information = "";
+        }
+        if (message.phoneNumber != null && message.hasOwnProperty("phoneNumber"))
+            object.phoneNumber = message.phoneNumber;
+        if (message.message != null && message.hasOwnProperty("message"))
+            object.message = message.message;
+        if (message.information != null && message.hasOwnProperty("information"))
+            object.information = message.information;
+        return object;
+    };
+
+    /**
+     * Converts this NFCWriteSms to JSON.
+     * @function toJSON
+     * @memberof NFCWriteSms
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCWriteSms.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCWriteSms
+     * @function getTypeUrl
+     * @memberof NFCWriteSms
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCWriteSms.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCWriteSms";
+    };
+
+    return NFCWriteSms;
+})();
+
+export const NFCWriteEmail = $root.NFCWriteEmail = (() => {
+
+    /**
+     * Properties of a NFCWriteEmail.
+     * @exports INFCWriteEmail
+     * @interface INFCWriteEmail
+     * @property {string|null} [email] NFCWriteEmail email
+     * @property {string|null} [subject] NFCWriteEmail subject
+     * @property {string|null} [message] NFCWriteEmail message
+     * @property {string|null} [information] NFCWriteEmail information
+     */
+
+    /**
+     * Constructs a new NFCWriteEmail.
+     * @exports NFCWriteEmail
+     * @classdesc Represents a NFCWriteEmail.
+     * @implements INFCWriteEmail
+     * @constructor
+     * @param {INFCWriteEmail=} [properties] Properties to set
+     */
+    function NFCWriteEmail(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCWriteEmail email.
+     * @member {string} email
+     * @memberof NFCWriteEmail
+     * @instance
+     */
+    NFCWriteEmail.prototype.email = "";
+
+    /**
+     * NFCWriteEmail subject.
+     * @member {string} subject
+     * @memberof NFCWriteEmail
+     * @instance
+     */
+    NFCWriteEmail.prototype.subject = "";
+
+    /**
+     * NFCWriteEmail message.
+     * @member {string} message
+     * @memberof NFCWriteEmail
+     * @instance
+     */
+    NFCWriteEmail.prototype.message = "";
+
+    /**
+     * NFCWriteEmail information.
+     * @member {string} information
+     * @memberof NFCWriteEmail
+     * @instance
+     */
+    NFCWriteEmail.prototype.information = "";
+
+    /**
+     * Creates a new NFCWriteEmail instance using the specified properties.
+     * @function create
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {INFCWriteEmail=} [properties] Properties to set
+     * @returns {NFCWriteEmail} NFCWriteEmail instance
+     */
+    NFCWriteEmail.create = function create(properties) {
+        return new NFCWriteEmail(properties);
+    };
+
+    /**
+     * Encodes the specified NFCWriteEmail message. Does not implicitly {@link NFCWriteEmail.verify|verify} messages.
+     * @function encode
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {INFCWriteEmail} message NFCWriteEmail message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteEmail.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.email);
+        if (message.subject != null && Object.hasOwnProperty.call(message, "subject"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.subject);
+        if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
+        if (message.information != null && Object.hasOwnProperty.call(message, "information"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.information);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCWriteEmail message, length delimited. Does not implicitly {@link NFCWriteEmail.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {INFCWriteEmail} message NFCWriteEmail message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteEmail.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCWriteEmail message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCWriteEmail} NFCWriteEmail
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteEmail.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCWriteEmail();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.email = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.subject = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.message = reader.string();
+                    break;
+                }
+            case 4: {
+                    message.information = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCWriteEmail message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCWriteEmail} NFCWriteEmail
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteEmail.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCWriteEmail message.
+     * @function verify
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCWriteEmail.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.email != null && message.hasOwnProperty("email"))
+            if (!$util.isString(message.email))
+                return "email: string expected";
+        if (message.subject != null && message.hasOwnProperty("subject"))
+            if (!$util.isString(message.subject))
+                return "subject: string expected";
+        if (message.message != null && message.hasOwnProperty("message"))
+            if (!$util.isString(message.message))
+                return "message: string expected";
+        if (message.information != null && message.hasOwnProperty("information"))
+            if (!$util.isString(message.information))
+                return "information: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCWriteEmail message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCWriteEmail} NFCWriteEmail
+     */
+    NFCWriteEmail.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCWriteEmail)
+            return object;
+        let message = new $root.NFCWriteEmail();
+        if (object.email != null)
+            message.email = String(object.email);
+        if (object.subject != null)
+            message.subject = String(object.subject);
+        if (object.message != null)
+            message.message = String(object.message);
+        if (object.information != null)
+            message.information = String(object.information);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCWriteEmail message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {NFCWriteEmail} message NFCWriteEmail
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCWriteEmail.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.email = "";
+            object.subject = "";
+            object.message = "";
+            object.information = "";
+        }
+        if (message.email != null && message.hasOwnProperty("email"))
+            object.email = message.email;
+        if (message.subject != null && message.hasOwnProperty("subject"))
+            object.subject = message.subject;
+        if (message.message != null && message.hasOwnProperty("message"))
+            object.message = message.message;
+        if (message.information != null && message.hasOwnProperty("information"))
+            object.information = message.information;
+        return object;
+    };
+
+    /**
+     * Converts this NFCWriteEmail to JSON.
+     * @function toJSON
+     * @memberof NFCWriteEmail
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCWriteEmail.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCWriteEmail
+     * @function getTypeUrl
+     * @memberof NFCWriteEmail
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCWriteEmail.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCWriteEmail";
+    };
+
+    return NFCWriteEmail;
+})();
+
+export const NFCWriteGeoLocation = $root.NFCWriteGeoLocation = (() => {
+
+    /**
+     * Properties of a NFCWriteGeoLocation.
+     * @exports INFCWriteGeoLocation
+     * @interface INFCWriteGeoLocation
+     * @property {number|null} [latitude] NFCWriteGeoLocation latitude
+     * @property {number|null} [longitude] NFCWriteGeoLocation longitude
+     * @property {string|null} [information] NFCWriteGeoLocation information
+     */
+
+    /**
+     * Constructs a new NFCWriteGeoLocation.
+     * @exports NFCWriteGeoLocation
+     * @classdesc Represents a NFCWriteGeoLocation.
+     * @implements INFCWriteGeoLocation
+     * @constructor
+     * @param {INFCWriteGeoLocation=} [properties] Properties to set
+     */
+    function NFCWriteGeoLocation(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCWriteGeoLocation latitude.
+     * @member {number} latitude
+     * @memberof NFCWriteGeoLocation
+     * @instance
+     */
+    NFCWriteGeoLocation.prototype.latitude = 0;
+
+    /**
+     * NFCWriteGeoLocation longitude.
+     * @member {number} longitude
+     * @memberof NFCWriteGeoLocation
+     * @instance
+     */
+    NFCWriteGeoLocation.prototype.longitude = 0;
+
+    /**
+     * NFCWriteGeoLocation information.
+     * @member {string} information
+     * @memberof NFCWriteGeoLocation
+     * @instance
+     */
+    NFCWriteGeoLocation.prototype.information = "";
+
+    /**
+     * Creates a new NFCWriteGeoLocation instance using the specified properties.
+     * @function create
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {INFCWriteGeoLocation=} [properties] Properties to set
+     * @returns {NFCWriteGeoLocation} NFCWriteGeoLocation instance
+     */
+    NFCWriteGeoLocation.create = function create(properties) {
+        return new NFCWriteGeoLocation(properties);
+    };
+
+    /**
+     * Encodes the specified NFCWriteGeoLocation message. Does not implicitly {@link NFCWriteGeoLocation.verify|verify} messages.
+     * @function encode
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {INFCWriteGeoLocation} message NFCWriteGeoLocation message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteGeoLocation.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.latitude != null && Object.hasOwnProperty.call(message, "latitude"))
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.latitude);
+        if (message.longitude != null && Object.hasOwnProperty.call(message, "longitude"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.longitude);
+        if (message.information != null && Object.hasOwnProperty.call(message, "information"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.information);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCWriteGeoLocation message, length delimited. Does not implicitly {@link NFCWriteGeoLocation.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {INFCWriteGeoLocation} message NFCWriteGeoLocation message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteGeoLocation.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCWriteGeoLocation message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCWriteGeoLocation} NFCWriteGeoLocation
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteGeoLocation.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCWriteGeoLocation();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.latitude = reader.float();
+                    break;
+                }
+            case 2: {
+                    message.longitude = reader.float();
+                    break;
+                }
+            case 3: {
+                    message.information = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCWriteGeoLocation message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCWriteGeoLocation} NFCWriteGeoLocation
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteGeoLocation.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCWriteGeoLocation message.
+     * @function verify
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCWriteGeoLocation.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.latitude != null && message.hasOwnProperty("latitude"))
+            if (typeof message.latitude !== "number")
+                return "latitude: number expected";
+        if (message.longitude != null && message.hasOwnProperty("longitude"))
+            if (typeof message.longitude !== "number")
+                return "longitude: number expected";
+        if (message.information != null && message.hasOwnProperty("information"))
+            if (!$util.isString(message.information))
+                return "information: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCWriteGeoLocation message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCWriteGeoLocation} NFCWriteGeoLocation
+     */
+    NFCWriteGeoLocation.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCWriteGeoLocation)
+            return object;
+        let message = new $root.NFCWriteGeoLocation();
+        if (object.latitude != null)
+            message.latitude = Number(object.latitude);
+        if (object.longitude != null)
+            message.longitude = Number(object.longitude);
+        if (object.information != null)
+            message.information = String(object.information);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCWriteGeoLocation message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {NFCWriteGeoLocation} message NFCWriteGeoLocation
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCWriteGeoLocation.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.latitude = 0;
+            object.longitude = 0;
+            object.information = "";
+        }
+        if (message.latitude != null && message.hasOwnProperty("latitude"))
+            object.latitude = options.json && !isFinite(message.latitude) ? String(message.latitude) : message.latitude;
+        if (message.longitude != null && message.hasOwnProperty("longitude"))
+            object.longitude = options.json && !isFinite(message.longitude) ? String(message.longitude) : message.longitude;
+        if (message.information != null && message.hasOwnProperty("information"))
+            object.information = message.information;
+        return object;
+    };
+
+    /**
+     * Converts this NFCWriteGeoLocation to JSON.
+     * @function toJSON
+     * @memberof NFCWriteGeoLocation
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCWriteGeoLocation.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCWriteGeoLocation
+     * @function getTypeUrl
+     * @memberof NFCWriteGeoLocation
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCWriteGeoLocation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCWriteGeoLocation";
+    };
+
+    return NFCWriteGeoLocation;
+})();
+
+export const NFCWriteVCard = $root.NFCWriteVCard = (() => {
+
+    /**
+     * Properties of a NFCWriteVCard.
+     * @exports INFCWriteVCard
+     * @interface INFCWriteVCard
+     * @property {string|null} [firstName] NFCWriteVCard firstName
+     * @property {string|null} [name] NFCWriteVCard name
+     * @property {string|null} [title] NFCWriteVCard title
+     * @property {string|null} [organization] NFCWriteVCard organization
+     * @property {string|null} [email] NFCWriteVCard email
+     * @property {string|null} [homeEmail] NFCWriteVCard homeEmail
+     * @property {string|null} [workEmail] NFCWriteVCard workEmail
+     * @property {string|null} [cellularPhone] NFCWriteVCard cellularPhone
+     * @property {string|null} [homePhone] NFCWriteVCard homePhone
+     * @property {string|null} [workPhone] NFCWriteVCard workPhone
+     * @property {string|null} [address] NFCWriteVCard address
+     * @property {string|null} [homeAddress] NFCWriteVCard homeAddress
+     * @property {string|null} [workAddress] NFCWriteVCard workAddress
+     * @property {string|null} [url] NFCWriteVCard url
+     */
+
+    /**
+     * Constructs a new NFCWriteVCard.
+     * @exports NFCWriteVCard
+     * @classdesc Represents a NFCWriteVCard.
+     * @implements INFCWriteVCard
+     * @constructor
+     * @param {INFCWriteVCard=} [properties] Properties to set
+     */
+    function NFCWriteVCard(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * NFCWriteVCard firstName.
+     * @member {string} firstName
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.firstName = "";
+
+    /**
+     * NFCWriteVCard name.
+     * @member {string} name
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.name = "";
+
+    /**
+     * NFCWriteVCard title.
+     * @member {string} title
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.title = "";
+
+    /**
+     * NFCWriteVCard organization.
+     * @member {string} organization
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.organization = "";
+
+    /**
+     * NFCWriteVCard email.
+     * @member {string} email
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.email = "";
+
+    /**
+     * NFCWriteVCard homeEmail.
+     * @member {string} homeEmail
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.homeEmail = "";
+
+    /**
+     * NFCWriteVCard workEmail.
+     * @member {string} workEmail
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.workEmail = "";
+
+    /**
+     * NFCWriteVCard cellularPhone.
+     * @member {string} cellularPhone
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.cellularPhone = "";
+
+    /**
+     * NFCWriteVCard homePhone.
+     * @member {string} homePhone
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.homePhone = "";
+
+    /**
+     * NFCWriteVCard workPhone.
+     * @member {string} workPhone
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.workPhone = "";
+
+    /**
+     * NFCWriteVCard address.
+     * @member {string} address
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.address = "";
+
+    /**
+     * NFCWriteVCard homeAddress.
+     * @member {string} homeAddress
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.homeAddress = "";
+
+    /**
+     * NFCWriteVCard workAddress.
+     * @member {string} workAddress
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.workAddress = "";
+
+    /**
+     * NFCWriteVCard url.
+     * @member {string} url
+     * @memberof NFCWriteVCard
+     * @instance
+     */
+    NFCWriteVCard.prototype.url = "";
+
+    /**
+     * Creates a new NFCWriteVCard instance using the specified properties.
+     * @function create
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {INFCWriteVCard=} [properties] Properties to set
+     * @returns {NFCWriteVCard} NFCWriteVCard instance
+     */
+    NFCWriteVCard.create = function create(properties) {
+        return new NFCWriteVCard(properties);
+    };
+
+    /**
+     * Encodes the specified NFCWriteVCard message. Does not implicitly {@link NFCWriteVCard.verify|verify} messages.
+     * @function encode
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {INFCWriteVCard} message NFCWriteVCard message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteVCard.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.firstName);
+        if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+        if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.title);
+        if (message.organization != null && Object.hasOwnProperty.call(message, "organization"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.organization);
+        if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+            writer.uint32(/* id 5, wireType 2 =*/42).string(message.email);
+        if (message.homeEmail != null && Object.hasOwnProperty.call(message, "homeEmail"))
+            writer.uint32(/* id 6, wireType 2 =*/50).string(message.homeEmail);
+        if (message.workEmail != null && Object.hasOwnProperty.call(message, "workEmail"))
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.workEmail);
+        if (message.cellularPhone != null && Object.hasOwnProperty.call(message, "cellularPhone"))
+            writer.uint32(/* id 8, wireType 2 =*/66).string(message.cellularPhone);
+        if (message.homePhone != null && Object.hasOwnProperty.call(message, "homePhone"))
+            writer.uint32(/* id 9, wireType 2 =*/74).string(message.homePhone);
+        if (message.workPhone != null && Object.hasOwnProperty.call(message, "workPhone"))
+            writer.uint32(/* id 10, wireType 2 =*/82).string(message.workPhone);
+        if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+            writer.uint32(/* id 11, wireType 2 =*/90).string(message.address);
+        if (message.homeAddress != null && Object.hasOwnProperty.call(message, "homeAddress"))
+            writer.uint32(/* id 12, wireType 2 =*/98).string(message.homeAddress);
+        if (message.workAddress != null && Object.hasOwnProperty.call(message, "workAddress"))
+            writer.uint32(/* id 13, wireType 2 =*/106).string(message.workAddress);
+        if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+            writer.uint32(/* id 14, wireType 2 =*/114).string(message.url);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified NFCWriteVCard message, length delimited. Does not implicitly {@link NFCWriteVCard.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {INFCWriteVCard} message NFCWriteVCard message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    NFCWriteVCard.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a NFCWriteVCard message from the specified reader or buffer.
+     * @function decode
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {NFCWriteVCard} NFCWriteVCard
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteVCard.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.NFCWriteVCard();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.firstName = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.name = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.title = reader.string();
+                    break;
+                }
+            case 4: {
+                    message.organization = reader.string();
+                    break;
+                }
+            case 5: {
+                    message.email = reader.string();
+                    break;
+                }
+            case 6: {
+                    message.homeEmail = reader.string();
+                    break;
+                }
+            case 7: {
+                    message.workEmail = reader.string();
+                    break;
+                }
+            case 8: {
+                    message.cellularPhone = reader.string();
+                    break;
+                }
+            case 9: {
+                    message.homePhone = reader.string();
+                    break;
+                }
+            case 10: {
+                    message.workPhone = reader.string();
+                    break;
+                }
+            case 11: {
+                    message.address = reader.string();
+                    break;
+                }
+            case 12: {
+                    message.homeAddress = reader.string();
+                    break;
+                }
+            case 13: {
+                    message.workAddress = reader.string();
+                    break;
+                }
+            case 14: {
+                    message.url = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a NFCWriteVCard message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {NFCWriteVCard} NFCWriteVCard
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    NFCWriteVCard.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a NFCWriteVCard message.
+     * @function verify
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    NFCWriteVCard.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.firstName != null && message.hasOwnProperty("firstName"))
+            if (!$util.isString(message.firstName))
+                return "firstName: string expected";
+        if (message.name != null && message.hasOwnProperty("name"))
+            if (!$util.isString(message.name))
+                return "name: string expected";
+        if (message.title != null && message.hasOwnProperty("title"))
+            if (!$util.isString(message.title))
+                return "title: string expected";
+        if (message.organization != null && message.hasOwnProperty("organization"))
+            if (!$util.isString(message.organization))
+                return "organization: string expected";
+        if (message.email != null && message.hasOwnProperty("email"))
+            if (!$util.isString(message.email))
+                return "email: string expected";
+        if (message.homeEmail != null && message.hasOwnProperty("homeEmail"))
+            if (!$util.isString(message.homeEmail))
+                return "homeEmail: string expected";
+        if (message.workEmail != null && message.hasOwnProperty("workEmail"))
+            if (!$util.isString(message.workEmail))
+                return "workEmail: string expected";
+        if (message.cellularPhone != null && message.hasOwnProperty("cellularPhone"))
+            if (!$util.isString(message.cellularPhone))
+                return "cellularPhone: string expected";
+        if (message.homePhone != null && message.hasOwnProperty("homePhone"))
+            if (!$util.isString(message.homePhone))
+                return "homePhone: string expected";
+        if (message.workPhone != null && message.hasOwnProperty("workPhone"))
+            if (!$util.isString(message.workPhone))
+                return "workPhone: string expected";
+        if (message.address != null && message.hasOwnProperty("address"))
+            if (!$util.isString(message.address))
+                return "address: string expected";
+        if (message.homeAddress != null && message.hasOwnProperty("homeAddress"))
+            if (!$util.isString(message.homeAddress))
+                return "homeAddress: string expected";
+        if (message.workAddress != null && message.hasOwnProperty("workAddress"))
+            if (!$util.isString(message.workAddress))
+                return "workAddress: string expected";
+        if (message.url != null && message.hasOwnProperty("url"))
+            if (!$util.isString(message.url))
+                return "url: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a NFCWriteVCard message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {NFCWriteVCard} NFCWriteVCard
+     */
+    NFCWriteVCard.fromObject = function fromObject(object) {
+        if (object instanceof $root.NFCWriteVCard)
+            return object;
+        let message = new $root.NFCWriteVCard();
+        if (object.firstName != null)
+            message.firstName = String(object.firstName);
+        if (object.name != null)
+            message.name = String(object.name);
+        if (object.title != null)
+            message.title = String(object.title);
+        if (object.organization != null)
+            message.organization = String(object.organization);
+        if (object.email != null)
+            message.email = String(object.email);
+        if (object.homeEmail != null)
+            message.homeEmail = String(object.homeEmail);
+        if (object.workEmail != null)
+            message.workEmail = String(object.workEmail);
+        if (object.cellularPhone != null)
+            message.cellularPhone = String(object.cellularPhone);
+        if (object.homePhone != null)
+            message.homePhone = String(object.homePhone);
+        if (object.workPhone != null)
+            message.workPhone = String(object.workPhone);
+        if (object.address != null)
+            message.address = String(object.address);
+        if (object.homeAddress != null)
+            message.homeAddress = String(object.homeAddress);
+        if (object.workAddress != null)
+            message.workAddress = String(object.workAddress);
+        if (object.url != null)
+            message.url = String(object.url);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a NFCWriteVCard message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {NFCWriteVCard} message NFCWriteVCard
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    NFCWriteVCard.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.firstName = "";
+            object.name = "";
+            object.title = "";
+            object.organization = "";
+            object.email = "";
+            object.homeEmail = "";
+            object.workEmail = "";
+            object.cellularPhone = "";
+            object.homePhone = "";
+            object.workPhone = "";
+            object.address = "";
+            object.homeAddress = "";
+            object.workAddress = "";
+            object.url = "";
+        }
+        if (message.firstName != null && message.hasOwnProperty("firstName"))
+            object.firstName = message.firstName;
+        if (message.name != null && message.hasOwnProperty("name"))
+            object.name = message.name;
+        if (message.title != null && message.hasOwnProperty("title"))
+            object.title = message.title;
+        if (message.organization != null && message.hasOwnProperty("organization"))
+            object.organization = message.organization;
+        if (message.email != null && message.hasOwnProperty("email"))
+            object.email = message.email;
+        if (message.homeEmail != null && message.hasOwnProperty("homeEmail"))
+            object.homeEmail = message.homeEmail;
+        if (message.workEmail != null && message.hasOwnProperty("workEmail"))
+            object.workEmail = message.workEmail;
+        if (message.cellularPhone != null && message.hasOwnProperty("cellularPhone"))
+            object.cellularPhone = message.cellularPhone;
+        if (message.homePhone != null && message.hasOwnProperty("homePhone"))
+            object.homePhone = message.homePhone;
+        if (message.workPhone != null && message.hasOwnProperty("workPhone"))
+            object.workPhone = message.workPhone;
+        if (message.address != null && message.hasOwnProperty("address"))
+            object.address = message.address;
+        if (message.homeAddress != null && message.hasOwnProperty("homeAddress"))
+            object.homeAddress = message.homeAddress;
+        if (message.workAddress != null && message.hasOwnProperty("workAddress"))
+            object.workAddress = message.workAddress;
+        if (message.url != null && message.hasOwnProperty("url"))
+            object.url = message.url;
+        return object;
+    };
+
+    /**
+     * Converts this NFCWriteVCard to JSON.
+     * @function toJSON
+     * @memberof NFCWriteVCard
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    NFCWriteVCard.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for NFCWriteVCard
+     * @function getTypeUrl
+     * @memberof NFCWriteVCard
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    NFCWriteVCard.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/NFCWriteVCard";
+    };
+
+    return NFCWriteVCard;
+})();
+
+/**
+ * NFCRecordType enum.
+ * @exports NFCRecordType
+ * @enum {number}
+ * @property {number} NFC_RECORD_UNSPECIFIED=0 NFC_RECORD_UNSPECIFIED value
+ * @property {number} NFC_RECORD_TEXT=1 NFC_RECORD_TEXT value
+ * @property {number} NFC_RECORD_URI=2 NFC_RECORD_URI value
+ * @property {number} NFC_RECORD_UNABRIDGED_URI=3 NFC_RECORD_UNABRIDGED_URI value
+ * @property {number} NFC_RECORD_SMS=4 NFC_RECORD_SMS value
+ * @property {number} NFC_RECORD_EMAIL=5 NFC_RECORD_EMAIL value
+ * @property {number} NFC_RECORD_GEO_LOCATION=6 NFC_RECORD_GEO_LOCATION value
+ * @property {number} NFC_RECORD_VCARD=7 NFC_RECORD_VCARD value
+ */
+export const NFCRecordType = $root.NFCRecordType = (() => {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "NFC_RECORD_UNSPECIFIED"] = 0;
+    values[valuesById[1] = "NFC_RECORD_TEXT"] = 1;
+    values[valuesById[2] = "NFC_RECORD_URI"] = 2;
+    values[valuesById[3] = "NFC_RECORD_UNABRIDGED_URI"] = 3;
+    values[valuesById[4] = "NFC_RECORD_SMS"] = 4;
+    values[valuesById[5] = "NFC_RECORD_EMAIL"] = 5;
+    values[valuesById[6] = "NFC_RECORD_GEO_LOCATION"] = 6;
+    values[valuesById[7] = "NFC_RECORD_VCARD"] = 7;
+    return values;
+})();
+
+export const RFIDReaderState = $root.RFIDReaderState = (() => {
+
+    /**
+     * Properties of a RFIDReaderState.
+     * @exports IRFIDReaderState
+     * @interface IRFIDReaderState
+     * @property {string|null} [tagId] RFIDReaderState tagId
+     */
+
+    /**
+     * Constructs a new RFIDReaderState.
+     * @exports RFIDReaderState
+     * @classdesc Represents a RFIDReaderState.
+     * @implements IRFIDReaderState
+     * @constructor
+     * @param {IRFIDReaderState=} [properties] Properties to set
+     */
+    function RFIDReaderState(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * RFIDReaderState tagId.
+     * @member {string} tagId
+     * @memberof RFIDReaderState
+     * @instance
+     */
+    RFIDReaderState.prototype.tagId = "";
+
+    /**
+     * Creates a new RFIDReaderState instance using the specified properties.
+     * @function create
+     * @memberof RFIDReaderState
+     * @static
+     * @param {IRFIDReaderState=} [properties] Properties to set
+     * @returns {RFIDReaderState} RFIDReaderState instance
+     */
+    RFIDReaderState.create = function create(properties) {
+        return new RFIDReaderState(properties);
+    };
+
+    /**
+     * Encodes the specified RFIDReaderState message. Does not implicitly {@link RFIDReaderState.verify|verify} messages.
+     * @function encode
+     * @memberof RFIDReaderState
+     * @static
+     * @param {IRFIDReaderState} message RFIDReaderState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    RFIDReaderState.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.tagId != null && Object.hasOwnProperty.call(message, "tagId"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.tagId);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified RFIDReaderState message, length delimited. Does not implicitly {@link RFIDReaderState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof RFIDReaderState
+     * @static
+     * @param {IRFIDReaderState} message RFIDReaderState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    RFIDReaderState.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a RFIDReaderState message from the specified reader or buffer.
+     * @function decode
+     * @memberof RFIDReaderState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {RFIDReaderState} RFIDReaderState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    RFIDReaderState.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.RFIDReaderState();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.tagId = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a RFIDReaderState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof RFIDReaderState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {RFIDReaderState} RFIDReaderState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    RFIDReaderState.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a RFIDReaderState message.
+     * @function verify
+     * @memberof RFIDReaderState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    RFIDReaderState.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.tagId != null && message.hasOwnProperty("tagId"))
+            if (!$util.isString(message.tagId))
+                return "tagId: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a RFIDReaderState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof RFIDReaderState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {RFIDReaderState} RFIDReaderState
+     */
+    RFIDReaderState.fromObject = function fromObject(object) {
+        if (object instanceof $root.RFIDReaderState)
+            return object;
+        let message = new $root.RFIDReaderState();
+        if (object.tagId != null)
+            message.tagId = String(object.tagId);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a RFIDReaderState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof RFIDReaderState
+     * @static
+     * @param {RFIDReaderState} message RFIDReaderState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    RFIDReaderState.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.tagId = "";
+        if (message.tagId != null && message.hasOwnProperty("tagId"))
+            object.tagId = message.tagId;
+        return object;
+    };
+
+    /**
+     * Converts this RFIDReaderState to JSON.
+     * @function toJSON
+     * @memberof RFIDReaderState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    RFIDReaderState.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for RFIDReaderState
+     * @function getTypeUrl
+     * @memberof RFIDReaderState
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    RFIDReaderState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/RFIDReaderState";
+    };
+
+    return RFIDReaderState;
+})();
+
+export const RFIDReaderData = $root.RFIDReaderData = (() => {
+
+    /**
+     * Properties of a RFIDReaderData.
+     * @exports IRFIDReaderData
+     * @interface IRFIDReaderData
+     * @property {string|null} [tagId] RFIDReaderData tagId
+     */
+
+    /**
+     * Constructs a new RFIDReaderData.
+     * @exports RFIDReaderData
+     * @classdesc Represents a RFIDReaderData.
+     * @implements IRFIDReaderData
+     * @constructor
+     * @param {IRFIDReaderData=} [properties] Properties to set
+     */
+    function RFIDReaderData(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * RFIDReaderData tagId.
+     * @member {string} tagId
+     * @memberof RFIDReaderData
+     * @instance
+     */
+    RFIDReaderData.prototype.tagId = "";
+
+    /**
+     * Creates a new RFIDReaderData instance using the specified properties.
+     * @function create
+     * @memberof RFIDReaderData
+     * @static
+     * @param {IRFIDReaderData=} [properties] Properties to set
+     * @returns {RFIDReaderData} RFIDReaderData instance
+     */
+    RFIDReaderData.create = function create(properties) {
+        return new RFIDReaderData(properties);
+    };
+
+    /**
+     * Encodes the specified RFIDReaderData message. Does not implicitly {@link RFIDReaderData.verify|verify} messages.
+     * @function encode
+     * @memberof RFIDReaderData
+     * @static
+     * @param {IRFIDReaderData} message RFIDReaderData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    RFIDReaderData.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.tagId != null && Object.hasOwnProperty.call(message, "tagId"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.tagId);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified RFIDReaderData message, length delimited. Does not implicitly {@link RFIDReaderData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof RFIDReaderData
+     * @static
+     * @param {IRFIDReaderData} message RFIDReaderData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    RFIDReaderData.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a RFIDReaderData message from the specified reader or buffer.
+     * @function decode
+     * @memberof RFIDReaderData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {RFIDReaderData} RFIDReaderData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    RFIDReaderData.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.RFIDReaderData();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.tagId = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a RFIDReaderData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof RFIDReaderData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {RFIDReaderData} RFIDReaderData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    RFIDReaderData.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a RFIDReaderData message.
+     * @function verify
+     * @memberof RFIDReaderData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    RFIDReaderData.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.tagId != null && message.hasOwnProperty("tagId"))
+            if (!$util.isString(message.tagId))
+                return "tagId: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a RFIDReaderData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof RFIDReaderData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {RFIDReaderData} RFIDReaderData
+     */
+    RFIDReaderData.fromObject = function fromObject(object) {
+        if (object instanceof $root.RFIDReaderData)
+            return object;
+        let message = new $root.RFIDReaderData();
+        if (object.tagId != null)
+            message.tagId = String(object.tagId);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a RFIDReaderData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof RFIDReaderData
+     * @static
+     * @param {RFIDReaderData} message RFIDReaderData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    RFIDReaderData.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.tagId = "";
+        if (message.tagId != null && message.hasOwnProperty("tagId"))
+            object.tagId = message.tagId;
+        return object;
+    };
+
+    /**
+     * Converts this RFIDReaderData to JSON.
+     * @function toJSON
+     * @memberof RFIDReaderData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    RFIDReaderData.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for RFIDReaderData
+     * @function getTypeUrl
+     * @memberof RFIDReaderData
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    RFIDReaderData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/RFIDReaderData";
+    };
+
+    return RFIDReaderData;
+})();
+
 /**
  * DeviceType enum.
  * @exports DeviceType
@@ -7847,6 +15113,12 @@ export const RotationRange = $root.RotationRange = (() => {
  * @property {number} DEVICE_TYPE_TOUCH_SENSOR=4 DEVICE_TYPE_TOUCH_SENSOR value
  * @property {number} DEVICE_TYPE_GYROSCOPE=5 DEVICE_TYPE_GYROSCOPE value
  * @property {number} DEVICE_TYPE_TRINKEY=6 DEVICE_TYPE_TRINKEY value
+ * @property {number} DEVICE_TYPE_PRESSURE_SENSOR=7 DEVICE_TYPE_PRESSURE_SENSOR value
+ * @property {number} DEVICE_TYPE_CO2_SENSOR=8 DEVICE_TYPE_CO2_SENSOR value
+ * @property {number} DEVICE_TYPE_DISTANCE_SENSOR=9 DEVICE_TYPE_DISTANCE_SENSOR value
+ * @property {number} DEVICE_TYPE_UV_SENSOR=10 DEVICE_TYPE_UV_SENSOR value
+ * @property {number} DEVICE_TYPE_NFC_TAG=11 DEVICE_TYPE_NFC_TAG value
+ * @property {number} DEVICE_TYPE_RFID_READER=12 DEVICE_TYPE_RFID_READER value
  */
 export const DeviceType = $root.DeviceType = (() => {
     const valuesById = {}, values = Object.create(valuesById);
@@ -7857,6 +15129,12 @@ export const DeviceType = $root.DeviceType = (() => {
     values[valuesById[4] = "DEVICE_TYPE_TOUCH_SENSOR"] = 4;
     values[valuesById[5] = "DEVICE_TYPE_GYROSCOPE"] = 5;
     values[valuesById[6] = "DEVICE_TYPE_TRINKEY"] = 6;
+    values[valuesById[7] = "DEVICE_TYPE_PRESSURE_SENSOR"] = 7;
+    values[valuesById[8] = "DEVICE_TYPE_CO2_SENSOR"] = 8;
+    values[valuesById[9] = "DEVICE_TYPE_DISTANCE_SENSOR"] = 9;
+    values[valuesById[10] = "DEVICE_TYPE_UV_SENSOR"] = 10;
+    values[valuesById[11] = "DEVICE_TYPE_NFC_TAG"] = 11;
+    values[valuesById[12] = "DEVICE_TYPE_RFID_READER"] = 12;
     return values;
 })();
 

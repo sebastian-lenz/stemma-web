@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+// ── RFIDReader messages ───────────────────────────────────────────────────────
+
+// State returned by GetDeviceState for a RFIDReader.
+// tag_id is empty when no tag is present.
+message RFIDReaderState {
+    string tag_id = 1;
+}
+
+// Unsolicited event — sent when a tag is detected or removed.
+message RFIDReaderData {
+    string tag_id = 1;  // empty string when tag removed
+}

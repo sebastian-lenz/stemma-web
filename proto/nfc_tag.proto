@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+// ── NFC Tag messages ──────────────────────────────────────────────────────────
+
+// State returned by GetDeviceState; contains the current NDEF record.
+// Only fields relevant to record_type are populated on any given read.
+message NFCTagState {
+    NFCRecordType record_type    = 1;
+    // Shared optional annotation field
+    string information           = 2;
+    // Text record
+    string text                  = 3;
+    string language              = 4;
+    // URI (abridged, with protocol prefix)
+    string uri                   = 5;
+    string protocol              = 6;
+    // SMS record
+    string phone_number          = 7;
+    string sms_message           = 8;
+    // Email record
+    string email_address         = 9;
+    string subject               = 10;
+    string email_message         = 11;
+    // GeoLocation record
+    float  latitude              = 12;
+    float  longitude             = 13;
+    // VCard record
+    string vcard_first_name      = 14;
+    string vcard_name            = 15;
+    string vcard_title           = 16;
+    string vcard_organization    = 17;
+    string vcard_email           = 18;
+    string vcard_home_email      = 19;
+    string vcard_work_email      = 20;
+    string vcard_cellular_phone  = 21;
+    string vcard_home_phone      = 22;
+    string vcard_work_phone      = 23;
+    string vcard_address         = 24;
+    string vcard_home_address    = 25;
+    string vcard_work_address    = 26;
+    string vcard_url             = 27;
+}
+
+// ── Write command payloads ────────────────────────────────────────────────────
+
+message NFCWriteText {
+    string text     = 1;
+    string language = 2;
+}
+
+message NFCWriteUri {
+    string protocol    = 1;
+    string uri         = 2;
+    string information = 3;
+}
+
+message NFCWriteUnabridgedUri {
+    string uri         = 1;
+    string information = 2;
+}
+
+message NFCWriteSms {
+    string phone_number = 1;
+    string message      = 2;
+    string information  = 3;
+}
+
+message NFCWriteEmail {
+    string email       = 1;
+    string subject     = 2;
+    string message     = 3;
+    string information = 4;
+}
+
+message NFCWriteGeoLocation {
+    float  latitude    = 1;
+    float  longitude   = 2;
+    string information = 3;
+}
+
+message NFCWriteVCard {
+    string first_name     = 1;
+    string name           = 2;
+    string title          = 3;
+    string organization   = 4;
+    string email          = 5;
+    string home_email     = 6;
+    string work_email     = 7;
+    string cellular_phone = 8;
+    string home_phone     = 9;
+    string work_phone     = 10;
+    string address        = 11;
+    string home_address   = 12;
+    string work_address   = 13;
+    string url            = 14;
+}
+
+// ── NFC Tag enumerations ──────────────────────────────────────────────────────
+
+enum NFCRecordType {
+    NFC_RECORD_UNSPECIFIED    = 0;
+    NFC_RECORD_TEXT           = 1;
+    NFC_RECORD_URI            = 2;
+    NFC_RECORD_UNABRIDGED_URI = 3;
+    NFC_RECORD_SMS            = 4;
+    NFC_RECORD_EMAIL          = 5;
+    NFC_RECORD_GEO_LOCATION   = 6;
+    NFC_RECORD_VCARD          = 7;
+}

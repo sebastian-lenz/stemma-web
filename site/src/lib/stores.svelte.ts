@@ -1,12 +1,18 @@
 import { browser } from "$app/environment";
 import type { DeviceManager } from "stemma-web";
 import type {
-  NeoDriverDevice,
-  RotaryEncoderDevice,
-  LinearEncoderDevice,
-  TouchSensorDevice,
+  CO2SensorDevice,
+  DistanceSensorDevice,
   GyroscopeDevice,
+  LinearEncoderDevice,
+  NFCTagDevice,
+  NeoDriverDevice,
+  PressureSensorDevice,
+  RFIDReaderDevice,
+  RotaryEncoderDevice,
+  TouchSensorDevice,
   TrinkeyDevice,
+  UVSensorDevice,
 } from "stemma-web";
 
 export type DeviceKind =
@@ -15,7 +21,13 @@ export type DeviceKind =
   | "rotary-encoder"
   | "linear-encoder"
   | "touch-sensor"
-  | "gyroscope";
+  | "gyroscope"
+  | "pressure-sensor"
+  | "co2-sensor"
+  | "distance-sensor"
+  | "uv-sensor"
+  | "nfc-tag"
+  | "rfid-reader";
 
 export type DeviceInstance =
   | { kind: "trinkey"; key: string; device: TrinkeyDevice }
@@ -23,7 +35,13 @@ export type DeviceInstance =
   | { kind: "rotary-encoder"; key: string; device: RotaryEncoderDevice }
   | { kind: "linear-encoder"; key: string; device: LinearEncoderDevice }
   | { kind: "touch-sensor"; key: string; device: TouchSensorDevice }
-  | { kind: "gyroscope"; key: string; device: GyroscopeDevice };
+  | { kind: "gyroscope"; key: string; device: GyroscopeDevice }
+  | { kind: "pressure-sensor"; key: string; device: PressureSensorDevice }
+  | { kind: "co2-sensor"; key: string; device: CO2SensorDevice }
+  | { kind: "distance-sensor"; key: string; device: DistanceSensorDevice }
+  | { kind: "uv-sensor"; key: string; device: UVSensorDevice }
+  | { kind: "nfc-tag"; key: string; device: NFCTagDevice }
+  | { kind: "rfid-reader"; key: string; device: RFIDReaderDevice };
 
 class AppState {
   connected = $state(false);

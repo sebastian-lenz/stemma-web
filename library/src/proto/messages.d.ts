@@ -147,6 +147,39 @@ export interface IDeviceCommand {
 
     /** DeviceCommand setRotRate */
     setRotRate?: (ISetRotationRate|null);
+
+    /** DeviceCommand setPressureRate */
+    setPressureRate?: (ISetPressureSensorDataRate|null);
+
+    /** DeviceCommand setUvGain */
+    setUvGain?: (ISetUVSensorGain|null);
+
+    /** DeviceCommand setUvMode */
+    setUvMode?: (ISetUVSensorMode|null);
+
+    /** DeviceCommand setUvResolution */
+    setUvResolution?: (ISetUVSensorResolution|null);
+
+    /** DeviceCommand nfcWriteText */
+    nfcWriteText?: (INFCWriteText|null);
+
+    /** DeviceCommand nfcWriteUri */
+    nfcWriteUri?: (INFCWriteUri|null);
+
+    /** DeviceCommand nfcWriteUnabridgedUri */
+    nfcWriteUnabridgedUri?: (INFCWriteUnabridgedUri|null);
+
+    /** DeviceCommand nfcWriteSms */
+    nfcWriteSms?: (INFCWriteSms|null);
+
+    /** DeviceCommand nfcWriteEmail */
+    nfcWriteEmail?: (INFCWriteEmail|null);
+
+    /** DeviceCommand nfcWriteGeo */
+    nfcWriteGeo?: (INFCWriteGeoLocation|null);
+
+    /** DeviceCommand nfcWriteVcard */
+    nfcWriteVcard?: (INFCWriteVCard|null);
 }
 
 /** Represents a DeviceCommand. */
@@ -197,8 +230,41 @@ export class DeviceCommand implements IDeviceCommand {
     /** DeviceCommand setRotRate. */
     public setRotRate?: (ISetRotationRate|null);
 
+    /** DeviceCommand setPressureRate. */
+    public setPressureRate?: (ISetPressureSensorDataRate|null);
+
+    /** DeviceCommand setUvGain. */
+    public setUvGain?: (ISetUVSensorGain|null);
+
+    /** DeviceCommand setUvMode. */
+    public setUvMode?: (ISetUVSensorMode|null);
+
+    /** DeviceCommand setUvResolution. */
+    public setUvResolution?: (ISetUVSensorResolution|null);
+
+    /** DeviceCommand nfcWriteText. */
+    public nfcWriteText?: (INFCWriteText|null);
+
+    /** DeviceCommand nfcWriteUri. */
+    public nfcWriteUri?: (INFCWriteUri|null);
+
+    /** DeviceCommand nfcWriteUnabridgedUri. */
+    public nfcWriteUnabridgedUri?: (INFCWriteUnabridgedUri|null);
+
+    /** DeviceCommand nfcWriteSms. */
+    public nfcWriteSms?: (INFCWriteSms|null);
+
+    /** DeviceCommand nfcWriteEmail. */
+    public nfcWriteEmail?: (INFCWriteEmail|null);
+
+    /** DeviceCommand nfcWriteGeo. */
+    public nfcWriteGeo?: (INFCWriteGeoLocation|null);
+
+    /** DeviceCommand nfcWriteVcard. */
+    public nfcWriteVcard?: (INFCWriteVCard|null);
+
     /** DeviceCommand payload. */
-    public payload?: ("start"|"stop"|"getState"|"setBrightness"|"setPixelColor"|"setPixelColors"|"setLength"|"setAccelRange"|"setRotRange"|"setAccelRate"|"setRotRate");
+    public payload?: ("start"|"stop"|"getState"|"setBrightness"|"setPixelColor"|"setPixelColors"|"setLength"|"setAccelRange"|"setRotRange"|"setAccelRate"|"setRotRate"|"setPressureRate"|"setUvGain"|"setUvMode"|"setUvResolution"|"nfcWriteText"|"nfcWriteUri"|"nfcWriteUnabridgedUri"|"nfcWriteSms"|"nfcWriteEmail"|"nfcWriteGeo"|"nfcWriteVcard");
 
     /**
      * Creates a new DeviceCommand instance using the specified properties.
@@ -283,6 +349,9 @@ export interface IStartDevice {
 
     /** StartDevice gyroscopeChipset */
     gyroscopeChipset?: (GyroscopeChipset|null);
+
+    /** StartDevice pressureSensorChipset */
+    pressureSensorChipset?: (PressureSensorChipset|null);
 }
 
 /** Represents a StartDevice. */
@@ -296,6 +365,9 @@ export class StartDevice implements IStartDevice {
 
     /** StartDevice gyroscopeChipset. */
     public gyroscopeChipset: GyroscopeChipset;
+
+    /** StartDevice pressureSensorChipset. */
+    public pressureSensorChipset: PressureSensorChipset;
 
     /**
      * Creates a new StartDevice instance using the specified properties.
@@ -1351,6 +1423,394 @@ export class SetRotationRate implements ISetRotationRate {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
+/** Properties of a SetPressureSensorDataRate. */
+export interface ISetPressureSensorDataRate {
+
+    /** SetPressureSensorDataRate rate */
+    rate?: (PressureSensorDataRate|null);
+}
+
+/** Represents a SetPressureSensorDataRate. */
+export class SetPressureSensorDataRate implements ISetPressureSensorDataRate {
+
+    /**
+     * Constructs a new SetPressureSensorDataRate.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: ISetPressureSensorDataRate);
+
+    /** SetPressureSensorDataRate rate. */
+    public rate: PressureSensorDataRate;
+
+    /**
+     * Creates a new SetPressureSensorDataRate instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns SetPressureSensorDataRate instance
+     */
+    public static create(properties?: ISetPressureSensorDataRate): SetPressureSensorDataRate;
+
+    /**
+     * Encodes the specified SetPressureSensorDataRate message. Does not implicitly {@link SetPressureSensorDataRate.verify|verify} messages.
+     * @param message SetPressureSensorDataRate message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: ISetPressureSensorDataRate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified SetPressureSensorDataRate message, length delimited. Does not implicitly {@link SetPressureSensorDataRate.verify|verify} messages.
+     * @param message SetPressureSensorDataRate message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: ISetPressureSensorDataRate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a SetPressureSensorDataRate message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns SetPressureSensorDataRate
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SetPressureSensorDataRate;
+
+    /**
+     * Decodes a SetPressureSensorDataRate message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns SetPressureSensorDataRate
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SetPressureSensorDataRate;
+
+    /**
+     * Verifies a SetPressureSensorDataRate message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a SetPressureSensorDataRate message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns SetPressureSensorDataRate
+     */
+    public static fromObject(object: { [k: string]: any }): SetPressureSensorDataRate;
+
+    /**
+     * Creates a plain object from a SetPressureSensorDataRate message. Also converts values to other types if specified.
+     * @param message SetPressureSensorDataRate
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: SetPressureSensorDataRate, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this SetPressureSensorDataRate to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for SetPressureSensorDataRate
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Properties of a SetUVSensorGain. */
+export interface ISetUVSensorGain {
+
+    /** SetUVSensorGain gain */
+    gain?: (UVSensorGain|null);
+}
+
+/** Represents a SetUVSensorGain. */
+export class SetUVSensorGain implements ISetUVSensorGain {
+
+    /**
+     * Constructs a new SetUVSensorGain.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: ISetUVSensorGain);
+
+    /** SetUVSensorGain gain. */
+    public gain: UVSensorGain;
+
+    /**
+     * Creates a new SetUVSensorGain instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns SetUVSensorGain instance
+     */
+    public static create(properties?: ISetUVSensorGain): SetUVSensorGain;
+
+    /**
+     * Encodes the specified SetUVSensorGain message. Does not implicitly {@link SetUVSensorGain.verify|verify} messages.
+     * @param message SetUVSensorGain message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: ISetUVSensorGain, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified SetUVSensorGain message, length delimited. Does not implicitly {@link SetUVSensorGain.verify|verify} messages.
+     * @param message SetUVSensorGain message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: ISetUVSensorGain, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a SetUVSensorGain message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns SetUVSensorGain
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SetUVSensorGain;
+
+    /**
+     * Decodes a SetUVSensorGain message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns SetUVSensorGain
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SetUVSensorGain;
+
+    /**
+     * Verifies a SetUVSensorGain message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a SetUVSensorGain message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns SetUVSensorGain
+     */
+    public static fromObject(object: { [k: string]: any }): SetUVSensorGain;
+
+    /**
+     * Creates a plain object from a SetUVSensorGain message. Also converts values to other types if specified.
+     * @param message SetUVSensorGain
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: SetUVSensorGain, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this SetUVSensorGain to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for SetUVSensorGain
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Properties of a SetUVSensorMode. */
+export interface ISetUVSensorMode {
+
+    /** SetUVSensorMode mode */
+    mode?: (UVSensorMode|null);
+}
+
+/** Represents a SetUVSensorMode. */
+export class SetUVSensorMode implements ISetUVSensorMode {
+
+    /**
+     * Constructs a new SetUVSensorMode.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: ISetUVSensorMode);
+
+    /** SetUVSensorMode mode. */
+    public mode: UVSensorMode;
+
+    /**
+     * Creates a new SetUVSensorMode instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns SetUVSensorMode instance
+     */
+    public static create(properties?: ISetUVSensorMode): SetUVSensorMode;
+
+    /**
+     * Encodes the specified SetUVSensorMode message. Does not implicitly {@link SetUVSensorMode.verify|verify} messages.
+     * @param message SetUVSensorMode message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: ISetUVSensorMode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified SetUVSensorMode message, length delimited. Does not implicitly {@link SetUVSensorMode.verify|verify} messages.
+     * @param message SetUVSensorMode message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: ISetUVSensorMode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a SetUVSensorMode message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns SetUVSensorMode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SetUVSensorMode;
+
+    /**
+     * Decodes a SetUVSensorMode message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns SetUVSensorMode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SetUVSensorMode;
+
+    /**
+     * Verifies a SetUVSensorMode message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a SetUVSensorMode message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns SetUVSensorMode
+     */
+    public static fromObject(object: { [k: string]: any }): SetUVSensorMode;
+
+    /**
+     * Creates a plain object from a SetUVSensorMode message. Also converts values to other types if specified.
+     * @param message SetUVSensorMode
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: SetUVSensorMode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this SetUVSensorMode to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for SetUVSensorMode
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Properties of a SetUVSensorResolution. */
+export interface ISetUVSensorResolution {
+
+    /** SetUVSensorResolution resolution */
+    resolution?: (UVSensorResolution|null);
+}
+
+/** Represents a SetUVSensorResolution. */
+export class SetUVSensorResolution implements ISetUVSensorResolution {
+
+    /**
+     * Constructs a new SetUVSensorResolution.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: ISetUVSensorResolution);
+
+    /** SetUVSensorResolution resolution. */
+    public resolution: UVSensorResolution;
+
+    /**
+     * Creates a new SetUVSensorResolution instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns SetUVSensorResolution instance
+     */
+    public static create(properties?: ISetUVSensorResolution): SetUVSensorResolution;
+
+    /**
+     * Encodes the specified SetUVSensorResolution message. Does not implicitly {@link SetUVSensorResolution.verify|verify} messages.
+     * @param message SetUVSensorResolution message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: ISetUVSensorResolution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified SetUVSensorResolution message, length delimited. Does not implicitly {@link SetUVSensorResolution.verify|verify} messages.
+     * @param message SetUVSensorResolution message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: ISetUVSensorResolution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a SetUVSensorResolution message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns SetUVSensorResolution
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SetUVSensorResolution;
+
+    /**
+     * Decodes a SetUVSensorResolution message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns SetUVSensorResolution
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SetUVSensorResolution;
+
+    /**
+     * Verifies a SetUVSensorResolution message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a SetUVSensorResolution message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns SetUVSensorResolution
+     */
+    public static fromObject(object: { [k: string]: any }): SetUVSensorResolution;
+
+    /**
+     * Creates a plain object from a SetUVSensorResolution message. Also converts values to other types if specified.
+     * @param message SetUVSensorResolution
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: SetUVSensorResolution, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this SetUVSensorResolution to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for SetUVSensorResolution
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
 /** Properties of a Response. */
 export interface IResponse {
 
@@ -1481,23 +1941,41 @@ export interface IDeviceState {
     /** DeviceState connected */
     connected?: (boolean|null);
 
-    /** DeviceState trinkey */
-    trinkey?: (ITrinkeyState|null);
+    /** DeviceState co2Sensor */
+    co2Sensor?: (ICO2SensorState|null);
 
-    /** DeviceState neoDriver */
-    neoDriver?: (INeoDriverState|null);
+    /** DeviceState distanceSensor */
+    distanceSensor?: (IDistanceSensorState|null);
 
-    /** DeviceState rotaryEncoder */
-    rotaryEncoder?: (IRotaryEncoderState|null);
+    /** DeviceState gyroscope */
+    gyroscope?: (IGyroscopeState|null);
 
     /** DeviceState linearEncoder */
     linearEncoder?: (ILinearEncoderState|null);
 
+    /** DeviceState neoDriver */
+    neoDriver?: (INeoDriverState|null);
+
+    /** DeviceState nfcTag */
+    nfcTag?: (INFCTagState|null);
+
+    /** DeviceState pressureSensor */
+    pressureSensor?: (IPressureSensorState|null);
+
+    /** DeviceState rfidReader */
+    rfidReader?: (IRFIDReaderState|null);
+
+    /** DeviceState rotaryEncoder */
+    rotaryEncoder?: (IRotaryEncoderState|null);
+
+    /** DeviceState trinkey */
+    trinkey?: (ITrinkeyState|null);
+
     /** DeviceState touchSensor */
     touchSensor?: (ITouchSensorState|null);
 
-    /** DeviceState gyroscope */
-    gyroscope?: (IGyroscopeState|null);
+    /** DeviceState uvSensor */
+    uvSensor?: (IUVSensorState|null);
 }
 
 /** Represents a DeviceState. */
@@ -1518,26 +1996,44 @@ export class DeviceState implements IDeviceState {
     /** DeviceState connected. */
     public connected: boolean;
 
-    /** DeviceState trinkey. */
-    public trinkey?: (ITrinkeyState|null);
+    /** DeviceState co2Sensor. */
+    public co2Sensor?: (ICO2SensorState|null);
 
-    /** DeviceState neoDriver. */
-    public neoDriver?: (INeoDriverState|null);
-
-    /** DeviceState rotaryEncoder. */
-    public rotaryEncoder?: (IRotaryEncoderState|null);
-
-    /** DeviceState linearEncoder. */
-    public linearEncoder?: (ILinearEncoderState|null);
-
-    /** DeviceState touchSensor. */
-    public touchSensor?: (ITouchSensorState|null);
+    /** DeviceState distanceSensor. */
+    public distanceSensor?: (IDistanceSensorState|null);
 
     /** DeviceState gyroscope. */
     public gyroscope?: (IGyroscopeState|null);
 
+    /** DeviceState linearEncoder. */
+    public linearEncoder?: (ILinearEncoderState|null);
+
+    /** DeviceState neoDriver. */
+    public neoDriver?: (INeoDriverState|null);
+
+    /** DeviceState nfcTag. */
+    public nfcTag?: (INFCTagState|null);
+
+    /** DeviceState pressureSensor. */
+    public pressureSensor?: (IPressureSensorState|null);
+
+    /** DeviceState rfidReader. */
+    public rfidReader?: (IRFIDReaderState|null);
+
+    /** DeviceState rotaryEncoder. */
+    public rotaryEncoder?: (IRotaryEncoderState|null);
+
+    /** DeviceState trinkey. */
+    public trinkey?: (ITrinkeyState|null);
+
+    /** DeviceState touchSensor. */
+    public touchSensor?: (ITouchSensorState|null);
+
+    /** DeviceState uvSensor. */
+    public uvSensor?: (IUVSensorState|null);
+
     /** DeviceState state. */
-    public state?: ("trinkey"|"neoDriver"|"rotaryEncoder"|"linearEncoder"|"touchSensor"|"gyroscope");
+    public state?: ("co2Sensor"|"distanceSensor"|"gyroscope"|"linearEncoder"|"neoDriver"|"nfcTag"|"pressureSensor"|"rfidReader"|"rotaryEncoder"|"trinkey"|"touchSensor"|"uvSensor");
 
     /**
      * Creates a new DeviceState instance using the specified properties.
@@ -1640,6 +2136,21 @@ export interface IDeviceEvent {
 
     /** DeviceEvent gyroscopeData */
     gyroscopeData?: (IGyroscopeChanged|null);
+
+    /** DeviceEvent pressureSensorData */
+    pressureSensorData?: (IPressureSensorData|null);
+
+    /** DeviceEvent co2SensorData */
+    co2SensorData?: (ICO2SensorData|null);
+
+    /** DeviceEvent distanceSensorData */
+    distanceSensorData?: (IDistanceSensorData|null);
+
+    /** DeviceEvent uvSensorData */
+    uvSensorData?: (IUVSensorData|null);
+
+    /** DeviceEvent rfidReaderData */
+    rfidReaderData?: (IRFIDReaderData|null);
 }
 
 /** Represents a DeviceEvent. */
@@ -1672,8 +2183,23 @@ export class DeviceEvent implements IDeviceEvent {
     /** DeviceEvent gyroscopeData. */
     public gyroscopeData?: (IGyroscopeChanged|null);
 
+    /** DeviceEvent pressureSensorData. */
+    public pressureSensorData?: (IPressureSensorData|null);
+
+    /** DeviceEvent co2SensorData. */
+    public co2SensorData?: (ICO2SensorData|null);
+
+    /** DeviceEvent distanceSensorData. */
+    public distanceSensorData?: (IDistanceSensorData|null);
+
+    /** DeviceEvent uvSensorData. */
+    public uvSensorData?: (IUVSensorData|null);
+
+    /** DeviceEvent rfidReaderData. */
+    public rfidReaderData?: (IRFIDReaderData|null);
+
     /** DeviceEvent event. */
-    public event?: ("rotaryChanged"|"rotaryButton"|"linearChanged"|"touchButton"|"gyroscopeData");
+    public event?: ("rotaryChanged"|"rotaryButton"|"linearChanged"|"touchButton"|"gyroscopeData"|"pressureSensorData"|"co2SensorData"|"distanceSensorData"|"uvSensorData"|"rfidReaderData");
 
     /**
      * Creates a new DeviceEvent instance using the specified properties.
@@ -3005,6 +3531,1862 @@ export enum RotationRange {
     GYROSCOPE_ROTATION_RANGE_DPS_4000 = 5
 }
 
+/** Represents a PressureSensorState. */
+export class PressureSensorState implements IPressureSensorState {
+
+    /**
+     * Constructs a new PressureSensorState.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IPressureSensorState);
+
+    /** PressureSensorState pressure. */
+    public pressure: number;
+
+    /** PressureSensorState temperature. */
+    public temperature: number;
+
+    /** PressureSensorState dataRate. */
+    public dataRate: PressureSensorDataRate;
+
+    /**
+     * Creates a new PressureSensorState instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PressureSensorState instance
+     */
+    public static create(properties?: IPressureSensorState): PressureSensorState;
+
+    /**
+     * Encodes the specified PressureSensorState message. Does not implicitly {@link PressureSensorState.verify|verify} messages.
+     * @param message PressureSensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IPressureSensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PressureSensorState message, length delimited. Does not implicitly {@link PressureSensorState.verify|verify} messages.
+     * @param message PressureSensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IPressureSensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PressureSensorState message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns PressureSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PressureSensorState;
+
+    /**
+     * Decodes a PressureSensorState message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns PressureSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PressureSensorState;
+
+    /**
+     * Verifies a PressureSensorState message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PressureSensorState message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PressureSensorState
+     */
+    public static fromObject(object: { [k: string]: any }): PressureSensorState;
+
+    /**
+     * Creates a plain object from a PressureSensorState message. Also converts values to other types if specified.
+     * @param message PressureSensorState
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: PressureSensorState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PressureSensorState to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for PressureSensorState
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a PressureSensorData. */
+export class PressureSensorData implements IPressureSensorData {
+
+    /**
+     * Constructs a new PressureSensorData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IPressureSensorData);
+
+    /** PressureSensorData pressure. */
+    public pressure: number;
+
+    /** PressureSensorData temperature. */
+    public temperature: number;
+
+    /**
+     * Creates a new PressureSensorData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PressureSensorData instance
+     */
+    public static create(properties?: IPressureSensorData): PressureSensorData;
+
+    /**
+     * Encodes the specified PressureSensorData message. Does not implicitly {@link PressureSensorData.verify|verify} messages.
+     * @param message PressureSensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IPressureSensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PressureSensorData message, length delimited. Does not implicitly {@link PressureSensorData.verify|verify} messages.
+     * @param message PressureSensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IPressureSensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PressureSensorData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns PressureSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PressureSensorData;
+
+    /**
+     * Decodes a PressureSensorData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns PressureSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PressureSensorData;
+
+    /**
+     * Verifies a PressureSensorData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PressureSensorData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PressureSensorData
+     */
+    public static fromObject(object: { [k: string]: any }): PressureSensorData;
+
+    /**
+     * Creates a plain object from a PressureSensorData message. Also converts values to other types if specified.
+     * @param message PressureSensorData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: PressureSensorData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PressureSensorData to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for PressureSensorData
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** PressureSensorChipset enum. */
+export enum PressureSensorChipset {
+    PRESSURE_SENSOR_CHIPSET_UNSPECIFIED = 0,
+    PRESSURE_SENSOR_CHIPSET_LPS22 = 1,
+    PRESSURE_SENSOR_CHIPSET_LPS25 = 2
+}
+
+/** PressureSensorDataRate enum. */
+export enum PressureSensorDataRate {
+    PRESSURE_SENSOR_DATA_RATE_ONE_SHOT = 0,
+    PRESSURE_SENSOR_DATA_RATE_1_HZ = 1,
+    PRESSURE_SENSOR_DATA_RATE_7_HZ = 2,
+    PRESSURE_SENSOR_DATA_RATE_10_HZ = 3,
+    PRESSURE_SENSOR_DATA_RATE_12_5_HZ = 4,
+    PRESSURE_SENSOR_DATA_RATE_25_HZ = 5,
+    PRESSURE_SENSOR_DATA_RATE_50_HZ = 6,
+    PRESSURE_SENSOR_DATA_RATE_75_HZ = 7
+}
+
+/** Represents a CO2SensorState. */
+export class CO2SensorState implements ICO2SensorState {
+
+    /**
+     * Constructs a new CO2SensorState.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: ICO2SensorState);
+
+    /** CO2SensorState co2. */
+    public co2: number;
+
+    /** CO2SensorState humidity. */
+    public humidity: number;
+
+    /** CO2SensorState temperature. */
+    public temperature: number;
+
+    /**
+     * Creates a new CO2SensorState instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns CO2SensorState instance
+     */
+    public static create(properties?: ICO2SensorState): CO2SensorState;
+
+    /**
+     * Encodes the specified CO2SensorState message. Does not implicitly {@link CO2SensorState.verify|verify} messages.
+     * @param message CO2SensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: ICO2SensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified CO2SensorState message, length delimited. Does not implicitly {@link CO2SensorState.verify|verify} messages.
+     * @param message CO2SensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: ICO2SensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a CO2SensorState message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns CO2SensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CO2SensorState;
+
+    /**
+     * Decodes a CO2SensorState message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns CO2SensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CO2SensorState;
+
+    /**
+     * Verifies a CO2SensorState message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a CO2SensorState message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns CO2SensorState
+     */
+    public static fromObject(object: { [k: string]: any }): CO2SensorState;
+
+    /**
+     * Creates a plain object from a CO2SensorState message. Also converts values to other types if specified.
+     * @param message CO2SensorState
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: CO2SensorState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this CO2SensorState to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for CO2SensorState
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a CO2SensorData. */
+export class CO2SensorData implements ICO2SensorData {
+
+    /**
+     * Constructs a new CO2SensorData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: ICO2SensorData);
+
+    /** CO2SensorData co2. */
+    public co2: number;
+
+    /** CO2SensorData humidity. */
+    public humidity: number;
+
+    /** CO2SensorData temperature. */
+    public temperature: number;
+
+    /**
+     * Creates a new CO2SensorData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns CO2SensorData instance
+     */
+    public static create(properties?: ICO2SensorData): CO2SensorData;
+
+    /**
+     * Encodes the specified CO2SensorData message. Does not implicitly {@link CO2SensorData.verify|verify} messages.
+     * @param message CO2SensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: ICO2SensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified CO2SensorData message, length delimited. Does not implicitly {@link CO2SensorData.verify|verify} messages.
+     * @param message CO2SensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: ICO2SensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a CO2SensorData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns CO2SensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CO2SensorData;
+
+    /**
+     * Decodes a CO2SensorData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns CO2SensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CO2SensorData;
+
+    /**
+     * Verifies a CO2SensorData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a CO2SensorData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns CO2SensorData
+     */
+    public static fromObject(object: { [k: string]: any }): CO2SensorData;
+
+    /**
+     * Creates a plain object from a CO2SensorData message. Also converts values to other types if specified.
+     * @param message CO2SensorData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: CO2SensorData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this CO2SensorData to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for CO2SensorData
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a DistanceSensorState. */
+export class DistanceSensorState implements IDistanceSensorState {
+
+    /**
+     * Constructs a new DistanceSensorState.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IDistanceSensorState);
+
+    /** DistanceSensorState distance. */
+    public distance: number;
+
+    /**
+     * Creates a new DistanceSensorState instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns DistanceSensorState instance
+     */
+    public static create(properties?: IDistanceSensorState): DistanceSensorState;
+
+    /**
+     * Encodes the specified DistanceSensorState message. Does not implicitly {@link DistanceSensorState.verify|verify} messages.
+     * @param message DistanceSensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IDistanceSensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified DistanceSensorState message, length delimited. Does not implicitly {@link DistanceSensorState.verify|verify} messages.
+     * @param message DistanceSensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IDistanceSensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a DistanceSensorState message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns DistanceSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): DistanceSensorState;
+
+    /**
+     * Decodes a DistanceSensorState message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns DistanceSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): DistanceSensorState;
+
+    /**
+     * Verifies a DistanceSensorState message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a DistanceSensorState message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns DistanceSensorState
+     */
+    public static fromObject(object: { [k: string]: any }): DistanceSensorState;
+
+    /**
+     * Creates a plain object from a DistanceSensorState message. Also converts values to other types if specified.
+     * @param message DistanceSensorState
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: DistanceSensorState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this DistanceSensorState to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for DistanceSensorState
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a DistanceSensorData. */
+export class DistanceSensorData implements IDistanceSensorData {
+
+    /**
+     * Constructs a new DistanceSensorData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IDistanceSensorData);
+
+    /** DistanceSensorData distance. */
+    public distance: number;
+
+    /**
+     * Creates a new DistanceSensorData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns DistanceSensorData instance
+     */
+    public static create(properties?: IDistanceSensorData): DistanceSensorData;
+
+    /**
+     * Encodes the specified DistanceSensorData message. Does not implicitly {@link DistanceSensorData.verify|verify} messages.
+     * @param message DistanceSensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IDistanceSensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified DistanceSensorData message, length delimited. Does not implicitly {@link DistanceSensorData.verify|verify} messages.
+     * @param message DistanceSensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IDistanceSensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a DistanceSensorData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns DistanceSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): DistanceSensorData;
+
+    /**
+     * Decodes a DistanceSensorData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns DistanceSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): DistanceSensorData;
+
+    /**
+     * Verifies a DistanceSensorData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a DistanceSensorData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns DistanceSensorData
+     */
+    public static fromObject(object: { [k: string]: any }): DistanceSensorData;
+
+    /**
+     * Creates a plain object from a DistanceSensorData message. Also converts values to other types if specified.
+     * @param message DistanceSensorData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: DistanceSensorData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this DistanceSensorData to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for DistanceSensorData
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a UVSensorState. */
+export class UVSensorState implements IUVSensorState {
+
+    /**
+     * Constructs a new UVSensorState.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IUVSensorState);
+
+    /** UVSensorState value. */
+    public value: number;
+
+    /** UVSensorState mode. */
+    public mode: UVSensorMode;
+
+    /** UVSensorState gain. */
+    public gain: UVSensorGain;
+
+    /** UVSensorState resolution. */
+    public resolution: UVSensorResolution;
+
+    /**
+     * Creates a new UVSensorState instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns UVSensorState instance
+     */
+    public static create(properties?: IUVSensorState): UVSensorState;
+
+    /**
+     * Encodes the specified UVSensorState message. Does not implicitly {@link UVSensorState.verify|verify} messages.
+     * @param message UVSensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IUVSensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified UVSensorState message, length delimited. Does not implicitly {@link UVSensorState.verify|verify} messages.
+     * @param message UVSensorState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IUVSensorState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a UVSensorState message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns UVSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): UVSensorState;
+
+    /**
+     * Decodes a UVSensorState message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns UVSensorState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): UVSensorState;
+
+    /**
+     * Verifies a UVSensorState message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a UVSensorState message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns UVSensorState
+     */
+    public static fromObject(object: { [k: string]: any }): UVSensorState;
+
+    /**
+     * Creates a plain object from a UVSensorState message. Also converts values to other types if specified.
+     * @param message UVSensorState
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: UVSensorState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this UVSensorState to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for UVSensorState
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a UVSensorData. */
+export class UVSensorData implements IUVSensorData {
+
+    /**
+     * Constructs a new UVSensorData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IUVSensorData);
+
+    /** UVSensorData value. */
+    public value: number;
+
+    /**
+     * Creates a new UVSensorData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns UVSensorData instance
+     */
+    public static create(properties?: IUVSensorData): UVSensorData;
+
+    /**
+     * Encodes the specified UVSensorData message. Does not implicitly {@link UVSensorData.verify|verify} messages.
+     * @param message UVSensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IUVSensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified UVSensorData message, length delimited. Does not implicitly {@link UVSensorData.verify|verify} messages.
+     * @param message UVSensorData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IUVSensorData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a UVSensorData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns UVSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): UVSensorData;
+
+    /**
+     * Decodes a UVSensorData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns UVSensorData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): UVSensorData;
+
+    /**
+     * Verifies a UVSensorData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a UVSensorData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns UVSensorData
+     */
+    public static fromObject(object: { [k: string]: any }): UVSensorData;
+
+    /**
+     * Creates a plain object from a UVSensorData message. Also converts values to other types if specified.
+     * @param message UVSensorData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: UVSensorData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this UVSensorData to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for UVSensorData
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** UVSensorMode enum. */
+export enum UVSensorMode {
+    UV_SENSOR_MODE_ALS = 0,
+    UV_SENSOR_MODE_UVS = 1
+}
+
+/** UVSensorGain enum. */
+export enum UVSensorGain {
+    UV_SENSOR_GAIN_1 = 0,
+    UV_SENSOR_GAIN_3 = 1,
+    UV_SENSOR_GAIN_6 = 2,
+    UV_SENSOR_GAIN_9 = 3,
+    UV_SENSOR_GAIN_18 = 4
+}
+
+/** UVSensorResolution enum. */
+export enum UVSensorResolution {
+    UV_SENSOR_RESOLUTION_20_BIT = 0,
+    UV_SENSOR_RESOLUTION_19_BIT = 1,
+    UV_SENSOR_RESOLUTION_18_BIT = 2,
+    UV_SENSOR_RESOLUTION_17_BIT = 3,
+    UV_SENSOR_RESOLUTION_16_BIT = 4,
+    UV_SENSOR_RESOLUTION_13_BIT = 5
+}
+
+/** Represents a NFCTagState. */
+export class NFCTagState implements INFCTagState {
+
+    /**
+     * Constructs a new NFCTagState.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCTagState);
+
+    /** NFCTagState recordType. */
+    public recordType: NFCRecordType;
+
+    /** NFCTagState information. */
+    public information: string;
+
+    /** NFCTagState text. */
+    public text: string;
+
+    /** NFCTagState language. */
+    public language: string;
+
+    /** NFCTagState uri. */
+    public uri: string;
+
+    /** NFCTagState protocol. */
+    public protocol: string;
+
+    /** NFCTagState phoneNumber. */
+    public phoneNumber: string;
+
+    /** NFCTagState smsMessage. */
+    public smsMessage: string;
+
+    /** NFCTagState emailAddress. */
+    public emailAddress: string;
+
+    /** NFCTagState subject. */
+    public subject: string;
+
+    /** NFCTagState emailMessage. */
+    public emailMessage: string;
+
+    /** NFCTagState latitude. */
+    public latitude: number;
+
+    /** NFCTagState longitude. */
+    public longitude: number;
+
+    /** NFCTagState vcardFirstName. */
+    public vcardFirstName: string;
+
+    /** NFCTagState vcardName. */
+    public vcardName: string;
+
+    /** NFCTagState vcardTitle. */
+    public vcardTitle: string;
+
+    /** NFCTagState vcardOrganization. */
+    public vcardOrganization: string;
+
+    /** NFCTagState vcardEmail. */
+    public vcardEmail: string;
+
+    /** NFCTagState vcardHomeEmail. */
+    public vcardHomeEmail: string;
+
+    /** NFCTagState vcardWorkEmail. */
+    public vcardWorkEmail: string;
+
+    /** NFCTagState vcardCellularPhone. */
+    public vcardCellularPhone: string;
+
+    /** NFCTagState vcardHomePhone. */
+    public vcardHomePhone: string;
+
+    /** NFCTagState vcardWorkPhone. */
+    public vcardWorkPhone: string;
+
+    /** NFCTagState vcardAddress. */
+    public vcardAddress: string;
+
+    /** NFCTagState vcardHomeAddress. */
+    public vcardHomeAddress: string;
+
+    /** NFCTagState vcardWorkAddress. */
+    public vcardWorkAddress: string;
+
+    /** NFCTagState vcardUrl. */
+    public vcardUrl: string;
+
+    /**
+     * Creates a new NFCTagState instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCTagState instance
+     */
+    public static create(properties?: INFCTagState): NFCTagState;
+
+    /**
+     * Encodes the specified NFCTagState message. Does not implicitly {@link NFCTagState.verify|verify} messages.
+     * @param message NFCTagState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCTagState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCTagState message, length delimited. Does not implicitly {@link NFCTagState.verify|verify} messages.
+     * @param message NFCTagState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCTagState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCTagState message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCTagState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCTagState;
+
+    /**
+     * Decodes a NFCTagState message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCTagState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCTagState;
+
+    /**
+     * Verifies a NFCTagState message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCTagState message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCTagState
+     */
+    public static fromObject(object: { [k: string]: any }): NFCTagState;
+
+    /**
+     * Creates a plain object from a NFCTagState message. Also converts values to other types if specified.
+     * @param message NFCTagState
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCTagState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCTagState to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCTagState
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a NFCWriteText. */
+export class NFCWriteText implements INFCWriteText {
+
+    /**
+     * Constructs a new NFCWriteText.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCWriteText);
+
+    /** NFCWriteText text. */
+    public text: string;
+
+    /** NFCWriteText language. */
+    public language: string;
+
+    /**
+     * Creates a new NFCWriteText instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCWriteText instance
+     */
+    public static create(properties?: INFCWriteText): NFCWriteText;
+
+    /**
+     * Encodes the specified NFCWriteText message. Does not implicitly {@link NFCWriteText.verify|verify} messages.
+     * @param message NFCWriteText message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCWriteText, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCWriteText message, length delimited. Does not implicitly {@link NFCWriteText.verify|verify} messages.
+     * @param message NFCWriteText message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCWriteText, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCWriteText message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCWriteText
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCWriteText;
+
+    /**
+     * Decodes a NFCWriteText message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCWriteText
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCWriteText;
+
+    /**
+     * Verifies a NFCWriteText message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCWriteText message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCWriteText
+     */
+    public static fromObject(object: { [k: string]: any }): NFCWriteText;
+
+    /**
+     * Creates a plain object from a NFCWriteText message. Also converts values to other types if specified.
+     * @param message NFCWriteText
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCWriteText, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCWriteText to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCWriteText
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a NFCWriteUri. */
+export class NFCWriteUri implements INFCWriteUri {
+
+    /**
+     * Constructs a new NFCWriteUri.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCWriteUri);
+
+    /** NFCWriteUri protocol. */
+    public protocol: string;
+
+    /** NFCWriteUri uri. */
+    public uri: string;
+
+    /** NFCWriteUri information. */
+    public information: string;
+
+    /**
+     * Creates a new NFCWriteUri instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCWriteUri instance
+     */
+    public static create(properties?: INFCWriteUri): NFCWriteUri;
+
+    /**
+     * Encodes the specified NFCWriteUri message. Does not implicitly {@link NFCWriteUri.verify|verify} messages.
+     * @param message NFCWriteUri message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCWriteUri, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCWriteUri message, length delimited. Does not implicitly {@link NFCWriteUri.verify|verify} messages.
+     * @param message NFCWriteUri message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCWriteUri, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCWriteUri message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCWriteUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCWriteUri;
+
+    /**
+     * Decodes a NFCWriteUri message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCWriteUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCWriteUri;
+
+    /**
+     * Verifies a NFCWriteUri message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCWriteUri message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCWriteUri
+     */
+    public static fromObject(object: { [k: string]: any }): NFCWriteUri;
+
+    /**
+     * Creates a plain object from a NFCWriteUri message. Also converts values to other types if specified.
+     * @param message NFCWriteUri
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCWriteUri, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCWriteUri to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCWriteUri
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a NFCWriteUnabridgedUri. */
+export class NFCWriteUnabridgedUri implements INFCWriteUnabridgedUri {
+
+    /**
+     * Constructs a new NFCWriteUnabridgedUri.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCWriteUnabridgedUri);
+
+    /** NFCWriteUnabridgedUri uri. */
+    public uri: string;
+
+    /** NFCWriteUnabridgedUri information. */
+    public information: string;
+
+    /**
+     * Creates a new NFCWriteUnabridgedUri instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCWriteUnabridgedUri instance
+     */
+    public static create(properties?: INFCWriteUnabridgedUri): NFCWriteUnabridgedUri;
+
+    /**
+     * Encodes the specified NFCWriteUnabridgedUri message. Does not implicitly {@link NFCWriteUnabridgedUri.verify|verify} messages.
+     * @param message NFCWriteUnabridgedUri message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCWriteUnabridgedUri, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCWriteUnabridgedUri message, length delimited. Does not implicitly {@link NFCWriteUnabridgedUri.verify|verify} messages.
+     * @param message NFCWriteUnabridgedUri message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCWriteUnabridgedUri, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCWriteUnabridgedUri message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCWriteUnabridgedUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCWriteUnabridgedUri;
+
+    /**
+     * Decodes a NFCWriteUnabridgedUri message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCWriteUnabridgedUri
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCWriteUnabridgedUri;
+
+    /**
+     * Verifies a NFCWriteUnabridgedUri message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCWriteUnabridgedUri message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCWriteUnabridgedUri
+     */
+    public static fromObject(object: { [k: string]: any }): NFCWriteUnabridgedUri;
+
+    /**
+     * Creates a plain object from a NFCWriteUnabridgedUri message. Also converts values to other types if specified.
+     * @param message NFCWriteUnabridgedUri
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCWriteUnabridgedUri, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCWriteUnabridgedUri to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCWriteUnabridgedUri
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a NFCWriteSms. */
+export class NFCWriteSms implements INFCWriteSms {
+
+    /**
+     * Constructs a new NFCWriteSms.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCWriteSms);
+
+    /** NFCWriteSms phoneNumber. */
+    public phoneNumber: string;
+
+    /** NFCWriteSms message. */
+    public message: string;
+
+    /** NFCWriteSms information. */
+    public information: string;
+
+    /**
+     * Creates a new NFCWriteSms instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCWriteSms instance
+     */
+    public static create(properties?: INFCWriteSms): NFCWriteSms;
+
+    /**
+     * Encodes the specified NFCWriteSms message. Does not implicitly {@link NFCWriteSms.verify|verify} messages.
+     * @param message NFCWriteSms message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCWriteSms, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCWriteSms message, length delimited. Does not implicitly {@link NFCWriteSms.verify|verify} messages.
+     * @param message NFCWriteSms message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCWriteSms, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCWriteSms message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCWriteSms
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCWriteSms;
+
+    /**
+     * Decodes a NFCWriteSms message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCWriteSms
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCWriteSms;
+
+    /**
+     * Verifies a NFCWriteSms message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCWriteSms message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCWriteSms
+     */
+    public static fromObject(object: { [k: string]: any }): NFCWriteSms;
+
+    /**
+     * Creates a plain object from a NFCWriteSms message. Also converts values to other types if specified.
+     * @param message NFCWriteSms
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCWriteSms, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCWriteSms to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCWriteSms
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a NFCWriteEmail. */
+export class NFCWriteEmail implements INFCWriteEmail {
+
+    /**
+     * Constructs a new NFCWriteEmail.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCWriteEmail);
+
+    /** NFCWriteEmail email. */
+    public email: string;
+
+    /** NFCWriteEmail subject. */
+    public subject: string;
+
+    /** NFCWriteEmail message. */
+    public message: string;
+
+    /** NFCWriteEmail information. */
+    public information: string;
+
+    /**
+     * Creates a new NFCWriteEmail instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCWriteEmail instance
+     */
+    public static create(properties?: INFCWriteEmail): NFCWriteEmail;
+
+    /**
+     * Encodes the specified NFCWriteEmail message. Does not implicitly {@link NFCWriteEmail.verify|verify} messages.
+     * @param message NFCWriteEmail message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCWriteEmail, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCWriteEmail message, length delimited. Does not implicitly {@link NFCWriteEmail.verify|verify} messages.
+     * @param message NFCWriteEmail message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCWriteEmail, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCWriteEmail message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCWriteEmail
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCWriteEmail;
+
+    /**
+     * Decodes a NFCWriteEmail message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCWriteEmail
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCWriteEmail;
+
+    /**
+     * Verifies a NFCWriteEmail message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCWriteEmail message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCWriteEmail
+     */
+    public static fromObject(object: { [k: string]: any }): NFCWriteEmail;
+
+    /**
+     * Creates a plain object from a NFCWriteEmail message. Also converts values to other types if specified.
+     * @param message NFCWriteEmail
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCWriteEmail, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCWriteEmail to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCWriteEmail
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a NFCWriteGeoLocation. */
+export class NFCWriteGeoLocation implements INFCWriteGeoLocation {
+
+    /**
+     * Constructs a new NFCWriteGeoLocation.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCWriteGeoLocation);
+
+    /** NFCWriteGeoLocation latitude. */
+    public latitude: number;
+
+    /** NFCWriteGeoLocation longitude. */
+    public longitude: number;
+
+    /** NFCWriteGeoLocation information. */
+    public information: string;
+
+    /**
+     * Creates a new NFCWriteGeoLocation instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCWriteGeoLocation instance
+     */
+    public static create(properties?: INFCWriteGeoLocation): NFCWriteGeoLocation;
+
+    /**
+     * Encodes the specified NFCWriteGeoLocation message. Does not implicitly {@link NFCWriteGeoLocation.verify|verify} messages.
+     * @param message NFCWriteGeoLocation message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCWriteGeoLocation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCWriteGeoLocation message, length delimited. Does not implicitly {@link NFCWriteGeoLocation.verify|verify} messages.
+     * @param message NFCWriteGeoLocation message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCWriteGeoLocation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCWriteGeoLocation message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCWriteGeoLocation
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCWriteGeoLocation;
+
+    /**
+     * Decodes a NFCWriteGeoLocation message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCWriteGeoLocation
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCWriteGeoLocation;
+
+    /**
+     * Verifies a NFCWriteGeoLocation message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCWriteGeoLocation message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCWriteGeoLocation
+     */
+    public static fromObject(object: { [k: string]: any }): NFCWriteGeoLocation;
+
+    /**
+     * Creates a plain object from a NFCWriteGeoLocation message. Also converts values to other types if specified.
+     * @param message NFCWriteGeoLocation
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCWriteGeoLocation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCWriteGeoLocation to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCWriteGeoLocation
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a NFCWriteVCard. */
+export class NFCWriteVCard implements INFCWriteVCard {
+
+    /**
+     * Constructs a new NFCWriteVCard.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: INFCWriteVCard);
+
+    /** NFCWriteVCard firstName. */
+    public firstName: string;
+
+    /** NFCWriteVCard name. */
+    public name: string;
+
+    /** NFCWriteVCard title. */
+    public title: string;
+
+    /** NFCWriteVCard organization. */
+    public organization: string;
+
+    /** NFCWriteVCard email. */
+    public email: string;
+
+    /** NFCWriteVCard homeEmail. */
+    public homeEmail: string;
+
+    /** NFCWriteVCard workEmail. */
+    public workEmail: string;
+
+    /** NFCWriteVCard cellularPhone. */
+    public cellularPhone: string;
+
+    /** NFCWriteVCard homePhone. */
+    public homePhone: string;
+
+    /** NFCWriteVCard workPhone. */
+    public workPhone: string;
+
+    /** NFCWriteVCard address. */
+    public address: string;
+
+    /** NFCWriteVCard homeAddress. */
+    public homeAddress: string;
+
+    /** NFCWriteVCard workAddress. */
+    public workAddress: string;
+
+    /** NFCWriteVCard url. */
+    public url: string;
+
+    /**
+     * Creates a new NFCWriteVCard instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns NFCWriteVCard instance
+     */
+    public static create(properties?: INFCWriteVCard): NFCWriteVCard;
+
+    /**
+     * Encodes the specified NFCWriteVCard message. Does not implicitly {@link NFCWriteVCard.verify|verify} messages.
+     * @param message NFCWriteVCard message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: INFCWriteVCard, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified NFCWriteVCard message, length delimited. Does not implicitly {@link NFCWriteVCard.verify|verify} messages.
+     * @param message NFCWriteVCard message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: INFCWriteVCard, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a NFCWriteVCard message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns NFCWriteVCard
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): NFCWriteVCard;
+
+    /**
+     * Decodes a NFCWriteVCard message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns NFCWriteVCard
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): NFCWriteVCard;
+
+    /**
+     * Verifies a NFCWriteVCard message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a NFCWriteVCard message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns NFCWriteVCard
+     */
+    public static fromObject(object: { [k: string]: any }): NFCWriteVCard;
+
+    /**
+     * Creates a plain object from a NFCWriteVCard message. Also converts values to other types if specified.
+     * @param message NFCWriteVCard
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: NFCWriteVCard, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this NFCWriteVCard to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for NFCWriteVCard
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** NFCRecordType enum. */
+export enum NFCRecordType {
+    NFC_RECORD_UNSPECIFIED = 0,
+    NFC_RECORD_TEXT = 1,
+    NFC_RECORD_URI = 2,
+    NFC_RECORD_UNABRIDGED_URI = 3,
+    NFC_RECORD_SMS = 4,
+    NFC_RECORD_EMAIL = 5,
+    NFC_RECORD_GEO_LOCATION = 6,
+    NFC_RECORD_VCARD = 7
+}
+
+/** Represents a RFIDReaderState. */
+export class RFIDReaderState implements IRFIDReaderState {
+
+    /**
+     * Constructs a new RFIDReaderState.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IRFIDReaderState);
+
+    /** RFIDReaderState tagId. */
+    public tagId: string;
+
+    /**
+     * Creates a new RFIDReaderState instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns RFIDReaderState instance
+     */
+    public static create(properties?: IRFIDReaderState): RFIDReaderState;
+
+    /**
+     * Encodes the specified RFIDReaderState message. Does not implicitly {@link RFIDReaderState.verify|verify} messages.
+     * @param message RFIDReaderState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IRFIDReaderState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified RFIDReaderState message, length delimited. Does not implicitly {@link RFIDReaderState.verify|verify} messages.
+     * @param message RFIDReaderState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IRFIDReaderState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a RFIDReaderState message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns RFIDReaderState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RFIDReaderState;
+
+    /**
+     * Decodes a RFIDReaderState message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns RFIDReaderState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RFIDReaderState;
+
+    /**
+     * Verifies a RFIDReaderState message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a RFIDReaderState message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns RFIDReaderState
+     */
+    public static fromObject(object: { [k: string]: any }): RFIDReaderState;
+
+    /**
+     * Creates a plain object from a RFIDReaderState message. Also converts values to other types if specified.
+     * @param message RFIDReaderState
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: RFIDReaderState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this RFIDReaderState to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for RFIDReaderState
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
+/** Represents a RFIDReaderData. */
+export class RFIDReaderData implements IRFIDReaderData {
+
+    /**
+     * Constructs a new RFIDReaderData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IRFIDReaderData);
+
+    /** RFIDReaderData tagId. */
+    public tagId: string;
+
+    /**
+     * Creates a new RFIDReaderData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns RFIDReaderData instance
+     */
+    public static create(properties?: IRFIDReaderData): RFIDReaderData;
+
+    /**
+     * Encodes the specified RFIDReaderData message. Does not implicitly {@link RFIDReaderData.verify|verify} messages.
+     * @param message RFIDReaderData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IRFIDReaderData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified RFIDReaderData message, length delimited. Does not implicitly {@link RFIDReaderData.verify|verify} messages.
+     * @param message RFIDReaderData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IRFIDReaderData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a RFIDReaderData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns RFIDReaderData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RFIDReaderData;
+
+    /**
+     * Decodes a RFIDReaderData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns RFIDReaderData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RFIDReaderData;
+
+    /**
+     * Verifies a RFIDReaderData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a RFIDReaderData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns RFIDReaderData
+     */
+    public static fromObject(object: { [k: string]: any }): RFIDReaderData;
+
+    /**
+     * Creates a plain object from a RFIDReaderData message. Also converts values to other types if specified.
+     * @param message RFIDReaderData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: RFIDReaderData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this RFIDReaderData to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for RFIDReaderData
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
 /** DeviceType enum. */
 export enum DeviceType {
     DEVICE_TYPE_UNSPECIFIED = 0,
@@ -3013,5 +5395,11 @@ export enum DeviceType {
     DEVICE_TYPE_LINEAR_ENCODER = 3,
     DEVICE_TYPE_TOUCH_SENSOR = 4,
     DEVICE_TYPE_GYROSCOPE = 5,
-    DEVICE_TYPE_TRINKEY = 6
+    DEVICE_TYPE_TRINKEY = 6,
+    DEVICE_TYPE_PRESSURE_SENSOR = 7,
+    DEVICE_TYPE_CO2_SENSOR = 8,
+    DEVICE_TYPE_DISTANCE_SENSOR = 9,
+    DEVICE_TYPE_UV_SENSOR = 10,
+    DEVICE_TYPE_NFC_TAG = 11,
+    DEVICE_TYPE_RFID_READER = 12
 }

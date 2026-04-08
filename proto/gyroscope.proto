@@ -28,7 +28,7 @@ message GyroscopeChanged {
     float temperature    = 7;
 }
 
-// ── Gyroscope-specific enumerations ──────────────────────────────────────────
+// ── Gyroscope enumerations ────────────────────────────────────────────────────
 
 // Which physical chip is soldered on the board.
 enum GyroscopeChipset {

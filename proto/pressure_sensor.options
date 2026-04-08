@@ -1,0 +1,3 @@
+# nanopb options for pressure_sensor.proto
+PressureSensorChipset  long_names: false
+PressureSensorDataRate long_names: false

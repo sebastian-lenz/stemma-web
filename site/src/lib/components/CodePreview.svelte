@@ -59,7 +59,11 @@
 
     <div class="aspect-square">
       {#if playing}
-        <iframe src={iframeSrc} allow="usb" class="h-full w-full border-0"
+        <iframe
+          src={iframeSrc}
+          title=""
+          allow="usb"
+          class="h-full w-full border-0"
         ></iframe>
       {:else}
         <div
