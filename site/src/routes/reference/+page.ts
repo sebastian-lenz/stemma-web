@@ -1,5 +1,6 @@
+import { resolve } from "$app/paths";
 import { redirect } from "@sveltejs/kit";
 
 export function load() {
-  redirect(307, "/reference/getting-started/device-setup");
+  redirect(307, resolve("/reference/getting-started/device-setup"));
 }
