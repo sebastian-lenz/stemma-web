@@ -241,7 +241,7 @@ function rotaryEncoderChanged(event) {
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {#each devices as device}
         <a
-          href={device.href}
+          href={resolve(device.href)}
           class="doc-card group block transition-colors hover:border-indigo-700/60 hover:bg-gray-800/80"
         >
           <div class="mb-2 flex items-start justify-between gap-2">

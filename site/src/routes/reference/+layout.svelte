@@ -29,7 +29,7 @@
       group: "Devices",
       items: devices.map((device) => ({
         label: device.name,
-        href: device.href,
+        href: resolve(device.href),
       })),
     },
   ];
