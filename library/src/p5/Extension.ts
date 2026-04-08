@@ -146,9 +146,8 @@ export class Extension {
   startCO2Sensor(
     p5: P5Internal,
     name: string | false | null = "co2",
-    addressOrIndex: number = CO2Sensor.ADDRESSES[0],
   ): CO2Sensor | Promise<CO2Sensor> {
-    const device = this.deviceManager.getCO2Sensor(addressOrIndex);
+    const device = this.deviceManager.getCO2Sensor();
     return this.exposeDevice(p5, device, name, CO2Sensor.EVENTS);
   }
 
