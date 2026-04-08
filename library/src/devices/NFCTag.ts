@@ -1,6 +1,6 @@
 import { BaseDevice } from "./BaseDevice";
 import { DeviceType } from "../proto/messages";
-import type { NFCTagState } from "../proto/messages";
+import type { INFCTagState } from "../proto/messages";
 import type { Connection } from "../usb/Connection";
 import type { IDeviceState } from "../proto/messages";
 
@@ -43,7 +43,7 @@ export interface VCard {
 }
 
 export class NFCTag extends BaseDevice<NFCTagAddress, {}> {
-  private _state: NFCTagState | null = null;
+  private _state: INFCTagState | null = null;
 
   static readonly ADDRESSES: Array<number> = [0x2d];
   static readonly EVENTS: Array<string> = [];
@@ -242,7 +242,7 @@ export class NFCTag extends BaseDevice<NFCTagAddress, {}> {
 
   // ── Private helpers ───────────────────────────────────────────────────────────
 
-  private async _fetchState(): Promise<NFCTagState | null> {
+  private async _fetchState(): Promise<INFCTagState | null> {
     await this._request({ getState: {} });
     return this._state;
   }
