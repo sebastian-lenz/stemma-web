@@ -18,18 +18,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --config vite.config.p5.js",
-    "build-proto": "pbjs -t static-module -w es6 --es6 --path ../proto ../proto/messages.proto -o src/proto/messages.js && pbts src/proto/messages.js -o src/proto/messages.d.ts",
+    "build-proto": "./bin/proto",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/p5": "^1.7.7",
     "@types/w3c-web-usb": "^1.0.14",
-    "protobufjs": "^7.5.4",
-    "protobufjs-cli": "^2.0.0",
-    "typescript": "^5.0.0",
+    "protobufjs": "^8.0.1",
+    "protobufjs-cli": "^2.0.1",
+    "typescript": "^5.9.3",
     "vite": "^6.0.0",
     "vite-plugin-dts": "^4.0.0"
-  },
-  "dependencies": {
-    "@types/p5": "^1.7.7"
   }
 }

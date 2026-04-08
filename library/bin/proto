@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ROOTDIR="$(dirname "$BASEDIR")"
+
+cd $ROOTDIR && ./node_modules/.bin/pbjs -t static-module -w es6 --es6 --path ../proto ../proto/messages.proto -o src/proto/messages.js
+
+node "$BASEDIR/proto-transform.js" "$ROOTDIR/src/proto/messages.js"
+
+cd $ROOTDIR && ./node_modules/.bin/pbts src/proto/messages.js -o src/proto/messages.d.ts

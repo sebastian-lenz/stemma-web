@@ -1,4 +1,483 @@
-/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
+/**
+ * Properties of a Command.
+ * @exports ICommand
+ * @interface ICommand
+ * @property {number|null} [id] Command id
+ * @property {IDeviceCommand|null} [deviceCommand] Command deviceCommand
+ */
+
+/**
+ * Properties of a DeviceCommand.
+ * @exports IDeviceCommand
+ * @interface IDeviceCommand
+ * @property {DeviceType|null} [type] DeviceCommand type
+ * @property {number|null} [address] DeviceCommand address
+ * @property {IStartDevice|null} [start] DeviceCommand start
+ * @property {IStopDevice|null} [stop] DeviceCommand stop
+ * @property {IGetDeviceState|null} [getState] DeviceCommand getState
+ * @property {ISetBrightness|null} [setBrightness] DeviceCommand setBrightness
+ * @property {ISetPixelColor|null} [setPixelColor] DeviceCommand setPixelColor
+ * @property {ISetPixelColors|null} [setPixelColors] DeviceCommand setPixelColors
+ * @property {ISetNeoDriverLength|null} [setLength] DeviceCommand setLength
+ * @property {ISetAccelerationRange|null} [setAccelRange] DeviceCommand setAccelRange
+ * @property {ISetRotationRange|null} [setRotRange] DeviceCommand setRotRange
+ * @property {ISetAccelerationRate|null} [setAccelRate] DeviceCommand setAccelRate
+ * @property {ISetRotationRate|null} [setRotRate] DeviceCommand setRotRate
+ * @property {ISetPressureSensorDataRate|null} [setPressureRate] DeviceCommand setPressureRate
+ * @property {ISetUVSensorGain|null} [setUvGain] DeviceCommand setUvGain
+ * @property {ISetUVSensorMode|null} [setUvMode] DeviceCommand setUvMode
+ * @property {ISetUVSensorResolution|null} [setUvResolution] DeviceCommand setUvResolution
+ * @property {INFCWriteText|null} [nfcWriteText] DeviceCommand nfcWriteText
+ * @property {INFCWriteUri|null} [nfcWriteUri] DeviceCommand nfcWriteUri
+ * @property {INFCWriteUnabridgedUri|null} [nfcWriteUnabridgedUri] DeviceCommand nfcWriteUnabridgedUri
+ * @property {INFCWriteSms|null} [nfcWriteSms] DeviceCommand nfcWriteSms
+ * @property {INFCWriteEmail|null} [nfcWriteEmail] DeviceCommand nfcWriteEmail
+ * @property {INFCWriteGeoLocation|null} [nfcWriteGeo] DeviceCommand nfcWriteGeo
+ * @property {INFCWriteVCard|null} [nfcWriteVcard] DeviceCommand nfcWriteVcard
+ */
+
+/**
+ * Properties of a StartDevice.
+ * @exports IStartDevice
+ * @interface IStartDevice
+ * @property {GyroscopeChipset|null} [gyroscopeChipset] StartDevice gyroscopeChipset
+ * @property {PressureSensorChipset|null} [pressureSensorChipset] StartDevice pressureSensorChipset
+ */
+
+/**
+ * Properties of a StopDevice.
+ * @exports IStopDevice
+ * @interface IStopDevice
+ */
+
+/**
+ * Properties of a GetDeviceState.
+ * @exports IGetDeviceState
+ * @interface IGetDeviceState
+ */
+
+/**
+ * Properties of a SetBrightness.
+ * @exports ISetBrightness
+ * @interface ISetBrightness
+ * @property {number|null} [brightness] SetBrightness brightness
+ */
+
+/**
+ * Properties of a SetPixelColor.
+ * @exports ISetPixelColor
+ * @interface ISetPixelColor
+ * @property {number|null} [index] SetPixelColor index
+ * @property {number|null} [color] SetPixelColor color
+ */
+
+/**
+ * Properties of a SetPixelColors.
+ * @exports ISetPixelColors
+ * @interface ISetPixelColors
+ * @property {number|null} [offset] SetPixelColors offset
+ * @property {Uint8Array|null} [colors] SetPixelColors colors
+ * @property {boolean|null} [show] SetPixelColors show
+ */
+
+/**
+ * Properties of a SetNeoDriverLength.
+ * @exports ISetNeoDriverLength
+ * @interface ISetNeoDriverLength
+ * @property {number|null} [length] SetNeoDriverLength length
+ */
+
+/**
+ * Properties of a SetAccelerationRange.
+ * @exports ISetAccelerationRange
+ * @interface ISetAccelerationRange
+ * @property {AccelerationRange|null} [range] SetAccelerationRange range
+ */
+
+/**
+ * Properties of a SetRotationRange.
+ * @exports ISetRotationRange
+ * @interface ISetRotationRange
+ * @property {RotationRange|null} [range] SetRotationRange range
+ */
+
+/**
+ * Properties of a SetAccelerationRate.
+ * @exports ISetAccelerationRate
+ * @interface ISetAccelerationRate
+ * @property {DataRate|null} [rate] SetAccelerationRate rate
+ */
+
+/**
+ * Properties of a SetRotationRate.
+ * @exports ISetRotationRate
+ * @interface ISetRotationRate
+ * @property {DataRate|null} [rate] SetRotationRate rate
+ */
+
+/**
+ * Properties of a SetPressureSensorDataRate.
+ * @exports ISetPressureSensorDataRate
+ * @interface ISetPressureSensorDataRate
+ * @property {PressureSensorDataRate|null} [rate] SetPressureSensorDataRate rate
+ */
+
+/**
+ * Properties of a SetUVSensorGain.
+ * @exports ISetUVSensorGain
+ * @interface ISetUVSensorGain
+ * @property {UVSensorGain|null} [gain] SetUVSensorGain gain
+ */
+
+/**
+ * Properties of a SetUVSensorMode.
+ * @exports ISetUVSensorMode
+ * @interface ISetUVSensorMode
+ * @property {UVSensorMode|null} [mode] SetUVSensorMode mode
+ */
+
+/**
+ * Properties of a SetUVSensorResolution.
+ * @exports ISetUVSensorResolution
+ * @interface ISetUVSensorResolution
+ * @property {UVSensorResolution|null} [resolution] SetUVSensorResolution resolution
+ */
+
+/**
+ * Properties of a Response.
+ * @exports IResponse
+ * @interface IResponse
+ * @property {number|null} [id] Response id
+ * @property {boolean|null} [success] Response success
+ * @property {IDeviceState|null} [deviceState] Response deviceState
+ * @property {IDeviceEvent|null} [deviceEvent] Response deviceEvent
+ */
+
+/**
+ * Properties of a DeviceState.
+ * @exports IDeviceState
+ * @interface IDeviceState
+ * @property {DeviceType|null} [type] DeviceState type
+ * @property {number|null} [address] DeviceState address
+ * @property {boolean|null} [connected] DeviceState connected
+ * @property {ICO2SensorState|null} [co2Sensor] DeviceState co2Sensor
+ * @property {IDistanceSensorState|null} [distanceSensor] DeviceState distanceSensor
+ * @property {IGyroscopeState|null} [gyroscope] DeviceState gyroscope
+ * @property {ILinearEncoderState|null} [linearEncoder] DeviceState linearEncoder
+ * @property {INeoDriverState|null} [neoDriver] DeviceState neoDriver
+ * @property {INFCTagState|null} [nfcTag] DeviceState nfcTag
+ * @property {IPressureSensorState|null} [pressureSensor] DeviceState pressureSensor
+ * @property {IRFIDReaderState|null} [rfidReader] DeviceState rfidReader
+ * @property {IRotaryEncoderState|null} [rotaryEncoder] DeviceState rotaryEncoder
+ * @property {ITrinkeyState|null} [trinkey] DeviceState trinkey
+ * @property {ITouchSensorState|null} [touchSensor] DeviceState touchSensor
+ * @property {IUVSensorState|null} [uvSensor] DeviceState uvSensor
+ */
+
+/**
+ * Properties of a DeviceEvent.
+ * @exports IDeviceEvent
+ * @interface IDeviceEvent
+ * @property {DeviceType|null} [type] DeviceEvent type
+ * @property {number|null} [address] DeviceEvent address
+ * @property {IRotaryEncoderChanged|null} [rotaryChanged] DeviceEvent rotaryChanged
+ * @property {IRotaryEncoderButton|null} [rotaryButton] DeviceEvent rotaryButton
+ * @property {ILinearEncoderChanged|null} [linearChanged] DeviceEvent linearChanged
+ * @property {ITouchSensorButton|null} [touchButton] DeviceEvent touchButton
+ * @property {IGyroscopeChanged|null} [gyroscopeData] DeviceEvent gyroscopeData
+ * @property {IPressureSensorData|null} [pressureSensorData] DeviceEvent pressureSensorData
+ * @property {ICO2SensorData|null} [co2SensorData] DeviceEvent co2SensorData
+ * @property {IDistanceSensorData|null} [distanceSensorData] DeviceEvent distanceSensorData
+ * @property {IUVSensorData|null} [uvSensorData] DeviceEvent uvSensorData
+ * @property {IRFIDReaderData|null} [rfidReaderData] DeviceEvent rfidReaderData
+ */
+
+/**
+ * Properties of a TrinkeyState.
+ * @exports ITrinkeyState
+ * @interface ITrinkeyState
+ * @property {number|null} [brightness] TrinkeyState brightness
+ * @property {number|null} [pixel] TrinkeyState pixel
+ */
+
+/**
+ * Properties of a NeoDriverState.
+ * @exports INeoDriverState
+ * @interface INeoDriverState
+ * @property {number|null} [brightness] NeoDriverState brightness
+ * @property {number|null} [length] NeoDriverState length
+ */
+
+/**
+ * Properties of a RotaryEncoderState.
+ * @exports IRotaryEncoderState
+ * @interface IRotaryEncoderState
+ * @property {number|null} [brightness] RotaryEncoderState brightness
+ * @property {number|null} [pixel] RotaryEncoderState pixel
+ * @property {boolean|null} [isPressed] RotaryEncoderState isPressed
+ * @property {number|null} [value] RotaryEncoderState value
+ */
+
+/**
+ * Properties of a RotaryEncoderChanged.
+ * @exports IRotaryEncoderChanged
+ * @interface IRotaryEncoderChanged
+ * @property {number|null} [value] RotaryEncoderChanged value
+ * @property {boolean|null} [isPressed] RotaryEncoderChanged isPressed
+ */
+
+/**
+ * Properties of a RotaryEncoderButton.
+ * @exports IRotaryEncoderButton
+ * @interface IRotaryEncoderButton
+ * @property {boolean|null} [isPressed] RotaryEncoderButton isPressed
+ */
+
+/**
+ * Properties of a LinearEncoderState.
+ * @exports ILinearEncoderState
+ * @interface ILinearEncoderState
+ * @property {number|null} [brightness] LinearEncoderState brightness
+ * @property {Uint8Array|null} [pixels] LinearEncoderState pixels
+ * @property {number|null} [value] LinearEncoderState value
+ */
+
+/**
+ * Properties of a LinearEncoderChanged.
+ * @exports ILinearEncoderChanged
+ * @interface ILinearEncoderChanged
+ * @property {number|null} [value] LinearEncoderChanged value
+ */
+
+/**
+ * Properties of a TouchSensorState.
+ * @exports ITouchSensorState
+ * @interface ITouchSensorState
+ * @property {number|null} [touchedMask] TouchSensorState touchedMask
+ */
+
+/**
+ * Properties of a TouchSensorButton.
+ * @exports ITouchSensorButton
+ * @interface ITouchSensorButton
+ * @property {number|null} [touchedMask] TouchSensorButton touchedMask
+ */
+
+/**
+ * Properties of a GyroscopeState.
+ * @exports IGyroscopeState
+ * @interface IGyroscopeState
+ * @property {number|null} [accelerationX] GyroscopeState accelerationX
+ * @property {number|null} [accelerationY] GyroscopeState accelerationY
+ * @property {number|null} [accelerationZ] GyroscopeState accelerationZ
+ * @property {number|null} [rotationX] GyroscopeState rotationX
+ * @property {number|null} [rotationY] GyroscopeState rotationY
+ * @property {number|null} [rotationZ] GyroscopeState rotationZ
+ * @property {number|null} [temperature] GyroscopeState temperature
+ * @property {DataRate|null} [accelerationDataRate] GyroscopeState accelerationDataRate
+ * @property {DataRate|null} [rotationDataRate] GyroscopeState rotationDataRate
+ * @property {AccelerationRange|null} [accelerationRange] GyroscopeState accelerationRange
+ * @property {RotationRange|null} [rotationRange] GyroscopeState rotationRange
+ */
+
+/**
+ * Properties of a GyroscopeChanged.
+ * @exports IGyroscopeChanged
+ * @interface IGyroscopeChanged
+ * @property {number|null} [accelerationX] GyroscopeChanged accelerationX
+ * @property {number|null} [accelerationY] GyroscopeChanged accelerationY
+ * @property {number|null} [accelerationZ] GyroscopeChanged accelerationZ
+ * @property {number|null} [rotationX] GyroscopeChanged rotationX
+ * @property {number|null} [rotationY] GyroscopeChanged rotationY
+ * @property {number|null} [rotationZ] GyroscopeChanged rotationZ
+ * @property {number|null} [temperature] GyroscopeChanged temperature
+ */
+
+/**
+ * Properties of a PressureSensorState.
+ * @exports IPressureSensorState
+ * @interface IPressureSensorState
+ * @property {number|null} [pressure] PressureSensorState pressure
+ * @property {number|null} [temperature] PressureSensorState temperature
+ * @property {PressureSensorDataRate|null} [dataRate] PressureSensorState dataRate
+ */
+
+/**
+ * Properties of a PressureSensorData.
+ * @exports IPressureSensorData
+ * @interface IPressureSensorData
+ * @property {number|null} [pressure] PressureSensorData pressure
+ * @property {number|null} [temperature] PressureSensorData temperature
+ */
+
+/**
+ * Properties of a CO2SensorState.
+ * @exports ICO2SensorState
+ * @interface ICO2SensorState
+ * @property {number|null} [co2] CO2SensorState co2
+ * @property {number|null} [humidity] CO2SensorState humidity
+ * @property {number|null} [temperature] CO2SensorState temperature
+ */
+
+/**
+ * Properties of a CO2SensorData.
+ * @exports ICO2SensorData
+ * @interface ICO2SensorData
+ * @property {number|null} [co2] CO2SensorData co2
+ * @property {number|null} [humidity] CO2SensorData humidity
+ * @property {number|null} [temperature] CO2SensorData temperature
+ */
+
+/**
+ * Properties of a DistanceSensorState.
+ * @exports IDistanceSensorState
+ * @interface IDistanceSensorState
+ * @property {number|null} [distance] DistanceSensorState distance
+ */
+
+/**
+ * Properties of a DistanceSensorData.
+ * @exports IDistanceSensorData
+ * @interface IDistanceSensorData
+ * @property {number|null} [distance] DistanceSensorData distance
+ */
+
+/**
+ * Properties of a UVSensorState.
+ * @exports IUVSensorState
+ * @interface IUVSensorState
+ * @property {number|null} [value] UVSensorState value
+ * @property {UVSensorMode|null} [mode] UVSensorState mode
+ * @property {UVSensorGain|null} [gain] UVSensorState gain
+ * @property {UVSensorResolution|null} [resolution] UVSensorState resolution
+ */
+
+/**
+ * Properties of a UVSensorData.
+ * @exports IUVSensorData
+ * @interface IUVSensorData
+ * @property {number|null} [value] UVSensorData value
+ */
+
+/**
+ * Properties of a NFCTagState.
+ * @exports INFCTagState
+ * @interface INFCTagState
+ * @property {NFCRecordType|null} [recordType] NFCTagState recordType
+ * @property {string|null} [information] NFCTagState information
+ * @property {string|null} [text] NFCTagState text
+ * @property {string|null} [language] NFCTagState language
+ * @property {string|null} [uri] NFCTagState uri
+ * @property {string|null} [protocol] NFCTagState protocol
+ * @property {string|null} [phoneNumber] NFCTagState phoneNumber
+ * @property {string|null} [smsMessage] NFCTagState smsMessage
+ * @property {string|null} [emailAddress] NFCTagState emailAddress
+ * @property {string|null} [subject] NFCTagState subject
+ * @property {string|null} [emailMessage] NFCTagState emailMessage
+ * @property {number|null} [latitude] NFCTagState latitude
+ * @property {number|null} [longitude] NFCTagState longitude
+ * @property {string|null} [vcardFirstName] NFCTagState vcardFirstName
+ * @property {string|null} [vcardName] NFCTagState vcardName
+ * @property {string|null} [vcardTitle] NFCTagState vcardTitle
+ * @property {string|null} [vcardOrganization] NFCTagState vcardOrganization
+ * @property {string|null} [vcardEmail] NFCTagState vcardEmail
+ * @property {string|null} [vcardHomeEmail] NFCTagState vcardHomeEmail
+ * @property {string|null} [vcardWorkEmail] NFCTagState vcardWorkEmail
+ * @property {string|null} [vcardCellularPhone] NFCTagState vcardCellularPhone
+ * @property {string|null} [vcardHomePhone] NFCTagState vcardHomePhone
+ * @property {string|null} [vcardWorkPhone] NFCTagState vcardWorkPhone
+ * @property {string|null} [vcardAddress] NFCTagState vcardAddress
+ * @property {string|null} [vcardHomeAddress] NFCTagState vcardHomeAddress
+ * @property {string|null} [vcardWorkAddress] NFCTagState vcardWorkAddress
+ * @property {string|null} [vcardUrl] NFCTagState vcardUrl
+ */
+
+/**
+ * Properties of a NFCWriteText.
+ * @exports INFCWriteText
+ * @interface INFCWriteText
+ * @property {string|null} [text] NFCWriteText text
+ * @property {string|null} [language] NFCWriteText language
+ */
+
+/**
+ * Properties of a NFCWriteUri.
+ * @exports INFCWriteUri
+ * @interface INFCWriteUri
+ * @property {string|null} [protocol] NFCWriteUri protocol
+ * @property {string|null} [uri] NFCWriteUri uri
+ * @property {string|null} [information] NFCWriteUri information
+ */
+
+/**
+ * Properties of a NFCWriteUnabridgedUri.
+ * @exports INFCWriteUnabridgedUri
+ * @interface INFCWriteUnabridgedUri
+ * @property {string|null} [uri] NFCWriteUnabridgedUri uri
+ * @property {string|null} [information] NFCWriteUnabridgedUri information
+ */
+
+/**
+ * Properties of a NFCWriteSms.
+ * @exports INFCWriteSms
+ * @interface INFCWriteSms
+ * @property {string|null} [phoneNumber] NFCWriteSms phoneNumber
+ * @property {string|null} [message] NFCWriteSms message
+ * @property {string|null} [information] NFCWriteSms information
+ */
+
+/**
+ * Properties of a NFCWriteEmail.
+ * @exports INFCWriteEmail
+ * @interface INFCWriteEmail
+ * @property {string|null} [email] NFCWriteEmail email
+ * @property {string|null} [subject] NFCWriteEmail subject
+ * @property {string|null} [message] NFCWriteEmail message
+ * @property {string|null} [information] NFCWriteEmail information
+ */
+
+/**
+ * Properties of a NFCWriteGeoLocation.
+ * @exports INFCWriteGeoLocation
+ * @interface INFCWriteGeoLocation
+ * @property {number|null} [latitude] NFCWriteGeoLocation latitude
+ * @property {number|null} [longitude] NFCWriteGeoLocation longitude
+ * @property {string|null} [information] NFCWriteGeoLocation information
+ */
+
+/**
+ * Properties of a NFCWriteVCard.
+ * @exports INFCWriteVCard
+ * @interface INFCWriteVCard
+ * @property {string|null} [firstName] NFCWriteVCard firstName
+ * @property {string|null} [name] NFCWriteVCard name
+ * @property {string|null} [title] NFCWriteVCard title
+ * @property {string|null} [organization] NFCWriteVCard organization
+ * @property {string|null} [email] NFCWriteVCard email
+ * @property {string|null} [homeEmail] NFCWriteVCard homeEmail
+ * @property {string|null} [workEmail] NFCWriteVCard workEmail
+ * @property {string|null} [cellularPhone] NFCWriteVCard cellularPhone
+ * @property {string|null} [homePhone] NFCWriteVCard homePhone
+ * @property {string|null} [workPhone] NFCWriteVCard workPhone
+ * @property {string|null} [address] NFCWriteVCard address
+ * @property {string|null} [homeAddress] NFCWriteVCard homeAddress
+ * @property {string|null} [workAddress] NFCWriteVCard workAddress
+ * @property {string|null} [url] NFCWriteVCard url
+ */
+
+/**
+ * Properties of a RFIDReaderState.
+ * @exports IRFIDReaderState
+ * @interface IRFIDReaderState
+ * @property {string|null} [tagId] RFIDReaderState tagId
+ */
+
+/**
+ * Properties of a RFIDReaderData.
+ * @exports IRFIDReaderData
+ * @interface IRFIDReaderData
+ * @property {string|null} [tagId] RFIDReaderData tagId
+ *//*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 import * as $protobuf from "protobufjs/minimal";
 
 // Common aliases
@@ -9,13 +488,7 @@ const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
 export const Command = $root.Command = (() => {
 
-    /**
-     * Properties of a Command.
-     * @exports ICommand
-     * @interface ICommand
-     * @property {number|null} [id] Command id
-     * @property {IDeviceCommand|null} [deviceCommand] Command deviceCommand
-     */
+    
 
     /**
      * Constructs a new Command.
@@ -262,35 +735,7 @@ export const Command = $root.Command = (() => {
 
 export const DeviceCommand = $root.DeviceCommand = (() => {
 
-    /**
-     * Properties of a DeviceCommand.
-     * @exports IDeviceCommand
-     * @interface IDeviceCommand
-     * @property {DeviceType|null} [type] DeviceCommand type
-     * @property {number|null} [address] DeviceCommand address
-     * @property {IStartDevice|null} [start] DeviceCommand start
-     * @property {IStopDevice|null} [stop] DeviceCommand stop
-     * @property {IGetDeviceState|null} [getState] DeviceCommand getState
-     * @property {ISetBrightness|null} [setBrightness] DeviceCommand setBrightness
-     * @property {ISetPixelColor|null} [setPixelColor] DeviceCommand setPixelColor
-     * @property {ISetPixelColors|null} [setPixelColors] DeviceCommand setPixelColors
-     * @property {ISetNeoDriverLength|null} [setLength] DeviceCommand setLength
-     * @property {ISetAccelerationRange|null} [setAccelRange] DeviceCommand setAccelRange
-     * @property {ISetRotationRange|null} [setRotRange] DeviceCommand setRotRange
-     * @property {ISetAccelerationRate|null} [setAccelRate] DeviceCommand setAccelRate
-     * @property {ISetRotationRate|null} [setRotRate] DeviceCommand setRotRate
-     * @property {ISetPressureSensorDataRate|null} [setPressureRate] DeviceCommand setPressureRate
-     * @property {ISetUVSensorGain|null} [setUvGain] DeviceCommand setUvGain
-     * @property {ISetUVSensorMode|null} [setUvMode] DeviceCommand setUvMode
-     * @property {ISetUVSensorResolution|null} [setUvResolution] DeviceCommand setUvResolution
-     * @property {INFCWriteText|null} [nfcWriteText] DeviceCommand nfcWriteText
-     * @property {INFCWriteUri|null} [nfcWriteUri] DeviceCommand nfcWriteUri
-     * @property {INFCWriteUnabridgedUri|null} [nfcWriteUnabridgedUri] DeviceCommand nfcWriteUnabridgedUri
-     * @property {INFCWriteSms|null} [nfcWriteSms] DeviceCommand nfcWriteSms
-     * @property {INFCWriteEmail|null} [nfcWriteEmail] DeviceCommand nfcWriteEmail
-     * @property {INFCWriteGeoLocation|null} [nfcWriteGeo] DeviceCommand nfcWriteGeo
-     * @property {INFCWriteVCard|null} [nfcWriteVcard] DeviceCommand nfcWriteVcard
-     */
+    
 
     /**
      * Constructs a new DeviceCommand.
@@ -1348,13 +1793,7 @@ export const DeviceCommand = $root.DeviceCommand = (() => {
 
 export const StartDevice = $root.StartDevice = (() => {
 
-    /**
-     * Properties of a StartDevice.
-     * @exports IStartDevice
-     * @interface IStartDevice
-     * @property {GyroscopeChipset|null} [gyroscopeChipset] StartDevice gyroscopeChipset
-     * @property {PressureSensorChipset|null} [pressureSensorChipset] StartDevice pressureSensorChipset
-     */
+    
 
     /**
      * Constructs a new StartDevice.
@@ -1630,11 +2069,7 @@ export const StartDevice = $root.StartDevice = (() => {
 
 export const StopDevice = $root.StopDevice = (() => {
 
-    /**
-     * Properties of a StopDevice.
-     * @exports IStopDevice
-     * @interface IStopDevice
-     */
+    
 
     /**
      * Constructs a new StopDevice.
@@ -1807,11 +2242,7 @@ export const StopDevice = $root.StopDevice = (() => {
 
 export const GetDeviceState = $root.GetDeviceState = (() => {
 
-    /**
-     * Properties of a GetDeviceState.
-     * @exports IGetDeviceState
-     * @interface IGetDeviceState
-     */
+    
 
     /**
      * Constructs a new GetDeviceState.
@@ -1984,12 +2415,7 @@ export const GetDeviceState = $root.GetDeviceState = (() => {
 
 export const SetBrightness = $root.SetBrightness = (() => {
 
-    /**
-     * Properties of a SetBrightness.
-     * @exports ISetBrightness
-     * @interface ISetBrightness
-     * @property {number|null} [brightness] SetBrightness brightness
-     */
+    
 
     /**
      * Constructs a new SetBrightness.
@@ -2189,13 +2615,7 @@ export const SetBrightness = $root.SetBrightness = (() => {
 
 export const SetPixelColor = $root.SetPixelColor = (() => {
 
-    /**
-     * Properties of a SetPixelColor.
-     * @exports ISetPixelColor
-     * @interface ISetPixelColor
-     * @property {number|null} [index] SetPixelColor index
-     * @property {number|null} [color] SetPixelColor color
-     */
+    
 
     /**
      * Constructs a new SetPixelColor.
@@ -2418,14 +2838,7 @@ export const SetPixelColor = $root.SetPixelColor = (() => {
 
 export const SetPixelColors = $root.SetPixelColors = (() => {
 
-    /**
-     * Properties of a SetPixelColors.
-     * @exports ISetPixelColors
-     * @interface ISetPixelColors
-     * @property {number|null} [offset] SetPixelColors offset
-     * @property {Uint8Array|null} [colors] SetPixelColors colors
-     * @property {boolean|null} [show] SetPixelColors show
-     */
+    
 
     /**
      * Constructs a new SetPixelColors.
@@ -2679,12 +3092,7 @@ export const SetPixelColors = $root.SetPixelColors = (() => {
 
 export const SetNeoDriverLength = $root.SetNeoDriverLength = (() => {
 
-    /**
-     * Properties of a SetNeoDriverLength.
-     * @exports ISetNeoDriverLength
-     * @interface ISetNeoDriverLength
-     * @property {number|null} [length] SetNeoDriverLength length
-     */
+    
 
     /**
      * Constructs a new SetNeoDriverLength.
@@ -2884,12 +3292,7 @@ export const SetNeoDriverLength = $root.SetNeoDriverLength = (() => {
 
 export const SetAccelerationRange = $root.SetAccelerationRange = (() => {
 
-    /**
-     * Properties of a SetAccelerationRange.
-     * @exports ISetAccelerationRange
-     * @interface ISetAccelerationRange
-     * @property {AccelerationRange|null} [range] SetAccelerationRange range
-     */
+    
 
     /**
      * Constructs a new SetAccelerationRange.
@@ -3118,12 +3521,7 @@ export const SetAccelerationRange = $root.SetAccelerationRange = (() => {
 
 export const SetRotationRange = $root.SetRotationRange = (() => {
 
-    /**
-     * Properties of a SetRotationRange.
-     * @exports ISetRotationRange
-     * @interface ISetRotationRange
-     * @property {RotationRange|null} [range] SetRotationRange range
-     */
+    
 
     /**
      * Constructs a new SetRotationRange.
@@ -3362,12 +3760,7 @@ export const SetRotationRange = $root.SetRotationRange = (() => {
 
 export const SetAccelerationRate = $root.SetAccelerationRate = (() => {
 
-    /**
-     * Properties of a SetAccelerationRate.
-     * @exports ISetAccelerationRate
-     * @interface ISetAccelerationRate
-     * @property {DataRate|null} [rate] SetAccelerationRate rate
-     */
+    
 
     /**
      * Constructs a new SetAccelerationRate.
@@ -3631,12 +4024,7 @@ export const SetAccelerationRate = $root.SetAccelerationRate = (() => {
 
 export const SetRotationRate = $root.SetRotationRate = (() => {
 
-    /**
-     * Properties of a SetRotationRate.
-     * @exports ISetRotationRate
-     * @interface ISetRotationRate
-     * @property {DataRate|null} [rate] SetRotationRate rate
-     */
+    
 
     /**
      * Constructs a new SetRotationRate.
@@ -3900,12 +4288,7 @@ export const SetRotationRate = $root.SetRotationRate = (() => {
 
 export const SetPressureSensorDataRate = $root.SetPressureSensorDataRate = (() => {
 
-    /**
-     * Properties of a SetPressureSensorDataRate.
-     * @exports ISetPressureSensorDataRate
-     * @interface ISetPressureSensorDataRate
-     * @property {PressureSensorDataRate|null} [rate] SetPressureSensorDataRate rate
-     */
+    
 
     /**
      * Constructs a new SetPressureSensorDataRate.
@@ -4154,12 +4537,7 @@ export const SetPressureSensorDataRate = $root.SetPressureSensorDataRate = (() =
 
 export const SetUVSensorGain = $root.SetUVSensorGain = (() => {
 
-    /**
-     * Properties of a SetUVSensorGain.
-     * @exports ISetUVSensorGain
-     * @interface ISetUVSensorGain
-     * @property {UVSensorGain|null} [gain] SetUVSensorGain gain
-     */
+    
 
     /**
      * Constructs a new SetUVSensorGain.
@@ -4393,12 +4771,7 @@ export const SetUVSensorGain = $root.SetUVSensorGain = (() => {
 
 export const SetUVSensorMode = $root.SetUVSensorMode = (() => {
 
-    /**
-     * Properties of a SetUVSensorMode.
-     * @exports ISetUVSensorMode
-     * @interface ISetUVSensorMode
-     * @property {UVSensorMode|null} [mode] SetUVSensorMode mode
-     */
+    
 
     /**
      * Constructs a new SetUVSensorMode.
@@ -4617,12 +4990,7 @@ export const SetUVSensorMode = $root.SetUVSensorMode = (() => {
 
 export const SetUVSensorResolution = $root.SetUVSensorResolution = (() => {
 
-    /**
-     * Properties of a SetUVSensorResolution.
-     * @exports ISetUVSensorResolution
-     * @interface ISetUVSensorResolution
-     * @property {UVSensorResolution|null} [resolution] SetUVSensorResolution resolution
-     */
+    
 
     /**
      * Constructs a new SetUVSensorResolution.
@@ -4861,15 +5229,7 @@ export const SetUVSensorResolution = $root.SetUVSensorResolution = (() => {
 
 export const Response = $root.Response = (() => {
 
-    /**
-     * Properties of a Response.
-     * @exports IResponse
-     * @interface IResponse
-     * @property {number|null} [id] Response id
-     * @property {boolean|null} [success] Response success
-     * @property {IDeviceState|null} [deviceState] Response deviceState
-     * @property {IDeviceEvent|null} [deviceEvent] Response deviceEvent
-     */
+    
 
     /**
      * Constructs a new Response.
@@ -5173,26 +5533,7 @@ export const Response = $root.Response = (() => {
 
 export const DeviceState = $root.DeviceState = (() => {
 
-    /**
-     * Properties of a DeviceState.
-     * @exports IDeviceState
-     * @interface IDeviceState
-     * @property {DeviceType|null} [type] DeviceState type
-     * @property {number|null} [address] DeviceState address
-     * @property {boolean|null} [connected] DeviceState connected
-     * @property {ICO2SensorState|null} [co2Sensor] DeviceState co2Sensor
-     * @property {IDistanceSensorState|null} [distanceSensor] DeviceState distanceSensor
-     * @property {IGyroscopeState|null} [gyroscope] DeviceState gyroscope
-     * @property {ILinearEncoderState|null} [linearEncoder] DeviceState linearEncoder
-     * @property {INeoDriverState|null} [neoDriver] DeviceState neoDriver
-     * @property {INFCTagState|null} [nfcTag] DeviceState nfcTag
-     * @property {IPressureSensorState|null} [pressureSensor] DeviceState pressureSensor
-     * @property {IRFIDReaderState|null} [rfidReader] DeviceState rfidReader
-     * @property {IRotaryEncoderState|null} [rotaryEncoder] DeviceState rotaryEncoder
-     * @property {ITrinkeyState|null} [trinkey] DeviceState trinkey
-     * @property {ITouchSensorState|null} [touchSensor] DeviceState touchSensor
-     * @property {IUVSensorState|null} [uvSensor] DeviceState uvSensor
-     */
+    
 
     /**
      * Constructs a new DeviceState.
@@ -5932,23 +6273,7 @@ export const DeviceState = $root.DeviceState = (() => {
 
 export const DeviceEvent = $root.DeviceEvent = (() => {
 
-    /**
-     * Properties of a DeviceEvent.
-     * @exports IDeviceEvent
-     * @interface IDeviceEvent
-     * @property {DeviceType|null} [type] DeviceEvent type
-     * @property {number|null} [address] DeviceEvent address
-     * @property {IRotaryEncoderChanged|null} [rotaryChanged] DeviceEvent rotaryChanged
-     * @property {IRotaryEncoderButton|null} [rotaryButton] DeviceEvent rotaryButton
-     * @property {ILinearEncoderChanged|null} [linearChanged] DeviceEvent linearChanged
-     * @property {ITouchSensorButton|null} [touchButton] DeviceEvent touchButton
-     * @property {IGyroscopeChanged|null} [gyroscopeData] DeviceEvent gyroscopeData
-     * @property {IPressureSensorData|null} [pressureSensorData] DeviceEvent pressureSensorData
-     * @property {ICO2SensorData|null} [co2SensorData] DeviceEvent co2SensorData
-     * @property {IDistanceSensorData|null} [distanceSensorData] DeviceEvent distanceSensorData
-     * @property {IUVSensorData|null} [uvSensorData] DeviceEvent uvSensorData
-     * @property {IRFIDReaderData|null} [rfidReaderData] DeviceEvent rfidReaderData
-     */
+    
 
     /**
      * Constructs a new DeviceEvent.
@@ -6598,13 +6923,7 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
 
 export const TrinkeyState = $root.TrinkeyState = (() => {
 
-    /**
-     * Properties of a TrinkeyState.
-     * @exports ITrinkeyState
-     * @interface ITrinkeyState
-     * @property {number|null} [brightness] TrinkeyState brightness
-     * @property {number|null} [pixel] TrinkeyState pixel
-     */
+    
 
     /**
      * Constructs a new TrinkeyState.
@@ -6827,13 +7146,7 @@ export const TrinkeyState = $root.TrinkeyState = (() => {
 
 export const NeoDriverState = $root.NeoDriverState = (() => {
 
-    /**
-     * Properties of a NeoDriverState.
-     * @exports INeoDriverState
-     * @interface INeoDriverState
-     * @property {number|null} [brightness] NeoDriverState brightness
-     * @property {number|null} [length] NeoDriverState length
-     */
+    
 
     /**
      * Constructs a new NeoDriverState.
@@ -7056,15 +7369,7 @@ export const NeoDriverState = $root.NeoDriverState = (() => {
 
 export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
 
-    /**
-     * Properties of a RotaryEncoderState.
-     * @exports IRotaryEncoderState
-     * @interface IRotaryEncoderState
-     * @property {number|null} [brightness] RotaryEncoderState brightness
-     * @property {number|null} [pixel] RotaryEncoderState pixel
-     * @property {boolean|null} [isPressed] RotaryEncoderState isPressed
-     * @property {number|null} [value] RotaryEncoderState value
-     */
+    
 
     /**
      * Constructs a new RotaryEncoderState.
@@ -7331,13 +7636,7 @@ export const RotaryEncoderState = $root.RotaryEncoderState = (() => {
 
 export const RotaryEncoderChanged = $root.RotaryEncoderChanged = (() => {
 
-    /**
-     * Properties of a RotaryEncoderChanged.
-     * @exports IRotaryEncoderChanged
-     * @interface IRotaryEncoderChanged
-     * @property {number|null} [value] RotaryEncoderChanged value
-     * @property {boolean|null} [isPressed] RotaryEncoderChanged isPressed
-     */
+    
 
     /**
      * Constructs a new RotaryEncoderChanged.
@@ -7560,12 +7859,7 @@ export const RotaryEncoderChanged = $root.RotaryEncoderChanged = (() => {
 
 export const RotaryEncoderButton = $root.RotaryEncoderButton = (() => {
 
-    /**
-     * Properties of a RotaryEncoderButton.
-     * @exports IRotaryEncoderButton
-     * @interface IRotaryEncoderButton
-     * @property {boolean|null} [isPressed] RotaryEncoderButton isPressed
-     */
+    
 
     /**
      * Constructs a new RotaryEncoderButton.
@@ -7765,14 +8059,7 @@ export const RotaryEncoderButton = $root.RotaryEncoderButton = (() => {
 
 export const LinearEncoderState = $root.LinearEncoderState = (() => {
 
-    /**
-     * Properties of a LinearEncoderState.
-     * @exports ILinearEncoderState
-     * @interface ILinearEncoderState
-     * @property {number|null} [brightness] LinearEncoderState brightness
-     * @property {Uint8Array|null} [pixels] LinearEncoderState pixels
-     * @property {number|null} [value] LinearEncoderState value
-     */
+    
 
     /**
      * Constructs a new LinearEncoderState.
@@ -8026,12 +8313,7 @@ export const LinearEncoderState = $root.LinearEncoderState = (() => {
 
 export const LinearEncoderChanged = $root.LinearEncoderChanged = (() => {
 
-    /**
-     * Properties of a LinearEncoderChanged.
-     * @exports ILinearEncoderChanged
-     * @interface ILinearEncoderChanged
-     * @property {number|null} [value] LinearEncoderChanged value
-     */
+    
 
     /**
      * Constructs a new LinearEncoderChanged.
@@ -8231,12 +8513,7 @@ export const LinearEncoderChanged = $root.LinearEncoderChanged = (() => {
 
 export const TouchSensorState = $root.TouchSensorState = (() => {
 
-    /**
-     * Properties of a TouchSensorState.
-     * @exports ITouchSensorState
-     * @interface ITouchSensorState
-     * @property {number|null} [touchedMask] TouchSensorState touchedMask
-     */
+    
 
     /**
      * Constructs a new TouchSensorState.
@@ -8436,12 +8713,7 @@ export const TouchSensorState = $root.TouchSensorState = (() => {
 
 export const TouchSensorButton = $root.TouchSensorButton = (() => {
 
-    /**
-     * Properties of a TouchSensorButton.
-     * @exports ITouchSensorButton
-     * @interface ITouchSensorButton
-     * @property {number|null} [touchedMask] TouchSensorButton touchedMask
-     */
+    
 
     /**
      * Constructs a new TouchSensorButton.
@@ -8641,22 +8913,7 @@ export const TouchSensorButton = $root.TouchSensorButton = (() => {
 
 export const GyroscopeState = $root.GyroscopeState = (() => {
 
-    /**
-     * Properties of a GyroscopeState.
-     * @exports IGyroscopeState
-     * @interface IGyroscopeState
-     * @property {number|null} [accelerationX] GyroscopeState accelerationX
-     * @property {number|null} [accelerationY] GyroscopeState accelerationY
-     * @property {number|null} [accelerationZ] GyroscopeState accelerationZ
-     * @property {number|null} [rotationX] GyroscopeState rotationX
-     * @property {number|null} [rotationY] GyroscopeState rotationY
-     * @property {number|null} [rotationZ] GyroscopeState rotationZ
-     * @property {number|null} [temperature] GyroscopeState temperature
-     * @property {DataRate|null} [accelerationDataRate] GyroscopeState accelerationDataRate
-     * @property {DataRate|null} [rotationDataRate] GyroscopeState rotationDataRate
-     * @property {AccelerationRange|null} [accelerationRange] GyroscopeState accelerationRange
-     * @property {RotationRange|null} [rotationRange] GyroscopeState rotationRange
-     */
+    
 
     /**
      * Constructs a new GyroscopeState.
@@ -9273,18 +9530,7 @@ export const GyroscopeState = $root.GyroscopeState = (() => {
 
 export const GyroscopeChanged = $root.GyroscopeChanged = (() => {
 
-    /**
-     * Properties of a GyroscopeChanged.
-     * @exports IGyroscopeChanged
-     * @interface IGyroscopeChanged
-     * @property {number|null} [accelerationX] GyroscopeChanged accelerationX
-     * @property {number|null} [accelerationY] GyroscopeChanged accelerationY
-     * @property {number|null} [accelerationZ] GyroscopeChanged accelerationZ
-     * @property {number|null} [rotationX] GyroscopeChanged rotationX
-     * @property {number|null} [rotationY] GyroscopeChanged rotationY
-     * @property {number|null} [rotationZ] GyroscopeChanged rotationZ
-     * @property {number|null} [temperature] GyroscopeChanged temperature
-     */
+    
 
     /**
      * Constructs a new GyroscopeChanged.
@@ -9707,14 +9953,7 @@ export const RotationRange = $root.RotationRange = (() => {
 
 export const PressureSensorState = $root.PressureSensorState = (() => {
 
-    /**
-     * Properties of a PressureSensorState.
-     * @exports IPressureSensorState
-     * @interface IPressureSensorState
-     * @property {number|null} [pressure] PressureSensorState pressure
-     * @property {number|null} [temperature] PressureSensorState temperature
-     * @property {PressureSensorDataRate|null} [dataRate] PressureSensorState dataRate
-     */
+    
 
     /**
      * Constructs a new PressureSensorState.
@@ -10008,13 +10247,7 @@ export const PressureSensorState = $root.PressureSensorState = (() => {
 
 export const PressureSensorData = $root.PressureSensorData = (() => {
 
-    /**
-     * Properties of a PressureSensorData.
-     * @exports IPressureSensorData
-     * @interface IPressureSensorData
-     * @property {number|null} [pressure] PressureSensorData pressure
-     * @property {number|null} [temperature] PressureSensorData temperature
-     */
+    
 
     /**
      * Constructs a new PressureSensorData.
@@ -10279,14 +10512,7 @@ export const PressureSensorDataRate = $root.PressureSensorDataRate = (() => {
 
 export const CO2SensorState = $root.CO2SensorState = (() => {
 
-    /**
-     * Properties of a CO2SensorState.
-     * @exports ICO2SensorState
-     * @interface ICO2SensorState
-     * @property {number|null} [co2] CO2SensorState co2
-     * @property {number|null} [humidity] CO2SensorState humidity
-     * @property {number|null} [temperature] CO2SensorState temperature
-     */
+    
 
     /**
      * Constructs a new CO2SensorState.
@@ -10531,14 +10757,7 @@ export const CO2SensorState = $root.CO2SensorState = (() => {
 
 export const CO2SensorData = $root.CO2SensorData = (() => {
 
-    /**
-     * Properties of a CO2SensorData.
-     * @exports ICO2SensorData
-     * @interface ICO2SensorData
-     * @property {number|null} [co2] CO2SensorData co2
-     * @property {number|null} [humidity] CO2SensorData humidity
-     * @property {number|null} [temperature] CO2SensorData temperature
-     */
+    
 
     /**
      * Constructs a new CO2SensorData.
@@ -10783,12 +11002,7 @@ export const CO2SensorData = $root.CO2SensorData = (() => {
 
 export const DistanceSensorState = $root.DistanceSensorState = (() => {
 
-    /**
-     * Properties of a DistanceSensorState.
-     * @exports IDistanceSensorState
-     * @interface IDistanceSensorState
-     * @property {number|null} [distance] DistanceSensorState distance
-     */
+    
 
     /**
      * Constructs a new DistanceSensorState.
@@ -10988,12 +11202,7 @@ export const DistanceSensorState = $root.DistanceSensorState = (() => {
 
 export const DistanceSensorData = $root.DistanceSensorData = (() => {
 
-    /**
-     * Properties of a DistanceSensorData.
-     * @exports IDistanceSensorData
-     * @interface IDistanceSensorData
-     * @property {number|null} [distance] DistanceSensorData distance
-     */
+    
 
     /**
      * Constructs a new DistanceSensorData.
@@ -11193,15 +11402,7 @@ export const DistanceSensorData = $root.DistanceSensorData = (() => {
 
 export const UVSensorState = $root.UVSensorState = (() => {
 
-    /**
-     * Properties of a UVSensorState.
-     * @exports IUVSensorState
-     * @interface IUVSensorState
-     * @property {number|null} [value] UVSensorState value
-     * @property {UVSensorMode|null} [mode] UVSensorState mode
-     * @property {UVSensorGain|null} [gain] UVSensorState gain
-     * @property {UVSensorResolution|null} [resolution] UVSensorState resolution
-     */
+    
 
     /**
      * Constructs a new UVSensorState.
@@ -11560,12 +11761,7 @@ export const UVSensorState = $root.UVSensorState = (() => {
 
 export const UVSensorData = $root.UVSensorData = (() => {
 
-    /**
-     * Properties of a UVSensorData.
-     * @exports IUVSensorData
-     * @interface IUVSensorData
-     * @property {number|null} [value] UVSensorData value
-     */
+    
 
     /**
      * Constructs a new UVSensorData.
@@ -11821,38 +12017,7 @@ export const UVSensorResolution = $root.UVSensorResolution = (() => {
 
 export const NFCTagState = $root.NFCTagState = (() => {
 
-    /**
-     * Properties of a NFCTagState.
-     * @exports INFCTagState
-     * @interface INFCTagState
-     * @property {NFCRecordType|null} [recordType] NFCTagState recordType
-     * @property {string|null} [information] NFCTagState information
-     * @property {string|null} [text] NFCTagState text
-     * @property {string|null} [language] NFCTagState language
-     * @property {string|null} [uri] NFCTagState uri
-     * @property {string|null} [protocol] NFCTagState protocol
-     * @property {string|null} [phoneNumber] NFCTagState phoneNumber
-     * @property {string|null} [smsMessage] NFCTagState smsMessage
-     * @property {string|null} [emailAddress] NFCTagState emailAddress
-     * @property {string|null} [subject] NFCTagState subject
-     * @property {string|null} [emailMessage] NFCTagState emailMessage
-     * @property {number|null} [latitude] NFCTagState latitude
-     * @property {number|null} [longitude] NFCTagState longitude
-     * @property {string|null} [vcardFirstName] NFCTagState vcardFirstName
-     * @property {string|null} [vcardName] NFCTagState vcardName
-     * @property {string|null} [vcardTitle] NFCTagState vcardTitle
-     * @property {string|null} [vcardOrganization] NFCTagState vcardOrganization
-     * @property {string|null} [vcardEmail] NFCTagState vcardEmail
-     * @property {string|null} [vcardHomeEmail] NFCTagState vcardHomeEmail
-     * @property {string|null} [vcardWorkEmail] NFCTagState vcardWorkEmail
-     * @property {string|null} [vcardCellularPhone] NFCTagState vcardCellularPhone
-     * @property {string|null} [vcardHomePhone] NFCTagState vcardHomePhone
-     * @property {string|null} [vcardWorkPhone] NFCTagState vcardWorkPhone
-     * @property {string|null} [vcardAddress] NFCTagState vcardAddress
-     * @property {string|null} [vcardHomeAddress] NFCTagState vcardHomeAddress
-     * @property {string|null} [vcardWorkAddress] NFCTagState vcardWorkAddress
-     * @property {string|null} [vcardUrl] NFCTagState vcardUrl
-     */
+    
 
     /**
      * Constructs a new NFCTagState.
@@ -12674,13 +12839,7 @@ export const NFCTagState = $root.NFCTagState = (() => {
 
 export const NFCWriteText = $root.NFCWriteText = (() => {
 
-    /**
-     * Properties of a NFCWriteText.
-     * @exports INFCWriteText
-     * @interface INFCWriteText
-     * @property {string|null} [text] NFCWriteText text
-     * @property {string|null} [language] NFCWriteText language
-     */
+    
 
     /**
      * Constructs a new NFCWriteText.
@@ -12903,14 +13062,7 @@ export const NFCWriteText = $root.NFCWriteText = (() => {
 
 export const NFCWriteUri = $root.NFCWriteUri = (() => {
 
-    /**
-     * Properties of a NFCWriteUri.
-     * @exports INFCWriteUri
-     * @interface INFCWriteUri
-     * @property {string|null} [protocol] NFCWriteUri protocol
-     * @property {string|null} [uri] NFCWriteUri uri
-     * @property {string|null} [information] NFCWriteUri information
-     */
+    
 
     /**
      * Constructs a new NFCWriteUri.
@@ -13155,13 +13307,7 @@ export const NFCWriteUri = $root.NFCWriteUri = (() => {
 
 export const NFCWriteUnabridgedUri = $root.NFCWriteUnabridgedUri = (() => {
 
-    /**
-     * Properties of a NFCWriteUnabridgedUri.
-     * @exports INFCWriteUnabridgedUri
-     * @interface INFCWriteUnabridgedUri
-     * @property {string|null} [uri] NFCWriteUnabridgedUri uri
-     * @property {string|null} [information] NFCWriteUnabridgedUri information
-     */
+    
 
     /**
      * Constructs a new NFCWriteUnabridgedUri.
@@ -13384,14 +13530,7 @@ export const NFCWriteUnabridgedUri = $root.NFCWriteUnabridgedUri = (() => {
 
 export const NFCWriteSms = $root.NFCWriteSms = (() => {
 
-    /**
-     * Properties of a NFCWriteSms.
-     * @exports INFCWriteSms
-     * @interface INFCWriteSms
-     * @property {string|null} [phoneNumber] NFCWriteSms phoneNumber
-     * @property {string|null} [message] NFCWriteSms message
-     * @property {string|null} [information] NFCWriteSms information
-     */
+    
 
     /**
      * Constructs a new NFCWriteSms.
@@ -13636,15 +13775,7 @@ export const NFCWriteSms = $root.NFCWriteSms = (() => {
 
 export const NFCWriteEmail = $root.NFCWriteEmail = (() => {
 
-    /**
-     * Properties of a NFCWriteEmail.
-     * @exports INFCWriteEmail
-     * @interface INFCWriteEmail
-     * @property {string|null} [email] NFCWriteEmail email
-     * @property {string|null} [subject] NFCWriteEmail subject
-     * @property {string|null} [message] NFCWriteEmail message
-     * @property {string|null} [information] NFCWriteEmail information
-     */
+    
 
     /**
      * Constructs a new NFCWriteEmail.
@@ -13911,14 +14042,7 @@ export const NFCWriteEmail = $root.NFCWriteEmail = (() => {
 
 export const NFCWriteGeoLocation = $root.NFCWriteGeoLocation = (() => {
 
-    /**
-     * Properties of a NFCWriteGeoLocation.
-     * @exports INFCWriteGeoLocation
-     * @interface INFCWriteGeoLocation
-     * @property {number|null} [latitude] NFCWriteGeoLocation latitude
-     * @property {number|null} [longitude] NFCWriteGeoLocation longitude
-     * @property {string|null} [information] NFCWriteGeoLocation information
-     */
+    
 
     /**
      * Constructs a new NFCWriteGeoLocation.
@@ -14163,25 +14287,7 @@ export const NFCWriteGeoLocation = $root.NFCWriteGeoLocation = (() => {
 
 export const NFCWriteVCard = $root.NFCWriteVCard = (() => {
 
-    /**
-     * Properties of a NFCWriteVCard.
-     * @exports INFCWriteVCard
-     * @interface INFCWriteVCard
-     * @property {string|null} [firstName] NFCWriteVCard firstName
-     * @property {string|null} [name] NFCWriteVCard name
-     * @property {string|null} [title] NFCWriteVCard title
-     * @property {string|null} [organization] NFCWriteVCard organization
-     * @property {string|null} [email] NFCWriteVCard email
-     * @property {string|null} [homeEmail] NFCWriteVCard homeEmail
-     * @property {string|null} [workEmail] NFCWriteVCard workEmail
-     * @property {string|null} [cellularPhone] NFCWriteVCard cellularPhone
-     * @property {string|null} [homePhone] NFCWriteVCard homePhone
-     * @property {string|null} [workPhone] NFCWriteVCard workPhone
-     * @property {string|null} [address] NFCWriteVCard address
-     * @property {string|null} [homeAddress] NFCWriteVCard homeAddress
-     * @property {string|null} [workAddress] NFCWriteVCard workAddress
-     * @property {string|null} [url] NFCWriteVCard url
-     */
+    
 
     /**
      * Constructs a new NFCWriteVCard.
@@ -14694,12 +14800,7 @@ export const NFCRecordType = $root.NFCRecordType = (() => {
 
 export const RFIDReaderState = $root.RFIDReaderState = (() => {
 
-    /**
-     * Properties of a RFIDReaderState.
-     * @exports IRFIDReaderState
-     * @interface IRFIDReaderState
-     * @property {string|null} [tagId] RFIDReaderState tagId
-     */
+    
 
     /**
      * Constructs a new RFIDReaderState.
@@ -14899,12 +15000,7 @@ export const RFIDReaderState = $root.RFIDReaderState = (() => {
 
 export const RFIDReaderData = $root.RFIDReaderData = (() => {
 
-    /**
-     * Properties of a RFIDReaderData.
-     * @exports IRFIDReaderData
-     * @interface IRFIDReaderData
-     * @property {string|null} [tagId] RFIDReaderData tagId
-     */
+    
 
     /**
      * Constructs a new RFIDReaderData.

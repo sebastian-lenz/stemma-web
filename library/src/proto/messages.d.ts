@@ -10,6 +10,753 @@ export interface ICommand {
     deviceCommand?: (IDeviceCommand|null);
 }
 
+/** Properties of a DeviceCommand. */
+export interface IDeviceCommand {
+
+    /** DeviceCommand type */
+    type?: (DeviceType|null);
+
+    /** DeviceCommand address */
+    address?: (number|null);
+
+    /** DeviceCommand start */
+    start?: (IStartDevice|null);
+
+    /** DeviceCommand stop */
+    stop?: (IStopDevice|null);
+
+    /** DeviceCommand getState */
+    getState?: (IGetDeviceState|null);
+
+    /** DeviceCommand setBrightness */
+    setBrightness?: (ISetBrightness|null);
+
+    /** DeviceCommand setPixelColor */
+    setPixelColor?: (ISetPixelColor|null);
+
+    /** DeviceCommand setPixelColors */
+    setPixelColors?: (ISetPixelColors|null);
+
+    /** DeviceCommand setLength */
+    setLength?: (ISetNeoDriverLength|null);
+
+    /** DeviceCommand setAccelRange */
+    setAccelRange?: (ISetAccelerationRange|null);
+
+    /** DeviceCommand setRotRange */
+    setRotRange?: (ISetRotationRange|null);
+
+    /** DeviceCommand setAccelRate */
+    setAccelRate?: (ISetAccelerationRate|null);
+
+    /** DeviceCommand setRotRate */
+    setRotRate?: (ISetRotationRate|null);
+
+    /** DeviceCommand setPressureRate */
+    setPressureRate?: (ISetPressureSensorDataRate|null);
+
+    /** DeviceCommand setUvGain */
+    setUvGain?: (ISetUVSensorGain|null);
+
+    /** DeviceCommand setUvMode */
+    setUvMode?: (ISetUVSensorMode|null);
+
+    /** DeviceCommand setUvResolution */
+    setUvResolution?: (ISetUVSensorResolution|null);
+
+    /** DeviceCommand nfcWriteText */
+    nfcWriteText?: (INFCWriteText|null);
+
+    /** DeviceCommand nfcWriteUri */
+    nfcWriteUri?: (INFCWriteUri|null);
+
+    /** DeviceCommand nfcWriteUnabridgedUri */
+    nfcWriteUnabridgedUri?: (INFCWriteUnabridgedUri|null);
+
+    /** DeviceCommand nfcWriteSms */
+    nfcWriteSms?: (INFCWriteSms|null);
+
+    /** DeviceCommand nfcWriteEmail */
+    nfcWriteEmail?: (INFCWriteEmail|null);
+
+    /** DeviceCommand nfcWriteGeo */
+    nfcWriteGeo?: (INFCWriteGeoLocation|null);
+
+    /** DeviceCommand nfcWriteVcard */
+    nfcWriteVcard?: (INFCWriteVCard|null);
+}
+
+/** Properties of a StartDevice. */
+export interface IStartDevice {
+
+    /** StartDevice gyroscopeChipset */
+    gyroscopeChipset?: (GyroscopeChipset|null);
+
+    /** StartDevice pressureSensorChipset */
+    pressureSensorChipset?: (PressureSensorChipset|null);
+}
+
+/** Properties of a StopDevice. */
+export interface IStopDevice {
+}
+
+/** Properties of a GetDeviceState. */
+export interface IGetDeviceState {
+}
+
+/** Properties of a SetBrightness. */
+export interface ISetBrightness {
+
+    /** SetBrightness brightness */
+    brightness?: (number|null);
+}
+
+/** Properties of a SetPixelColor. */
+export interface ISetPixelColor {
+
+    /** SetPixelColor index */
+    index?: (number|null);
+
+    /** SetPixelColor color */
+    color?: (number|null);
+}
+
+/** Properties of a SetPixelColors. */
+export interface ISetPixelColors {
+
+    /** SetPixelColors offset */
+    offset?: (number|null);
+
+    /** SetPixelColors colors */
+    colors?: (Uint8Array|null);
+
+    /** SetPixelColors show */
+    show?: (boolean|null);
+}
+
+/** Properties of a SetNeoDriverLength. */
+export interface ISetNeoDriverLength {
+
+    /** SetNeoDriverLength length */
+    length?: (number|null);
+}
+
+/** Properties of a SetAccelerationRange. */
+export interface ISetAccelerationRange {
+
+    /** SetAccelerationRange range */
+    range?: (AccelerationRange|null);
+}
+
+/** Properties of a SetRotationRange. */
+export interface ISetRotationRange {
+
+    /** SetRotationRange range */
+    range?: (RotationRange|null);
+}
+
+/** Properties of a SetAccelerationRate. */
+export interface ISetAccelerationRate {
+
+    /** SetAccelerationRate rate */
+    rate?: (DataRate|null);
+}
+
+/** Properties of a SetRotationRate. */
+export interface ISetRotationRate {
+
+    /** SetRotationRate rate */
+    rate?: (DataRate|null);
+}
+
+/** Properties of a SetPressureSensorDataRate. */
+export interface ISetPressureSensorDataRate {
+
+    /** SetPressureSensorDataRate rate */
+    rate?: (PressureSensorDataRate|null);
+}
+
+/** Properties of a SetUVSensorGain. */
+export interface ISetUVSensorGain {
+
+    /** SetUVSensorGain gain */
+    gain?: (UVSensorGain|null);
+}
+
+/** Properties of a SetUVSensorMode. */
+export interface ISetUVSensorMode {
+
+    /** SetUVSensorMode mode */
+    mode?: (UVSensorMode|null);
+}
+
+/** Properties of a SetUVSensorResolution. */
+export interface ISetUVSensorResolution {
+
+    /** SetUVSensorResolution resolution */
+    resolution?: (UVSensorResolution|null);
+}
+
+/** Properties of a Response. */
+export interface IResponse {
+
+    /** Response id */
+    id?: (number|null);
+
+    /** Response success */
+    success?: (boolean|null);
+
+    /** Response deviceState */
+    deviceState?: (IDeviceState|null);
+
+    /** Response deviceEvent */
+    deviceEvent?: (IDeviceEvent|null);
+}
+
+/** Properties of a DeviceState. */
+export interface IDeviceState {
+
+    /** DeviceState type */
+    type?: (DeviceType|null);
+
+    /** DeviceState address */
+    address?: (number|null);
+
+    /** DeviceState connected */
+    connected?: (boolean|null);
+
+    /** DeviceState co2Sensor */
+    co2Sensor?: (ICO2SensorState|null);
+
+    /** DeviceState distanceSensor */
+    distanceSensor?: (IDistanceSensorState|null);
+
+    /** DeviceState gyroscope */
+    gyroscope?: (IGyroscopeState|null);
+
+    /** DeviceState linearEncoder */
+    linearEncoder?: (ILinearEncoderState|null);
+
+    /** DeviceState neoDriver */
+    neoDriver?: (INeoDriverState|null);
+
+    /** DeviceState nfcTag */
+    nfcTag?: (INFCTagState|null);
+
+    /** DeviceState pressureSensor */
+    pressureSensor?: (IPressureSensorState|null);
+
+    /** DeviceState rfidReader */
+    rfidReader?: (IRFIDReaderState|null);
+
+    /** DeviceState rotaryEncoder */
+    rotaryEncoder?: (IRotaryEncoderState|null);
+
+    /** DeviceState trinkey */
+    trinkey?: (ITrinkeyState|null);
+
+    /** DeviceState touchSensor */
+    touchSensor?: (ITouchSensorState|null);
+
+    /** DeviceState uvSensor */
+    uvSensor?: (IUVSensorState|null);
+}
+
+/** Properties of a DeviceEvent. */
+export interface IDeviceEvent {
+
+    /** DeviceEvent type */
+    type?: (DeviceType|null);
+
+    /** DeviceEvent address */
+    address?: (number|null);
+
+    /** DeviceEvent rotaryChanged */
+    rotaryChanged?: (IRotaryEncoderChanged|null);
+
+    /** DeviceEvent rotaryButton */
+    rotaryButton?: (IRotaryEncoderButton|null);
+
+    /** DeviceEvent linearChanged */
+    linearChanged?: (ILinearEncoderChanged|null);
+
+    /** DeviceEvent touchButton */
+    touchButton?: (ITouchSensorButton|null);
+
+    /** DeviceEvent gyroscopeData */
+    gyroscopeData?: (IGyroscopeChanged|null);
+
+    /** DeviceEvent pressureSensorData */
+    pressureSensorData?: (IPressureSensorData|null);
+
+    /** DeviceEvent co2SensorData */
+    co2SensorData?: (ICO2SensorData|null);
+
+    /** DeviceEvent distanceSensorData */
+    distanceSensorData?: (IDistanceSensorData|null);
+
+    /** DeviceEvent uvSensorData */
+    uvSensorData?: (IUVSensorData|null);
+
+    /** DeviceEvent rfidReaderData */
+    rfidReaderData?: (IRFIDReaderData|null);
+}
+
+/** Properties of a TrinkeyState. */
+export interface ITrinkeyState {
+
+    /** TrinkeyState brightness */
+    brightness?: (number|null);
+
+    /** TrinkeyState pixel */
+    pixel?: (number|null);
+}
+
+/** Properties of a NeoDriverState. */
+export interface INeoDriverState {
+
+    /** NeoDriverState brightness */
+    brightness?: (number|null);
+
+    /** NeoDriverState length */
+    length?: (number|null);
+}
+
+/** Properties of a RotaryEncoderState. */
+export interface IRotaryEncoderState {
+
+    /** RotaryEncoderState brightness */
+    brightness?: (number|null);
+
+    /** RotaryEncoderState pixel */
+    pixel?: (number|null);
+
+    /** RotaryEncoderState isPressed */
+    isPressed?: (boolean|null);
+
+    /** RotaryEncoderState value */
+    value?: (number|null);
+}
+
+/** Properties of a RotaryEncoderChanged. */
+export interface IRotaryEncoderChanged {
+
+    /** RotaryEncoderChanged value */
+    value?: (number|null);
+
+    /** RotaryEncoderChanged isPressed */
+    isPressed?: (boolean|null);
+}
+
+/** Properties of a RotaryEncoderButton. */
+export interface IRotaryEncoderButton {
+
+    /** RotaryEncoderButton isPressed */
+    isPressed?: (boolean|null);
+}
+
+/** Properties of a LinearEncoderState. */
+export interface ILinearEncoderState {
+
+    /** LinearEncoderState brightness */
+    brightness?: (number|null);
+
+    /** LinearEncoderState pixels */
+    pixels?: (Uint8Array|null);
+
+    /** LinearEncoderState value */
+    value?: (number|null);
+}
+
+/** Properties of a LinearEncoderChanged. */
+export interface ILinearEncoderChanged {
+
+    /** LinearEncoderChanged value */
+    value?: (number|null);
+}
+
+/** Properties of a TouchSensorState. */
+export interface ITouchSensorState {
+
+    /** TouchSensorState touchedMask */
+    touchedMask?: (number|null);
+}
+
+/** Properties of a TouchSensorButton. */
+export interface ITouchSensorButton {
+
+    /** TouchSensorButton touchedMask */
+    touchedMask?: (number|null);
+}
+
+/** Properties of a GyroscopeState. */
+export interface IGyroscopeState {
+
+    /** GyroscopeState accelerationX */
+    accelerationX?: (number|null);
+
+    /** GyroscopeState accelerationY */
+    accelerationY?: (number|null);
+
+    /** GyroscopeState accelerationZ */
+    accelerationZ?: (number|null);
+
+    /** GyroscopeState rotationX */
+    rotationX?: (number|null);
+
+    /** GyroscopeState rotationY */
+    rotationY?: (number|null);
+
+    /** GyroscopeState rotationZ */
+    rotationZ?: (number|null);
+
+    /** GyroscopeState temperature */
+    temperature?: (number|null);
+
+    /** GyroscopeState accelerationDataRate */
+    accelerationDataRate?: (DataRate|null);
+
+    /** GyroscopeState rotationDataRate */
+    rotationDataRate?: (DataRate|null);
+
+    /** GyroscopeState accelerationRange */
+    accelerationRange?: (AccelerationRange|null);
+
+    /** GyroscopeState rotationRange */
+    rotationRange?: (RotationRange|null);
+}
+
+/** Properties of a GyroscopeChanged. */
+export interface IGyroscopeChanged {
+
+    /** GyroscopeChanged accelerationX */
+    accelerationX?: (number|null);
+
+    /** GyroscopeChanged accelerationY */
+    accelerationY?: (number|null);
+
+    /** GyroscopeChanged accelerationZ */
+    accelerationZ?: (number|null);
+
+    /** GyroscopeChanged rotationX */
+    rotationX?: (number|null);
+
+    /** GyroscopeChanged rotationY */
+    rotationY?: (number|null);
+
+    /** GyroscopeChanged rotationZ */
+    rotationZ?: (number|null);
+
+    /** GyroscopeChanged temperature */
+    temperature?: (number|null);
+}
+
+/** Properties of a PressureSensorState. */
+export interface IPressureSensorState {
+
+    /** PressureSensorState pressure */
+    pressure?: (number|null);
+
+    /** PressureSensorState temperature */
+    temperature?: (number|null);
+
+    /** PressureSensorState dataRate */
+    dataRate?: (PressureSensorDataRate|null);
+}
+
+/** Properties of a PressureSensorData. */
+export interface IPressureSensorData {
+
+    /** PressureSensorData pressure */
+    pressure?: (number|null);
+
+    /** PressureSensorData temperature */
+    temperature?: (number|null);
+}
+
+/** Properties of a CO2SensorState. */
+export interface ICO2SensorState {
+
+    /** CO2SensorState co2 */
+    co2?: (number|null);
+
+    /** CO2SensorState humidity */
+    humidity?: (number|null);
+
+    /** CO2SensorState temperature */
+    temperature?: (number|null);
+}
+
+/** Properties of a CO2SensorData. */
+export interface ICO2SensorData {
+
+    /** CO2SensorData co2 */
+    co2?: (number|null);
+
+    /** CO2SensorData humidity */
+    humidity?: (number|null);
+
+    /** CO2SensorData temperature */
+    temperature?: (number|null);
+}
+
+/** Properties of a DistanceSensorState. */
+export interface IDistanceSensorState {
+
+    /** DistanceSensorState distance */
+    distance?: (number|null);
+}
+
+/** Properties of a DistanceSensorData. */
+export interface IDistanceSensorData {
+
+    /** DistanceSensorData distance */
+    distance?: (number|null);
+}
+
+/** Properties of a UVSensorState. */
+export interface IUVSensorState {
+
+    /** UVSensorState value */
+    value?: (number|null);
+
+    /** UVSensorState mode */
+    mode?: (UVSensorMode|null);
+
+    /** UVSensorState gain */
+    gain?: (UVSensorGain|null);
+
+    /** UVSensorState resolution */
+    resolution?: (UVSensorResolution|null);
+}
+
+/** Properties of a UVSensorData. */
+export interface IUVSensorData {
+
+    /** UVSensorData value */
+    value?: (number|null);
+}
+
+/** Properties of a NFCTagState. */
+export interface INFCTagState {
+
+    /** NFCTagState recordType */
+    recordType?: (NFCRecordType|null);
+
+    /** NFCTagState information */
+    information?: (string|null);
+
+    /** NFCTagState text */
+    text?: (string|null);
+
+    /** NFCTagState language */
+    language?: (string|null);
+
+    /** NFCTagState uri */
+    uri?: (string|null);
+
+    /** NFCTagState protocol */
+    protocol?: (string|null);
+
+    /** NFCTagState phoneNumber */
+    phoneNumber?: (string|null);
+
+    /** NFCTagState smsMessage */
+    smsMessage?: (string|null);
+
+    /** NFCTagState emailAddress */
+    emailAddress?: (string|null);
+
+    /** NFCTagState subject */
+    subject?: (string|null);
+
+    /** NFCTagState emailMessage */
+    emailMessage?: (string|null);
+
+    /** NFCTagState latitude */
+    latitude?: (number|null);
+
+    /** NFCTagState longitude */
+    longitude?: (number|null);
+
+    /** NFCTagState vcardFirstName */
+    vcardFirstName?: (string|null);
+
+    /** NFCTagState vcardName */
+    vcardName?: (string|null);
+
+    /** NFCTagState vcardTitle */
+    vcardTitle?: (string|null);
+
+    /** NFCTagState vcardOrganization */
+    vcardOrganization?: (string|null);
+
+    /** NFCTagState vcardEmail */
+    vcardEmail?: (string|null);
+
+    /** NFCTagState vcardHomeEmail */
+    vcardHomeEmail?: (string|null);
+
+    /** NFCTagState vcardWorkEmail */
+    vcardWorkEmail?: (string|null);
+
+    /** NFCTagState vcardCellularPhone */
+    vcardCellularPhone?: (string|null);
+
+    /** NFCTagState vcardHomePhone */
+    vcardHomePhone?: (string|null);
+
+    /** NFCTagState vcardWorkPhone */
+    vcardWorkPhone?: (string|null);
+
+    /** NFCTagState vcardAddress */
+    vcardAddress?: (string|null);
+
+    /** NFCTagState vcardHomeAddress */
+    vcardHomeAddress?: (string|null);
+
+    /** NFCTagState vcardWorkAddress */
+    vcardWorkAddress?: (string|null);
+
+    /** NFCTagState vcardUrl */
+    vcardUrl?: (string|null);
+}
+
+/** Properties of a NFCWriteText. */
+export interface INFCWriteText {
+
+    /** NFCWriteText text */
+    text?: (string|null);
+
+    /** NFCWriteText language */
+    language?: (string|null);
+}
+
+/** Properties of a NFCWriteUri. */
+export interface INFCWriteUri {
+
+    /** NFCWriteUri protocol */
+    protocol?: (string|null);
+
+    /** NFCWriteUri uri */
+    uri?: (string|null);
+
+    /** NFCWriteUri information */
+    information?: (string|null);
+}
+
+/** Properties of a NFCWriteUnabridgedUri. */
+export interface INFCWriteUnabridgedUri {
+
+    /** NFCWriteUnabridgedUri uri */
+    uri?: (string|null);
+
+    /** NFCWriteUnabridgedUri information */
+    information?: (string|null);
+}
+
+/** Properties of a NFCWriteSms. */
+export interface INFCWriteSms {
+
+    /** NFCWriteSms phoneNumber */
+    phoneNumber?: (string|null);
+
+    /** NFCWriteSms message */
+    message?: (string|null);
+
+    /** NFCWriteSms information */
+    information?: (string|null);
+}
+
+/** Properties of a NFCWriteEmail. */
+export interface INFCWriteEmail {
+
+    /** NFCWriteEmail email */
+    email?: (string|null);
+
+    /** NFCWriteEmail subject */
+    subject?: (string|null);
+
+    /** NFCWriteEmail message */
+    message?: (string|null);
+
+    /** NFCWriteEmail information */
+    information?: (string|null);
+}
+
+/** Properties of a NFCWriteGeoLocation. */
+export interface INFCWriteGeoLocation {
+
+    /** NFCWriteGeoLocation latitude */
+    latitude?: (number|null);
+
+    /** NFCWriteGeoLocation longitude */
+    longitude?: (number|null);
+
+    /** NFCWriteGeoLocation information */
+    information?: (string|null);
+}
+
+/** Properties of a NFCWriteVCard. */
+export interface INFCWriteVCard {
+
+    /** NFCWriteVCard firstName */
+    firstName?: (string|null);
+
+    /** NFCWriteVCard name */
+    name?: (string|null);
+
+    /** NFCWriteVCard title */
+    title?: (string|null);
+
+    /** NFCWriteVCard organization */
+    organization?: (string|null);
+
+    /** NFCWriteVCard email */
+    email?: (string|null);
+
+    /** NFCWriteVCard homeEmail */
+    homeEmail?: (string|null);
+
+    /** NFCWriteVCard workEmail */
+    workEmail?: (string|null);
+
+    /** NFCWriteVCard cellularPhone */
+    cellularPhone?: (string|null);
+
+    /** NFCWriteVCard homePhone */
+    homePhone?: (string|null);
+
+    /** NFCWriteVCard workPhone */
+    workPhone?: (string|null);
+
+    /** NFCWriteVCard address */
+    address?: (string|null);
+
+    /** NFCWriteVCard homeAddress */
+    homeAddress?: (string|null);
+
+    /** NFCWriteVCard workAddress */
+    workAddress?: (string|null);
+
+    /** NFCWriteVCard url */
+    url?: (string|null);
+}
+
+/** Properties of a RFIDReaderState. */
+export interface IRFIDReaderState {
+
+    /** RFIDReaderState tagId */
+    tagId?: (string|null);
+}
+
+/** Properties of a RFIDReaderData. */
+export interface IRFIDReaderData {
+
+    /** RFIDReaderData tagId */
+    tagId?: (string|null);
+}
+
 /** Represents a Command. */
 export class Command implements ICommand {
 
@@ -104,82 +851,6 @@ export class Command implements ICommand {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a DeviceCommand. */
-export interface IDeviceCommand {
-
-    /** DeviceCommand type */
-    type?: (DeviceType|null);
-
-    /** DeviceCommand address */
-    address?: (number|null);
-
-    /** DeviceCommand start */
-    start?: (IStartDevice|null);
-
-    /** DeviceCommand stop */
-    stop?: (IStopDevice|null);
-
-    /** DeviceCommand getState */
-    getState?: (IGetDeviceState|null);
-
-    /** DeviceCommand setBrightness */
-    setBrightness?: (ISetBrightness|null);
-
-    /** DeviceCommand setPixelColor */
-    setPixelColor?: (ISetPixelColor|null);
-
-    /** DeviceCommand setPixelColors */
-    setPixelColors?: (ISetPixelColors|null);
-
-    /** DeviceCommand setLength */
-    setLength?: (ISetNeoDriverLength|null);
-
-    /** DeviceCommand setAccelRange */
-    setAccelRange?: (ISetAccelerationRange|null);
-
-    /** DeviceCommand setRotRange */
-    setRotRange?: (ISetRotationRange|null);
-
-    /** DeviceCommand setAccelRate */
-    setAccelRate?: (ISetAccelerationRate|null);
-
-    /** DeviceCommand setRotRate */
-    setRotRate?: (ISetRotationRate|null);
-
-    /** DeviceCommand setPressureRate */
-    setPressureRate?: (ISetPressureSensorDataRate|null);
-
-    /** DeviceCommand setUvGain */
-    setUvGain?: (ISetUVSensorGain|null);
-
-    /** DeviceCommand setUvMode */
-    setUvMode?: (ISetUVSensorMode|null);
-
-    /** DeviceCommand setUvResolution */
-    setUvResolution?: (ISetUVSensorResolution|null);
-
-    /** DeviceCommand nfcWriteText */
-    nfcWriteText?: (INFCWriteText|null);
-
-    /** DeviceCommand nfcWriteUri */
-    nfcWriteUri?: (INFCWriteUri|null);
-
-    /** DeviceCommand nfcWriteUnabridgedUri */
-    nfcWriteUnabridgedUri?: (INFCWriteUnabridgedUri|null);
-
-    /** DeviceCommand nfcWriteSms */
-    nfcWriteSms?: (INFCWriteSms|null);
-
-    /** DeviceCommand nfcWriteEmail */
-    nfcWriteEmail?: (INFCWriteEmail|null);
-
-    /** DeviceCommand nfcWriteGeo */
-    nfcWriteGeo?: (INFCWriteGeoLocation|null);
-
-    /** DeviceCommand nfcWriteVcard */
-    nfcWriteVcard?: (INFCWriteVCard|null);
 }
 
 /** Represents a DeviceCommand. */
@@ -344,16 +1015,6 @@ export class DeviceCommand implements IDeviceCommand {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a StartDevice. */
-export interface IStartDevice {
-
-    /** StartDevice gyroscopeChipset */
-    gyroscopeChipset?: (GyroscopeChipset|null);
-
-    /** StartDevice pressureSensorChipset */
-    pressureSensorChipset?: (PressureSensorChipset|null);
-}
-
 /** Represents a StartDevice. */
 export class StartDevice implements IStartDevice {
 
@@ -447,10 +1108,6 @@ export class StartDevice implements IStartDevice {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a StopDevice. */
-export interface IStopDevice {
-}
-
 /** Represents a StopDevice. */
 export class StopDevice implements IStopDevice {
 
@@ -538,10 +1195,6 @@ export class StopDevice implements IStopDevice {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a GetDeviceState. */
-export interface IGetDeviceState {
-}
-
 /** Represents a GetDeviceState. */
 export class GetDeviceState implements IGetDeviceState {
 
@@ -627,13 +1280,6 @@ export class GetDeviceState implements IGetDeviceState {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a SetBrightness. */
-export interface ISetBrightness {
-
-    /** SetBrightness brightness */
-    brightness?: (number|null);
 }
 
 /** Represents a SetBrightness. */
@@ -724,16 +1370,6 @@ export class SetBrightness implements ISetBrightness {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a SetPixelColor. */
-export interface ISetPixelColor {
-
-    /** SetPixelColor index */
-    index?: (number|null);
-
-    /** SetPixelColor color */
-    color?: (number|null);
 }
 
 /** Represents a SetPixelColor. */
@@ -827,19 +1463,6 @@ export class SetPixelColor implements ISetPixelColor {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a SetPixelColors. */
-export interface ISetPixelColors {
-
-    /** SetPixelColors offset */
-    offset?: (number|null);
-
-    /** SetPixelColors colors */
-    colors?: (Uint8Array|null);
-
-    /** SetPixelColors show */
-    show?: (boolean|null);
 }
 
 /** Represents a SetPixelColors. */
@@ -938,13 +1561,6 @@ export class SetPixelColors implements ISetPixelColors {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a SetNeoDriverLength. */
-export interface ISetNeoDriverLength {
-
-    /** SetNeoDriverLength length */
-    length?: (number|null);
-}
-
 /** Represents a SetNeoDriverLength. */
 export class SetNeoDriverLength implements ISetNeoDriverLength {
 
@@ -1033,13 +1649,6 @@ export class SetNeoDriverLength implements ISetNeoDriverLength {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a SetAccelerationRange. */
-export interface ISetAccelerationRange {
-
-    /** SetAccelerationRange range */
-    range?: (AccelerationRange|null);
 }
 
 /** Represents a SetAccelerationRange. */
@@ -1132,13 +1741,6 @@ export class SetAccelerationRange implements ISetAccelerationRange {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a SetRotationRange. */
-export interface ISetRotationRange {
-
-    /** SetRotationRange range */
-    range?: (RotationRange|null);
-}
-
 /** Represents a SetRotationRange. */
 export class SetRotationRange implements ISetRotationRange {
 
@@ -1227,13 +1829,6 @@ export class SetRotationRange implements ISetRotationRange {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a SetAccelerationRate. */
-export interface ISetAccelerationRate {
-
-    /** SetAccelerationRate rate */
-    rate?: (DataRate|null);
 }
 
 /** Represents a SetAccelerationRate. */
@@ -1326,13 +1921,6 @@ export class SetAccelerationRate implements ISetAccelerationRate {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a SetRotationRate. */
-export interface ISetRotationRate {
-
-    /** SetRotationRate rate */
-    rate?: (DataRate|null);
-}
-
 /** Represents a SetRotationRate. */
 export class SetRotationRate implements ISetRotationRate {
 
@@ -1421,13 +2009,6 @@ export class SetRotationRate implements ISetRotationRate {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a SetPressureSensorDataRate. */
-export interface ISetPressureSensorDataRate {
-
-    /** SetPressureSensorDataRate rate */
-    rate?: (PressureSensorDataRate|null);
 }
 
 /** Represents a SetPressureSensorDataRate. */
@@ -1520,13 +2101,6 @@ export class SetPressureSensorDataRate implements ISetPressureSensorDataRate {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a SetUVSensorGain. */
-export interface ISetUVSensorGain {
-
-    /** SetUVSensorGain gain */
-    gain?: (UVSensorGain|null);
-}
-
 /** Represents a SetUVSensorGain. */
 export class SetUVSensorGain implements ISetUVSensorGain {
 
@@ -1615,13 +2189,6 @@ export class SetUVSensorGain implements ISetUVSensorGain {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a SetUVSensorMode. */
-export interface ISetUVSensorMode {
-
-    /** SetUVSensorMode mode */
-    mode?: (UVSensorMode|null);
 }
 
 /** Represents a SetUVSensorMode. */
@@ -1714,13 +2281,6 @@ export class SetUVSensorMode implements ISetUVSensorMode {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a SetUVSensorResolution. */
-export interface ISetUVSensorResolution {
-
-    /** SetUVSensorResolution resolution */
-    resolution?: (UVSensorResolution|null);
-}
-
 /** Represents a SetUVSensorResolution. */
 export class SetUVSensorResolution implements ISetUVSensorResolution {
 
@@ -1809,22 +2369,6 @@ export class SetUVSensorResolution implements ISetUVSensorResolution {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a Response. */
-export interface IResponse {
-
-    /** Response id */
-    id?: (number|null);
-
-    /** Response success */
-    success?: (boolean|null);
-
-    /** Response deviceState */
-    deviceState?: (IDeviceState|null);
-
-    /** Response deviceEvent */
-    deviceEvent?: (IDeviceEvent|null);
 }
 
 /** Represents a Response. */
@@ -1927,55 +2471,6 @@ export class Response implements IResponse {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a DeviceState. */
-export interface IDeviceState {
-
-    /** DeviceState type */
-    type?: (DeviceType|null);
-
-    /** DeviceState address */
-    address?: (number|null);
-
-    /** DeviceState connected */
-    connected?: (boolean|null);
-
-    /** DeviceState co2Sensor */
-    co2Sensor?: (ICO2SensorState|null);
-
-    /** DeviceState distanceSensor */
-    distanceSensor?: (IDistanceSensorState|null);
-
-    /** DeviceState gyroscope */
-    gyroscope?: (IGyroscopeState|null);
-
-    /** DeviceState linearEncoder */
-    linearEncoder?: (ILinearEncoderState|null);
-
-    /** DeviceState neoDriver */
-    neoDriver?: (INeoDriverState|null);
-
-    /** DeviceState nfcTag */
-    nfcTag?: (INFCTagState|null);
-
-    /** DeviceState pressureSensor */
-    pressureSensor?: (IPressureSensorState|null);
-
-    /** DeviceState rfidReader */
-    rfidReader?: (IRFIDReaderState|null);
-
-    /** DeviceState rotaryEncoder */
-    rotaryEncoder?: (IRotaryEncoderState|null);
-
-    /** DeviceState trinkey */
-    trinkey?: (ITrinkeyState|null);
-
-    /** DeviceState touchSensor */
-    touchSensor?: (ITouchSensorState|null);
-
-    /** DeviceState uvSensor */
-    uvSensor?: (IUVSensorState|null);
 }
 
 /** Represents a DeviceState. */
@@ -2113,46 +2608,6 @@ export class DeviceState implements IDeviceState {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a DeviceEvent. */
-export interface IDeviceEvent {
-
-    /** DeviceEvent type */
-    type?: (DeviceType|null);
-
-    /** DeviceEvent address */
-    address?: (number|null);
-
-    /** DeviceEvent rotaryChanged */
-    rotaryChanged?: (IRotaryEncoderChanged|null);
-
-    /** DeviceEvent rotaryButton */
-    rotaryButton?: (IRotaryEncoderButton|null);
-
-    /** DeviceEvent linearChanged */
-    linearChanged?: (ILinearEncoderChanged|null);
-
-    /** DeviceEvent touchButton */
-    touchButton?: (ITouchSensorButton|null);
-
-    /** DeviceEvent gyroscopeData */
-    gyroscopeData?: (IGyroscopeChanged|null);
-
-    /** DeviceEvent pressureSensorData */
-    pressureSensorData?: (IPressureSensorData|null);
-
-    /** DeviceEvent co2SensorData */
-    co2SensorData?: (ICO2SensorData|null);
-
-    /** DeviceEvent distanceSensorData */
-    distanceSensorData?: (IDistanceSensorData|null);
-
-    /** DeviceEvent uvSensorData */
-    uvSensorData?: (IUVSensorData|null);
-
-    /** DeviceEvent rfidReaderData */
-    rfidReaderData?: (IRFIDReaderData|null);
-}
-
 /** Represents a DeviceEvent. */
 export class DeviceEvent implements IDeviceEvent {
 
@@ -2279,16 +2734,6 @@ export class DeviceEvent implements IDeviceEvent {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a TrinkeyState. */
-export interface ITrinkeyState {
-
-    /** TrinkeyState brightness */
-    brightness?: (number|null);
-
-    /** TrinkeyState pixel */
-    pixel?: (number|null);
-}
-
 /** Represents a TrinkeyState. */
 export class TrinkeyState implements ITrinkeyState {
 
@@ -2382,16 +2827,6 @@ export class TrinkeyState implements ITrinkeyState {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a NeoDriverState. */
-export interface INeoDriverState {
-
-    /** NeoDriverState brightness */
-    brightness?: (number|null);
-
-    /** NeoDriverState length */
-    length?: (number|null);
-}
-
 /** Represents a NeoDriverState. */
 export class NeoDriverState implements INeoDriverState {
 
@@ -2483,22 +2918,6 @@ export class NeoDriverState implements INeoDriverState {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a RotaryEncoderState. */
-export interface IRotaryEncoderState {
-
-    /** RotaryEncoderState brightness */
-    brightness?: (number|null);
-
-    /** RotaryEncoderState pixel */
-    pixel?: (number|null);
-
-    /** RotaryEncoderState isPressed */
-    isPressed?: (boolean|null);
-
-    /** RotaryEncoderState value */
-    value?: (number|null);
 }
 
 /** Represents a RotaryEncoderState. */
@@ -2600,16 +3019,6 @@ export class RotaryEncoderState implements IRotaryEncoderState {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a RotaryEncoderChanged. */
-export interface IRotaryEncoderChanged {
-
-    /** RotaryEncoderChanged value */
-    value?: (number|null);
-
-    /** RotaryEncoderChanged isPressed */
-    isPressed?: (boolean|null);
-}
-
 /** Represents a RotaryEncoderChanged. */
 export class RotaryEncoderChanged implements IRotaryEncoderChanged {
 
@@ -2703,13 +3112,6 @@ export class RotaryEncoderChanged implements IRotaryEncoderChanged {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a RotaryEncoderButton. */
-export interface IRotaryEncoderButton {
-
-    /** RotaryEncoderButton isPressed */
-    isPressed?: (boolean|null);
-}
-
 /** Represents a RotaryEncoderButton. */
 export class RotaryEncoderButton implements IRotaryEncoderButton {
 
@@ -2798,19 +3200,6 @@ export class RotaryEncoderButton implements IRotaryEncoderButton {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a LinearEncoderState. */
-export interface ILinearEncoderState {
-
-    /** LinearEncoderState brightness */
-    brightness?: (number|null);
-
-    /** LinearEncoderState pixels */
-    pixels?: (Uint8Array|null);
-
-    /** LinearEncoderState value */
-    value?: (number|null);
 }
 
 /** Represents a LinearEncoderState. */
@@ -2909,13 +3298,6 @@ export class LinearEncoderState implements ILinearEncoderState {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a LinearEncoderChanged. */
-export interface ILinearEncoderChanged {
-
-    /** LinearEncoderChanged value */
-    value?: (number|null);
-}
-
 /** Represents a LinearEncoderChanged. */
 export class LinearEncoderChanged implements ILinearEncoderChanged {
 
@@ -3004,13 +3386,6 @@ export class LinearEncoderChanged implements ILinearEncoderChanged {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a TouchSensorState. */
-export interface ITouchSensorState {
-
-    /** TouchSensorState touchedMask */
-    touchedMask?: (number|null);
 }
 
 /** Represents a TouchSensorState. */
@@ -3103,13 +3478,6 @@ export class TouchSensorState implements ITouchSensorState {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
-/** Properties of a TouchSensorButton. */
-export interface ITouchSensorButton {
-
-    /** TouchSensorButton touchedMask */
-    touchedMask?: (number|null);
-}
-
 /** Represents a TouchSensorButton. */
 export class TouchSensorButton implements ITouchSensorButton {
 
@@ -3198,43 +3566,6 @@ export class TouchSensorButton implements ITouchSensorButton {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a GyroscopeState. */
-export interface IGyroscopeState {
-
-    /** GyroscopeState accelerationX */
-    accelerationX?: (number|null);
-
-    /** GyroscopeState accelerationY */
-    accelerationY?: (number|null);
-
-    /** GyroscopeState accelerationZ */
-    accelerationZ?: (number|null);
-
-    /** GyroscopeState rotationX */
-    rotationX?: (number|null);
-
-    /** GyroscopeState rotationY */
-    rotationY?: (number|null);
-
-    /** GyroscopeState rotationZ */
-    rotationZ?: (number|null);
-
-    /** GyroscopeState temperature */
-    temperature?: (number|null);
-
-    /** GyroscopeState accelerationDataRate */
-    accelerationDataRate?: (DataRate|null);
-
-    /** GyroscopeState rotationDataRate */
-    rotationDataRate?: (DataRate|null);
-
-    /** GyroscopeState accelerationRange */
-    accelerationRange?: (AccelerationRange|null);
-
-    /** GyroscopeState rotationRange */
-    rotationRange?: (RotationRange|null);
 }
 
 /** Represents a GyroscopeState. */
@@ -3355,31 +3686,6 @@ export class GyroscopeState implements IGyroscopeState {
      * @returns The default type url
      */
     public static getTypeUrl(typeUrlPrefix?: string): string;
-}
-
-/** Properties of a GyroscopeChanged. */
-export interface IGyroscopeChanged {
-
-    /** GyroscopeChanged accelerationX */
-    accelerationX?: (number|null);
-
-    /** GyroscopeChanged accelerationY */
-    accelerationY?: (number|null);
-
-    /** GyroscopeChanged accelerationZ */
-    accelerationZ?: (number|null);
-
-    /** GyroscopeChanged rotationX */
-    rotationX?: (number|null);
-
-    /** GyroscopeChanged rotationY */
-    rotationY?: (number|null);
-
-    /** GyroscopeChanged rotationZ */
-    rotationZ?: (number|null);
-
-    /** GyroscopeChanged temperature */
-    temperature?: (number|null);
 }
 
 /** Represents a GyroscopeChanged. */
