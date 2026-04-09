@@ -2,6 +2,7 @@ import { DeviceManager } from "../DeviceManager";
 import { getP5Version } from "./utils";
 import { CO2Sensor } from "../devices/CO2Sensor";
 import { DistanceSensor } from "../devices/DistanceSensor";
+import { enablePixelBuffer } from "../devices/BaseNeoPixelDevice";
 import { Gyroscope } from "../devices/Gyroscope";
 import { LinearEncoder } from "../devices/LinearEncoder";
 import { NeoDriver } from "../devices/NeoDriver";
@@ -21,6 +22,7 @@ import {
 } from "../proto/messages";
 
 import type { BaseDevice } from "../devices/BaseDevice";
+import type { BaseNeoPixelDevice } from "../devices/BaseNeoPixelDevice";
 import type { GyroscopeAddress } from "../devices/Gyroscope";
 import type { LinearEncoderAddress } from "../devices/LinearEncoder";
 import type { NFCTag } from "../devices/NFCTag";
@@ -39,6 +41,7 @@ export class Extension {
   private _deviceManager: DeviceManager | null = null;
   private _hookPrefixes: Array<string> = [];
   private _listeners: Array<VoidFunction> = [];
+  private _pixelDevices: Array<BaseNeoPixelDevice<number, any>> = [];
   private _usePromises: boolean;
 
   constructor(
@@ -47,7 +50,9 @@ export class Extension {
     lifecycles: P5LifecylceMap,
   ) {
     this._usePromises = getP5Version(p5) == 2;
+    enablePixelBuffer();
 
+    lifecycles.post = this.post.bind(this);
     lifecycles.remove = this.remove.bind(this);
 
     this.expose(fn, [
@@ -146,6 +151,12 @@ export class Extension {
     _listeners.length = 0;
   }
 
+  async post(): Promise<void> {
+    for (const device of this._pixelDevices) {
+      await device._flushPixels();
+    }
+  }
+
   startCO2Sensor(
     p5: P5Internal,
     name: string | false | null = "co2",
@@ -178,6 +189,7 @@ export class Extension {
     addressOrIndex: LinearEncoderAddress = LinearEncoder.ADDRESSES[0],
   ): LinearEncoder | Promise<LinearEncoder> {
     const device = this.deviceManager.getLinearEncoder(addressOrIndex);
+    this._pixelDevices.push(device);
     return this.exposeDevice(p5, device, name, LinearEncoder.EVENTS);
   }
 
@@ -191,6 +203,7 @@ export class Extension {
     addressOrIndex: NeoDriverAddress = NeoDriver.ADDRESSES[0],
   ): NeoDriver | Promise<NeoDriver> {
     const device = this.deviceManager.getNeoDriver(addressOrIndex);
+    this._pixelDevices.push(device);
     return this.exposeDevice(p5, device);
   }
 
@@ -222,6 +235,7 @@ export class Extension {
     addressOrIndex: RotaryEncoderAddress = RotaryEncoder.ADDRESSES[0],
   ): RotaryEncoder | Promise<RotaryEncoder> {
     const device = this.deviceManager.getRotaryEncoder(addressOrIndex);
+    this._pixelDevices.push(device);
     return this.exposeDevice(p5, device, name, RotaryEncoder.EVENTS);
   }
 
@@ -236,6 +250,7 @@ export class Extension {
 
   startTrinkey(p5: P5Internal): Trinkey | Promise<Trinkey> {
     const device = this.deviceManager.getTrinkey();
+    this._pixelDevices.push(device);
     return this.exposeDevice(p5, device);
   }
 

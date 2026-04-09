@@ -197,6 +197,13 @@ export interface ISetUVSensorResolution {
     resolution?: (UVSensorResolution|null);
 }
 
+/** Properties of an Error. */
+export interface IError {
+
+    /** Error message */
+    message?: (string|null);
+}
+
 /** Properties of a Response. */
 export interface IResponse {
 
@@ -211,6 +218,9 @@ export interface IResponse {
 
     /** Response deviceEvent */
     deviceEvent?: (IDeviceEvent|null);
+
+    /** Response error */
+    error?: (IError|null);
 }
 
 /** Properties of a DeviceState. */
@@ -271,35 +281,35 @@ export interface IDeviceEvent {
     /** DeviceEvent address */
     address?: (number|null);
 
-    /** DeviceEvent rotaryChanged */
-    rotaryChanged?: (IRotaryEncoderChanged|null);
-
-    /** DeviceEvent rotaryButton */
-    rotaryButton?: (IRotaryEncoderButton|null);
-
-    /** DeviceEvent linearChanged */
-    linearChanged?: (ILinearEncoderChanged|null);
-
-    /** DeviceEvent touchButton */
-    touchButton?: (ITouchSensorButton|null);
-
-    /** DeviceEvent gyroscopeData */
-    gyroscopeData?: (IGyroscopeChanged|null);
-
-    /** DeviceEvent pressureSensorData */
-    pressureSensorData?: (IPressureSensorData|null);
-
     /** DeviceEvent co2SensorData */
     co2SensorData?: (ICO2SensorData|null);
 
     /** DeviceEvent distanceSensorData */
     distanceSensorData?: (IDistanceSensorData|null);
 
-    /** DeviceEvent uvSensorData */
-    uvSensorData?: (IUVSensorData|null);
+    /** DeviceEvent gyroscopeData */
+    gyroscopeData?: (IGyroscopeChanged|null);
+
+    /** DeviceEvent linearChanged */
+    linearChanged?: (ILinearEncoderChanged|null);
+
+    /** DeviceEvent pressureSensorData */
+    pressureSensorData?: (IPressureSensorData|null);
 
     /** DeviceEvent rfidReaderData */
     rfidReaderData?: (IRFIDReaderData|null);
+
+    /** DeviceEvent rotaryButton */
+    rotaryButton?: (IRotaryEncoderButton|null);
+
+    /** DeviceEvent rotaryChanged */
+    rotaryChanged?: (IRotaryEncoderChanged|null);
+
+    /** DeviceEvent touchButton */
+    touchButton?: (ITouchSensorButton|null);
+
+    /** DeviceEvent uvSensorData */
+    uvSensorData?: (IUVSensorData|null);
 }
 
 /** Properties of a TrinkeyState. */
@@ -2371,6 +2381,96 @@ export class SetUVSensorResolution implements ISetUVSensorResolution {
     public static getTypeUrl(typeUrlPrefix?: string): string;
 }
 
+/** Represents an Error. */
+export class Error implements IError {
+
+    /**
+     * Constructs a new Error.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IError);
+
+    /** Error message. */
+    public message: string;
+
+    /**
+     * Creates a new Error instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns Error instance
+     */
+    public static create(properties?: IError): Error;
+
+    /**
+     * Encodes the specified Error message. Does not implicitly {@link Error.verify|verify} messages.
+     * @param message Error message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified Error message, length delimited. Does not implicitly {@link Error.verify|verify} messages.
+     * @param message Error message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an Error message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Error
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Error;
+
+    /**
+     * Decodes an Error message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns Error
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Error;
+
+    /**
+     * Verifies an Error message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an Error message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns Error
+     */
+    public static fromObject(object: { [k: string]: any }): Error;
+
+    /**
+     * Creates a plain object from an Error message. Also converts values to other types if specified.
+     * @param message Error
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: Error, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this Error to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the default type url for Error
+     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns The default type url
+     */
+    public static getTypeUrl(typeUrlPrefix?: string): string;
+}
+
 /** Represents a Response. */
 export class Response implements IResponse {
 
@@ -2392,8 +2492,11 @@ export class Response implements IResponse {
     /** Response deviceEvent. */
     public deviceEvent?: (IDeviceEvent|null);
 
+    /** Response error. */
+    public error?: (IError|null);
+
     /** Response payload. */
-    public payload?: ("deviceState"|"deviceEvent");
+    public payload?: ("deviceState"|"deviceEvent"|"error");
 
     /**
      * Creates a new Response instance using the specified properties.
@@ -2623,38 +2726,38 @@ export class DeviceEvent implements IDeviceEvent {
     /** DeviceEvent address. */
     public address: number;
 
-    /** DeviceEvent rotaryChanged. */
-    public rotaryChanged?: (IRotaryEncoderChanged|null);
-
-    /** DeviceEvent rotaryButton. */
-    public rotaryButton?: (IRotaryEncoderButton|null);
-
-    /** DeviceEvent linearChanged. */
-    public linearChanged?: (ILinearEncoderChanged|null);
-
-    /** DeviceEvent touchButton. */
-    public touchButton?: (ITouchSensorButton|null);
-
-    /** DeviceEvent gyroscopeData. */
-    public gyroscopeData?: (IGyroscopeChanged|null);
-
-    /** DeviceEvent pressureSensorData. */
-    public pressureSensorData?: (IPressureSensorData|null);
-
     /** DeviceEvent co2SensorData. */
     public co2SensorData?: (ICO2SensorData|null);
 
     /** DeviceEvent distanceSensorData. */
     public distanceSensorData?: (IDistanceSensorData|null);
 
-    /** DeviceEvent uvSensorData. */
-    public uvSensorData?: (IUVSensorData|null);
+    /** DeviceEvent gyroscopeData. */
+    public gyroscopeData?: (IGyroscopeChanged|null);
+
+    /** DeviceEvent linearChanged. */
+    public linearChanged?: (ILinearEncoderChanged|null);
+
+    /** DeviceEvent pressureSensorData. */
+    public pressureSensorData?: (IPressureSensorData|null);
 
     /** DeviceEvent rfidReaderData. */
     public rfidReaderData?: (IRFIDReaderData|null);
 
+    /** DeviceEvent rotaryButton. */
+    public rotaryButton?: (IRotaryEncoderButton|null);
+
+    /** DeviceEvent rotaryChanged. */
+    public rotaryChanged?: (IRotaryEncoderChanged|null);
+
+    /** DeviceEvent touchButton. */
+    public touchButton?: (ITouchSensorButton|null);
+
+    /** DeviceEvent uvSensorData. */
+    public uvSensorData?: (IUVSensorData|null);
+
     /** DeviceEvent event. */
-    public event?: ("rotaryChanged"|"rotaryButton"|"linearChanged"|"touchButton"|"gyroscopeData"|"pressureSensorData"|"co2SensorData"|"distanceSensorData"|"uvSensorData"|"rfidReaderData");
+    public event?: ("co2SensorData"|"distanceSensorData"|"gyroscopeData"|"linearChanged"|"pressureSensorData"|"rfidReaderData"|"rotaryButton"|"rotaryChanged"|"touchButton"|"uvSensorData");
 
     /**
      * Creates a new DeviceEvent instance using the specified properties.

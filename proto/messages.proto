@@ -18,6 +18,7 @@ import "device_type.proto";
 
 message Command {
     uint32 id = 1;
+
     oneof payload {
         // StemmaQT device commands
         DeviceCommand device_command = 5;
@@ -29,6 +30,7 @@ message Command {
 message DeviceCommand {
     DeviceType type    = 1;
     uint32     address = 2;
+
     oneof payload {
         // Lifecycle
         StartDevice    start     = 3;
@@ -89,13 +91,18 @@ message SetUVSensorResolution     { UVSensorResolution     resolution = 1; }
 
 // ── Responses: device → host ─────────────────────────────────────────────────
 
+message Error {
+    string message = 1;
+}
+
 message Response {
     uint32 id      = 1;  // echoes Command.id; 0 for unsolicited events
     bool   success = 2;
+
     oneof payload {
-        // StemmaQT
-        DeviceState device_state = 4;
-        DeviceEvent device_event = 5;
+        DeviceState device_state = 3;
+        DeviceEvent device_event = 4;
+        Error       error        = 5;
     }
 }
 
@@ -105,6 +112,7 @@ message DeviceState {
     DeviceType type      = 1;
     uint32     address   = 2;
     bool       connected = 3;
+
     oneof state {
         CO2SensorState      co2_sensor      = 4;
         DistanceSensorState distance_sensor = 5;
@@ -126,16 +134,17 @@ message DeviceState {
 message DeviceEvent {
     DeviceType type    = 1;
     uint32     address = 2;
+
     oneof event {
-        RotaryEncoderChanged rotary_changed        = 3;
-        RotaryEncoderButton  rotary_button         = 4;
-        LinearEncoderChanged linear_changed        = 5;
-        TouchSensorButton    touch_button          = 6;
-        GyroscopeChanged     gyroscope_data        = 7;
-        PressureSensorData   pressure_sensor_data  = 8;
-        CO2SensorData        co2_sensor_data       = 9;
-        DistanceSensorData   distance_sensor_data  = 10;
-        UVSensorData         uv_sensor_data        = 11;
-        RFIDReaderData       rfid_reader_data      = 12;
+        CO2SensorData        co2_sensor_data       = 3;
+        DistanceSensorData   distance_sensor_data  = 4;
+        GyroscopeChanged     gyroscope_data        = 5;
+        LinearEncoderChanged linear_changed        = 6;
+        PressureSensorData   pressure_sensor_data  = 7;
+        RFIDReaderData       rfid_reader_data      = 8;
+        RotaryEncoderButton  rotary_button         = 9;
+        RotaryEncoderChanged rotary_changed        = 10;
+        TouchSensorButton    touch_button          = 11;
+        UVSensorData         uv_sensor_data        = 12;
     }
 }

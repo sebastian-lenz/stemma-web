@@ -19,28 +19,29 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_CO2_SENSOR; }
     uint8_t    getAddress() const override { return _address; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        resp.id      = 0;
-        resp.success = true;
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
+        switch (cmd.which_payload) {
+            case DeviceCommand_get_state_tag: {
+                resp.success = true;
+                resp.which_payload = Response_device_state_tag;
 
-        if (cmd.which_payload == DeviceCommand_get_state_tag) {
-            resp.which_payload = Response_device_state_tag;
+                auto& ds = resp.payload.device_state;
+                ds.type      = DEVICE_TYPE_CO2_SENSOR;
+                ds.address   = _address;
+                ds.connected = true;
+                ds.which_state = DeviceState_co2_sensor_tag;
 
-            auto& ds = resp.payload.device_state;
-            ds.type      = DEVICE_TYPE_CO2_SENSOR;
-            ds.address   = _address;
-            ds.connected = true;
-            ds.which_state = DeviceState_co2_sensor_tag;
+                auto& cs = ds.state.co2_sensor;
+                cs.co2         = _co2;
+                cs.humidity    = _humidity;
+                cs.temperature = _temperature;
+                break;
+            }
 
-            auto& cs = ds.state.co2_sensor;
-            cs.co2         = _co2;
-            cs.humidity    = _humidity;
-            cs.temperature = _temperature;
-            return true;
+            default:
+                setError(resp, "Unknown command");
+                break;
         }
-
-        resp.success = false;
-        return false;
     }
 
     bool poll(Response& event) override {

@@ -43,15 +43,13 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_GYROSCOPE; }
     uint8_t    getAddress() const override { return _address; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        resp.id      = 0;
-        resp.success = true;
-
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
         switch (cmd.which_payload) {
             case DeviceCommand_get_state_tag: {
                 sensors_event_t accel, gyro, temp;
                 _lsm->getEvent(&accel, &gyro, &temp);
 
+                resp.success = true;
                 resp.which_payload = Response_device_state_tag;
 
                 auto& ds = resp.payload.device_state;
@@ -72,31 +70,35 @@ public:
                 gs.rotation_range         = _rotRange;
                 gs.acceleration_data_rate = _accelRate;
                 gs.rotation_data_rate     = _rotRate;
-                return true;
+                break;
             }
             case DeviceCommand_set_accel_range_tag:
+                resp.success = true;
                 _accelRange = cmd.payload.set_accel_range.range;
                 _applyAccelRange(_accelRange);
-                return false;
+                break;
 
             case DeviceCommand_set_rot_range_tag:
+                resp.success = true;
                 _rotRange = cmd.payload.set_rot_range.range;
                 _lsm->setGyroRange(_toGyroRange(_rotRange));
-                return false;
+                break;
 
             case DeviceCommand_set_accel_rate_tag:
+                resp.success = true;
                 _accelRate = cmd.payload.set_accel_rate.rate;
                 _lsm->setAccelDataRate(_toDataRate(_accelRate));
-                return false;
+                break;
 
             case DeviceCommand_set_rot_rate_tag:
+                resp.success = true;
                 _rotRate = cmd.payload.set_rot_rate.rate;
                 _lsm->setGyroDataRate(_toDataRate(_rotRate));
-                return false;
+                break;
 
             default:
-                resp.success = false;
-                return false;
+                setError(resp, "Unknown command");
+                break;
         }
     }
 

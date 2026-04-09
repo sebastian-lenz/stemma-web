@@ -144,6 +144,13 @@
  */
 
 /**
+ * Properties of an Error.
+ * @exports IError
+ * @interface IError
+ * @property {string|null} [message] Error message
+ */
+
+/**
  * Properties of a Response.
  * @exports IResponse
  * @interface IResponse
@@ -151,6 +158,7 @@
  * @property {boolean|null} [success] Response success
  * @property {IDeviceState|null} [deviceState] Response deviceState
  * @property {IDeviceEvent|null} [deviceEvent] Response deviceEvent
+ * @property {IError|null} [error] Response error
  */
 
 /**
@@ -180,16 +188,16 @@
  * @interface IDeviceEvent
  * @property {DeviceType|null} [type] DeviceEvent type
  * @property {number|null} [address] DeviceEvent address
- * @property {IRotaryEncoderChanged|null} [rotaryChanged] DeviceEvent rotaryChanged
- * @property {IRotaryEncoderButton|null} [rotaryButton] DeviceEvent rotaryButton
- * @property {ILinearEncoderChanged|null} [linearChanged] DeviceEvent linearChanged
- * @property {ITouchSensorButton|null} [touchButton] DeviceEvent touchButton
- * @property {IGyroscopeChanged|null} [gyroscopeData] DeviceEvent gyroscopeData
- * @property {IPressureSensorData|null} [pressureSensorData] DeviceEvent pressureSensorData
  * @property {ICO2SensorData|null} [co2SensorData] DeviceEvent co2SensorData
  * @property {IDistanceSensorData|null} [distanceSensorData] DeviceEvent distanceSensorData
- * @property {IUVSensorData|null} [uvSensorData] DeviceEvent uvSensorData
+ * @property {IGyroscopeChanged|null} [gyroscopeData] DeviceEvent gyroscopeData
+ * @property {ILinearEncoderChanged|null} [linearChanged] DeviceEvent linearChanged
+ * @property {IPressureSensorData|null} [pressureSensorData] DeviceEvent pressureSensorData
  * @property {IRFIDReaderData|null} [rfidReaderData] DeviceEvent rfidReaderData
+ * @property {IRotaryEncoderButton|null} [rotaryButton] DeviceEvent rotaryButton
+ * @property {IRotaryEncoderChanged|null} [rotaryChanged] DeviceEvent rotaryChanged
+ * @property {ITouchSensorButton|null} [touchButton] DeviceEvent touchButton
+ * @property {IUVSensorData|null} [uvSensorData] DeviceEvent uvSensorData
  */
 
 /**
@@ -5227,6 +5235,206 @@ export const SetUVSensorResolution = $root.SetUVSensorResolution = (() => {
     return SetUVSensorResolution;
 })();
 
+export const Error = $root.Error = (() => {
+
+    
+
+    /**
+     * Constructs a new Error.
+     * @exports Error
+     * @classdesc Represents an Error.
+     * @implements IError
+     * @constructor
+     * @param {IError=} [properties] Properties to set
+     */
+    function Error(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Error message.
+     * @member {string} message
+     * @memberof Error
+     * @instance
+     */
+    Error.prototype.message = "";
+
+    /**
+     * Creates a new Error instance using the specified properties.
+     * @function create
+     * @memberof Error
+     * @static
+     * @param {IError=} [properties] Properties to set
+     * @returns {Error} Error instance
+     */
+    Error.create = function create(properties) {
+        return new Error(properties);
+    };
+
+    /**
+     * Encodes the specified Error message. Does not implicitly {@link Error.verify|verify} messages.
+     * @function encode
+     * @memberof Error
+     * @static
+     * @param {IError} message Error message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Error.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.message);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Error message, length delimited. Does not implicitly {@link Error.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Error
+     * @static
+     * @param {IError} message Error message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Error.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes an Error message from the specified reader or buffer.
+     * @function decode
+     * @memberof Error
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Error} Error
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Error.decode = function decode(reader, length, error) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Error();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            if (tag === error)
+                break;
+            switch (tag >>> 3) {
+            case 1: {
+                    message.message = reader.string();
+                    break;
+                }
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes an Error message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Error
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Error} Error
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Error.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies an Error message.
+     * @function verify
+     * @memberof Error
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Error.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.message != null && message.hasOwnProperty("message"))
+            if (!$util.isString(message.message))
+                return "message: string expected";
+        return null;
+    };
+
+    /**
+     * Creates an Error message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Error
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Error} Error
+     */
+    Error.fromObject = function fromObject(object) {
+        if (object instanceof $root.Error)
+            return object;
+        let message = new $root.Error();
+        if (object.message != null)
+            message.message = String(object.message);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from an Error message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Error
+     * @static
+     * @param {Error} message Error
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Error.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.message = "";
+        if (message.message != null && message.hasOwnProperty("message"))
+            object.message = message.message;
+        return object;
+    };
+
+    /**
+     * Converts this Error to JSON.
+     * @function toJSON
+     * @memberof Error
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Error.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for Error
+     * @function getTypeUrl
+     * @memberof Error
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    Error.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/Error";
+    };
+
+    return Error;
+})();
+
 export const Response = $root.Response = (() => {
 
     
@@ -5278,17 +5486,25 @@ export const Response = $root.Response = (() => {
      */
     Response.prototype.deviceEvent = null;
 
+    /**
+     * Response error.
+     * @member {IError|null|undefined} error
+     * @memberof Response
+     * @instance
+     */
+    Response.prototype.error = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     /**
      * Response payload.
-     * @member {"deviceState"|"deviceEvent"|undefined} payload
+     * @member {"deviceState"|"deviceEvent"|"error"|undefined} payload
      * @memberof Response
      * @instance
      */
     Object.defineProperty(Response.prototype, "payload", {
-        get: $util.oneOfGetter($oneOfFields = ["deviceState", "deviceEvent"]),
+        get: $util.oneOfGetter($oneOfFields = ["deviceState", "deviceEvent", "error"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -5321,9 +5537,11 @@ export const Response = $root.Response = (() => {
         if (message.success != null && Object.hasOwnProperty.call(message, "success"))
             writer.uint32(/* id 2, wireType 0 =*/16).bool(message.success);
         if (message.deviceState != null && Object.hasOwnProperty.call(message, "deviceState"))
-            $root.DeviceState.encode(message.deviceState, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            $root.DeviceState.encode(message.deviceState, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
         if (message.deviceEvent != null && Object.hasOwnProperty.call(message, "deviceEvent"))
-            $root.DeviceEvent.encode(message.deviceEvent, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            $root.DeviceEvent.encode(message.deviceEvent, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+        if (message.error != null && Object.hasOwnProperty.call(message, "error"))
+            $root.Error.encode(message.error, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
         return writer;
     };
 
@@ -5368,12 +5586,16 @@ export const Response = $root.Response = (() => {
                     message.success = reader.bool();
                     break;
                 }
-            case 4: {
+            case 3: {
                     message.deviceState = $root.DeviceState.decode(reader, reader.uint32());
                     break;
                 }
-            case 5: {
+            case 4: {
                     message.deviceEvent = $root.DeviceEvent.decode(reader, reader.uint32());
+                    break;
+                }
+            case 5: {
+                    message.error = $root.Error.decode(reader, reader.uint32());
                     break;
                 }
             default:
@@ -5436,6 +5658,16 @@ export const Response = $root.Response = (() => {
                     return "deviceEvent." + error;
             }
         }
+        if (message.error != null && message.hasOwnProperty("error")) {
+            if (properties.payload === 1)
+                return "payload: multiple values";
+            properties.payload = 1;
+            {
+                let error = $root.Error.verify(message.error);
+                if (error)
+                    return "error." + error;
+            }
+        }
         return null;
     };
 
@@ -5464,6 +5696,11 @@ export const Response = $root.Response = (() => {
             if (typeof object.deviceEvent !== "object")
                 throw TypeError(".Response.deviceEvent: object expected");
             message.deviceEvent = $root.DeviceEvent.fromObject(object.deviceEvent);
+        }
+        if (object.error != null) {
+            if (typeof object.error !== "object")
+                throw TypeError(".Response.error: object expected");
+            message.error = $root.Error.fromObject(object.error);
         }
         return message;
     };
@@ -5498,6 +5735,11 @@ export const Response = $root.Response = (() => {
             object.deviceEvent = $root.DeviceEvent.toObject(message.deviceEvent, options);
             if (options.oneofs)
                 object.payload = "deviceEvent";
+        }
+        if (message.error != null && message.hasOwnProperty("error")) {
+            object.error = $root.Error.toObject(message.error, options);
+            if (options.oneofs)
+                object.payload = "error";
         }
         return object;
     };
@@ -6307,54 +6549,6 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
     DeviceEvent.prototype.address = 0;
 
     /**
-     * DeviceEvent rotaryChanged.
-     * @member {IRotaryEncoderChanged|null|undefined} rotaryChanged
-     * @memberof DeviceEvent
-     * @instance
-     */
-    DeviceEvent.prototype.rotaryChanged = null;
-
-    /**
-     * DeviceEvent rotaryButton.
-     * @member {IRotaryEncoderButton|null|undefined} rotaryButton
-     * @memberof DeviceEvent
-     * @instance
-     */
-    DeviceEvent.prototype.rotaryButton = null;
-
-    /**
-     * DeviceEvent linearChanged.
-     * @member {ILinearEncoderChanged|null|undefined} linearChanged
-     * @memberof DeviceEvent
-     * @instance
-     */
-    DeviceEvent.prototype.linearChanged = null;
-
-    /**
-     * DeviceEvent touchButton.
-     * @member {ITouchSensorButton|null|undefined} touchButton
-     * @memberof DeviceEvent
-     * @instance
-     */
-    DeviceEvent.prototype.touchButton = null;
-
-    /**
-     * DeviceEvent gyroscopeData.
-     * @member {IGyroscopeChanged|null|undefined} gyroscopeData
-     * @memberof DeviceEvent
-     * @instance
-     */
-    DeviceEvent.prototype.gyroscopeData = null;
-
-    /**
-     * DeviceEvent pressureSensorData.
-     * @member {IPressureSensorData|null|undefined} pressureSensorData
-     * @memberof DeviceEvent
-     * @instance
-     */
-    DeviceEvent.prototype.pressureSensorData = null;
-
-    /**
      * DeviceEvent co2SensorData.
      * @member {ICO2SensorData|null|undefined} co2SensorData
      * @memberof DeviceEvent
@@ -6371,12 +6565,28 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
     DeviceEvent.prototype.distanceSensorData = null;
 
     /**
-     * DeviceEvent uvSensorData.
-     * @member {IUVSensorData|null|undefined} uvSensorData
+     * DeviceEvent gyroscopeData.
+     * @member {IGyroscopeChanged|null|undefined} gyroscopeData
      * @memberof DeviceEvent
      * @instance
      */
-    DeviceEvent.prototype.uvSensorData = null;
+    DeviceEvent.prototype.gyroscopeData = null;
+
+    /**
+     * DeviceEvent linearChanged.
+     * @member {ILinearEncoderChanged|null|undefined} linearChanged
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.linearChanged = null;
+
+    /**
+     * DeviceEvent pressureSensorData.
+     * @member {IPressureSensorData|null|undefined} pressureSensorData
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.pressureSensorData = null;
 
     /**
      * DeviceEvent rfidReaderData.
@@ -6386,17 +6596,49 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
      */
     DeviceEvent.prototype.rfidReaderData = null;
 
+    /**
+     * DeviceEvent rotaryButton.
+     * @member {IRotaryEncoderButton|null|undefined} rotaryButton
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.rotaryButton = null;
+
+    /**
+     * DeviceEvent rotaryChanged.
+     * @member {IRotaryEncoderChanged|null|undefined} rotaryChanged
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.rotaryChanged = null;
+
+    /**
+     * DeviceEvent touchButton.
+     * @member {ITouchSensorButton|null|undefined} touchButton
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.touchButton = null;
+
+    /**
+     * DeviceEvent uvSensorData.
+     * @member {IUVSensorData|null|undefined} uvSensorData
+     * @memberof DeviceEvent
+     * @instance
+     */
+    DeviceEvent.prototype.uvSensorData = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     /**
      * DeviceEvent event.
-     * @member {"rotaryChanged"|"rotaryButton"|"linearChanged"|"touchButton"|"gyroscopeData"|"pressureSensorData"|"co2SensorData"|"distanceSensorData"|"uvSensorData"|"rfidReaderData"|undefined} event
+     * @member {"co2SensorData"|"distanceSensorData"|"gyroscopeData"|"linearChanged"|"pressureSensorData"|"rfidReaderData"|"rotaryButton"|"rotaryChanged"|"touchButton"|"uvSensorData"|undefined} event
      * @memberof DeviceEvent
      * @instance
      */
     Object.defineProperty(DeviceEvent.prototype, "event", {
-        get: $util.oneOfGetter($oneOfFields = ["rotaryChanged", "rotaryButton", "linearChanged", "touchButton", "gyroscopeData", "pressureSensorData", "co2SensorData", "distanceSensorData", "uvSensorData", "rfidReaderData"]),
+        get: $util.oneOfGetter($oneOfFields = ["co2SensorData", "distanceSensorData", "gyroscopeData", "linearChanged", "pressureSensorData", "rfidReaderData", "rotaryButton", "rotaryChanged", "touchButton", "uvSensorData"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -6428,26 +6670,26 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
         if (message.address != null && Object.hasOwnProperty.call(message, "address"))
             writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.address);
-        if (message.rotaryChanged != null && Object.hasOwnProperty.call(message, "rotaryChanged"))
-            $root.RotaryEncoderChanged.encode(message.rotaryChanged, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-        if (message.rotaryButton != null && Object.hasOwnProperty.call(message, "rotaryButton"))
-            $root.RotaryEncoderButton.encode(message.rotaryButton, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-        if (message.linearChanged != null && Object.hasOwnProperty.call(message, "linearChanged"))
-            $root.LinearEncoderChanged.encode(message.linearChanged, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-        if (message.touchButton != null && Object.hasOwnProperty.call(message, "touchButton"))
-            $root.TouchSensorButton.encode(message.touchButton, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
-        if (message.gyroscopeData != null && Object.hasOwnProperty.call(message, "gyroscopeData"))
-            $root.GyroscopeChanged.encode(message.gyroscopeData, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-        if (message.pressureSensorData != null && Object.hasOwnProperty.call(message, "pressureSensorData"))
-            $root.PressureSensorData.encode(message.pressureSensorData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
         if (message.co2SensorData != null && Object.hasOwnProperty.call(message, "co2SensorData"))
-            $root.CO2SensorData.encode(message.co2SensorData, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+            $root.CO2SensorData.encode(message.co2SensorData, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
         if (message.distanceSensorData != null && Object.hasOwnProperty.call(message, "distanceSensorData"))
-            $root.DistanceSensorData.encode(message.distanceSensorData, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
-        if (message.uvSensorData != null && Object.hasOwnProperty.call(message, "uvSensorData"))
-            $root.UVSensorData.encode(message.uvSensorData, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+            $root.DistanceSensorData.encode(message.distanceSensorData, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+        if (message.gyroscopeData != null && Object.hasOwnProperty.call(message, "gyroscopeData"))
+            $root.GyroscopeChanged.encode(message.gyroscopeData, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+        if (message.linearChanged != null && Object.hasOwnProperty.call(message, "linearChanged"))
+            $root.LinearEncoderChanged.encode(message.linearChanged, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+        if (message.pressureSensorData != null && Object.hasOwnProperty.call(message, "pressureSensorData"))
+            $root.PressureSensorData.encode(message.pressureSensorData, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
         if (message.rfidReaderData != null && Object.hasOwnProperty.call(message, "rfidReaderData"))
-            $root.RFIDReaderData.encode(message.rfidReaderData, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+            $root.RFIDReaderData.encode(message.rfidReaderData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+        if (message.rotaryButton != null && Object.hasOwnProperty.call(message, "rotaryButton"))
+            $root.RotaryEncoderButton.encode(message.rotaryButton, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+        if (message.rotaryChanged != null && Object.hasOwnProperty.call(message, "rotaryChanged"))
+            $root.RotaryEncoderChanged.encode(message.rotaryChanged, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+        if (message.touchButton != null && Object.hasOwnProperty.call(message, "touchButton"))
+            $root.TouchSensorButton.encode(message.touchButton, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+        if (message.uvSensorData != null && Object.hasOwnProperty.call(message, "uvSensorData"))
+            $root.UVSensorData.encode(message.uvSensorData, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
         return writer;
     };
 
@@ -6493,43 +6735,43 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
                     break;
                 }
             case 3: {
-                    message.rotaryChanged = $root.RotaryEncoderChanged.decode(reader, reader.uint32());
-                    break;
-                }
-            case 4: {
-                    message.rotaryButton = $root.RotaryEncoderButton.decode(reader, reader.uint32());
-                    break;
-                }
-            case 5: {
-                    message.linearChanged = $root.LinearEncoderChanged.decode(reader, reader.uint32());
-                    break;
-                }
-            case 6: {
-                    message.touchButton = $root.TouchSensorButton.decode(reader, reader.uint32());
-                    break;
-                }
-            case 7: {
-                    message.gyroscopeData = $root.GyroscopeChanged.decode(reader, reader.uint32());
-                    break;
-                }
-            case 8: {
-                    message.pressureSensorData = $root.PressureSensorData.decode(reader, reader.uint32());
-                    break;
-                }
-            case 9: {
                     message.co2SensorData = $root.CO2SensorData.decode(reader, reader.uint32());
                     break;
                 }
-            case 10: {
+            case 4: {
                     message.distanceSensorData = $root.DistanceSensorData.decode(reader, reader.uint32());
                     break;
                 }
+            case 5: {
+                    message.gyroscopeData = $root.GyroscopeChanged.decode(reader, reader.uint32());
+                    break;
+                }
+            case 6: {
+                    message.linearChanged = $root.LinearEncoderChanged.decode(reader, reader.uint32());
+                    break;
+                }
+            case 7: {
+                    message.pressureSensorData = $root.PressureSensorData.decode(reader, reader.uint32());
+                    break;
+                }
+            case 8: {
+                    message.rfidReaderData = $root.RFIDReaderData.decode(reader, reader.uint32());
+                    break;
+                }
+            case 9: {
+                    message.rotaryButton = $root.RotaryEncoderButton.decode(reader, reader.uint32());
+                    break;
+                }
+            case 10: {
+                    message.rotaryChanged = $root.RotaryEncoderChanged.decode(reader, reader.uint32());
+                    break;
+                }
             case 11: {
-                    message.uvSensorData = $root.UVSensorData.decode(reader, reader.uint32());
+                    message.touchButton = $root.TouchSensorButton.decode(reader, reader.uint32());
                     break;
                 }
             case 12: {
-                    message.rfidReaderData = $root.RFIDReaderData.decode(reader, reader.uint32());
+                    message.uvSensorData = $root.UVSensorData.decode(reader, reader.uint32());
                     break;
                 }
             default:
@@ -6590,67 +6832,7 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
         if (message.address != null && message.hasOwnProperty("address"))
             if (!$util.isInteger(message.address))
                 return "address: integer expected";
-        if (message.rotaryChanged != null && message.hasOwnProperty("rotaryChanged")) {
-            properties.event = 1;
-            {
-                let error = $root.RotaryEncoderChanged.verify(message.rotaryChanged);
-                if (error)
-                    return "rotaryChanged." + error;
-            }
-        }
-        if (message.rotaryButton != null && message.hasOwnProperty("rotaryButton")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.RotaryEncoderButton.verify(message.rotaryButton);
-                if (error)
-                    return "rotaryButton." + error;
-            }
-        }
-        if (message.linearChanged != null && message.hasOwnProperty("linearChanged")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.LinearEncoderChanged.verify(message.linearChanged);
-                if (error)
-                    return "linearChanged." + error;
-            }
-        }
-        if (message.touchButton != null && message.hasOwnProperty("touchButton")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.TouchSensorButton.verify(message.touchButton);
-                if (error)
-                    return "touchButton." + error;
-            }
-        }
-        if (message.gyroscopeData != null && message.hasOwnProperty("gyroscopeData")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.GyroscopeChanged.verify(message.gyroscopeData);
-                if (error)
-                    return "gyroscopeData." + error;
-            }
-        }
-        if (message.pressureSensorData != null && message.hasOwnProperty("pressureSensorData")) {
-            if (properties.event === 1)
-                return "event: multiple values";
-            properties.event = 1;
-            {
-                let error = $root.PressureSensorData.verify(message.pressureSensorData);
-                if (error)
-                    return "pressureSensorData." + error;
-            }
-        }
         if (message.co2SensorData != null && message.hasOwnProperty("co2SensorData")) {
-            if (properties.event === 1)
-                return "event: multiple values";
             properties.event = 1;
             {
                 let error = $root.CO2SensorData.verify(message.co2SensorData);
@@ -6668,14 +6850,34 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
                     return "distanceSensorData." + error;
             }
         }
-        if (message.uvSensorData != null && message.hasOwnProperty("uvSensorData")) {
+        if (message.gyroscopeData != null && message.hasOwnProperty("gyroscopeData")) {
             if (properties.event === 1)
                 return "event: multiple values";
             properties.event = 1;
             {
-                let error = $root.UVSensorData.verify(message.uvSensorData);
+                let error = $root.GyroscopeChanged.verify(message.gyroscopeData);
                 if (error)
-                    return "uvSensorData." + error;
+                    return "gyroscopeData." + error;
+            }
+        }
+        if (message.linearChanged != null && message.hasOwnProperty("linearChanged")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.LinearEncoderChanged.verify(message.linearChanged);
+                if (error)
+                    return "linearChanged." + error;
+            }
+        }
+        if (message.pressureSensorData != null && message.hasOwnProperty("pressureSensorData")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.PressureSensorData.verify(message.pressureSensorData);
+                if (error)
+                    return "pressureSensorData." + error;
             }
         }
         if (message.rfidReaderData != null && message.hasOwnProperty("rfidReaderData")) {
@@ -6686,6 +6888,46 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
                 let error = $root.RFIDReaderData.verify(message.rfidReaderData);
                 if (error)
                     return "rfidReaderData." + error;
+            }
+        }
+        if (message.rotaryButton != null && message.hasOwnProperty("rotaryButton")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.RotaryEncoderButton.verify(message.rotaryButton);
+                if (error)
+                    return "rotaryButton." + error;
+            }
+        }
+        if (message.rotaryChanged != null && message.hasOwnProperty("rotaryChanged")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.RotaryEncoderChanged.verify(message.rotaryChanged);
+                if (error)
+                    return "rotaryChanged." + error;
+            }
+        }
+        if (message.touchButton != null && message.hasOwnProperty("touchButton")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.TouchSensorButton.verify(message.touchButton);
+                if (error)
+                    return "touchButton." + error;
+            }
+        }
+        if (message.uvSensorData != null && message.hasOwnProperty("uvSensorData")) {
+            if (properties.event === 1)
+                return "event: multiple values";
+            properties.event = 1;
+            {
+                let error = $root.UVSensorData.verify(message.uvSensorData);
+                if (error)
+                    return "uvSensorData." + error;
             }
         }
         return null;
@@ -6765,36 +7007,6 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
         }
         if (object.address != null)
             message.address = object.address >>> 0;
-        if (object.rotaryChanged != null) {
-            if (typeof object.rotaryChanged !== "object")
-                throw TypeError(".DeviceEvent.rotaryChanged: object expected");
-            message.rotaryChanged = $root.RotaryEncoderChanged.fromObject(object.rotaryChanged);
-        }
-        if (object.rotaryButton != null) {
-            if (typeof object.rotaryButton !== "object")
-                throw TypeError(".DeviceEvent.rotaryButton: object expected");
-            message.rotaryButton = $root.RotaryEncoderButton.fromObject(object.rotaryButton);
-        }
-        if (object.linearChanged != null) {
-            if (typeof object.linearChanged !== "object")
-                throw TypeError(".DeviceEvent.linearChanged: object expected");
-            message.linearChanged = $root.LinearEncoderChanged.fromObject(object.linearChanged);
-        }
-        if (object.touchButton != null) {
-            if (typeof object.touchButton !== "object")
-                throw TypeError(".DeviceEvent.touchButton: object expected");
-            message.touchButton = $root.TouchSensorButton.fromObject(object.touchButton);
-        }
-        if (object.gyroscopeData != null) {
-            if (typeof object.gyroscopeData !== "object")
-                throw TypeError(".DeviceEvent.gyroscopeData: object expected");
-            message.gyroscopeData = $root.GyroscopeChanged.fromObject(object.gyroscopeData);
-        }
-        if (object.pressureSensorData != null) {
-            if (typeof object.pressureSensorData !== "object")
-                throw TypeError(".DeviceEvent.pressureSensorData: object expected");
-            message.pressureSensorData = $root.PressureSensorData.fromObject(object.pressureSensorData);
-        }
         if (object.co2SensorData != null) {
             if (typeof object.co2SensorData !== "object")
                 throw TypeError(".DeviceEvent.co2SensorData: object expected");
@@ -6805,15 +7017,45 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
                 throw TypeError(".DeviceEvent.distanceSensorData: object expected");
             message.distanceSensorData = $root.DistanceSensorData.fromObject(object.distanceSensorData);
         }
-        if (object.uvSensorData != null) {
-            if (typeof object.uvSensorData !== "object")
-                throw TypeError(".DeviceEvent.uvSensorData: object expected");
-            message.uvSensorData = $root.UVSensorData.fromObject(object.uvSensorData);
+        if (object.gyroscopeData != null) {
+            if (typeof object.gyroscopeData !== "object")
+                throw TypeError(".DeviceEvent.gyroscopeData: object expected");
+            message.gyroscopeData = $root.GyroscopeChanged.fromObject(object.gyroscopeData);
+        }
+        if (object.linearChanged != null) {
+            if (typeof object.linearChanged !== "object")
+                throw TypeError(".DeviceEvent.linearChanged: object expected");
+            message.linearChanged = $root.LinearEncoderChanged.fromObject(object.linearChanged);
+        }
+        if (object.pressureSensorData != null) {
+            if (typeof object.pressureSensorData !== "object")
+                throw TypeError(".DeviceEvent.pressureSensorData: object expected");
+            message.pressureSensorData = $root.PressureSensorData.fromObject(object.pressureSensorData);
         }
         if (object.rfidReaderData != null) {
             if (typeof object.rfidReaderData !== "object")
                 throw TypeError(".DeviceEvent.rfidReaderData: object expected");
             message.rfidReaderData = $root.RFIDReaderData.fromObject(object.rfidReaderData);
+        }
+        if (object.rotaryButton != null) {
+            if (typeof object.rotaryButton !== "object")
+                throw TypeError(".DeviceEvent.rotaryButton: object expected");
+            message.rotaryButton = $root.RotaryEncoderButton.fromObject(object.rotaryButton);
+        }
+        if (object.rotaryChanged != null) {
+            if (typeof object.rotaryChanged !== "object")
+                throw TypeError(".DeviceEvent.rotaryChanged: object expected");
+            message.rotaryChanged = $root.RotaryEncoderChanged.fromObject(object.rotaryChanged);
+        }
+        if (object.touchButton != null) {
+            if (typeof object.touchButton !== "object")
+                throw TypeError(".DeviceEvent.touchButton: object expected");
+            message.touchButton = $root.TouchSensorButton.fromObject(object.touchButton);
+        }
+        if (object.uvSensorData != null) {
+            if (typeof object.uvSensorData !== "object")
+                throw TypeError(".DeviceEvent.uvSensorData: object expected");
+            message.uvSensorData = $root.UVSensorData.fromObject(object.uvSensorData);
         }
         return message;
     };
@@ -6839,36 +7081,6 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
             object.type = options.enums === String ? $root.DeviceType[message.type] === undefined ? message.type : $root.DeviceType[message.type] : message.type;
         if (message.address != null && message.hasOwnProperty("address"))
             object.address = message.address;
-        if (message.rotaryChanged != null && message.hasOwnProperty("rotaryChanged")) {
-            object.rotaryChanged = $root.RotaryEncoderChanged.toObject(message.rotaryChanged, options);
-            if (options.oneofs)
-                object.event = "rotaryChanged";
-        }
-        if (message.rotaryButton != null && message.hasOwnProperty("rotaryButton")) {
-            object.rotaryButton = $root.RotaryEncoderButton.toObject(message.rotaryButton, options);
-            if (options.oneofs)
-                object.event = "rotaryButton";
-        }
-        if (message.linearChanged != null && message.hasOwnProperty("linearChanged")) {
-            object.linearChanged = $root.LinearEncoderChanged.toObject(message.linearChanged, options);
-            if (options.oneofs)
-                object.event = "linearChanged";
-        }
-        if (message.touchButton != null && message.hasOwnProperty("touchButton")) {
-            object.touchButton = $root.TouchSensorButton.toObject(message.touchButton, options);
-            if (options.oneofs)
-                object.event = "touchButton";
-        }
-        if (message.gyroscopeData != null && message.hasOwnProperty("gyroscopeData")) {
-            object.gyroscopeData = $root.GyroscopeChanged.toObject(message.gyroscopeData, options);
-            if (options.oneofs)
-                object.event = "gyroscopeData";
-        }
-        if (message.pressureSensorData != null && message.hasOwnProperty("pressureSensorData")) {
-            object.pressureSensorData = $root.PressureSensorData.toObject(message.pressureSensorData, options);
-            if (options.oneofs)
-                object.event = "pressureSensorData";
-        }
         if (message.co2SensorData != null && message.hasOwnProperty("co2SensorData")) {
             object.co2SensorData = $root.CO2SensorData.toObject(message.co2SensorData, options);
             if (options.oneofs)
@@ -6879,15 +7091,45 @@ export const DeviceEvent = $root.DeviceEvent = (() => {
             if (options.oneofs)
                 object.event = "distanceSensorData";
         }
-        if (message.uvSensorData != null && message.hasOwnProperty("uvSensorData")) {
-            object.uvSensorData = $root.UVSensorData.toObject(message.uvSensorData, options);
+        if (message.gyroscopeData != null && message.hasOwnProperty("gyroscopeData")) {
+            object.gyroscopeData = $root.GyroscopeChanged.toObject(message.gyroscopeData, options);
             if (options.oneofs)
-                object.event = "uvSensorData";
+                object.event = "gyroscopeData";
+        }
+        if (message.linearChanged != null && message.hasOwnProperty("linearChanged")) {
+            object.linearChanged = $root.LinearEncoderChanged.toObject(message.linearChanged, options);
+            if (options.oneofs)
+                object.event = "linearChanged";
+        }
+        if (message.pressureSensorData != null && message.hasOwnProperty("pressureSensorData")) {
+            object.pressureSensorData = $root.PressureSensorData.toObject(message.pressureSensorData, options);
+            if (options.oneofs)
+                object.event = "pressureSensorData";
         }
         if (message.rfidReaderData != null && message.hasOwnProperty("rfidReaderData")) {
             object.rfidReaderData = $root.RFIDReaderData.toObject(message.rfidReaderData, options);
             if (options.oneofs)
                 object.event = "rfidReaderData";
+        }
+        if (message.rotaryButton != null && message.hasOwnProperty("rotaryButton")) {
+            object.rotaryButton = $root.RotaryEncoderButton.toObject(message.rotaryButton, options);
+            if (options.oneofs)
+                object.event = "rotaryButton";
+        }
+        if (message.rotaryChanged != null && message.hasOwnProperty("rotaryChanged")) {
+            object.rotaryChanged = $root.RotaryEncoderChanged.toObject(message.rotaryChanged, options);
+            if (options.oneofs)
+                object.event = "rotaryChanged";
+        }
+        if (message.touchButton != null && message.hasOwnProperty("touchButton")) {
+            object.touchButton = $root.TouchSensorButton.toObject(message.touchButton, options);
+            if (options.oneofs)
+                object.event = "touchButton";
+        }
+        if (message.uvSensorData != null && message.hasOwnProperty("uvSensorData")) {
+            object.uvSensorData = $root.UVSensorData.toObject(message.uvSensorData, options);
+            if (options.oneofs)
+                object.event = "uvSensorData";
         }
         return object;
     };

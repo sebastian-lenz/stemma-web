@@ -31,8 +31,8 @@ static void send_response(const Response& resp) {
         return; // encoding error — drop silently
     }
 
-    uint16_t len = (uint16_t)stream.bytes_written;
-    uint8_t header[2] = { (uint8_t)(len >> 8), (uint8_t)(len & 0xFF) };
+    auto len = static_cast<uint16_t>(stream.bytes_written);
+    uint8_t header[2] = { static_cast<uint8_t>(len >> 8), (uint8_t)(len & 0xFF) };
     usb_web.write(header, 2);
     usb_web.write(payload, len);
     usb_web.flush();
@@ -43,29 +43,25 @@ static void send_response(const Response& resp) {
 static void handle_command(const uint8_t* data, uint16_t len) {
     static Command  cmd;
     static Response resp;
-    cmd  = Command_init_zero;
-    resp = Response_init_zero;
-    pb_istream_t stream = pb_istream_from_buffer(data, len);
+    cmd        = Command_init_zero;
+    resp       = Response_init_zero;
+    resp.id      = 0;
+    resp.success = false;
 
+    pb_istream_t stream = pb_istream_from_buffer(data, len);
     if (!pb_decode(&stream, Command_fields, &cmd)) {
-        resp.id      = 0;
-        resp.success = false;
         send_response(resp);
         return;
     }
 
-    resp.id      = cmd.id;
-    resp.success = true;
+    resp.id = cmd.id;
 
     switch (cmd.which_payload) {
-        case Command_device_command_tag: {
-            if (deviceManager.handleCommand(cmd.payload.device_command, resp)) {
-                send_response(resp);
-            }
+        case Command_device_command_tag:
+            deviceManager.handleCommand(cmd.payload.device_command, resp);
+            send_response(resp);
             break;
-        }
         default:
-            resp.success = false;
             send_response(resp);
             break;
     }
@@ -111,12 +107,29 @@ void setup() {
 }
 
 void loop() {
-    if (usb_web.connected()) {
+    static bool was_connected = false;
+    bool connected = usb_web.connected();
+
+    if (connected) {
+        auto start = get_absolute_time();
+
         process_usb();
 
         // Poll all active StemmaQT devices and push any events to the host
         deviceManager.pollAll(send_response);
 
-        sleep_ms(50);
+        uint32_t elapsed = to_ms_since_boot(get_absolute_time() - start);
+        if (elapsed < 16) {
+            sleep_ms(16 - elapsed);
+        }
     }
+
+    if (was_connected && !connected) {
+        // Client disconnected (e.g. page reload) — tear down all devices and
+        // discard any partial receive buffer so the next session starts clean.
+        deviceManager.stopAll();
+        rx_len = 0;
+    }
+
+    was_connected = connected;
 }

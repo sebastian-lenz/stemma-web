@@ -12,6 +12,8 @@
   first time.
 </p>
 
+<CodePreview example="/examples/rotary-test.js" />
+
 <CodePreview example="/examples/first-steps.js" />
 
 <h2 class="doc-h2">How it works</h2>

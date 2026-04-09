@@ -17,13 +17,11 @@ public:
 
     bool poll(Response&) override { return false; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        resp.id      = 0;
-        resp.success = true;
-
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
         switch (cmd.which_payload) {
             case DeviceCommand_get_state_tag:
-                return _readNDEF(resp);
+                _readNDEF(resp);
+                break;
 
             case DeviceCommand_nfc_write_text_tag: {
                 const auto& p = cmd.payload.nfc_write_text;
@@ -32,28 +30,33 @@ public:
                     p.language[0] ? p.language : "en",
                     NDEF_TEXT_UTF8
                 ) == ST25DV_OK);
-                return true;
+                break;
             }
+
             case DeviceCommand_nfc_write_uri_tag: {
                 const auto& p = cmd.payload.nfc_write_uri;
                 resp.success = (_nfc.writeURI(p.protocol, p.uri, p.information) == ST25DV_OK);
-                return true;
+                break;
             }
+
             case DeviceCommand_nfc_write_unabridged_uri_tag: {
                 const auto& p = cmd.payload.nfc_write_unabridged_uri;
                 resp.success = (_nfc.writeUnabridgedURI(p.uri, p.information) == ST25DV_OK);
-                return true;
+                break;
             }
+
             case DeviceCommand_nfc_write_sms_tag: {
                 const auto& p = cmd.payload.nfc_write_sms;
                 resp.success = (_nfc.writeSMS(p.phone_number, p.message, p.information) == ST25DV_OK);
-                return true;
+                break;
             }
+
             case DeviceCommand_nfc_write_email_tag: {
                 const auto& p = cmd.payload.nfc_write_email;
                 resp.success = (_nfc.writeEMail(p.email, p.subject, p.message, p.information) == ST25DV_OK);
-                return true;
+                break;
             }
+
             case DeviceCommand_nfc_write_geo_tag: {
                 const auto& p = cmd.payload.nfc_write_geo;
                 resp.success = (_nfc.writeGEO(
@@ -61,8 +64,9 @@ public:
                     String(p.longitude, 6),
                     p.information
                 ) == ST25DV_OK);
-                return true;
+                break;
             }
+
             case DeviceCommand_nfc_write_vcard_tag: {
                 const auto& p = cmd.payload.nfc_write_vcard;
                 sVcardInfo info = {};
@@ -79,20 +83,21 @@ public:
                 strncpy(info.WorkAddress, p.work_address,   sizeof(info.WorkAddress) - 1);
                 strncpy(info.Url,         p.url,            sizeof(info.Url)         - 1);
                 resp.success = (_nfc.writeVcard(info) == ST25DV_OK);
-                return true;
+                break;
             }
 
             default:
-                resp.success = false;
-                return false;
+                setError(resp, "Unknown command");
+                break;
         }
     }
 
 private:
-    bool _readNDEF(Response& resp) {
+    void _readNDEF(Response& resp) {
         NDEF_TypeDef type = _nfc.readNDEFType();
 
         resp.which_payload = Response_device_state_tag;
+
         auto& ds = resp.payload.device_state;
         ds.type      = DEVICE_TYPE_NFC_TAG;
         ds.address   = _address;
@@ -180,7 +185,6 @@ private:
         }
 
         resp.success = true;
-        return true;
     }
 
     uint8_t _address;

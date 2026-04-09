@@ -29,16 +29,15 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_PRESSURE_SENSOR; }
     uint8_t    getAddress() const override { return _address; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        resp.id      = 0;
-        resp.success = true;
-
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
         switch (cmd.which_payload) {
             case DeviceCommand_get_state_tag: {
                 sensors_event_t pressure_event, temp_event;
                 _getEvent(pressure_event, temp_event);
 
+                resp.success = true;
                 resp.which_payload = Response_device_state_tag;
+
                 auto& ds = resp.payload.device_state;
                 ds.type      = DEVICE_TYPE_PRESSURE_SENSOR;
                 ds.address   = _address;
@@ -49,16 +48,20 @@ public:
                 ps.pressure    = pressure_event.pressure;
                 ps.temperature = temp_event.temperature;
                 ps.data_rate   = _dataRate;
-                return true;
+
+                break;
             }
+
             case DeviceCommand_set_pressure_rate_tag:
                 _dataRate = cmd.payload.set_pressure_rate.rate;
                 _applyDataRate(_dataRate);
-                return false;
+
+                resp.success = true;
+                break;
 
             default:
-                resp.success = false;
-                return false;
+                setError(resp, "Unknown command");
+                break;
         }
     }
 

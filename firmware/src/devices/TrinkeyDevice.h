@@ -20,28 +20,32 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_TRINKEY; }
     uint8_t    getAddress() const override { return 0; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        if (_handleNeoPixelCommand(cmd)) return false;
-
-        resp.id      = 0;
-        resp.success = true;
-
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
         switch (cmd.which_payload) {
             case DeviceCommand_get_state_tag: {
+                resp.success = true;
                 resp.which_payload = Response_device_state_tag;
+
                 auto& ds = resp.payload.device_state;
                 ds.type      = DEVICE_TYPE_TRINKEY;
                 ds.address   = 0;
                 ds.connected = true;
                 ds.which_state = DeviceState_trinkey_tag;
+
                 auto& ts = ds.state.trinkey;
                 ts.brightness = _brightness;
                 ts.pixel      = _rawColors[0];
-                return true;
+                break;
             }
+
             default:
-                resp.success = false;
-                return false;
+                if (_handleNeoPixelCommand(cmd)) {
+                    resp.success = true;
+                } else {
+                    setError(resp, "Unknown command");
+                }
+
+                break;
         }
     }
 

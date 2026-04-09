@@ -17,12 +17,10 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_UV_SENSOR; }
     uint8_t    getAddress() const override { return _address; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        resp.id      = 0;
-        resp.success = true;
-
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
         switch (cmd.which_payload) {
             case DeviceCommand_get_state_tag: {
+                resp.success = true;
                 resp.which_payload = Response_device_state_tag;
 
                 auto& ds = resp.payload.device_state;
@@ -36,26 +34,33 @@ public:
                 us.mode       = _mode;
                 us.gain       = _gain;
                 us.resolution = _resolution;
-                return true;
+                break;
             }
+
             case DeviceCommand_set_uv_gain_tag:
                 _gain = cmd.payload.set_uv_gain.gain;
                 _ltr.setGain(_toGain(_gain));
-                return false;
+
+                resp.success = true;
+                break;
 
             case DeviceCommand_set_uv_mode_tag:
                 _mode = cmd.payload.set_uv_mode.mode;
                 _ltr.setMode(_toMode(_mode));
-                return false;
+
+                resp.success = true;
+                break;
 
             case DeviceCommand_set_uv_resolution_tag:
                 _resolution = cmd.payload.set_uv_resolution.resolution;
                 _ltr.setResolution(_toResolution(_resolution));
-                return false;
+
+                resp.success = true;
+                break;
 
             default:
-                resp.success = false;
-                return false;
+                setError(resp, "Unknown command");
+                break;
         }
     }
 

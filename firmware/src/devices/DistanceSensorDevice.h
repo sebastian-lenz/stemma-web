@@ -13,28 +13,29 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_DISTANCE_SENSOR; }
     uint8_t    getAddress() const override { return _address; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        resp.id      = 0;
-        resp.success = true;
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
+        switch (cmd.which_payload) {
+            case DeviceCommand_get_state_tag: {
+                VL53L0X_RangingMeasurementData_t measure;
+                _lox.rangingTest(&measure, false);
 
-        if (cmd.which_payload == DeviceCommand_get_state_tag) {
-            VL53L0X_RangingMeasurementData_t measure;
-            _lox.rangingTest(&measure, false);
+                resp.success = true;
+                resp.which_payload = Response_device_state_tag;
 
-            resp.which_payload = Response_device_state_tag;
+                auto& ds = resp.payload.device_state;
+                ds.type      = DEVICE_TYPE_DISTANCE_SENSOR;
+                ds.address   = _address;
+                ds.connected = true;
+                ds.which_state = DeviceState_distance_sensor_tag;
+                ds.state.distance_sensor.distance =
+                    (measure.RangeStatus == 4) ? 8190 : measure.RangeMilliMeter;
+                break;
+            }
 
-            auto& ds = resp.payload.device_state;
-            ds.type      = DEVICE_TYPE_DISTANCE_SENSOR;
-            ds.address   = _address;
-            ds.connected = true;
-            ds.which_state = DeviceState_distance_sensor_tag;
-            ds.state.distance_sensor.distance =
-                (measure.RangeStatus == 4) ? 8190 : measure.RangeMilliMeter;
-            return true;
+            default:
+                setError(resp, "Unknown command");
+                break;
         }
-
-        resp.success = false;
-        return false;
     }
 
     bool poll(Response& event) override {

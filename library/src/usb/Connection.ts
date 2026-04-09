@@ -170,6 +170,8 @@ export class Connection {
     const { _requests } = this;
     const response = decodeResponse(payload);
 
+    console.log(JSON.stringify(response));
+
     const request = _requests.get(response.id);
     if (request) {
       request(response);

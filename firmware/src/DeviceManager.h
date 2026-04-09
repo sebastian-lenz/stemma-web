@@ -39,23 +39,35 @@ public:
      * Handle a DeviceCommand. Returns true and populates resp when the
      * firmware should send a response back to the host.
      */
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) {
-        resp.success = false;
-
-        if (cmd.which_payload == DeviceCommand_start_tag) {
-            return _startDevice(cmd, resp);
+    void handleCommand(const DeviceCommand& cmd, Response& resp) {
+        switch (cmd.which_payload) {
+            case DeviceCommand_start_tag:
+                _startDevice(cmd, resp);
+                break;
+            case DeviceCommand_stop_tag:
+                _stopDevice(cmd, resp);
+                break;
+            default:
+                Device* dev = _findDevice(cmd.type, cmd.address);
+                if (dev) {
+                    dev->handleCommand(cmd, resp);
+                } else {
+                    setError(resp, "Device not found");
+                }
+                break;
         }
-        if (cmd.which_payload == DeviceCommand_stop_tag) {
-            return _stopDevice(cmd, resp);
-        }
+    }
 
-        Device* dev = _findDevice(cmd.type, cmd.address);
-        if (!dev) {
-            resp.success = false;
-            return true;  // send failure response
+    /**
+     * Stop and destroy all active devices. Called on USB disconnect so the
+     * next session starts from a clean slate.
+     */
+    void stopAll() {
+        for (uint8_t i = 0; i < _count; i++) {
+            delete _devices[i];
+            _devices[i] = nullptr;
         }
-
-        return dev->handleCommand(cmd, resp);
+        _count = 0;
     }
 
     /**
@@ -65,8 +77,10 @@ public:
      */
     void pollAll(void (*sendEvent)(const Response&)) {
         static Response event;
+
         for (uint8_t i = 0; i < _count; i++) {
             event = Response_init_zero;
+
             if (_devices[i]->poll(event)) {
                 sendEvent(event);
             }
@@ -84,51 +98,54 @@ private:
                 return _devices[i];
             }
         }
+
         return nullptr;
     }
 
-    bool _startDevice(const DeviceCommand& cmd, Response& resp) {
+    void _startDevice(const DeviceCommand& cmd, Response& resp) {
         if (_findDevice(cmd.type, cmd.address)) {
             // Already started — return success
             resp.success = true;
-            return true;
-        }
-        if (_count >= MAX_DEVICES) {
-            resp.success = false;
-            return true;
+            return;
+        } else if (_count >= MAX_DEVICES) {
+            setError(resp, "Max number of devices reached");
+            return;
         }
 
         Device* dev = _createDevice(cmd);
-        if (!dev) { resp.success = false; return true; }
+        if (!dev) {
+            setError(resp, "Could not create device");
+            return;
+        }
 
         if (!dev->begin()) {
+            setError(resp, "Could not start device");
             delete dev;
-            resp.success = false;
-            return true;
+            return;
         }
 
         _devices[_count++] = dev;
         resp.success = true;
-        return true;
     }
 
-    bool _stopDevice(const DeviceCommand& cmd, Response& resp) {
+    void _stopDevice(const DeviceCommand& cmd, Response& resp) {
         for (uint8_t i = 0; i < _count; i++) {
             if (_devices[i]->getType()    == cmd.type &&
                 _devices[i]->getAddress() == (uint8_t)cmd.address)
             {
                 delete _devices[i];
+
                 // Compact the array
                 for (uint8_t j = i; j < _count - 1; j++) {
                     _devices[j] = _devices[j + 1];
                 }
+
                 _devices[--_count] = nullptr;
                 resp.success = true;
-                return false;
             }
         }
-        resp.success = false;
-        return true;
+
+        setError(resp, "Device not found");
     }
 
     static Device* _createDevice(const DeviceCommand& cmd) {

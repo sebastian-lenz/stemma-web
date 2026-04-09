@@ -27,14 +27,10 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_ROTARY_ENCODER; }
     uint8_t    getAddress() const override { return _address; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        if (_handleNeoPixelCommand(cmd)) return false;
-
-        resp.id      = 0;
-        resp.success = true;
-
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
         switch (cmd.which_payload) {
             case DeviceCommand_get_state_tag: {
+                resp.success = true;
                 resp.which_payload = Response_device_state_tag;
 
                 auto& ds = resp.payload.device_state;
@@ -48,11 +44,17 @@ public:
                 re.pixel      = _rawColors[0];
                 re.is_pressed = _lastPressed;
                 re.value      = _lastValue;
-                return true;
+                break;
             }
+
             default:
-                resp.success = false;
-                return false;
+                if (_handleNeoPixelCommand(cmd)) {
+                    resp.success = true;
+                } else {
+                    setError(resp, "Unknown command");
+                }
+
+                break;
         }
     }
 

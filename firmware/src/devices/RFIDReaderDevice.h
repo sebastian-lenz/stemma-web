@@ -14,26 +14,27 @@ public:
     DeviceType getType()    const override { return DEVICE_TYPE_RFID_READER; }
     uint8_t    getAddress() const override { return _address; }
 
-    bool handleCommand(const DeviceCommand& cmd, Response& resp) override {
-        resp.id      = 0;
-        resp.success = true;
+    void handleCommand(const DeviceCommand& cmd, Response& resp) override {
+        switch (cmd.which_payload) {
+            case DeviceCommand_get_state_tag: {
+                resp.success = true;
+                resp.which_payload = Response_device_state_tag;
 
-        if (cmd.which_payload == DeviceCommand_get_state_tag) {
-            resp.which_payload = Response_device_state_tag;
+                auto& ds = resp.payload.device_state;
+                ds.type      = DEVICE_TYPE_RFID_READER;
+                ds.address   = _address;
+                ds.connected = true;
+                ds.which_state = DeviceState_rfid_reader_tag;
 
-            auto& ds = resp.payload.device_state;
-            ds.type      = DEVICE_TYPE_RFID_READER;
-            ds.address   = _address;
-            ds.connected = true;
-            ds.which_state = DeviceState_rfid_reader_tag;
+                // Tag ID not in DeviceState for RFID — use last known
+                snprintf(ds.state.rfid_reader.tag_id, sizeof(ds.state.rfid_reader.tag_id), "%08X", _lastTagId);
+                break;
+            }
 
-            // Tag ID not in DeviceState for RFID — use last known
-            snprintf(ds.state.rfid_reader.tag_id, sizeof(ds.state.rfid_reader.tag_id), "%08X", _lastTagId);
-            return true;
+            default:
+                setError(resp, "Unknown command");
+                break;
         }
-
-        resp.success = false;
-        return false;
     }
 
     bool poll(Response& event) override {

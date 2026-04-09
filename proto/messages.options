@@ -2,3 +2,5 @@
 # Caps the bytes blob in SetPixelColors to 64 colors (64 × 3 = 192 bytes),
 # keeping the maximum encoded message within the 256-byte firmware buffer.
 SetPixelColors.colors   max_size:192
+
+Error.message           max_size:128
