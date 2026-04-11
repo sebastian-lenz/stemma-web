@@ -1,3 +1,4 @@
+.claude/
 library/dist/
 library/node_modules/
 site/.svelte-kit/
