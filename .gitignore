@@ -1,4 +1,5 @@
-.claude/
+.claude
+.vscode
 library/dist/
 library/node_modules/
 site/.svelte-kit/
