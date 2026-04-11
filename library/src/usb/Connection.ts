@@ -19,6 +19,7 @@ export class Connection {
   private _device: USBDevice | null = null;
   private _endpointIn: number | null = null;
   private _endpointOut: number | null = null;
+  private _interfaceNumber: number | null = null;
   private _isReading: boolean = false;
   private _nextId: number = 0;
   private _requests: Map<number, (response: Response) => void>;
@@ -36,6 +37,10 @@ export class Connection {
       if (event.device == this._device) {
         this.disconnect();
       }
+    });
+
+    window.addEventListener("pagehide", () => {
+      this.disconnect().catch(() => {});
     });
   }
 
@@ -94,12 +99,28 @@ export class Connection {
     this._connectGeneration++;
 
     if (this._device?.opened) {
+      if (this._interfaceNumber != null) {
+        // Signal disconnect to firmware so it clears its connected flag,
+        // stops polling, and calls stopAll() on the next loop iteration.
+        await this._device
+          .controlTransferOut({
+            requestType: "class",
+            recipient: "interface",
+            request: 0x22, // SET_CONTROL_LINE_STATE
+            value: 0x00, // DTR deasserted = disconnected
+            index: this._interfaceNumber,
+          })
+          .catch(() => {});
+      }
+
       await this._device.close();
     }
 
     this._device = null;
     this._endpointIn = null;
     this._endpointOut = null;
+    this._interfaceNumber = null;
+    this._responseLength = 0;
 
     this._eventTarget.dispatchEvent(new Event("disconnect"));
   }
@@ -139,6 +160,7 @@ export class Connection {
 
   private async _claimInterface(device: USBDevice, iface: USBInterface) {
     await device.claimInterface(iface.interfaceNumber);
+    this._interfaceNumber = iface.interfaceNumber;
 
     // Signal "connected" to the firmware. The Adafruit TinyUSB WebUSB class
     // keeps an internal _connected flag that is only set true when it receives
@@ -169,8 +191,6 @@ export class Connection {
   private _handleResponse(payload: Uint8Array): void {
     const { _requests } = this;
     const response = decodeResponse(payload);
-
-    console.log(JSON.stringify(response));
 
     const request = _requests.get(response.id);
     if (request) {

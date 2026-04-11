@@ -43,11 +43,13 @@ protected:
             case DeviceCommand_set_brightness_tag:
                 _brightness = (uint8_t)cmd.payload.set_brightness.brightness;
                 _neoSetBrightness(_brightness);
+
                 // Re-apply raw colors so the strip rescales from original values,
                 // not from an already-brightness-scaled buffer.
                 for (uint16_t i = 0; i < _numPixels; i++) {
                     _neoSetPixelColor(i, _rawColors[i]);
                 }
+
                 _neoShow();
                 return true;
 
@@ -64,8 +66,10 @@ protected:
             case DeviceCommand_set_pixel_colors_tag: {
                 const auto& spc = cmd.payload.set_pixel_colors;
                 pb_size_t count = spc.colors.size / 3;
+
                 for (pb_size_t i = 0; i < count; i++) {
                     uint32_t idx = spc.offset + i;
+
                     if (idx < _numPixels) {
                         uint32_t c = ((uint32_t)spc.colors.bytes[i * 3]     << 16)
                                    | ((uint32_t)spc.colors.bytes[i * 3 + 1] <<  8)
@@ -74,6 +78,7 @@ protected:
                         _neoSetPixelColor(idx, c);
                     }
                 }
+
                 if (spc.show) _neoShow();
                 return true;
             }

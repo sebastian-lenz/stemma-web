@@ -41,6 +41,8 @@ export class Extension {
   private _deviceManager: DeviceManager | null = null;
   private _hookPrefixes: Array<string> = [];
   private _listeners: Array<VoidFunction> = [];
+  private _neoDriver: NeoDriver | null = null;
+  private _neoOffset: number = 0;
   private _pixelDevices: Array<BaseNeoPixelDevice<number, any>> = [];
   private _usePromises: boolean;
 
@@ -68,6 +70,9 @@ export class Extension {
       "startTouchSensor",
       "startTrinkey",
       "startUVSensor",
+      "neoCircle",
+      "neoLine",
+      "neoRect",
     ]);
 
     this.exposeEnums(fn, {
@@ -145,6 +150,71 @@ export class Extension {
     }
   }
 
+  neoRect(
+    _: P5Internal,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    offset: number = this._neoOffset,
+    device: NeoDriver | null = this._neoDriver,
+  ): void {
+    if (!device) return;
+    this._neoOffset += width * height;
+
+    for (let u = 0; u < width; u++) {
+      for (let v = 0; v < height; v++) {
+        const [r, g, b] = this.p5.get(x + u, y + v);
+        device.setPixelColor(offset++, (r << 16) | (g << 8) | b);
+      }
+    }
+  }
+
+  neoCircle(
+    _: P5Internal,
+    x: number,
+    y: number,
+    radius: number,
+    numPixels: number,
+    offset: number = this._neoOffset,
+    device: NeoDriver | null = this._neoDriver,
+  ): void {
+    if (!device) return;
+    this._neoOffset += numPixels;
+
+    for (let index = 0; index < numPixels; index++) {
+      const rad = (index / numPixels) * Math.PI * 2;
+      const [r, g, b] = this.p5.get(
+        x + Math.sin(rad) * radius,
+        y - Math.cos(rad) * radius,
+      );
+
+      device.setPixelColor(offset++, (r << 16) | (g << 8) | b);
+    }
+  }
+
+  neoLine(
+    _: P5Internal,
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number,
+    numPixels: number,
+    offset: number = this._neoOffset,
+    device: NeoDriver | null = this._neoDriver,
+  ): void {
+    if (!device) return;
+    this._neoOffset += numPixels;
+
+    const sX = numPixels > 1 ? (x2 - x1) / (numPixels - 1) : 0;
+    const sY = numPixels > 1 ? (y2 - y1) / (numPixels - 1) : 0;
+
+    for (let index = 0; index < numPixels; index++) {
+      const [r, g, b] = this.p5.get(x1 + sX * index, y1 + sY * index);
+      device.setPixelColor(offset++, (r << 16) | (g << 8) | b);
+    }
+  }
+
   remove(): void {
     const { _listeners } = this;
     for (const listener of _listeners) listener();
@@ -190,6 +260,7 @@ export class Extension {
   ): LinearEncoder | Promise<LinearEncoder> {
     const device = this.deviceManager.getLinearEncoder(addressOrIndex);
     this._pixelDevices.push(device);
+
     return this.exposeDevice(p5, device, name, LinearEncoder.EVENTS);
   }
 
@@ -204,6 +275,8 @@ export class Extension {
   ): NeoDriver | Promise<NeoDriver> {
     const device = this.deviceManager.getNeoDriver(addressOrIndex);
     this._pixelDevices.push(device);
+    this._neoDriver = this._neoDriver || device;
+
     return this.exposeDevice(p5, device);
   }
 
@@ -217,6 +290,7 @@ export class Extension {
       addressOrIndex,
       chipset,
     );
+
     return this.exposeDevice(p5, device, name, PressureSensor.EVENTS);
   }
 
@@ -236,6 +310,7 @@ export class Extension {
   ): RotaryEncoder | Promise<RotaryEncoder> {
     const device = this.deviceManager.getRotaryEncoder(addressOrIndex);
     this._pixelDevices.push(device);
+
     return this.exposeDevice(p5, device, name, RotaryEncoder.EVENTS);
   }
 

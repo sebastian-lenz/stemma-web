@@ -49,6 +49,10 @@
   .doc-badge-type    { @apply bg-gray-700 text-gray-400; }
   .doc-badge-event   { @apply bg-indigo-900/60 text-indigo-300; }
 
+  .doc-ul {
+    @apply mb-5 list-disc space-y-1 pl-5 text-base text-gray-200;
+  }
+
   /* In-page TOC pill link */
   .doc-toc-link {
     @apply doc-badge bg-gray-700 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white;

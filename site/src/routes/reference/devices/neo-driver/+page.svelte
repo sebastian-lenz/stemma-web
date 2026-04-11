@@ -18,14 +18,21 @@ Reference: https://learn.adafruit.com/adafruit-neodriver-i2c-to-neopixel-driver
   <a href="#connection" class="doc-toc-link">Connection</a>
   <a href="#methods" class="doc-toc-link">Methods</a>
   <a href="#properties" class="doc-toc-link">Properties</a>
+  <a href="#canvas" class="doc-toc-link">Canvas Helpers</a>
 </nav>
 
 <p class="doc-p">
-  The <a class="doc-link" href="https://www.adafruit.com/product/5766">Adafruit NeoDriver</a>
-  is an I2C-to-NeoPixel driver board based on the seesaw chip. It can control a strip of
-  up to 60 NeoPixels over a single StemmaQT cable, removing the need for precise timing
-  in the host sketch. See the
-  <a class="doc-link" href="https://learn.adafruit.com/adafruit-neodriver-i2c-to-neopixel-driver">Adafruit learn guide</a>
+  The <a class="doc-link" href="https://www.adafruit.com/product/5766"
+    >Adafruit NeoDriver</a
+  >
+  is an I2C-to-NeoPixel driver board based on the seesaw chip. It can control a strip
+  of up to 60 NeoPixels over a single StemmaQT cable, removing the need for precise
+  timing in the host sketch. See the
+  <a
+    class="doc-link"
+    href="https://learn.adafruit.com/adafruit-neodriver-i2c-to-neopixel-driver"
+    >Adafruit learn guide</a
+  >
   for wiring and hardware details.
 </p>
 
@@ -37,11 +44,13 @@ Reference: https://learn.adafruit.com/adafruit-neodriver-i2c-to-neopixel-driver
   and emits no events.
 </p>
 
-<CodeBlock code={`let strip;
+<CodeBlock
+  code={`let strip;
 
 function preload() {
   strip = startNeoDriver(addressOrIndex?);
-}`} />
+}`}
+/>
 
 <div class="doc-card mb-3">
   <p class="mb-2">
@@ -50,9 +59,9 @@ function preload() {
     <span class="doc-badge doc-badge-number ml-2">0x60</span>
   </p>
   <p class="doc-p">
-    The I2C address of the device, or an index (0–7) into the address list. Eight
-    addresses are available, set by the A0, A1, and A2 solder jumpers on the back
-    of the board:
+    The I2C address of the device, or an index (0–7) into the address list.
+    Eight addresses are available, set by the A0, A1, and A2 solder jumpers on
+    the back of the board:
   </p>
   <table class="w-full text-sm text-left text-gray-300">
     <thead class="text-xs uppercase text-gray-500 border-b border-gray-700">
@@ -134,8 +143,8 @@ function preload() {
   </p>
   <p class="doc-p">
     Sets the number of NeoPixels in the connected strip. Must be called before
-    setting any pixel colors. <span class="doc-code">value</span> is the pixel
-    count (maximum 60).
+    setting any pixel colors. <span class="doc-code">value</span> is the pixel count
+    (maximum 60).
   </p>
 </div>
 
@@ -145,3 +154,77 @@ function preload() {
 <h2 id="properties" class="doc-h2">Properties</h2>
 
 <BaseDeviceProperties />
+
+<h2 id="canvas" class="doc-h2">Canvas Helpers</h2>
+
+<p class="doc-p">
+  These global functions sample pixel colors from the p5 canvas and write them
+  directly to NeoPixel LEDs. They are called in <span class="doc-code"
+    >draw()</span
+  >
+  after the canvas has been rendered. Each function accepts an optional
+  <span class="doc-code">offset</span> and <span class="doc-code">device</span>:
+</p>
+<ul class="doc-ul">
+  <li>
+    <span class="doc-code">offset</span> defaults to an internal counter that auto-advances
+    by the number of pixels written, allowing multiple calls to fill a strip sequentially
+    without manual bookkeeping.
+  </li>
+  <li>
+    <span class="doc-code">device</span> defaults to the first NeoDriver started.
+  </li>
+</ul>
+
+<div class="doc-card mb-3">
+  <p class="mb-1">
+    <span class="doc-code">neoRect(x, y, width, height, offset?, device?)</span>
+    <span class="doc-badge doc-badge-type ml-2">void</span>
+  </p>
+  <p class="doc-p mb-3">
+    Samples a rectangular region of the canvas column-by-column (left to right,
+    top to bottom within each column) and writes the colors to consecutive LEDs.
+  </p>
+  <CodeBlock
+    nested
+    code={`// Fill 8×8 LEDs from the top-left corner of the canvas
+neoRect(0, 0, 8, 8);`}
+  />
+</div>
+
+<div class="doc-card mb-3">
+  <p class="mb-1">
+    <span class="doc-code"
+      >neoCircle(x, y, radius, numPixels, offset?, device?)</span
+    >
+    <span class="doc-badge doc-badge-type ml-2">void</span>
+  </p>
+  <p class="doc-p mb-3">
+    Samples canvas colors at evenly spaced points around a circle and writes
+    them to consecutive LEDs. Pixel 0 is at the top of the circle, advancing
+    clockwise.
+  </p>
+  <CodeBlock
+    nested
+    code={`// Map 24 LEDs around a circle centered at (200, 200) with radius 80
+neoCircle(200, 200, 80, 24);`}
+  />
+</div>
+
+<div class="doc-card mb-3">
+  <p class="mb-1">
+    <span class="doc-code"
+      >neoLine(x1, y1, x2, y2, numPixels, offset?, device?)</span
+    >
+    <span class="doc-badge doc-badge-type ml-2">void</span>
+  </p>
+  <p class="doc-p mb-3">
+    Samples canvas colors at evenly spaced points along a line segment
+    (inclusive of both endpoints) and writes them to consecutive LEDs.
+  </p>
+  <CodeBlock
+    nested
+    code={`// Map 12 LEDs along a diagonal from (0, 0) to (300, 200)
+neoLine(0, 0, 300, 200, 12);`}
+  />
+</div>

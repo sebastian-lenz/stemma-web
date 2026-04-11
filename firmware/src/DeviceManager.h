@@ -142,6 +142,7 @@ private:
 
                 _devices[--_count] = nullptr;
                 resp.success = true;
+                return;
             }
         }
 

@@ -24,7 +24,9 @@ static size_t  rx_len = 0;
 
 // Send a Response message back to the host.
 static void send_response(const Response& resp) {
-    uint8_t payload[MAX_MSG_SIZE];
+    if (!usb_web.connected()) return;
+
+    static uint8_t payload[MAX_MSG_SIZE];
     pb_ostream_t stream = pb_ostream_from_buffer(payload, sizeof(payload));
 
     if (!pb_encode(&stream, Response_fields, &resp)) {
@@ -32,7 +34,7 @@ static void send_response(const Response& resp) {
     }
 
     auto len = static_cast<uint16_t>(stream.bytes_written);
-    uint8_t header[2] = { static_cast<uint8_t>(len >> 8), (uint8_t)(len & 0xFF) };
+    uint8_t header[2] = { static_cast<uint8_t>(len >> 8), static_cast<uint8_t>(len & 0xFF) };
     usb_web.write(header, 2);
     usb_web.write(payload, len);
     usb_web.flush();

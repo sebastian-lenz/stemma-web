@@ -17,7 +17,10 @@ function draw() {
 
   text(frameCount, 20, 50);
 
-  let focus = Math.abs(rotaryEncoder.getValue() % 32);
+  let focus = rotaryEncoder.getValue();
+  let sign = focus < 0 ? -1 : 1;
+  focus = Math.abs(focus % 32);
+  if (sign < 0) focus = 32 - focus;
 
   for (let index = 0; index < 32; index++) {
     let distance = Math.abs(focus - index);
