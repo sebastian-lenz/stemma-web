@@ -1,5 +1,9 @@
 import { BaseDevice } from "./BaseDevice";
-import { DeviceType, PressureSensorChipset, PressureSensorDataRate } from "../proto/messages";
+import {
+  DeviceType,
+  PressureSensorChipset,
+  PressureSensorDataRate,
+} from "../proto/messages";
 import type { Connection } from "../usb/Connection";
 import type { IDeviceState, IDeviceEvent } from "../proto/messages";
 
@@ -20,13 +24,13 @@ export class PressureSensor extends BaseDevice<
   PressureSensorAddress,
   PressureSensorEvents
 > {
-  private _pressure    = 0;
+  private _pressure = 0;
   private _temperature = 0;
-  private _dataRate    = PressureSensorDataRate.PRESSURE_SENSOR_DATA_RATE_25_HZ;
+  private _dataRate = PressureSensorDataRate.PRESSURE_SENSOR_DATA_RATE_25_HZ;
   private _chipset: PressureSensorChipset;
 
   static readonly ADDRESSES: Array<number> = [0x5d, 0x5c];
-  static readonly EVENTS:    Array<string>  = ["changed"];
+  static readonly EVENTS: Array<string> = ["changed"];
 
   constructor(
     address: PressureSensorAddress,
@@ -37,7 +41,7 @@ export class PressureSensor extends BaseDevice<
     this._chipset = chipset;
   }
 
-  override connect() {
+  override createConnectPromise() {
     return this._request({ start: { pressureSensorChipset: this._chipset } });
   }
 
@@ -65,20 +69,20 @@ export class PressureSensor extends BaseDevice<
     const state = deviceState.pressureSensor;
     if (!state) return;
 
-    this._pressure    = state.pressure    ?? 0;
+    this._pressure = state.pressure ?? 0;
     this._temperature = state.temperature ?? 0;
-    this._dataRate    = state.dataRate    ?? this._dataRate;
+    this._dataRate = state.dataRate ?? this._dataRate;
   }
 
   override _applyEvent(event: IDeviceEvent): void {
     const data = event.pressureSensorData;
     if (!data) return;
 
-    this._pressure    = data.pressure    ?? 0;
+    this._pressure = data.pressure ?? 0;
     this._temperature = data.temperature ?? 0;
 
     this._dispatch("changed", {
-      pressure:    this._pressure,
+      pressure: this._pressure,
       temperature: this._temperature,
     });
   }

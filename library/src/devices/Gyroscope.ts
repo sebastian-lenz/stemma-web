@@ -48,7 +48,7 @@ export class Gyroscope extends BaseDevice<GyroscopeAddress, GyrosocopeEvents> {
     this._chipset = chipset;
   }
 
-  override connect(): Promise<Response> {
+  override createConnectPromise(): Promise<Response> {
     return this._request({ start: { gyroscopeChipset: this._chipset } });
   }
 

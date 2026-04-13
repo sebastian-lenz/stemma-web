@@ -37,7 +37,7 @@ export abstract class BaseDevice<
 
     this._connectPromise = (async () => {
       await this._connection.connect();
-      const reponse = await this._request({ start: {} });
+      const reponse = await this.createConnectPromise();
 
       this._isConnected = true;
       return reponse;
@@ -48,6 +48,10 @@ export abstract class BaseDevice<
     });
 
     return this._connectPromise;
+  }
+
+  createConnectPromise() {
+    return this._request({ start: {} });
   }
 
   _applyState(deviceState: IDeviceState): void {
